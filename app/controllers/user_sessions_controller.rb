@@ -1,7 +1,5 @@
 class UserSessionsController < ApplicationController
-	def new
-	end
-	
+
 	def create
 	  @user_session = UserSession.new(params[:user_session])
 	  if @user_session.save
@@ -12,7 +10,7 @@ class UserSessionsController < ApplicationController
 	    render :action => 'new'
 	  end
 	end
-	
+
 	def destroy
 	  @user_session = UserSession.find
 	  @user_session.destroy
@@ -21,3 +19,4 @@ class UserSessionsController < ApplicationController
 	end
 
 end
+
