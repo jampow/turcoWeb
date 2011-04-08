@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110406223331) do
+ActiveRecord::Schema.define(:version => 20110407235613) do
+
+  create_table "ncms", :force => true do |t|
+    t.string   "code"
+    t.string   "description"
+    t.string   "unit"
+    t.integer  "ipi"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username"

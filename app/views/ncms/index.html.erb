@@ -1,0 +1,26 @@
+<h1>Listing ncms</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Description</th>
+    <th>Unit</th>
+    <th>Ipi</th>
+  </tr>
+
+<% @ncms.each do |ncm| %>
+  <tr>
+    <td><%=h ncm.code %></td>
+    <td><%=h ncm.description %></td>
+    <td><%=h ncm.unit %></td>
+    <td><%=h ncm.ipi %></td>
+    <td><%= link_to 'Show', ncm %></td>
+    <td><%= link_to 'Edit', edit_ncm_path(ncm) %></td>
+    <td><%= link_to 'Destroy', ncm, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New ncm', new_ncm_path %>
