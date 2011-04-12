@@ -1,13 +1,13 @@
-<% form_for :user_session, :url => { :action => "create" } do |f| %>
+<% form_for @user_session, :url => user_session_path do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
   </p>
   <p>
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </p>
-  <p><%= f.submit "Submit" %></p>
+  <p><%= f.submit "Login" %></p>
 <% end %>
 

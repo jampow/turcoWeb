@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110407235613) do
+ActiveRecord::Schema.define(:version => 20110411225149) do
 
   create_table "ncms", :force => true do |t|
     t.string   "code"
@@ -21,9 +21,19 @@ ActiveRecord::Schema.define(:version => 20110407235613) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username"
+    t.string   "name"
+    t.string   "login"
     t.string   "email"
-    t.string   "password"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.integer  "login_count"
+    t.integer  "failed_login_count"
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
