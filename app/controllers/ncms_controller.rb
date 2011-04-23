@@ -1,4 +1,7 @@
 class NcmsController < ApplicationController
+  has_mobile_fu
+  #layout nil
+
   # GET /ncms
   # GET /ncms.xml
   def index
@@ -6,6 +9,7 @@ class NcmsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.mobile
       format.xml  { render :xml => @ncms }
     end
   end
@@ -17,6 +21,7 @@ class NcmsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.mobile
       format.xml  { render :xml => @ncm }
     end
   end
@@ -28,6 +33,7 @@ class NcmsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.mobile
       format.xml  { render :xml => @ncm }
     end
   end
@@ -45,11 +51,13 @@ class NcmsController < ApplicationController
     respond_to do |format|
       if @ncm.save
         flash[:notice] = 'Ncm was successfully created.'
-        format.html { redirect_to(@ncm) }
-        format.xml  { render :xml => @ncm, :status => :created, :location => @ncm }
+        format.html   { redirect_to(@ncm) }
+        format.mobile { redirect_to(@ncm) }
+        format.xml    { render :xml => @ncm, :status => :created, :location => @ncm }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @ncm.errors, :status => :unprocessable_entity }
+        format.html   { render :action => "new" }
+        format.mobile { render :action => "new" }
+        format.xml    { render :xml => @ncm.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -62,11 +70,13 @@ class NcmsController < ApplicationController
     respond_to do |format|
       if @ncm.update_attributes(params[:ncm])
         flash[:notice] = 'Ncm was successfully updated.'
-        format.html { redirect_to(@ncm) }
-        format.xml  { head :ok }
+        format.html   { redirect_to(@ncm) }
+        format.mobile { redirect_to(@ncm) }
+        format.xml    { head :ok }
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @ncm.errors, :status => :unprocessable_entity }
+        format.html   { render :action => "edit" }
+        format.mobile { render :action => "edit" }
+        format.xml    { render :xml => @ncm.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -78,8 +88,10 @@ class NcmsController < ApplicationController
     @ncm.destroy
 
     respond_to do |format|
-      format.html { redirect_to(ncms_url) }
-      format.xml  { head :ok }
+      format.html   { redirect_to(ncms_url) }
+      format.mobile { redirect_to(ncms_url) }
+      format.xml    { head :ok }
     end
   end
 end
+

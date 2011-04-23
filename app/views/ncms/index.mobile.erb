@@ -1,0 +1,18 @@
+<% content_for :toolbar do %>
+  <h1>Ncms</h1>
+  <a href="#info" class="button leftButton flip">Sobre</a>
+<% end %>
+
+<ul class="individual rounded">
+  <li><%= link_to 'Novo',   new_ncm_path %></li>
+  <li><%= link_to 'Editar', 'teste.html' %></li>
+</ul>
+
+<h2>Itens</h2>
+
+<ul class="menu rounded">
+  <% @ncms.each do |ncm| %>
+    <li class="arrow"><%= link_to ncm.description, ncm %></li>
+  <% end %>
+</ul>
+
