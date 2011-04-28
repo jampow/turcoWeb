@@ -3,6 +3,8 @@
   <a href="#info" class="button leftButton flip">Sobre</a>
 <% end %>
 
+<h2><%= in_mobile_view? ? "mob" : "NOT MOB!" %></h2>
+
 <ul class="rounded">
   <li><%= link_to 'Ncms',   ncms_path %></li>
 </ul>

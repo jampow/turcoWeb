@@ -1,20 +1,24 @@
-<h1>Listing departments</h1>
+<h1>Departamentos</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
+<%= mount_menu %>
 
-<% @departments.each do |department| %>
-  <tr>
-    <td><%=h department.name %></td>
-    <td><%= link_to 'Show', department %></td>
-    <td><%= link_to 'Edit', edit_department_path(department) %></td>
-    <td><%= link_to 'Destroy', department, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+<input type="hidden" id="controller" value="departments" />
+
+<table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @departments.each do |department| %>
+    <tr>
+      <td><%=h department.id %></td>
+      <td><%=h department.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New department', new_department_path %>

@@ -1,0 +1,170 @@
+body {
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 12px;
+}
+
+.ui-layout-west{
+  padding:0px !important;
+  overflow:hidden !important;
+}
+
+.ui-layout-north{
+  padding: 0px !important;
+  overflow:hidden !important;
+}
+
+.ui-layout-center{
+  padding: 10px !important;
+  background-image: none;
+}
+
+.header {
+  padding:10px;
+}
+
+#menu {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#menu div{
+  padding:0px 5px;
+}
+
+#menu ul {
+  margin:0px;
+  padding: 0px;
+}
+
+#menu li {
+  list-style: none;
+  padding: 2px 5px 3px 30px;
+  display: block;
+}
+
+#menu li > a {
+  text-decoration: none;
+}
+
+#waiting {
+  width:100%;
+  height:100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #FFF;
+  display: none;
+}
+
+#sortable li {
+  cursor: move;
+  width: 200px;
+}
+
+.dataTables_filter {
+  float:right;
+  text-align:right;
+  width:50%;
+}
+
+.dataTables_paginate  {
+  float:right;
+  text-align:right;
+}
+
+.dataTables_length {
+  float:left;
+  width:40%;
+}
+
+.dataTables_info {
+  float:left;
+  width:60%;
+}
+
+.fg-toolbar{
+  padding: 5px;
+}
+
+.fg-button {
+  cursor: pointer;
+}
+
+.css_right{
+  float:right;
+  cursor: pointer;
+}
+
+table#list tbody tr {
+  cursor: pointer;
+}
+
+.button {
+  margin: 5px;
+}
+
+#flash_error {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+
+.fieldWithErrors {
+  display: inline;
+  color: #f00;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid #CF0000;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: 0;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 8px;
+}
+
+#errorExplanation ul {
+  margin: 2px 24px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: disc;
+}
+
+div.jGrowl div.smoke {
+	background: url(../images/smoke.png) no-repeat;
+	-moz-border-radius: 	0px;
+	-webkit-border-radius:	0px;
+	width: 					280px;
+	height: 				55px;
+	overflow: 				hidden;
+}
+
+div.jGrowl div.ui-state-highlight {
+  border: 0px !important;
+  color: #fff !important;
+}
+
+div.jGrowl div.header {
+  background: none;
+}
+
+.notice {display:none}
+

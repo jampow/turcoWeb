@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>TurcoWeb</title>
+  <%= stylesheet_link_tag 'jqui-themes/blitzer/jquery-ui-1.8.12.custom', 'jquery.jgrowl', 'application' %>
+  <%= javascript_include_tag 'jquery/jquery-1.4.2.min.js', 'jquery/jquery-ui-1.8.12.custom.min.js', 'jquery/jquery.layout.min-1.2.0.js', 'jquery/jquery.jgrowl_google', 'jquery/jquery.dataTables.min.js', 'application' %>
+</head>
+<body>
+
+  <div class="ui-layout-north ui-widget-header">
+    <div class="header">
+      <%= link_to "Home",          root_path ,                                                        :class => "button", :icon => "home" %>
+      <%= link_to "Perfil",        {:controller => 'users', :action => 'editme',   :id => :current} , :class => "button", :icon => "person", :ajax => "true" %>
+      <%= link_to "Alterar senha", {:controller => 'users', :action => 'editpass', :id => :current} , :class => "button", :icon => "key"   , :ajax => "true" %>
+      <%= link_to "Sair",          logout_path ,                                                      :class => "button", :icon => "power" %>
+      <span>Bem vindo <strong><%= current_user.name %></strong>!</span>
+    </div>
+  </div>
+
+  <div class="ui-layout-west">
+  <%= render :partial => "layouts/menu" %>
+  </div>
+
+  <div class="ui-layout-center ui-widget-content">
+
+    <%= yield %>
+
+  </div>
+
+</body>
+</html>
+
