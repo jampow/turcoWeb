@@ -5,13 +5,73 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>TurcoWeb - Identifique-se!</title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'jqui-themes/blitzer/jquery-ui-1.8.12.custom', 'application' %>
+  <%= javascript_include_tag 'jquery/jquery-1.4.2.min.js', 'jquery/jquery-ui-1.8.12.custom.min.js' %>
+
 </head>
 <body>
 
-<div id="login">
   <%= yield %>
-</div>
+
+  <script type="text/javascript">
+    $(function(){
+
+      dialog = $("#dialog").dialog({
+			  autoOpen: false,
+			  height: 200,
+			  width: 280,
+			  modal: true,
+  			show: "drop",
+  			closeOnEscape: false,
+  			draggable: false,
+			  buttons: {
+				  "Entrar": function() {
+            submit_form();
+				  }
+			  },
+			  close: function(){
+			    dialog.dialog('open');
+			  }
+		  });
+
+      $('input').bind('keydown',function(e){
+        if (e.which == '13') {
+          submit_form();
+        }
+      });
+
+     $('a.ui-dialog-titlebar-close').hide();
+
+      dialog.dialog('open');
+
+    });
+
+    function submit_form(){
+      form = $('form');
+      login = form.serialize();
+
+      $.ajax({
+        url: form.attr('action'),
+        type: 'POST',
+        data: login,
+        dataType: 'text/xml',
+        success: function(data){
+          window.location = "/home";
+        }, //close success
+        error: function(data){
+          errors = $('error', data.responseText);
+          msgBox ="<div class=\"ui-widget\" id=\"msgError\">"+
+				            "<div style=\"padding: 0pt 0.7em;\" class=\"ui-state-error ui-corner-all\">"+
+				              "<p><span style=\"float: left; margin-right: 0.3em;\" class=\"ui-icon ui-icon-alert\"></span>"+
+					            "<strong>Erro:</strong> "+errors.text()+"</p>"+
+				            "</div>"+
+			            "</div>"
+			    $('#msgError').remove();
+			    form.before(msgBox);
+        } //close errors
+      }); //close ajax
+    } //close function
+  </script>
 
 </body>
 </html>

@@ -168,3 +168,8 @@ div.jGrowl div.header {
 
 .notice {display:none}
 
+label {
+  margin: 5px;
+  display: block;
+}
+

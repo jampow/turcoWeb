@@ -19,25 +19,10 @@ module ApplicationHelper
   #monta menu das telas administrativas
   def mount_menu(*btns)
     id = params[:id]
-    #controller = self.controller_name
     controller = controller_name
     action = action_name
 
     s = ""
-
-    #s += self.controller.send(:current_user).has_role_for? self
-
-    #self.hash_for_admin_buildings_path.each do |s|
-    #  s += s + "<br />"
-    #end
-
-    #s += "<br /><br />"
-    #s += "<br /><br />"
-    #
-    #current_user.methods.sort.each do |m|
-    #  s += m + "<br />"
-    #end
-
 
     if btns.length > 0
       btns[0].each do |btn|
