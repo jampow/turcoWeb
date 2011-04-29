@@ -63,8 +63,10 @@ $(function(){
     controller = $('#controller').val();
     id = $(':first-child',t).html()
 
-    $('.ui-state-hover').removeClass('ui-state-hover');
-    t.addClass('ui-state-hover');
+    klass = 'ui-state-default';
+
+    $('table#list tbody tr.'+klass).removeClass(klass);
+    t.addClass(klass);
 
     url = '/' + controller + '/';
     $('.button.show').attr('href',     url + id              );

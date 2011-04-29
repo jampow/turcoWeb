@@ -1,5 +1,5 @@
 <div id="dialog" title="Identifique-se">
-	<% form_for @user_session, :url => user_session_path do |f| %>
+	<% form_for @user_session, :url => user_session_path(:xml) do |f| %>
     <%= f.error_messages %>
     <%= f.label :login %>
     <%= f.text_field :login, :class => "text ui-widget-content ui-corner-all" %>

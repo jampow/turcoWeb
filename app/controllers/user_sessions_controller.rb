@@ -8,13 +8,19 @@ class UserSessionsController < ApplicationController
 
 	def create
 	  @user_session = UserSession.new(params[:user_session])
-	  if @user_session.save
-	    flash[:notice] = "Successfully logged in."
-	    redirect_to "/home"
-	  else
-	  	flash[:notice] = "Dados inválidos"
-	    render :action => 'new'
-	  end
+
+
+	  respond_to do |format|
+	    if @user_session.save
+	      flash[:notice] = "Successfully logged in."
+          format.html { redirect_to "/home" }
+          format.xml  { render :xml => {:status => "created"} }
+	    else
+	    	flash[:notice] = "Dados inválidos"
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @user_session.errors, :status => :unprocessable_entity }
+	    end
+    end
 	end
 
 	def destroy

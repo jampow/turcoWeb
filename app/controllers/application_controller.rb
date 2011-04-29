@@ -48,7 +48,16 @@ private
     session[:return_to] = nil
   end
 
+  rescue_from 'Acl9::AccessDenied', :with => :access_denied
 
+  def access_denied
+    if current_user
+      render :template => 'static_content/denied'
+    else
+      flash[:notice] = 'Acesso negado. Você precisa estar logado.'
+      redirect_to login_path
+    end
+  end
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password

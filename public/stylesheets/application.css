@@ -171,5 +171,15 @@ div.jGrowl div.header {
 label {
   margin: 5px;
   display: block;
+  font-weight: bold;
+}
+
+label input {
+  margin-left: 50px;
+}
+
+h1 {
+  border-bottom: 1px dotted #007700;
+  color: #007700;
 }
 
