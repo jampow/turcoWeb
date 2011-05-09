@@ -139,6 +139,8 @@ $(function(){
 			, "sPaginationType": "full_numbers"
 		});
 
+    $('input[type=radio]').buttonset();
+
     $('.button'  ).button();
     $('.show'    ).button( "option", "icons", {primary:'ui-icon-search'           });
     $('.edit'    ).button( "option", "icons", {primary:'ui-icon-pencil'           });

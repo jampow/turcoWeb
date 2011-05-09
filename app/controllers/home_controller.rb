@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   has_mobile_fu
-
   before_filter :is_system_user?, :only => [:index]
 
   def index

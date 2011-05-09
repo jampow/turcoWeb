@@ -152,9 +152,9 @@ div.jGrowl div.smoke {
 	background: url(../images/smoke.png) no-repeat;
 	-moz-border-radius: 	0px;
 	-webkit-border-radius:	0px;
-	width: 					280px;
-	height: 				55px;
-	overflow: 				hidden;
+	width: 280px;
+	height: 55px;
+	overflow: hidden;
 }
 
 div.jGrowl div.ui-state-highlight {

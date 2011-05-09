@@ -1,0 +1,24 @@
+<h1>Permissões</h1>
+
+<%= mount_menu %>
+
+<input type="hidden" id="controller" value="permissions" />
+
+<table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%=h user.id %></td>
+      <td><%=h user.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
