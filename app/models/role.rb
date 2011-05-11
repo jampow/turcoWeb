@@ -2,7 +2,10 @@ class Role < ActiveRecord::Base
   acts_as_authorization_role
 
   ROLES = {:departments => 'Departamentos',
-             :permissions => 'Permissões'}
+           :permissions => 'Permissões',
+           :users       => 'Usuários',
+           :ncms        => 'NCM\'s',
+           }
 
 
   def self.roles

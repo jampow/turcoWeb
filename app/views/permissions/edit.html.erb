@@ -9,7 +9,7 @@
   <%= hidden_field :user, :id %>
 
   <% @controllers.each do |cont, nick| %>
-  <p>
+  <p class="buttonset">
     <%= perm_options(cont, nick, @user) %>
   </p>
   <% end %>

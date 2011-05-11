@@ -24,7 +24,7 @@ private
   def require_user
     unless current_user
       store_location
-      flash[:notice] = "You must be logged in to access this page"
+      flash[:notice] = "Você precisa estar logado para acessar esta página"
       redirect_to new_user_session_url
       return false
     end
@@ -33,7 +33,7 @@ private
   def require_no_user
     if current_user
       store_location
-      flash[:notice] = "You must be logged out to access this page"
+      flash[:notice] = "Você precisa estar logado para acessar esta página"
       redirect_to "/home"
       return false
     end
@@ -52,7 +52,7 @@ private
 
   def access_denied
     if current_user
-      render :template => 'static_content/denied'
+      render :template => '/access_denied/index'
     else
       flash[:notice] = 'Acesso negado. Você precisa estar logado.'
       redirect_to login_path

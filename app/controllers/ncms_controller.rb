@@ -1,5 +1,7 @@
 class NcmsController < ApplicationController
   has_mobile_fu
+  autom_permissions
+
   #layout nil
 
   # GET /ncms
@@ -50,7 +52,7 @@ class NcmsController < ApplicationController
 
     respond_to do |format|
       if @ncm.save
-        flash[:notice] = 'Ncm was successfully created.'
+        flash[:notice] = 'Novo NCM criado.'
         format.html   { redirect_to(@ncm) }
         #format.mobile { redirect_to(@ncm) }
         format.xml    { render :xml => @ncm, :status => :created, :location => @ncm }
@@ -69,7 +71,7 @@ class NcmsController < ApplicationController
 
     respond_to do |format|
       if @ncm.update_attributes(params[:ncm])
-        flash[:notice] = 'Ncm was successfully updated.'
+        flash[:notice] = 'NCM Alterado.'
         format.html   { redirect_to(@ncm) }
         #format.mobile { redirect_to(@ncm) }
         format.xml    { head :ok }

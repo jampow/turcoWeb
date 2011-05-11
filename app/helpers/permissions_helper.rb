@@ -1,12 +1,14 @@
 module PermissionsHelper
 
+  #Actions New and Edit
   def perm_options(controller, nick, user)
-    perm = ["Escrever", "Ler", "Sem acesso"]
+    perm = {"e" => "Escrever", "l" => "Ler", "s" => "Sem acesso"}
 
     radios = ""
-    perm.each { |n| radios += perm_radio(controller, n[0].chr.downcase, user) + label("permission", controller.to_s + "_" + val) }
 
-    s  = nick + radios
+    perm.each { |n, full| radios += perm_radio(controller, n, user) + "<label for=\"permission_#{controller.to_s}_#{n}\">#{full}</label>" }
+
+    s  = "<span class=\"perm_label\">#{nick}</span> #{radios}"
   end
 
   def perm_radio(controller, val, user)
@@ -14,6 +16,8 @@ module PermissionsHelper
     s = radio_button("permission", controller, val, {:checked => chk})
   end
 
+
+  #Action Show
   def perm_table_line(perm)
     s = ""
 
@@ -35,7 +39,7 @@ module PermissionsHelper
   end
 
   def perm_table(perm)
-    s = <<TABLE
+    s = <<-TABLE
         <table>
           <thead class="ui-widget-header">
             <tr>
@@ -47,7 +51,7 @@ module PermissionsHelper
           </thead>
           <tbody>#{perm_table_line(perm)}</tbody>
         </table>
-TABLE
+        TABLE
     s
   end
 

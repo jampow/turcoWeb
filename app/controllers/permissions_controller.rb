@@ -1,4 +1,6 @@
 class PermissionsController < ApplicationController
+  #autom_permissions
+
   def index
     @users = User.all
   end

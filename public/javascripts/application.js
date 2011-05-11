@@ -139,7 +139,7 @@ $(function(){
 			, "sPaginationType": "full_numbers"
 		});
 
-    $('input[type=radio]').buttonset();
+    $('.buttonset').buttonset();
 
     $('.button'  ).button();
     $('.show'    ).button( "option", "icons", {primary:'ui-icon-search'           });
@@ -161,7 +161,8 @@ function message() {
   if ( msg != "" ) {
     $.jGrowl(msg,{
       //theme: 'smoke',
-      life: 5000,
+      life: 550000,
+      position: 'center',
       header: '<b>MENSAGEM</b>'
     });
   }

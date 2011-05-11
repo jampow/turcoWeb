@@ -1,24 +1,28 @@
 <h1>Listing users</h1>
 
-<table>
-  <tr>
-    <th>Login</th>
-    <th>Email</th>
-    <th>Crypted password</th>
-  </tr>
+<%= mount_menu %>
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%=h user.login %></td>
-    <td><%=h user.email %></td>
-    <td><%=h user.crypted_password %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+<input type="hidden" id="controller" value="users" />
+
+<table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Login</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%=h user.id %></td>
+      <td><%=h user.name %></td>
+      <td><%=h user.login %></td>
+      <td><%=h user.email %></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New user', new_user_path %>

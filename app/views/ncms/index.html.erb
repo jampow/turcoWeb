@@ -1,30 +1,30 @@
-<h1>Listing ncms</h1>
+<h1>NCM's</h1>
 
+<%= mount_menu %>
 
-<h2><%= in_mobile_view? ? "mob" : "NOT MOB!" %></h2>
+<input type="hidden" id="controller" value="ncms" />
 
-<table>
-  <tr>
-    <th>Code</th>
-    <th>Description</th>
-    <th>Unit</th>
-    <th>Ipi</th>
-  </tr>
+<table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Código</th>
+      <th>Descrição</th>
+      <th>Unidade</th>
+      <th>IPI</th>
+    </tr>
+  </thead>
 
-<% @ncms.each do |ncm| %>
-  <tr>
-    <td><%=h ncm.code %></td>
-    <td><%=h ncm.description %></td>
-    <td><%=h ncm.unit %></td>
-    <td><%=h ncm.ipi %></td>
-    <td><%= link_to 'Show', ncm %></td>
-    <td><%= link_to 'Edit', edit_ncm_path(ncm) %></td>
-    <td><%= link_to 'Destroy', ncm, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <tbody>
+  <% @ncms.each do |ncm| %>
+    <tr>
+      <td><%=h ncm.id %></td>
+      <td><%=h ncm.code %></td>
+      <td><%=h ncm.description %></td>
+      <td><%=h ncm.unit %></td>
+      <td><%=h ncm.ipi %></td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
-
-<br />
-
-<%= link_to 'New ncm', new_ncm_path %>
 

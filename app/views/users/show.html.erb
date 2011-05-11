@@ -1,3 +1,7 @@
+<h1>Usuário</h1>
+
+<%= mount_menu %>
+
 <p>
   <b>Login:</b>
   <%=h @user.login %>
@@ -13,6 +17,3 @@
   <%=h @user.crypted_password %>
 </p>
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

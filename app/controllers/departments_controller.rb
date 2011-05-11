@@ -1,4 +1,6 @@
 class DepartmentsController < ApplicationController
+  autom_permissions
+
   # GET /departments
   # GET /departments.xml
   def index
@@ -44,7 +46,7 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.save
-        flash[:notice] = 'Department was successfully created.'
+        flash[:notice] = 'Novo departamento criado.'
         format.html { redirect_to(@department) }
         format.xml  { render :xml => @department, :status => :created, :location => @department }
       else
@@ -61,7 +63,7 @@ class DepartmentsController < ApplicationController
 
     respond_to do |format|
       if @department.update_attributes(params[:department])
-        flash[:notice] = 'Department was successfully updated.'
+        flash[:notice] = 'Departamento alterado.'
         format.html { redirect_to(@department) }
         format.xml  { head :ok }
       else
@@ -83,3 +85,4 @@ class DepartmentsController < ApplicationController
     end
   end
 end
+

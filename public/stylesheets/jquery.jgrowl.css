@@ -1,6 +1,6 @@
 
 div.jGrowl {
-	padding: 			10px;
+	padding: 			60px 10px 10px 10px; /*alterado por Jampow. Default 10px*/
 	z-index: 			9999;
 	color: 				#fff;
 	font-size: 			12px;

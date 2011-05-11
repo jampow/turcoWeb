@@ -12,7 +12,7 @@ class UserSessionsController < ApplicationController
 
 	  respond_to do |format|
 	    if @user_session.save
-	      flash[:notice] = "Successfully logged in."
+	      flash[:notice] = "Olá."
           format.html { redirect_to "/home" }
           format.xml  { render :xml => {:status => "created"} }
 	    else
@@ -25,7 +25,7 @@ class UserSessionsController < ApplicationController
 
 	def destroy
 	  current_user_session.destroy
-    flash[:notice] = "Logout successful!"
+    flash[:notice] = "Até mais!"
     redirect_back_or_default login_url
 	end
 

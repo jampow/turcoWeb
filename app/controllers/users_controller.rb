@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update]
+  #before_filter :require_no_user, :only => [:new, :create]
+  #before_filter :require_user, :only => [:show, :edit, :update]
+  autom_permissions
 
   # GET /users
   # GET /users.xml
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:notice] = 'User was successfully created.'
+        flash[:notice] = 'Novo usuário criado.'
         format.html { redirect_to(@user) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
@@ -64,7 +65,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        flash[:notice] = 'User was successfully updated.'
+        flash[:notice] = 'Usuário alterado.'
         format.html { redirect_to(@user) }
         format.xml  { head :ok }
       else
