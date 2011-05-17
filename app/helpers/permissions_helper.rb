@@ -31,7 +31,7 @@ module PermissionsHelper
       s += "<td>#{Role.roles[c.to_sym]}</td>" #Imprime nome amigável do controller
 
       ['e', 'l', 's'].each do |level|
-        s += level == l ? "<td>X</td>" : "<td></td>" #Imprime o acesso
+        s += level == l ? "<td><span class=\"ui-icon ui-icon-check\"></span></td>" : "<td></td>" #Imprime o acesso
       end
       s += "</tr>"
     end
@@ -40,7 +40,7 @@ module PermissionsHelper
 
   def perm_table(perm)
     s = <<-TABLE
-        <table>
+        <table id="permissions">
           <thead class="ui-widget-header">
             <tr>
               <td>Área</td>

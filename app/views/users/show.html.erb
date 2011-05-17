@@ -3,6 +3,11 @@
 <%= mount_menu %>
 
 <p>
+  <b>Nome:</b>
+  <%=h @user.name %>
+</p>
+
+<p>
   <b>Login:</b>
   <%=h @user.login %>
 </p>
@@ -10,10 +15,5 @@
 <p>
   <b>Email:</b>
   <%=h @user.email %>
-</p>
-
-<p>
-  <b>Crypted password:</b>
-  <%=h @user.crypted_password %>
 </p>
 

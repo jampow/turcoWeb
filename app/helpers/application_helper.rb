@@ -15,7 +15,6 @@ module ApplicationHelper
 
 
 
-
   #monta menu das telas administrativas
   def mount_menu(*btns)
     id = params[:id]
@@ -72,7 +71,7 @@ module ApplicationHelper
         s += btn_show(controller, id)
         s += btn_back(controller)
     end
-    s += ""
+    s
   end
 
   def btn_new(controller)
@@ -106,7 +105,6 @@ module ApplicationHelper
   def btn_organizer(controller)
     link_to "Ordenar", "/#{controller}/order", {:class => "button order"}
   end
-
 
 end
 

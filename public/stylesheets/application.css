@@ -187,3 +187,8 @@ h1 {
   width:200px;
 }
 
+table#permissions>tbody tr td span.ui-icon {
+  margin: 0 auto;
+
+}
+

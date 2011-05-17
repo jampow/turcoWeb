@@ -161,7 +161,7 @@ function message() {
   if ( msg != "" ) {
     $.jGrowl(msg,{
       //theme: 'smoke',
-      life: 550000,
+      life: 5000,
       position: 'center',
       header: '<b>MENSAGEM</b>'
     });
