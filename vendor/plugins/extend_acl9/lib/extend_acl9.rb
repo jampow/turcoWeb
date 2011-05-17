@@ -6,6 +6,11 @@ module ActionController
     class << self
       LEVELS = {:e => [:index, :show, :new, :edit, :create, :update, :destroy], :l => [:index, :show], :s => [] }
       # Class methods here
+
+      def controller_name
+        self.name.gsub(/Controller/, '').downcase
+      end
+
       def autom_permissions
         access_control do
           LEVELS.each do |level, permissions|
@@ -14,10 +19,6 @@ module ActionController
           end
         end
       end #def autom_permissions
-
-      def controller_name
-        self.name.gsub(/Controller/, '').downcase
-      end
     end #class << self
   # Instance methods here
   end
