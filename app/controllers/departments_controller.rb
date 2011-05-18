@@ -1,5 +1,9 @@
 class DepartmentsController < ApplicationController
-  autom_permissions
+  access_control do
+    allow :departments_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :departments_l, :to => [:index, :show]
+    allow :departments_s, :to => []
+  end
 
   # GET /departments
   # GET /departments.xml

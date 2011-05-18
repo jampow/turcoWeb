@@ -1,5 +1,10 @@
 class PermissionsController < ApplicationController
-  #autom_permissions
+
+  access_control do
+    allow :permissions_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :permissions_l, :to => [:index, :show]
+    allow :permissions_s, :to => []
+  end
 
   def index
     @users = User.all

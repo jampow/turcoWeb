@@ -1,6 +1,11 @@
 class NcmsController < ApplicationController
   has_mobile_fu
-  autom_permissions
+
+  access_control do
+    allow :ncms_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :ncms_l, :to => [:index, :show]
+    allow :ncms_s, :to => []
+  end
 
   #layout nil
 
