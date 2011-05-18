@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  nickname: MyString
+  cnpj: MyString
+  ie: MyString
+  active: false
+  sci: MyString
+  activity: MyString
+  main_address_id: 1
+  billing_address_id: 1
+  delivery_address_id: 1
+
+two:
+  name: MyString
+  nickname: MyString
+  cnpj: MyString
+  ie: MyString
+  active: false
+  sci: MyString
+  activity: MyString
+  main_address_id: 1
+  billing_address_id: 1
+  delivery_address_id: 1

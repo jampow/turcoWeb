@@ -1,5 +1,7 @@
 <p style="color: green" class="notice"><%= flash[:notice] %></p>
 
+<%= hidden_field_tag 'controller', params[:controller] %>
+
 <%= yield %>
 
 <div id="waiting"> </div>

@@ -9,7 +9,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110429224833) do
+ActiveRecord::Schema.define(:version => 20110518201921) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "street"
+    t.string   "number"
+    t.string   "complement"
+    t.string   "neighborhood"
+    t.string   "city"
+    t.string   "estate"
+    t.string   "country"
+    t.integer  "cep"
+    t.string   "addressable_type"
+    t.integer  "addressable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clients", :force => true do |t|
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "cnpj"
+    t.string   "ie"
+    t.boolean  "active"
+    t.string   "sci"
+    t.string   "activity"
+    t.integer  "main_address_id"
+    t.integer  "billing_address_id"
+    t.integer  "delivery_address_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "departments", :force => true do |t|
     t.string   "name"

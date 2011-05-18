@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  street: MyString
+  number: MyString
+  complement: MyString
+  neighborhood: MyString
+  city: MyString
+  estate: MyString
+  country: MyString
+  cep: 1
+
+two:
+  street: MyString
+  number: MyString
+  complement: MyString
+  neighborhood: MyString
+  city: MyString
+  estate: MyString
+  country: MyString
+  cep: 1
