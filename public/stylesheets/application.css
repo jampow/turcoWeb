@@ -175,9 +175,11 @@ label {
   font-weight: bold;
 }
 
+/*
 label input {
   margin-left: 50px;
 }
+*/
 
 h1 {
   border-bottom: 1px dotted #007700;

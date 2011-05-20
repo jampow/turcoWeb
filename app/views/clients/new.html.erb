@@ -1,145 +1,129 @@
 <h1>Novo Cliente</h1>
 
 <% form_for(@client) do |f| %>
-  <%= f.error_messages %>
 
   <%= mount_menu %>
+  <div class="form-wrapper">
 
-  <p>
-    <%= f.label :name, "Raz. Social" %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :nickname, "Apelido" %><br />
-    <%= f.text_field :nickname %>
-  </p>
-  <p>
-    <%= f.label :cnpj, "CNPJ" %><br />
-    <%= f.text_field :cnpj %>
-  </p>
-  <p>
-    <%= f.label :ie, "IE" %><br />
-    <%= f.text_field :ie %>
-  </p>
-  <p>
-    <%= f.label :active, "Ativo" %><br />
-    <%= f.check_box :active %>
-  </p>
-  <p>
-    <%= f.label :sci, "SCI" %><br />
-    <%= f.text_field :sci %>
-  </p>
-  <p>
-    <%= f.label :activity, "Ramo de atividade" %><br />
-    <%= f.text_field :activity %>
-  </p>
+    <%= f.error_messages %>
 
-  <% f.fields_for :main_address do |ma| %>
-    <p>
-      <%= ma.label :street, "Endereço" %><br />
-      <%= ma.text_field :street %>
-    </p>
-    <p>
-      <%= ma.label :number, "Número" %><br />
-      <%= ma.text_field :number %>
-    </p>
-    <p>
-      <%= ma.label :complement, "Complemento" %><br />
-      <%= ma.text_field :complement %>
-    </p>
-    <p>
-      <%= ma.label :neighborhood, "Bairro" %><br />
-      <%= ma.text_field :neighborhood %>
-    </p>
-    <p>
-      <%= ma.label :city, "Cidade" %><br />
-      <%= ma.text_field :city %>
-    </p>
-    <p>
-      <%= ma.label :estate, "Estado" %><br />
-      <%= ma.text_field :estate %>
-    </p>
-    <p>
-      <%= ma.label :country, "País" %><br />
-      <%= ma.text_field :country %>
-    </p>
-    <p>
-      <%= ma.label :cep, "CEP" %><br />
-      <%= ma.text_field :cep %>
-    </p>
-  <% end %>
+    <% field_set_tag "Dados do cliente" do %>
+      <%= f.text_field :name   , :label => "Raz. Social"        , :size => 50 %>
+      <%= f.text_field :nickname, :label => "Fantasia"          , :size => 50 %>
+      <%= f.text_field :cnpj    , :label => "CNPJ"              %>
+      <%= f.text_field :ie      , :label => "IE"                %>
+      <%= f.check_box  :active  , :label => "Ativo"             %>
+      <%= f.text_field :sci     , :label => "SCI"               %>
+      <%= f.text_field :activity, :label => "Ramo de atividade" %>
+    <% end %>
+
+    <% f.fields_for :main_address do |ma| %>
+      <p>
+        <%= ma.label :street, "Endereço" %><br />
+        <%= ma.text_field :street %>
+      </p>
+      <p>
+        <%= ma.label :number, "Número" %><br />
+        <%= ma.text_field :number %>
+      </p>
+      <p>
+        <%= ma.label :complement, "Complemento" %><br />
+        <%= ma.text_field :complement %>
+      </p>
+      <p>
+        <%= ma.label :neighborhood, "Bairro" %><br />
+        <%= ma.text_field :neighborhood %>
+      </p>
+      <p>
+        <%= ma.label :city, "Cidade" %><br />
+        <%= ma.text_field :city %>
+      </p>
+      <p>
+        <%= ma.label :estate, "Estado" %><br />
+        <%= ma.text_field :estate %>
+      </p>
+      <p>
+        <%= ma.label :country, "País" %><br />
+        <%= ma.text_field :country %>
+      </p>
+      <p>
+        <%= ma.label :cep, "CEP" %><br />
+        <%= ma.text_field :cep %>
+      </p>
+    <% end %>
 
 
-  <% f.fields_for :billing_address do |ba| %>
-    <p>
-      <%= ba.label :street, "Endereço" %><br />
-      <%= ba.text_field :street %>
-    </p>
-    <p>
-      <%= ba.label :number, "Número" %><br />
-      <%= ba.text_field :number %>
-    </p>
-    <p>
-      <%= ba.label :complement, "Complemento" %><br />
-      <%= ba.text_field :complement %>
-    </p>
-    <p>
-      <%= ba.label :neighborhood, "Bairro" %><br />
-      <%= ba.text_field :neighborhood %>
-    </p>
-    <p>
-      <%= ba.label :city, "Cidade" %><br />
-      <%= ba.text_field :city %>
-    </p>
-    <p>
-      <%= ba.label :estate, "Estado" %><br />
-      <%= ba.text_field :estate %>
-    </p>
-    <p>
-      <%= ba.label :country, "País" %><br />
-      <%= ba.text_field :country %>
-    </p>
-    <p>
-      <%= ba.label :cep, "CEP" %><br />
-      <%= ba.text_field :cep %>
-    </p>
-  <% end %>
+    <% f.fields_for :billing_address do |ba| %>
+      <p>
+        <%= ba.label :street, "Endereço" %><br />
+        <%= ba.text_field :street %>
+      </p>
+      <p>
+        <%= ba.label :number, "Número" %><br />
+        <%= ba.text_field :number %>
+      </p>
+      <p>
+        <%= ba.label :complement, "Complemento" %><br />
+        <%= ba.text_field :complement %>
+      </p>
+      <p>
+        <%= ba.label :neighborhood, "Bairro" %><br />
+        <%= ba.text_field :neighborhood %>
+      </p>
+      <p>
+        <%= ba.label :city, "Cidade" %><br />
+        <%= ba.text_field :city %>
+      </p>
+      <p>
+        <%= ba.label :estate, "Estado" %><br />
+        <%= ba.text_field :estate %>
+      </p>
+      <p>
+        <%= ba.label :country, "País" %><br />
+        <%= ba.text_field :country %>
+      </p>
+      <p>
+        <%= ba.label :cep, "CEP" %><br />
+        <%= ba.text_field :cep %>
+      </p>
+    <% end %>
 
 
-  <% f.fields_for :delivery_address do |da| %>
-    <p>
-      <%= da.label :street, "Endereço" %><br />
-      <%= da.text_field :street %>
-    </p>
-    <p>
-      <%= da.label :number, "Número" %><br />
-      <%= da.text_field :number %>
-    </p>
-    <p>
-      <%= da.label :complement, "Complemento" %><br />
-      <%= da.text_field :complement %>
-    </p>
-    <p>
-      <%= da.label :neighborhood, "Bairro" %><br />
-      <%= da.text_field :neighborhood %>
-    </p>
-    <p>
-      <%= da.label :city, "Cidade" %><br />
-      <%= da.text_field :city %>
-    </p>
-    <p>
-      <%= da.label :estate, "Estado" %><br />
-      <%= da.text_field :estate %>
-    </p>
-    <p>
-      <%= da.label :country, "País" %><br />
-      <%= da.text_field :country %>
-    </p>
-    <p>
-      <%= da.label :cep, "CEP" %><br />
-      <%= da.text_field :cep %>
-    </p>
-  <% end %>
+    <% f.fields_for :delivery_address do |da| %>
+      <p>
+        <%= da.label :street, "Endereço" %><br />
+        <%= da.text_field :street %>
+      </p>
+      <p>
+        <%= da.label :number, "Número" %><br />
+        <%= da.text_field :number %>
+      </p>
+      <p>
+        <%= da.label :complement, "Complemento" %><br />
+        <%= da.text_field :complement %>
+      </p>
+      <p>
+        <%= da.label :neighborhood, "Bairro" %><br />
+        <%= da.text_field :neighborhood %>
+      </p>
+      <p>
+        <%= da.label :city, "Cidade" %><br />
+        <%= da.text_field :city %>
+      </p>
+      <p>
+        <%= da.label :estate, "Estado" %><br />
+        <%= da.text_field :estate %>
+      </p>
+      <p>
+        <%= da.label :country, "País" %><br />
+        <%= da.text_field :country %>
+      </p>
+      <p>
+        <%= da.label :cep, "CEP" %><br />
+        <%= da.text_field :cep %>
+      </p>
+    <% end %>
+  </div>
 
 <% end %>
 

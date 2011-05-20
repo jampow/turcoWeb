@@ -1,0 +1,63 @@
+/* styles for IE 6 */
+
+div#container {
+	height: 1%; /* as always: hasLayout for content wrappers should be meaningful */
+}
+form.dm_form div.form_wrapper {
+	display: inline-block;
+}
+form.dm_form label {
+	display: inline-block !important;
+	width: 1%;
+	height: 1%;
+	margin-right: 0.85% !important; /* avoid positioning bugs */
+}
+form.dm_form span.wrapper {
+	display: block !important;
+	width: 100%;
+	overflow: hidden;
+}
+form.dm_form label.radiocheck span.wrapper {
+	width: auto;
+}
+form.dm_form label input.field,
+form.dm_form label select.field,
+form.dm_form label textarea.field {
+	position: relative; /* put on top */
+	width: expression(parentNode.offsetWidth - 13); /* - border - padding */
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+form.dm_form label.mandatory input.field,
+form.dm_form label.mandatory select.field,
+form.dm_form label.mandatory textarea.field {
+	width: expression(parentNode.offsetWidth - 18); /* - border - padding */
+}
+form.dm_form label.calendar input.field {
+	width: expression(parentNode.offsetWidth - 34); /* - border - padding - icon width */
+}
+form.dm_form label input.select {
+	position: relative;
+	left: -2px;
+	top: -2px;
+}
+form.dm_form label select.field {
+	width: 100%;
+}
+form.dm_form label.inputselect span.title {
+	display: inline-block !important;
+}
+form.dm_form label.radiocheck {
+	width: auto;
+}
+form.dm_form label.radiocheck.w100 {
+	width: 98%; /* avoid label being too short */
+}
+form.dm_form label.wauto {
+	margin-right: 15px !important;
+}
+form.dm_form label.radiocheck span.title {
+	display: inline-block !important;
+	margin-left: 0;
+}
+

@@ -1,0 +1,37 @@
+/* styles for IE 7 */
+
+form.dm_form label {
+	margin-right: 0.85% !important; /* avoid positioning bugs */
+}
+form.dm_form span.wrapper {
+	display: block;
+	width: 100%;
+}
+form.dm_form label input.field,
+form.dm_form label select.field,
+form.dm_form label textarea.field {
+	position: relative; /* put on top */
+	width: expression(parentNode.offsetWidth - 13); /* - border - padding */
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+form.dm_form label.mandatory input.field,
+form.dm_form label.mandatory select.field,
+form.dm_form label.mandatory textarea.field {
+	width: expression(parentNode.offsetWidth - 18); /* - border - padding */
+}
+form.dm_form label.calendar input.field {
+	width: expression(parentNode.offsetWidth - 34); /* - border - padding - icon width */
+}
+form.dm_form label input.select {
+	position: relative;
+	left: -2px;
+	top: -2px;
+}
+form.dm_form label select.field {
+	width: 100%;
+}
+form.dm_form label.wauto {
+	margin-right: 15px !important;
+}
+
