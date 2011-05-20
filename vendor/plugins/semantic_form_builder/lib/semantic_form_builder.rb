@@ -29,7 +29,7 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
     options[:class] ||= ""
     options[:class] += options[:required] ? " required" : ""
     options[:class] += options[:def_class] ? options[:def_class] : ""
-    label += "<strong><sup>*</sup></strong>" if options[:required]
+    label += " *" if options[:required]
     [field_name, label, options]
   end
 

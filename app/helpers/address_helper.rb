@@ -1,7 +1,7 @@
 module AddressHelper
 
   def address_field
-    s  = "teste"
+    s  = ""
   end
 end
 

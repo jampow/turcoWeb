@@ -35,7 +35,7 @@ module SemanticFormHelper
   def wrapping(type, field_name, label, field, options = {})
 
     klass  = ["radio","check", "submit"].include?(type) ? "radiobox" : "inputselect"
-    klass += " w" + (options[:size] ? options[:size].to_s : "25")
+    klass += " w" + (options[:size] && [25, 50, 75, 100].include?(options[:size]) ? options[:size].to_s : "25")
     klass += " mandatory" if options[:required]
 
     to_return = []
