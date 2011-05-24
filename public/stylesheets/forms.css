@@ -199,6 +199,13 @@ form label.mandatory textarea.field {
 	border-left: 8px solid #809db5;
 }
 
+form label.mandatory .fieldWithErrors input.field,
+form label.mandatory .fieldWithErrors select.field,
+form label.mandatory .fieldWithErrors textarea.field {
+	border: 1px solid #dd1100;
+	border-left: 8px solid #dd1100;
+}
+
 /* Kalenderfelder
 	calendar fields */
 /*form.dm_form label.calendar input.field {*/
