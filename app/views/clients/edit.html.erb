@@ -1,49 +1,62 @@
-<h1>Editando Cliente</h1>
+<% content_for :menu do %>
+  <h1>Editando Cliente</h1>
+  <%= mount_menu %>
+<% end %>
 
 <% form_for(@client) do |f| %>
-  <%= f.error_messages %>
 
-  <%= mount_menu %>
+  <div class="form-wrapper">
 
-  <p>
-    <%= f.label :name, "Raz. Social" %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :nickname, "Apelido" %><br />
-    <%= f.text_field :nickname %>
-  </p>
-  <p>
-    <%= f.label :cnpj, "CNPJ" %><br />
-    <%= f.text_field :cnpj %>
-  </p>
-  <p>
-    <%= f.label :ie, "IE" %><br />
-    <%= f.text_field :ie %>
-  </p>
-  <p>
-    <%= f.label :active, "Ativo" %><br />
-    <%= f.check_box :active %>
-  </p>
-  <p>
-    <%= f.label :sci, "SCI" %><br />
-    <%= f.text_field :sci %>
-  </p>
-  <p>
-    <%= f.label :activity, "Ramo de atividade" %><br />
-    <%= f.text_field :activity %>
-  </p>
-  <p>
-    <%= f.label :main_address_id %><br />
-    <%= f.text_field :main_address_id %>
-  </p>
-  <p>
-    <%= f.label :billing_address_id %><br />
-    <%= f.text_field :billing_address_id %>
-  </p>
-  <p>
-    <%= f.label :delivery_address_id %><br />
-    <%= f.text_field :delivery_address_id %>
-  </p>
+    <%= f.error_messages %>
+
+    <% field_set_tag "Dados do cliente" do %>
+      <%= f.text_field :name    , :label => "Raz. Social"       %>
+      <%= f.text_field :nickname, :label => "Fantasia"          %>
+      <%= f.text_field :cnpj    , :label => "CNPJ"              %>
+      <%= f.text_field :ie      , :label => "IE"                %>
+      <%= f.check_box  :active  , :label => "Ativo"             %>
+      <%= f.text_field :sci     , :label => "SCI"               %>
+      <%= f.text_field :activity, :label => "Ramo de atividade" %>
+    <% end %>
+
+    <% field_set_tag "Endereço principal" do %>
+      <% f.fields_for :main_address do |ma| %>
+        <%= ma.text_field :street      , :label => "Endereço"    %>
+        <%= ma.text_field :number      , :label => "Número"      %>
+        <%= ma.text_field :complement  , :label => "Complemento" %>
+        <%= ma.text_field :neighborhood, :label => "Bairro"      %>
+        <%= ma.text_field :city        , :label => "Cidade"      %>
+        <%= ma.text_field :estate      , :label => "Estado"      %>
+        <%= ma.text_field :country     , :label => "País"        %>
+        <%= ma.text_field :cep         , :label => "CEP"         %>
+      <% end %>
+    <% end %>
+
+    <% field_set_tag "Endereço de cobrança" do %>
+      <% f.fields_for :billing_address do |ba| %>
+        <%= ba.text_field :street      , :label => "Endereço"    %>
+        <%= ba.text_field :number      , :label => "Número"      %>
+        <%= ba.text_field :complement  , :label => "Complemento" %>
+        <%= ba.text_field :neighborhood, :label => "Bairro"      %>
+        <%= ba.text_field :city        , :label => "Cidade"      %>
+        <%= ba.text_field :estate      , :label => "Estado"      %>
+        <%= ba.text_field :country     , :label => "País"        %>
+        <%= ba.text_field :cep         , :label => "CEP"         %>
+      <% end %>
+    <% end %>
+
+    <% field_set_tag "Endereço de entrega" do %>
+      <% f.fields_for :delivery_address do |da| %>
+        <%= da.text_field :street      , :label => "Endereço"    %>
+        <%= da.text_field :number      , :label => "Número"      %>
+        <%= da.text_field :complement  , :label => "Complemento" %>
+        <%= da.text_field :neighborhood, :label => "Bairro"      %>
+        <%= da.text_field :city        , :label => "Cidade"      %>
+        <%= da.text_field :estate      , :label => "Estado"      %>
+        <%= da.text_field :country     , :label => "País"        %>
+        <%= da.text_field :cep         , :label => "CEP"         %>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
 

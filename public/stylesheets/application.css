@@ -14,9 +14,8 @@ body {
 }
 
 .ui-layout-center{
-  padding: 10px !important;
+  /*padding: 10px !important;*/
   background-image: none;
-  overflow: auto;
 }
 
 .header {
@@ -193,5 +192,14 @@ h1 {
 table#permissions>tbody tr td span.ui-icon {
   margin: 0 auto;
 
+}
+
+#menu_wrapper {
+  padding: 10px;
+}
+
+#content_wrapper {
+  padding: 10px;
+  overflow: auto;
 }
 

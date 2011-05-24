@@ -40,7 +40,7 @@ module ApplicationHelper
       s += default_btn(action, controller, id)
     end
 
-    s += ""
+    s
   end
 
   def default_btn(action, controller, id)
@@ -50,7 +50,14 @@ module ApplicationHelper
         s += btn_save
         s += btn_show(controller, id)
         s += btn_back(controller)
+      when "update"
+        s += btn_save
+        s += btn_show(controller, id)
+        s += btn_back(controller)
       when "new"
+        s += btn_save
+        s += btn_back(controller)
+      when "create"
         s += btn_save
         s += btn_back(controller)
       when "show"
@@ -58,10 +65,10 @@ module ApplicationHelper
         s += btn_delete(controller, id)
         s += btn_back(controller)
       when "index"
+        s += btn_new(controller)
         s += btn_edit(controller, id)
         s += btn_show(controller, id)
         s += btn_delete(controller, id)
-        s += btn_new(controller)
       when "editme"
         s += btn_save
         s += btn_show(controller, id)

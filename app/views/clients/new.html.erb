@@ -1,25 +1,27 @@
-<h1>Novo Cliente</h1>
+<% content_for :menu do %>
+  <h1>Novo Cliente</h1>
+  <%= mount_menu %>
+<% end %>
 
 <% form_for(@client) do |f| %>
 
-  <%= mount_menu %>
   <div class="form-wrapper">
 
     <%= f.error_messages %>
 
     <% field_set_tag "Dados do cliente" do %>
-      <%= f.text_field :name    , :label => "Raz. Social"       , :size => 50 %>
-      <%= f.text_field :nickname, :label => "Fantasia"          , :size => 50 %>
+      <%= f.text_field :name    , :label => "Raz. Social"       %>
+      <%= f.text_field :nickname, :label => "Fantasia"          %>
       <%= f.text_field :cnpj    , :label => "CNPJ"              %>
       <%= f.text_field :ie      , :label => "IE"                %>
-      <%= f.check_box  :active  , :label => "Ativo"             %>
+      <%= f.check_box  :active  , :label => "Ativo"             , :checked => true %>
       <%= f.text_field :sci     , :label => "SCI"               %>
       <%= f.text_field :activity, :label => "Ramo de atividade" %>
     <% end %>
 
     <% field_set_tag "Endereço principal" do %>
       <% f.fields_for :main_address do |ma| %>
-        <%= ma.text_field :street      , :label => "Endereço"    , :size => 50%>
+        <%= ma.text_field :street      , :label => "Endereço"    %>
         <%= ma.text_field :number      , :label => "Número"      %>
         <%= ma.text_field :complement  , :label => "Complemento" %>
         <%= ma.text_field :neighborhood, :label => "Bairro"      %>
@@ -32,7 +34,7 @@
 
     <% field_set_tag "Endereço de cobrança" do %>
       <% f.fields_for :billing_address do |ba| %>
-        <%= ba.text_field :street      , :label => "Endereço"    , :size => 50%>
+        <%= ba.text_field :street      , :label => "Endereço"    %>
         <%= ba.text_field :number      , :label => "Número"      %>
         <%= ba.text_field :complement  , :label => "Complemento" %>
         <%= ba.text_field :neighborhood, :label => "Bairro"      %>

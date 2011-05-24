@@ -1,52 +1,140 @@
-<%= mount_menu %>
+<% content_for :menu do%>
+  <h1>Cliente</h1>
+  <%= mount_menu %>
+<% end %>
 
 <p>
-  <b>Name:</b>
+  <b>Razão Social:</b>
   <%=h @client.name %>
 </p>
 
 <p>
-  <b>Nickname:</b>
+  <b>Fantasia:</b>
   <%=h @client.nickname %>
 </p>
 
 <p>
-  <b>Cnpj:</b>
+  <b>CNPJ:</b>
   <%=h @client.cnpj %>
 </p>
 
 <p>
-  <b>Ie:</b>
+  <b>IE:</b>
   <%=h @client.ie %>
 </p>
 
 <p>
-  <b>Active:</b>
-  <%=h @client.active %>
+  <b>Situação:</b>
+  <%= @client.active ? "Ativo" : "Inativo" %>
 </p>
 
 <p>
-  <b>Sci:</b>
-  <%=h @client.sci %>
-</p>
-
-<p>
-  <b>Activity:</b>
+  <b>Ramo de atividade:</b>
   <%=h @client.activity %>
 </p>
 
+
+<h2>Endereço principal</h2>
 <p>
-  <b>Main address:</b>
-  <%=h @client.main_address_id %>
+  <b>Endereço:</b>
+  <%=h @main_address.street %>
+</p>
+<p>
+  <b>Número:</b>
+  <%=h @main_address.number %>
+</p>
+<p>
+  <b>Complemento:</b>
+  <%=h @main_address.complement %>
+</p>
+<p>
+  <b>Bairro:</b>
+  <%=h @main_address.neighborhood %>
+</p>
+<p>
+  <b>Cidade:</b>
+  <%=h @main_address.city %>
+</p>
+<p>
+  <b>Estado:</b>
+  <%=h @main_address.estate %>
+</p>
+<p>
+  <b>País:</b>
+  <%=h @main_address.country %>
+</p>
+<p>
+  <b>CEP:</b>
+  <%=h @main_address.cep %>
 </p>
 
+
+<h2>Endereço de cobrança</h2>
 <p>
-  <b>Billing address:</b>
-  <%=h @client.billing_address_id %>
+  <b>Endereço:</b>
+  <%=h @billing_address.street %>
+</p>
+<p>
+  <b>Número:</b>
+  <%=h @billing_address.number %>
+</p>
+<p>
+  <b>Complemento:</b>
+  <%=h @billing_address.complement %>
+</p>
+<p>
+  <b>Bairro:</b>
+  <%=h @billing_address.neighborhood %>
+</p>
+<p>
+  <b>Cidade:</b>
+  <%=h @billing_address.city %>
+</p>
+<p>
+  <b>Estado:</b>
+  <%=h @billing_address.estate %>
+</p>
+<p>
+  <b>País:</b>
+  <%=h @billing_address.country %>
+</p>
+<p>
+  <b>CEP:</b>
+  <%=h @billing_address.cep %>
 </p>
 
+
+<h2>Endereço de entrega</h2>
 <p>
-  <b>Delivery address:</b>
-  <%=h @client.delivery_address_id %>
+  <b>Endereço:</b>
+  <%=h @delivery_address.street %>
+</p>
+<p>
+  <b>Número:</b>
+  <%=h @delivery_address.number %>
+</p>
+<p>
+  <b>Complemento:</b>
+  <%=h @delivery_address.complement %>
+</p>
+<p>
+  <b>Bairro:</b>
+  <%=h @delivery_address.neighborhood %>
+</p>
+<p>
+  <b>Cidade:</b>
+  <%=h @delivery_address.city %>
+</p>
+<p>
+  <b>Estado:</b>
+  <%=h @delivery_address.estate %>
+</p>
+<p>
+  <b>País:</b>
+  <%=h @delivery_address.country %>
+</p>
+<p>
+  <b>CEP:</b>
+  <%=h @delivery_address.cep %>
 </p>
 

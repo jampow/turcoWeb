@@ -7,5 +7,7 @@ class Client < ActiveRecord::Base
   accepts_nested_attributes_for :main_address
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :delivery_address
+
+  validates_presence_of :name
 end
 

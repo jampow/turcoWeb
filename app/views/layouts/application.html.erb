@@ -2,7 +2,9 @@
 
 <%= hidden_field_tag 'controller', params[:controller] %>
 
-<%= yield %>
+<div id="menu_wrapper"><%= yield :menu %></div>
+
+<div id="content_wrapper"><%= yield %></div>
 
 <div id="waiting"> </div>
 

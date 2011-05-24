@@ -30,7 +30,8 @@ $(function(){
     //  CKEDITOR.instances[instance].updateElement();
     //}
 
-    form = $(this).parents('form');
+    //form = $(this).parents('form');
+    form = $('form');
     url = form.attr('action');
     fdata = form.serializeArray();
 
@@ -151,9 +152,13 @@ $(function(){
     $('.back'    ).button( "option", "icons", {primary:'ui-icon-triangle-1-w'     });
     $('.save'    ).button( "option", "icons", {primary:'ui-icon-disk'             });
     message();
+    limit_div_content();
   }); // fecha ajaxSuccess
   message();
+  limit_div_content
 });
+
+$(window).bind('resize', limit_div_content);
 
 function message() {
   msg = $('.notice').text();
@@ -166,5 +171,17 @@ function message() {
       header: '<b>MENSAGEM</b>'
     });
   }
+}
+
+function limit_div_content() {
+  center  = $('.ui-layout-center').outerHeight();
+  menu    = $('#menu_wrapper').outerHeight();
+  content = $('#content_wrapper');
+
+  ctt_padding_top    = content.css('padding-top').match(new RegExp('[0-9]+', ""))*1;
+  ctt_padding_bottom = content.css('padding-bottom').match(new RegExp('[0-9]+', ""))*1;
+  ctt_padding = ctt_padding_bottom + ctt_padding_top;
+
+  content.css('height', (center - menu - ctt_padding) + 'px')
 }
 

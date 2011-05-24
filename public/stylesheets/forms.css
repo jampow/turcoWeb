@@ -37,7 +37,15 @@ form fieldset {
 	clear: both;
 	margin: 0 0 20px 0;
 	padding: 0;
-	border: 0;
+	border-width: 1px 0 0 1px;
+  border-color: #eee #fff;
+  border-style: solid;
+}
+
+form fieldset legend {
+  font-size: 16px;
+  margin: 10px 0 10px 20px;
+  padding: 0 10px;
 }
 
 /*
@@ -47,7 +55,7 @@ labels and wrappers
 
 /*form.dm_form label {*/
 form label {
-	margin: 0 1%;
+	margin: 5px 1%;
 	padding: 0;
 	border: 0;
 	float: left;
@@ -114,9 +122,9 @@ errors
 /*form.dm_form label.error input.field,
 form.dm_form label.error select.field,
 form.dm_form label.error textarea.field {*/
-form label.error input.field,
-form label.error select.field,
-form label.error textarea.field {
+form label .fieldWithErrors input.field,
+form label .fieldWithErrors select.field,
+form label .fieldWithErrors textarea.field {
 	border-color: #dd1100;
 }
 
