@@ -28,14 +28,14 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
     label = options[:label] ? options.delete(:label) : default_label
     options[:class] ||= ""
     options[:class] += options[:required] ? " required" : ""
-    options[:class] += options[:def_class] ? options[:def_class] : ""
+    #options[:class] += options[:def_class] ? options[:def_class] : ""
     label += " *" if options[:required]
     [field_name, label, options]
   end
 
   def text_field(method, options)
-    options[:def_class] ||= ""
-    options[:def_class] += " field"
+    #options[:def_class] ||= ""
+    #options[:def_class] += " field"
     field_name, label, options = field_settings(method, options)
     wrapping("text", field_name, label, super, options)
   end
@@ -66,6 +66,8 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def select(method, choices, options = {}, html_options = {})
+    #options[:def_class] ||= ""
+    #options[:def_class] += " field"
     field_name, label, options = field_settings(method, options)
     wrapping("select", field_name, label, super, options)
   end

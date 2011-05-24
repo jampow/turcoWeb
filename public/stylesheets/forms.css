@@ -122,9 +122,9 @@ errors
 /*form.dm_form label.error input.field,
 form.dm_form label.error select.field,
 form.dm_form label.error textarea.field {*/
-form label .fieldWithErrors input.field,
-form label .fieldWithErrors select.field,
-form label .fieldWithErrors textarea.field {
+form label .fieldWithErrors input,
+form label .fieldWithErrors select,
+form label .fieldWithErrors textarea {
 	border-color: #dd1100;
 }
 
@@ -155,9 +155,9 @@ input/select fields
 /*form.dm_form label input.field,
 form.dm_form label select.field,
 form.dm_form label textarea.field {*/
-form label input.field,
-form label select.field,
-form label textarea.field {
+form label input,
+form label select,
+form label textarea {
 	width: 100%;
 	display: block;
 	border: 1px solid #d0d6da;
@@ -172,7 +172,7 @@ form label textarea.field {
 }
 
 /*form.dm_form label select.field {*/
-form label select.field {
+form label select {
 	padding: 4px 1px 1px 1px; /* have to try out */
 }
 
@@ -192,16 +192,16 @@ form label textarea.field:focus {
 /*form.dm_form label.mandatory input.field,
 form.dm_form label.mandatory select.field,
 form.dm_form label.mandatory textarea.field {*/
-form label.mandatory input.field,
-form label.mandatory select.field,
-form label.mandatory textarea.field {
+form label.mandatory input,
+form label.mandatory selectfield,
+form label.mandatory textarea {
 	border: 1px solid #809db5;
 	border-left: 8px solid #809db5;
 }
 
-form label.mandatory .fieldWithErrors input.field,
-form label.mandatory .fieldWithErrors select.field,
-form label.mandatory .fieldWithErrors textarea.field {
+form label.mandatory .fieldWithErrors input,
+form label.mandatory .fieldWithErrors select,
+form label.mandatory .fieldWithErrors textarea {
 	border: 1px solid #dd1100;
 	border-left: 8px solid #dd1100;
 }
@@ -209,7 +209,7 @@ form label.mandatory .fieldWithErrors textarea.field {
 /* Kalenderfelder
 	calendar fields */
 /*form.dm_form label.calendar input.field {*/
-form label.calendar input.field {
+form label.calendar input {
 	padding-right: 25px;
 }
 

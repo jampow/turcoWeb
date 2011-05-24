@@ -7,6 +7,13 @@ module SemanticFormHelper
 #  </span>
 #</label>
 
+#<label class="wauto radiocheck" for="yes">
+#  <span class="wrapper">
+#    <input class="select" id="yes" name="popmusic" type="radio" />
+#    <span class="title">Yes!</span>
+#  </span>
+#</label>
+
 #<label class="w50 radiocheck" for="chk2">
 #  <span class="wrapper">
 #    <input class="select" id="chk2" type="checkbox" />
@@ -14,10 +21,13 @@ module SemanticFormHelper
 #  </span>
 #</label>
 
-#<label class="wauto radiocheck" for="yes">
+#<label class="w25 inputselect" for="gender">
 #  <span class="wrapper">
-#    <input class="select" id="yes" name="popmusic" type="radio" />
-#    <span class="title">Yes!</span>
+#    <span class="title">Gender</span>
+#    <select class="field" id="gender" size="1">
+#      <option>Mrs</option>
+#      <option>Mr</option>
+#    </select>
 #  </span>
 #</label>
 
