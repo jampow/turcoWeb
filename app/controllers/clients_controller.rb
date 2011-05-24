@@ -31,6 +31,7 @@ class ClientsController < ApplicationController
     @client.main_address     = Address.new
     @client.billing_address  = Address.new
     @client.delivery_address = Address.new
+    #@activities = Activity.all.collect {|a| [a.name, a.id]}
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +42,7 @@ class ClientsController < ApplicationController
   # GET /clients/1/edit
   def edit
     @client = Client.find(params[:id])
+    #@activities = Activity.all.collect {|a| [a.name, a.id]}
   end
 
   # POST /clients

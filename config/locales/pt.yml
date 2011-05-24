@@ -197,9 +197,19 @@
 
       full_messages:
         format: "%{attribute} %{message}"
+
     models:
+      activity: "Ramo de atividade"
       client: "cliente"
+
     attributes:
+      activity:
+        name: "Nome"
       client:
         name: "Razão Social"
+        nickcname: "Fanfasia"
+        cnpj: "CNPJ"
+        ie: "IE"
+        active: "Ativo"
+        activity_id: "Ramo de atividade"
 

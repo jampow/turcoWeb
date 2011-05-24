@@ -1,0 +1,11 @@
+<% content_for :menu do %>
+  <h1>Novo ramo de atividade</h1>
+  <%= mount_menu %>
+<% end %>
+
+<% form_for(@activity) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field :name, :label => "Nome", :required => true %>
+<% end %>
+

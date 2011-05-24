@@ -10,13 +10,13 @@
     <%= f.error_messages %>
 
     <% field_set_tag "Dados do cliente" do %>
-      <%= f.text_field :name    , :label => "Raz. Social"       , :required => true %>
-      <%= f.text_field :nickname, :label => "Fantasia"          %>
-      <%= f.text_field :cnpj    , :label => "CNPJ"              %>
-      <%= f.text_field :ie      , :label => "IE"                %>
-      <%= f.check_box  :active  , :label => "Ativo"             %>
-      <%= f.text_field :sci     , :label => "SCI"               %>
-      <%= f.text_field :activity, :label => "Ramo de atividade" %>
+      <%= f.text_field :name                                                  , :label => "Raz. Social"       , :required => true %>
+      <%= f.text_field :nickname                                              , :label => "Fantasia"          %>
+      <%= f.text_field :cnpj                                                  , :label => "CNPJ"              %>
+      <%= f.text_field :ie                                                    , :label => "IE"                %>
+      <%= f.check_box  :active                                                , :label => "Ativo"             %>
+      <%= f.text_field :sci                                                   , :label => "SCI"               %>
+      <%= f.select     :activity_id, Activity.all.collect {|a| [a.name, a.id]}, :label => "Ramo de atividade" , :include_blank => true%>
     <% end %>
 
     <% field_set_tag "Endereço principal" do %>
