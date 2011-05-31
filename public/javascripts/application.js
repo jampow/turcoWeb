@@ -16,11 +16,7 @@ $(function(){
   //constroi menu
   $('#menu').accordion({fillSpace: true});
 
-  $('.button').each(function(){
-    t = $(this);
-    i = t.attr('icon') //icone
-    i == undefined ? t.button() : t.button({icons:{primary: 'ui-icon-' + i} })
-  });
+  make_buttons();
 
   //formulários com requisição ajax
   $('input[type=submit], .button.save').live('click', function(){
@@ -70,9 +66,9 @@ $(function(){
     t.addClass(klass);
 
     url = '/' + controller + '/';
-    $('.button.show').attr('href',     url + id              );
-    $('.button.edit').attr('href',     url + id + '/edit'    );
-    $('.button.delete').attr('href',   url + id              );
+    $('.button.show'    ).attr('href', url + id              );
+    $('.button.edit'    ).attr('href', url + id + '/edit'    );
+    $('.button.delete'  ).attr('href', url + id              );
     $('.button.editpass').attr('href', url + 'editpass/' + id);
   });
 
@@ -170,6 +166,7 @@ $(function(){
     $('.save'    ).button( "option", "icons", {primary:'ui-icon-disk'             });
     message();
     limit_div_content();
+    make_buttons();
   }); // fecha ajaxSuccess
   message();
   limit_div_content
@@ -200,5 +197,13 @@ function limit_div_content() {
   ctt_padding = ctt_padding_bottom + ctt_padding_top;
 
   content.css('height', (center - menu - ctt_padding) + 'px')
+}
+
+function make_buttons() {
+  $('.button').each(function(){
+    t = $(this);
+    i = t.attr('icon') //icone
+    i == undefined ? t.button() : t.button({icons:{primary: 'ui-icon-' + i} })
+  });
 }
 
