@@ -17,6 +17,7 @@ class ClientsController < ApplicationController
     @main_address     = @client.main_address
     @billing_address  = @client.billing_address
     @delivery_address = @client.delivery_address
+    @contacts         = @client.people
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,6 +32,7 @@ class ClientsController < ApplicationController
     @client.main_address     = Address.new
     @client.billing_address  = Address.new
     @client.delivery_address = Address.new
+    5.times { @client.people.build }
     #@activities = Activity.all.collect {|a| [a.name, a.id]}
 
     respond_to do |format|

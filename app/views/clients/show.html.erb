@@ -138,3 +138,13 @@
   <%=h @delivery_address.cep %>
 </p>
 
+<% unless @contacts.blank? %>
+<h2>Contatos</h2>
+<% @contacts.each do |c| %>
+<p>
+  <b>Nome:</b>
+  <%=h c.name %>
+</p>
+<%   end
+   end %>
+
