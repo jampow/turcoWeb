@@ -59,7 +59,7 @@
     <% end %>
 
     <% field_set_tag 'Contatos' do %>
-      <% f.fields_for :people do |co| %>
+      <% f.fields_for :contacts do |co| %>
         <%= co.text_field :name, :label => "Nome" %>
       <% end %>
     <% end %>
