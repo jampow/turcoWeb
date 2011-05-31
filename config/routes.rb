@@ -1,14 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.resources :activities
-
   map.resources :clients
-
   map.resources :departments
-
-  map.resources :users
-  map.resource :user_session
   map.resources :ncms
   map.resources :permissions
+  map.resource  :user_session
+  map.resources :users
+
+
 
 
 	map.login "login", :controller => "user_sessions", :action => "new"
