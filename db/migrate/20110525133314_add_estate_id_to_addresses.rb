@@ -1,12 +1,12 @@
 class AddEstateIdToAddresses < ActiveRecord::Migration
   def self.up
-    add_column    :addresses, :estate_id, :integer
-    remove_column :addresses, :estate_id
+    rename_column :addresses, :estate,    :estate_id
+    change_column :addresses, :estate_id, :integer
   end
 
   def self.down
-    remove_column :addresses, :estate_id
-    add_column    :addresses, :estate_id, :string
+    rename_column :addresses, :estate_id, :estate
+    change_column :addresses, :estate,    :string
   end
 end
 

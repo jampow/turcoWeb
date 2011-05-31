@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20110525133314) do
     t.string   "complement"
     t.string   "neighborhood"
     t.string   "city"
-    t.string   "estate"
+    t.integer  "estate_id"
     t.string   "country"
     t.integer  "cep"
     t.string   "addressable_type"
