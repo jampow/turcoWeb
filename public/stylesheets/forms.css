@@ -193,7 +193,7 @@ form label textarea.field:focus {
 form.dm_form label.mandatory select.field,
 form.dm_form label.mandatory textarea.field {*/
 form label.mandatory input,
-form label.mandatory selectfield,
+form label.mandatory select,
 form label.mandatory textarea {
 	border: 1px solid #809db5;
 	border-left: 8px solid #809db5;

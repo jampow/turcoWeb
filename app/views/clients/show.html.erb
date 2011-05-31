@@ -30,7 +30,7 @@
 
 <p>
   <b>Ramo de atividade:</b>
-  <%=h @client.activity.name %>
+  <%=h @client.activity.name if @client.activity_id %>
 </p>
 
 
@@ -57,7 +57,7 @@
 </p>
 <p>
   <b>Estado:</b>
-  <%=h @main_address.estate.name %>
+  <%=h @main_address.estate.name if @main_address.estate_id %>
 </p>
 <p>
   <b>País:</b>
@@ -92,7 +92,7 @@
 </p>
 <p>
   <b>Estado:</b>
-  <%=h @billing_address.estate.name %>
+  <%=h @billing_address.estate.name if @billing_address.estate_id %>
 </p>
 <p>
   <b>País:</b>
@@ -127,7 +127,7 @@
 </p>
 <p>
   <b>Estado:</b>
-  <%=h @delivery_address.estate.name %>
+  <%=h @delivery_address.estate.name if @delivery_address.estate_id %>
 </p>
 <p>
   <b>País:</b>

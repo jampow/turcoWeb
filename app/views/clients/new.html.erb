@@ -26,7 +26,7 @@
         <%= ma.text_field :complement                                           , :label => "Complemento" %>
         <%= ma.text_field :neighborhood                                         , :label => "Bairro"      %>
         <%= ma.text_field :city                                                 , :label => "Cidade"      %>
-        <%= ma.select     :estate      , Estate.all.collect {|e| [e.name, e.id]}, :label => "Estado"      %>
+        <%= ma.select     :estate_id   , Estate.all.collect {|e| [e.name, e.id]}, :label => "Estado"      %>
         <%= ma.text_field :country                                              , :label => "País"        %>
         <%= ma.text_field :cep                                                  , :label => "CEP"         %>
       <% end %>
@@ -39,7 +39,7 @@
         <%= ba.text_field :complement                                           , :label => "Complemento" %>
         <%= ba.text_field :neighborhood                                         , :label => "Bairro"      %>
         <%= ba.text_field :city                                                 , :label => "Cidade"      %>
-        <%= ba.select     :estate      , Estate.all.collect {|e| [e.name, e.id]}, :label => "Estado"      %>
+        <%= ba.select     :estate_id   , Estate.all.collect {|e| [e.name, e.id]}, :label => "Estado"      %>
         <%= ba.text_field :country                                              , :label => "País"        %>
         <%= ba.text_field :cep                                                  , :label => "CEP"         %>
       <% end %>
@@ -52,7 +52,7 @@
         <%= da.text_field :complement                                           , :label => "Complemento" %>
         <%= da.text_field :neighborhood                                         , :label => "Bairro"      %>
         <%= da.text_field :city                                                 , :label => "Cidade"      %>
-        <%= da.select     :estate      , Estate.all.collect {|e| [e.name, e.id]}, :label => "Estado"      %>
+        <%= da.select     :estate_id   , Estate.all.collect {|e| [e.name, e.id]}, :label => "Estado"      %>
         <%= da.text_field :country                                              , :label => "País"        %>
         <%= da.text_field :cep                                                  , :label => "CEP"         %>
       <% end %>
