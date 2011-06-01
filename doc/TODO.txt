@@ -1,0 +1,3 @@
+JS para gerar outro campo para os models com has_many e accepts_nested_attributes
+http://jsbin.com/imefu3/edit
+
