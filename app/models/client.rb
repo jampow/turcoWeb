@@ -11,7 +11,7 @@ class Client < ActiveRecord::Base
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :delivery_address
 
-  validates_presence_of :name
-  validates_presence_of :activity_id
+  #validates_presence_of :name
+  #validates_presence_of :activity_id
 end
 
