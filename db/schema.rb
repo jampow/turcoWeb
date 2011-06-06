@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(:version => 20110601222437) do
 
   create_table "people", :force => true do |t|
     t.string   "name"
-    t.integer  "client_id"
+    t.integer  "external_id"
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -8,7 +8,7 @@ class AlterPeople < ActiveRecord::Migration
                     AFTER external_id
             SQL
 
-    execute "UPDATE people SET type = Contact"
+    execute "UPDATE people SET type = 'Contact'"
   end
 
   def self.down
