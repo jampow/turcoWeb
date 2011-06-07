@@ -15,7 +15,6 @@
       <%= f.text_field :cnpj                                                  , :label => "CNPJ"              %>
       <%= f.text_field :ie                                                    , :label => "IE"                %>
       <%= f.check_box  :active                                                , :label => "Ativo"             , :checked => true %>
-      <%= f.text_field :sci                                                   , :label => "SCI"               %>
       <%= f.select     :activity_id, Activity.all.collect {|a| [a.name, a.id]}, :label => "Ramo de atividade" , :include_blank => true%>
     <% end %>
 

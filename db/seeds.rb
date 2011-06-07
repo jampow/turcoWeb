@@ -34,7 +34,7 @@ if Estate.count == 0
                  {:acronym => "SE", :name => "Sergipe"             },
                  {:acronym => "TO", :name => "Tocantins"           }])
 
-  puts "Tabela de estados semeada com " + Estate.count + " registros"
+  puts "Tabela de estados semeada com " + Estate.count.to_s  + " registros"
 else
   puts "Tabela de estados não semeada, já contem registros"
 end
