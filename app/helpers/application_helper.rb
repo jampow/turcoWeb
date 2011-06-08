@@ -113,5 +113,44 @@ module ApplicationHelper
     link_to "Ordenar", "/#{controller}/order", {:class => "button order"}
   end
 
+
+  def table(obj, fields={})
+    s = <<-TABLE
+          <table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
+            <thead>
+              <tr>
+                #{table_header(fields)}
+              </tr>
+            </thead>
+
+            <tbody>
+              #{table_body(obj, fields)}
+            </tbody>
+          </table>
+        TABLE
+  end
+
+  def table_header(fields={})
+    s = "<th>ID</th>"
+    fields.each do |k, v|
+      s += "<th>#{h v}</th>"
+    end
+    s
+  end
+
+  def table_body(obj, fields={})
+    s = ""
+    obj.each do |o|
+      s += "<tr><td>#{o.id}</td>"
+      fields.each do |k, v|
+        x = "o." + k.to_s
+        s += "<td>#{h eval(x)}</td>"
+      end
+      s += "</tr>"
+    end
+    s
+  end
+
+
 end
 
