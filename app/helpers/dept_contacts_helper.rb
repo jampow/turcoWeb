@@ -1,0 +1,2 @@
+module DeptContactsHelper
+end

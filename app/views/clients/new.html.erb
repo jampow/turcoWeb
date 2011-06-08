@@ -60,6 +60,7 @@
     <% field_set_tag 'Contatos' do %>
       <% f.fields_for :contacts do |co| %>
         <%= co.text_field :name, :label => "Nome" %>
+        <%= co.select     :department_id, DeptContact.all.collect { |d| [d.name, d.id]}, :label => "Departamento" %>
       <% end %>
     <% end %>
   </div>
