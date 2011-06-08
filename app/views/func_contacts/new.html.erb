@@ -1,0 +1,12 @@
+<% content_for :menu do -%>
+  <h1>Nova função</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@func_contact) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field :name, :label => "Nome" %>
+
+<% end %>
+

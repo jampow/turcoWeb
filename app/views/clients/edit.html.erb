@@ -59,8 +59,9 @@
 
     <% field_set_tag 'Contatos' do %>
       <% f.fields_for :contacts do |co| %>
-        <%= co.text_field :name, :label => "Nome" %>
-        <%= co.select     :department_id, DeptContact.all.collect { |d| [d.name, d.id]}, :label => "Departamento" %>
+        <%= co.text_field :name                                                        , :label => "Nome"        , :size => 50 %>
+        <%= co.select     :department_id, DeptContact.all.collect { |d| [d.name, d.id]}, :label => "Departamento"              %>
+        <%= co.select     :function_id  , FuncContact.all.collect { |d| [d.name, d.id]}, :label => "Função"                    %>
       <% end %>
     <% end %>
   </div>
