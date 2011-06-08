@@ -68,6 +68,7 @@ form span.wrapper {
 	padding: 0;
 	display: table-cell;
 	width: 1%; /* firefox */
+	height: 36px;
 }
 
 /*
