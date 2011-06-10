@@ -33,7 +33,7 @@ class ClientsController < ApplicationController
     @client.billing_address  = Address.new
     @client.delivery_address = Address.new
     5.times { @client.contacts.build }
-    #@activities = Activity.all.collect {|a| [a.name, a.id]}
+    default_data
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,13 +44,14 @@ class ClientsController < ApplicationController
   # GET /clients/1/edit
   def edit
     @client = Client.find(params[:id])
-    #@activities = Activity.all.collect {|a| [a.name, a.id]}
+    default_data
   end
 
   # POST /clients
   # POST /clients.xml
   def create
     @client = Client.new(params[:client])
+    default_data
 
     respond_to do |format|
       if @client.save
@@ -68,6 +69,7 @@ class ClientsController < ApplicationController
   # PUT /clients/1.xml
   def update
     @client = Client.find(params[:id])
+    default_data
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
@@ -92,5 +94,15 @@ class ClientsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+protected
+
+  def default_data
+    @activities  = Activity.all.collect    { |a| [a.name, a.id] }
+    @estate      = Estate.all.collect      { |e| [e.name, e.id] }
+    @departments = DeptContact.all.collect { |d| [d.name, d.id] }
+    @functions   = FuncContact.all.collect { |f| [f.name, f.id] }
+  end
+
 end
 
