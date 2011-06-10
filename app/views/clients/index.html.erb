@@ -3,27 +3,5 @@
   <%= mount_menu %>
 <% end %>
 
-<table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Razão Social</th>
-      <th>Fantasia</th>
-      <th>CNPJ</th>
-      <th>IE</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @clients.each do |client| %>
-    <tr>
-      <td><%=h client.id %></td>
-      <td><%=h client.name %></td>
-      <td><%=h client.nickname %></td>
-      <td><%=h client.cnpj %></td>
-      <td><%=h client.ie %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= table @clients, ["name", "Nome"], ["nickname", "Fantasia"], ["cnpj", "CNPJ"], ["ie", "Insc. Estadual"] %>
 

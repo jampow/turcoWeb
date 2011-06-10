@@ -114,7 +114,7 @@ module ApplicationHelper
   end
 
 
-  def table(obj, fields={})
+  def table(obj, *fields)
     s = <<-TABLE
           <table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
             <thead>
@@ -130,20 +130,20 @@ module ApplicationHelper
         TABLE
   end
 
-  def table_header(fields={})
+  def table_header(*fields)
     s = "<th>ID</th>"
-    fields.each do |k, v|
-      s += "<th>#{h v}</th>"
+    fields[0].each do |field|
+      s += "<th>#{h field[1].to_s}</th>"
     end
     s
   end
 
-  def table_body(obj, fields={})
+  def table_body(obj, *fields)
     s = ""
     obj.each do |o|
       s += "<tr><td>#{o.id}</td>"
-      fields.each do |k, v|
-        x = "o." + k.to_s
+      fields[0].each do |field|
+        x = "o." + field[0].to_s
         s += "<td>#{h eval(x)}</td>"
       end
       s += "</tr>"
