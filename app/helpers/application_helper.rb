@@ -152,5 +152,16 @@ module ApplicationHelper
   end
 
 
+  def print_content(label, content, width)
+    [25, 50, 75, 100].include? width ? width : 25
+    s = <<-HTML
+          <div class="w#{width.to_s}">
+            <b>#{label.to_s}:</b>
+            #{content.to_s}
+          </div>
+        HTML
+    s
+  end
+
 end
 

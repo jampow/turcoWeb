@@ -1,158 +1,54 @@
-<% content_for :menu do%>
+<% content_for :menu do %>
   <h1>Cliente</h1>
   <%= mount_menu %>
 <% end %>
 
-<p>
-  <b>Razão Social:</b>
-  <%=h @client.name %>
-</p>
-
-<p>
-  <b>Fantasia:</b>
-  <%=h @client.nickname %>
-</p>
-
-<p>
-  <b>CNPJ:</b>
-  <%=h @client.cnpj %>
-</p>
-
-<p>
-  <b>IE:</b>
-  <%=h @client.ie %>
-</p>
-
-<p>
-  <b>Situação:</b>
-  <%= @client.active ? "Ativo" : "Inativo" %>
-</p>
-
-<p>
-  <b>Ramo de atividade:</b>
-  <%=h @client.activity.name if @client.activity_id %>
-</p>
-
+<%= print_content "Razão Social"     , h(@client.name)                        , 25 %>
+<%= print_content "Fantasia"         , h(@client.nickname)                    , 25 %>
+<%= print_content "CNPJ"             , h(@client.cnpj)                        , 25 %>
+<%= print_content "IE"               , h(@client.ie)                          , 25 %>
+<%= print_content "Situação"         , h(@client.active ? "Ativo" : "Inativo"), 25 %>
+<%= print_content "Ramo de atividade", h(@client.activity.name)               , 25 %>
 
 <h2>Endereço principal</h2>
-<p>
-  <b>Endereço:</b>
-  <%=h @main_address.street %>
-</p>
-<p>
-  <b>Número:</b>
-  <%=h @main_address.number %>
-</p>
-<p>
-  <b>Complemento:</b>
-  <%=h @main_address.complement %>
-</p>
-<p>
-  <b>Bairro:</b>
-  <%=h @main_address.neighborhood %>
-</p>
-<p>
-  <b>Cidade:</b>
-  <%=h @main_address.city %>
-</p>
-<p>
-  <b>Estado:</b>
-  <%=h @main_address.estate.name if @main_address.estate_id %>
-</p>
-<p>
-  <b>País:</b>
-  <%=h @main_address.country %>
-</p>
-<p>
-  <b>CEP:</b>
-  <%=h @main_address.cep %>
-</p>
+<%= print_content "Endereço"   , h(@main_address.street)                                  , 25 %>
+<%= print_content "Número"     , h(@main_address.number)                                  , 25 %>
+<%= print_content "Complemento", h(@main_address.complement)                              , 25 %>
+<%= print_content "Bairro"     , h(@main_address.neighborhood)                            , 25 %>
+<%= print_content "Cidade"     , h(@main_address.city)                                    , 25 %>
+<%= print_content "Estado"     , h((@main_address.estate.name if @main_address.estate_id)), 25 %>
+<%= print_content "País"       , h(@main_address.country)                                 , 25 %>
+<%= print_content "CEP"        , h(@main_address.cep)                                     , 25 %>
 
+<h2>Endereço cobrança</h2>
+<%= print_content "Endereço"   , h(@billing_address.street)                                     , 25 %>
+<%= print_content "Número"     , h(@billing_address.number)                                     , 25 %>
+<%= print_content "Complemento", h(@billing_address.complement)                                 , 25 %>
+<%= print_content "Bairro"     , h(@billing_address.neighborhood)                               , 25 %>
+<%= print_content "Cidade"     , h(@billing_address.city)                                       , 25 %>
+<%= print_content "Estado"     , h((@billing_address.estate.name if @billing_address.estate_id)), 25 %>
+<%= print_content "País"       , h(@billing_address.country)                                    , 25 %>
+<%= print_content "CEP"        , h(@billing_address.cep)                                        , 25 %>
 
-<h2>Endereço de cobrança</h2>
-<p>
-  <b>Endereço:</b>
-  <%=h @billing_address.street %>
-</p>
-<p>
-  <b>Número:</b>
-  <%=h @billing_address.number %>
-</p>
-<p>
-  <b>Complemento:</b>
-  <%=h @billing_address.complement %>
-</p>
-<p>
-  <b>Bairro:</b>
-  <%=h @billing_address.neighborhood %>
-</p>
-<p>
-  <b>Cidade:</b>
-  <%=h @billing_address.city %>
-</p>
-<p>
-  <b>Estado:</b>
-  <%=h @billing_address.estate.name if @billing_address.estate_id %>
-</p>
-<p>
-  <b>País:</b>
-  <%=h @billing_address.country %>
-</p>
-<p>
-  <b>CEP:</b>
-  <%=h @billing_address.cep %>
-</p>
+<h2>Endereço entrega</h2>
+<%= print_content "Endereço"   , h(@delivery_address.street)                                      , 25 %>
+<%= print_content "Número"     , h(@delivery_address.number)                                      , 25 %>
+<%= print_content "Complemento", h(@delivery_address.complement)                                  , 25 %>
+<%= print_content "Bairro"     , h(@delivery_address.neighborhood)                                , 25 %>
+<%= print_content "Cidade"     , h(@delivery_address.city)                                        , 25 %>
+<%= print_content "Estado"     , h((@delivery_address.estate.name if @delivery_address.estate_id)), 25 %>
+<%= print_content "País"       , h(@delivery_address.country)                                     , 25 %>
+<%= print_content "CEP"        , h(@delivery_address.cep)                                         , 25 %>
 
-
-<h2>Endereço de entrega</h2>
-<p>
-  <b>Endereço:</b>
-  <%=h @delivery_address.street %>
-</p>
-<p>
-  <b>Número:</b>
-  <%=h @delivery_address.number %>
-</p>
-<p>
-  <b>Complemento:</b>
-  <%=h @delivery_address.complement %>
-</p>
-<p>
-  <b>Bairro:</b>
-  <%=h @delivery_address.neighborhood %>
-</p>
-<p>
-  <b>Cidade:</b>
-  <%=h @delivery_address.city %>
-</p>
-<p>
-  <b>Estado:</b>
-  <%=h @delivery_address.estate.name if @delivery_address.estate_id %>
-</p>
-<p>
-  <b>País:</b>
-  <%=h @delivery_address.country %>
-</p>
-<p>
-  <b>CEP:</b>
-  <%=h @delivery_address.cep %>
-</p>
 
 <% unless @contacts.blank? %>
 <h2>Contatos</h2>
+
 <% @contacts.each do |c| %>
-<p>
-  <b>Nome:</b>
-  <%=h c.name %>
-</p>
-<p>
-  <b>Setor:</b>
-  <%=h c.department.name %>
-</p>
-<p>
-  <b>Função:</b>
-  <%=h c.function.name %>
-</p>
+
+  <%= print_content "Nome"  , h(c.name)           , 50 %>
+  <%= print_content "Setor" , h(c.department.name), 25 %>
+  <%= print_content "Função", h(c.function.name)  , 25 %>
 <%   end
    end %>
 
