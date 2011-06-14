@@ -1,0 +1,8 @@
+<% content_for :menu do %>
+  <h1>Conta da <%= @client.name %></h1>
+  <%= mount_menu %w[show back edit] %>
+  <%= link_to "Conta", "/clients/billing/#{@client.id.to_s}", {:class => "button", :icon => "suitcase"} %>
+<% end %>
+
+<%= table @invoices, ["operation", "Data"], ["invoice_number", "Número"] %>
+

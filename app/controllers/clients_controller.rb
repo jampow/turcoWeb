@@ -95,6 +95,12 @@ class ClientsController < ApplicationController
     end
   end
 
+  def billing
+    @client      = Client.find(params[:id])
+    @invoices    = @client.invoices
+    #@receivables = .receivables
+  end
+
 protected
 
   def default_data
