@@ -1,3 +1,4 @@
+# ESTADOS
 
 if Estate.count == 0
   Estate.create([{:acronym => "AC", :name => "Acre"                },
@@ -34,6 +35,20 @@ else
 end
 
 
+# RAMO DE ATIVIDADE
+
+if Activity.count == 0
+  Activity.create([{:name => "Comércio" },
+                   {:name => "Indústria"}])
+
+  puts "Tabela de ramos de atividade semeada com " + Activity.count.to_s  + " registros"
+else
+  puts "Tabela de ramos de atividade não semeada, já contem registros"
+end
+
+
+# CLIENTES
+
 if Client.count == 0
   @xml = Nokogiri::XML(File.open("xmls/clients.xml")) {|config| config.noblanks}
 
@@ -43,6 +58,7 @@ if Client.count == 0
              :cnpj             => 'cgc'     ,
              :observations     => 'obs'     ,
              :active           => 'ativo'   ,
+             :activity_id      => 'indcon'  ,
              :main_address     => { :street       => ['logradouro', 'endereco']  ,
                                     :number       => 'numero'                    ,
                                     :complement   => 'complemento'               ,
@@ -66,7 +82,7 @@ if Client.count == 0
                                     :city         => 'cidadee'                   ,
                                     :estate_id    => 'estadoe'                   ,
                                     :country      => 'paise'                     ,
-                                    :cep          => 'cepe' }}
+                                    :cep          => 'cepe'                     }}
 
   @xml.xpath("//cadclirs").each do |node|
     client  = {}
@@ -90,8 +106,11 @@ if Client.count == 0
           end
         end
       else
-        if k == "active"
+        case k
+        when :active
           node.xpath(v)[0].content == "true" ? client[k] = 1 : client[k] = 0
+        when :activity_id
+          node.xpath(v)[0].content == "C" ? client[k] = 1 : client[k] = 2
         else
           client[k] = node.xpath(v)[0].content
         end
@@ -110,6 +129,8 @@ else
   puts "Tabela de clientes não semeada, já contem registros"
 end
 
+
+# NOTAS FISCAIS
 
 if Invoice.count == 0
   @xml = Nokogiri::XML(File.open("xmls/nf.xml")) {|config| config.noblanks}
@@ -162,5 +183,38 @@ if Invoice.count == 0
   puts "Tabela de notas fiscais semeada com " + Invoice.count.to_s + " registros"
 else
   puts "Tabela de notas fiscais não semeada, já contem registros"
+end
+
+
+# TÍTULOS A RECEBER
+
+if Receivable.count == 0
+  @xml = Nokogiri::XML(File.open("xmls/tr.xml")) {|config| config.noblanks}
+
+  fields = {:invoice_number    => "notafis",
+            :parcel            => "parcela",
+            :due_date          => "datavenc",
+            :value             => "valorfat",
+            #:bank_id           => "banco",
+            :email             => "email",
+            #:deposit_id        => "tipodep",
+            :payment_date      => "datapag",
+            :collection_number => "nbanco",
+            :daily_penalty     => "morad",
+            :observations      => "obsfre"}
+
+  @xml.xpath("//cadfatre").each do |node|
+    tr  = {}
+    fields.each do |k, v|
+      tr[k] = node.xpath(v)[0].content
+    end
+
+    receivable = Receivable.new(tr)
+    receivable.save!
+  end
+
+  puts "Tabela de titulos a receber semeada com " + Receivable.count.to_s + " registros"
+else
+  puts "Tabela de titulos a receber não semeada, já contem registros"
 end
 
