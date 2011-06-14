@@ -82,7 +82,7 @@ module ApplicationHelper
   end
 
   def btn_separator
-    s = "<div class=\"separator\">&nbsp;</div>"
+    s = "<div class=\"separator ui-state-default\">&nbsp;</div>"
   end
 
   def btn_new(controller)
