@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-  has_many   :old_invoices    , :class_name => 'Invoice'   , :primary_key => 'old_id'
+  has_many   :invoices
   #has_many   :old_receivables , :class_name => 'Receivable', :primary_key => 'old_id'
   has_many   :contacts                                  , :foreign_key => 'external_id'         , :dependent => :destroy
   has_many   :addresses       , :as => :addressable                                             , :dependent => :destroy

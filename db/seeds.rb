@@ -169,8 +169,11 @@ if Invoice.count == 0
   @xml.xpath("//cadvenda").each do |node|
     nf  = {}
     fields.each do |k, v|
-      if %w[canceled nfe].include? k
+      case k
+      when :canceled || :nfe
         nf[k] = eval(node.xpath(v)[0].content)
+      when :client_id
+        nf[k] = Client.find_by_old_id(node.xpath(v)[0].content.to_i).id
       else
         nf[k] = node.xpath(v)[0].content
       end
