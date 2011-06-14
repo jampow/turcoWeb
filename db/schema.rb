@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110607234745) do
+ActiveRecord::Schema.define(:version => 20110611001017) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -66,6 +66,41 @@ ActiveRecord::Schema.define(:version => 20110607234745) do
   create_table "functions", :force => true do |t|
     t.string   "name"
     t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invoices", :force => true do |t|
+    t.date     "operation"
+    t.integer  "invoice_number"
+    t.integer  "client_id"
+    t.integer  "seller_id"
+    t.integer  "term_id"
+    t.integer  "ipi",              :limit => 10, :precision => 10, :scale => 0
+    t.integer  "icms_base",        :limit => 10, :precision => 10, :scale => 0
+    t.integer  "icms",             :limit => 10, :precision => 10, :scale => 0
+    t.integer  "pis",              :limit => 10, :precision => 10, :scale => 0
+    t.integer  "cofins",           :limit => 10, :precision => 10, :scale => 0
+    t.integer  "products_value",   :limit => 10, :precision => 10, :scale => 0
+    t.integer  "invoice_value",    :limit => 10, :precision => 10, :scale => 0
+    t.integer  "commission_rate",  :limit => 10, :precision => 10, :scale => 0
+    t.integer  "activity_id"
+    t.text     "observations"
+    t.integer  "sell_id"
+    t.integer  "parcels"
+    t.integer  "natop_id"
+    t.boolean  "delivery"
+    t.integer  "freight",          :limit => 10, :precision => 10, :scale => 0
+    t.integer  "insurance",        :limit => 10, :precision => 10, :scale => 0
+    t.integer  "carrier_id"
+    t.integer  "freight_type"
+    t.boolean  "nfe"
+    t.string   "nfe_received_key"
+    t.string   "nfe_key"
+    t.string   "nfe_protocol"
+    t.integer  "nfe_env"
+    t.integer  "manaus_discount",  :limit => 10, :precision => 10, :scale => 0
+    t.boolean  "canceled"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

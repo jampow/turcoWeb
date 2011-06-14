@@ -1,0 +1,57 @@
+		<dataop>2010-01-13</dataop>                                                 Data da operação
+		<notafis>367</notafis>                                                      Número da Nota Fiscal
+		<codigocl>8426A</codigocl>                                                  Código do cliente
+		<codigorp>9043</codigorp>                                                   Código do representante de venda (vendedor)
+		<cod_termo>RET.REM.BENEF.5902</cod_termo>                                   Código do termo da nota fiscal
+		<totalipi>0.000</totalipi>                                                  Total do IPI
+		<totalpro>11864.000</totalpro>                                              Total dos produtos
+		<totalicm>0.000</totalicm>                                                  Total ICM
+		<totalnot>11864.000</totalnot>                                              Total da NF
+		<txcomis>0</txcomis>                                                        Taxa de comissão
+		<valcomis>0.00</valcomis>                                                   Valor da Comissão
+		<totpecas>8</totpecas>                                                      Total de peças
+		<totpeso>2966</totpeso>                                                     Total de peso
+		<indcon>I</indcon>                                                          Indústria e comércio (substituido por ramo de atividade)
+		<obsven/>                                                                   Observações de venda
+		<tipoven>3</tipoven>                                                        Tipo da venda (Criar tabela a parte)
+		<parcelas>0</parcelas>                                                      Número de parcelas
+		<natoper>5902</natoper>                                                     Natureza da operação
+		<viatrans>RET.REMESSA</viatrans>                                            Retira ou entrega
+		<frete>0</frete>                                                            Valor do Frete
+		<seguro>0</seguro>                                                          Valor do seguro
+		<marca>SCAFF</marca>                                                        Marca do veículo de transporte (?)
+		<numero>8</numero>                                                          Número de pacotes da carga
+		<pesobrut>2966.00</pesobrut>                                                Peso bruto da carga
+		<transp/>                                                                   ???
+		<placa/>                                                                    Placa do veículo
+		<municip/>                                                                  Município do veículo
+		<esttrans/>                                                                 Estado do veículo de transporte
+		<modfrete>2</modfrete>                                                      Modalidade do Frete (1 - CIF | 2 - FOB)
+		<nfe>true</nfe>                                                             Flag nfe
+		<recibonfe>350000012426524</recibonfe>                                      Recibo da NFe
+		<chavenfe>35100148505705000197550000000003670000003674</chavenfe>           Chave da NFe
+		<tpamb>2</tpamb>                                                            Ambiente da NFe (2 - Teste | 1 - homologação)
+		<protnfe>135100016551544</protnfe>                                          Protocolo NFe
+		<totpis>0.00</totpis>                                                       Total de PIS
+		<totcofins>0.00</totcofins>                                                 Total de COFINS
+		<baseicm>0.00</baseicm>                                                     Base do ICMS
+		<descmanaus>0.00</descmanaus>                                               Desconto para Manaus
+		<cancelada>false</cancelada>                                                Flag Cancelada
+		<idtransp/>                                                                 ID da Transportadora
+		<nomtrans/>                                                                 Nome da Transportadora
+		<cgctrans/>                                                                 CNPJ da Transportadora
+		<iestrans/>                                                                 IE da Transportadora
+		<logtrans/>                                                                 Tipo de logradouro da Transportadora
+		<ruatrans/>                                                                 Rua da Transportadora
+		<numtrans/>                                                                 Número da Transportadora
+		<comtrans/>                                                                 Complemento do endereço da Transportadora
+		<baitrans/>                                                                 Bairro da Transportadora
+		<ceptrans/>                                                                 CEP da Transportadora
+		<codmunitrans>0</codmunitrans>                                              Cód do município da Transportadora
+		<coduftrans>0</coduftrans>                                                  Cód do estado da Transportadora
+		<codpaistrans>0</codpaistrans>                                              Cód do País da Transportadora
+		<uftrans/>                                                                  Estado da Transportadora
+		<muntrans/>                                                                 Município da Transportadora
+		<paitrans/>                                                                 País da Transportadora
+		<razaotrans/>                                                               Razão social da Transportadora
+

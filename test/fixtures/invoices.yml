@@ -1,0 +1,65 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  operation: 2011-06-10
+  invoice_number: 1
+  client_id: 1
+  seller_id: 1
+  term_id: 1
+  ipi: 9.99
+  icms_base: 9.99
+  icms: 9.99
+  pis: 9.99
+  cofins: 9.99
+  products_value: 9.99
+  invoice_value: 9.99
+  commission_rate: 9.99
+  activity_id: 1
+  observations: MyText
+  sell_id: 1
+  parcels: 1
+  natop_id: 1
+  delivery: false
+  freight: 9.99
+  insurance: 9.99
+  carrier_id: 1
+  freight_type: 1
+  nfe: false
+  nfe_received_key: MyString
+  nfe_key: MyString
+  nfe_protocol: MyString
+  nfe_env: 1
+  manaus_discount: 9.99
+  canceled: false
+
+two:
+  operation: 2011-06-10
+  invoice_number: 1
+  client_id: 1
+  seller_id: 1
+  term_id: 1
+  ipi: 9.99
+  icms_base: 9.99
+  icms: 9.99
+  pis: 9.99
+  cofins: 9.99
+  products_value: 9.99
+  invoice_value: 9.99
+  commission_rate: 9.99
+  activity_id: 1
+  observations: MyText
+  sell_id: 1
+  parcels: 1
+  natop_id: 1
+  delivery: false
+  freight: 9.99
+  insurance: 9.99
+  carrier_id: 1
+  freight_type: 1
+  nfe: false
+  nfe_received_key: MyString
+  nfe_key: MyString
+  nfe_protocol: MyString
+  nfe_env: 1
+  manaus_discount: 9.99
+  canceled: false

@@ -1,10 +1,12 @@
 class Client < ActiveRecord::Base
+  has_many   :old_invoices    , :class_name => 'Invoice', :primary_key => 'old_id'
   has_many   :contacts                                  , :foreign_key => 'external_id'         , :dependent => :destroy
   has_many   :addresses       , :as => :addressable                                             , :dependent => :destroy
   belongs_to :main_address    , :class_name => 'Address', :foreign_key => 'main_address_id'     , :dependent => :destroy
   belongs_to :billing_address , :class_name => 'Address', :foreign_key => 'billing_address_id'  , :dependent => :destroy
   belongs_to :delivery_address, :class_name => 'Address', :foreign_key => 'delivery_address_id' , :dependent => :destroy
   belongs_to :activity
+
 
   accepts_nested_attributes_for :contacts         , :reject_if => proc { |a| a[:name].blank? }
   accepts_nested_attributes_for :main_address
