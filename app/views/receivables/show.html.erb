@@ -1,0 +1,58 @@
+<p>
+  <b>Invoice number:</b>
+  <%=h @receivable.invoice_number %>
+</p>
+
+<p>
+  <b>Parcel:</b>
+  <%=h @receivable.parcel %>
+</p>
+
+<p>
+  <b>Due date:</b>
+  <%=h @receivable.due_date %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%=h @receivable.value %>
+</p>
+
+<p>
+  <b>Bank:</b>
+  <%=h @receivable.bank_id %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @receivable.email %>
+</p>
+
+<p>
+  <b>Deposit:</b>
+  <%=h @receivable.deposit_id %>
+</p>
+
+<p>
+  <b>Payment date:</b>
+  <%=h @receivable.payment_date %>
+</p>
+
+<p>
+  <b>Collection number:</b>
+  <%=h @receivable.collection_number %>
+</p>
+
+<p>
+  <b>Daily penalty:</b>
+  <%=h @receivable.daily_penalty %>
+</p>
+
+<p>
+  <b>Observations:</b>
+  <%=h @receivable.observations %>
+</p>
+
+
+<%= link_to 'Edit', edit_receivable_path(@receivable) %> |
+<%= link_to 'Back', receivables_path %>

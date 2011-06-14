@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :receivables
+
   map.resources :invoices
 
   map.resources :func_contacts

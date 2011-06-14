@@ -1,0 +1,40 @@
+<h1>Listing receivables</h1>
+
+<table>
+  <tr>
+    <th>Invoice number</th>
+    <th>Parcel</th>
+    <th>Due date</th>
+    <th>Value</th>
+    <th>Bank</th>
+    <th>Email</th>
+    <th>Deposit</th>
+    <th>Payment date</th>
+    <th>Collection number</th>
+    <th>Daily penalty</th>
+    <th>Observations</th>
+  </tr>
+
+<% @receivables.each do |receivable| %>
+  <tr>
+    <td><%=h receivable.invoice_number %></td>
+    <td><%=h receivable.parcel %></td>
+    <td><%=h receivable.due_date %></td>
+    <td><%=h receivable.value %></td>
+    <td><%=h receivable.bank_id %></td>
+    <td><%=h receivable.email %></td>
+    <td><%=h receivable.deposit_id %></td>
+    <td><%=h receivable.payment_date %></td>
+    <td><%=h receivable.collection_number %></td>
+    <td><%=h receivable.daily_penalty %></td>
+    <td><%=h receivable.observations %></td>
+    <td><%= link_to 'Show', receivable %></td>
+    <td><%= link_to 'Edit', edit_receivable_path(receivable) %></td>
+    <td><%= link_to 'Destroy', receivable, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New receivable', new_receivable_path %>
