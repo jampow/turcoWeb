@@ -27,6 +27,7 @@ module ApplicationHelper
       btns[0].each do |btn|
         s += default_btn(action, controller, id)  if btn == "default"
 
+        s += btn_separator                        if btn == "separator"
         s += btn_save                             if btn == "save"
         s += btn_show(controller, id)             if btn == "show"
         s += btn_back(controller)                 if btn == "back"
@@ -39,7 +40,6 @@ module ApplicationHelper
     else
       s += default_btn(action, controller, id)
     end
-
     s
   end
 
@@ -79,6 +79,10 @@ module ApplicationHelper
         s += btn_back(controller)
     end
     s
+  end
+
+  def btn_separator
+    s = "<div class=\"separator\">&nbsp;</div>"
   end
 
   def btn_new(controller)
