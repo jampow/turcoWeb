@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Major.create(:name => 'Daley', :city => cities.first)
+
 if Estate.count == 0
   Estate.create([{:acronym => "AC", :name => "Acre"                },
                  {:acronym => "AL", :name => "Alagoas"             },
@@ -114,5 +108,59 @@ if Client.count == 0
   puts "Tabela de clientes semeada com " + Client.count.to_s + " registros"
 else
   puts "Tabela de clientes não semeada, já contem registros"
+end
+
+
+if Invoice.count == 0
+  @xml = Nokogiri::XML(File.open("xmls/nf.xml")) {|config| config.noblanks}
+
+  fields = {:operation        => "dataop",
+            :invoice_number   => "notafis",
+            :client_id        => "codigocl",
+            :seller_id        => "codigorp",
+            :term_id          => "cod_termo",
+            :ipi              => "totalipi",
+            :icms_base        => "baseicm",
+            :icms             => "totalicm",
+            :pis              => "totpis",
+            :cofins           => "totcofins",
+            :products_value   => "totalpro",
+            :invoice_value    => "totalnot",
+            :commission_rate  => "txcomis",
+            :activity_id      => "indcon",
+            :observations     => "obsven",
+            :sell_id          => "tipoven",
+            :parcels          => "parcelas",
+            #:natop_id         => "",
+            #:delivery         => "",
+            :freight          => "frete",
+            :insurance        => "seguro",
+            #:carrier_id       => "",
+            :freight_type     => "modfrete",
+            :nfe              => "nfe",
+            :nfe_received_key => "recibonfe",
+            :nfe_key          => "chavenfe",
+            :nfe_protocol     => "protnfe",
+            :nfe_env          => "tpamb",
+            :manaus_discount  => "descmanaus",
+            :canceled         => "cancelada"}
+
+  @xml.xpath("//cadvenda").each do |node|
+    nf  = {}
+    fields.each do |k, v|
+      if %w[canceled nfe].include? k
+        nf[k] = eval(node.xpath(v)[0].content)
+      else
+        nf[k] = node.xpath(v)[0].content
+      end
+    end
+
+    invoice = Invoice.new(nf)
+    invoice.save!
+  end
+
+  puts "Tabela de notas fiscais semeada com " + Invoice.count.to_s + " registros"
+else
+  puts "Tabela de notas fiscais não semeada, já contem registros"
 end
 
