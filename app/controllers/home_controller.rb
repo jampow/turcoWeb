@@ -2,7 +2,9 @@ class HomeController < ApplicationController
   has_mobile_fu
   before_filter :is_system_user?, :only => [:index]
 
+  #FIXME: mensagem de boas vindas aparece duas vezes.
   def index
+    flash[:notice] = "Bem vindo #{current_user.name}."
   end
 
 protected

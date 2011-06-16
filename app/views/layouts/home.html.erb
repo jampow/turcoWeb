@@ -5,7 +5,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>TurcoWeb</title>
-  <%= stylesheet_link_tag 'jqui-themes/blitzer/jquery-ui-1.8.12.custom', 'jquery.jgrowl', 'application', 'forms' %>
+  <%= stylesheet_link_tag 'jqui-themes/turco/jquery-ui-1.8.13.custom', 'jquery.jgrowl', 'application', 'forms' %>
   <!--[if IE 7]><%= stylesheet_link_tag 'forms-ie7' %><![endif]-->
 	<!--[if lte IE 6]><%= stylesheet_link_tag 'forms-lte-ie6' %><![endif]-->
 
@@ -19,7 +19,6 @@
       <%= link_to "Perfil",        {:controller => 'users', :action => 'editme',   :id => :current} , :class => "button", :icon => "person", :ajax => "true" %>
       <%= link_to "Alterar senha", {:controller => 'users', :action => 'editpass', :id => :current} , :class => "button", :icon => "key"   , :ajax => "true" %>
       <%= link_to "Sair",          logout_path ,                                                      :class => "button", :icon => "power" %>
-      <span>Bem vindo <strong><%= current_user.name %></strong>!</span>
     </div>
   </div>
 

@@ -83,6 +83,15 @@ body {
   width:60%;
 }
 
+table#list tbody tr {
+  cursor: pointer;
+}
+
+.dataTables_paginate span.fg-button {
+  margin-right: 1px;
+  padding: 1px 10px 0;
+}
+
 .fg-toolbar{
   padding: 5px;
 }
@@ -93,10 +102,6 @@ body {
 
 .css_right{
   float:right;
-  cursor: pointer;
-}
-
-table#list tbody tr {
   cursor: pointer;
 }
 
@@ -181,8 +186,10 @@ label input {
 */
 
 h1 {
-  border-bottom: 1px dotted #007700;
-  color: #007700;
+  border-bottom: 1px dotted #000077;
+  color: #000077;
+  margin: 0 0 10px 0;
+  padding: 0 0 8px 0;
 }
 
 .perm_label {

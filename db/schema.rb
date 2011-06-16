@@ -76,22 +76,22 @@ ActiveRecord::Schema.define(:version => 20110613200619) do
     t.integer  "client_id"
     t.integer  "seller_id"
     t.integer  "term_id"
-    t.integer  "ipi",              :limit => 10, :precision => 10, :scale => 0
-    t.integer  "icms_base",        :limit => 10, :precision => 10, :scale => 0
-    t.integer  "icms",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "pis",              :limit => 10, :precision => 10, :scale => 0
-    t.integer  "cofins",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "products_value",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "invoice_value",    :limit => 10, :precision => 10, :scale => 0
-    t.integer  "commission_rate",  :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "ipi",              :precision => 9, :scale => 3
+    t.decimal  "icms_base",        :precision => 9, :scale => 3
+    t.decimal  "icms",             :precision => 9, :scale => 3
+    t.decimal  "pis",              :precision => 9, :scale => 3
+    t.decimal  "cofins",           :precision => 9, :scale => 3
+    t.decimal  "products_value",   :precision => 9, :scale => 3
+    t.decimal  "invoice_value",    :precision => 9, :scale => 3
+    t.decimal  "commission_rate",  :precision => 9, :scale => 3
     t.integer  "activity_id"
     t.text     "observations"
     t.integer  "sell_id"
     t.integer  "parcels"
     t.integer  "natop_id"
     t.boolean  "delivery"
-    t.integer  "freight",          :limit => 10, :precision => 10, :scale => 0
-    t.integer  "insurance",        :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "freight",          :precision => 9, :scale => 3
+    t.decimal  "insurance",        :precision => 9, :scale => 3
     t.integer  "carrier_id"
     t.integer  "freight_type"
     t.boolean  "nfe"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(:version => 20110613200619) do
     t.string   "nfe_key"
     t.string   "nfe_protocol"
     t.integer  "nfe_env"
-    t.integer  "manaus_discount",  :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "manaus_discount",  :precision => 9, :scale => 3
     t.boolean  "canceled"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -128,13 +128,13 @@ ActiveRecord::Schema.define(:version => 20110613200619) do
     t.integer  "invoice_number"
     t.integer  "parcel"
     t.date     "due_date"
-    t.integer  "value",             :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "value",             :precision => 9, :scale => 3
     t.integer  "bank_id"
     t.string   "email"
     t.integer  "deposit_id"
     t.date     "payment_date"
     t.string   "collection_number"
-    t.integer  "daily_penalty",     :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "daily_penalty",     :precision => 9, :scale => 3
     t.text     "observations"
     t.datetime "created_at"
     t.datetime "updated_at"
