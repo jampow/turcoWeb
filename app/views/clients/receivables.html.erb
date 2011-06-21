@@ -1,0 +1,7 @@
+<% content_for :menu do %>
+  <h1>Conta da <%= @client.name %></h1>
+  <%= link_to "Voltar", "/clients/#{@client.id.to_s}", {:class => "button back"} %>
+<% end %>
+
+<%= table @receivables, ["parcel", "Parcela"], ["value", "Valor"], ["due_date", "Vencimento"] %>
+

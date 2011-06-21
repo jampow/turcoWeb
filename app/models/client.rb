@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
   has_many   :invoices
-  has_many   :receivables     , :through => 'invoices'
+  has_many   :receivables     , :through => :invoices
   has_many   :contacts                                  , :foreign_key => 'external_id'         , :dependent => :destroy
   has_many   :addresses       , :as => :addressable                                             , :dependent => :destroy
   belongs_to :main_address    , :class_name => 'Address', :foreign_key => 'main_address_id'     , :dependent => :destroy

@@ -1,7 +1,8 @@
 <% content_for :menu do %>
   <h1>Cliente</h1>
   <%= mount_menu %w[default separator] %>
-  <%= link_to "Conta", "/clients/billing/#{@client.id.to_s}", {:class => "button", :icon => "suitcase"} %>
+  <%= link_to "Notas Fiscais"    , "/clients/invoices/#{@client.id.to_s}", {:class => "button", :icon => "script"} %>
+  <%= link_to "Títulos A Receber", "/clients/receivables/#{@client.id.to_s}", {:class => "button", :icon => "document-b"} %>
 <% end %>
 
 <%= print_content "Razão Social"     , h(@client.name)                        , 25 %>

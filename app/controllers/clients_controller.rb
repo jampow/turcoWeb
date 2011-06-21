@@ -95,10 +95,14 @@ class ClientsController < ApplicationController
     end
   end
 
-  def billing
+  def invoices
     @client      = Client.find(params[:id])
     @invoices    = @client.invoices
-    #@receivables = .receivables
+  end
+
+  def receivables
+    @client      = Client.find(params[:id])
+    @receivables = @client.receivables
   end
 
 protected

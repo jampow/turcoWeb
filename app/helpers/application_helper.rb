@@ -118,6 +118,11 @@ module ApplicationHelper
   end
 
 
+  # fields cada valor de fields deve ser um array, cada array pode ter até 3
+  # valores sendo os dois primeiros obrigatórios.
+  # 1 - field_name => nome do campo na tabela
+  # 2 - head_name  => nome no cabeçalho da tabela
+  # 3 - classes    => string com as classes de cada coluna
   def table(obj, *fields)
     s = <<-TABLE
           <table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
@@ -148,7 +153,7 @@ module ApplicationHelper
       s += "<tr><td>#{o.id}</td>"
       fields[0].each do |field|
         x = "o." + field[0].to_s
-        s += "<td>#{h eval(x)}</td>"
+        s += "<td class=\"#{field[2]}\">#{h eval(x)}</td>"
       end
       s += "</tr>"
     end

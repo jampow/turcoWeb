@@ -27,9 +27,16 @@
   </div>
 
   <div class="ui-layout-center ui-widget-content">
+
     <p class="notice"><%= flash[:notice] %></p>
 
-    <%= yield %>
+    <%= hidden_field_tag 'controller', params[:controller] %>
+
+    <div id="menu_wrapper"><%= yield :menu %></div>
+
+    <div id="content_wrapper" class="logo_grande"><%= yield %></div>
+
+    <div id="waiting"> </div>
 
   </div>
 
