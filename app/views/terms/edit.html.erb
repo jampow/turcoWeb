@@ -1,0 +1,13 @@
+<% content_for :menu do -%>
+  <h1>Editando termo</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@term) do |f| %>
+  <div class="form-wrapper">
+    <%= f.error_messages %>
+    <%= f.text_field :name, :label => 'Nome' , :size => 50 %>
+    <%= f.text_area  :term, :label => 'Termo', :size => 100 %>
+  </div>
+<% end %>
+

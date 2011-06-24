@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :terms
+
   map.resources :hollydays
 
   map.resources :receivables
