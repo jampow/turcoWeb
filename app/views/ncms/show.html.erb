@@ -1,24 +1,12 @@
-<h1>NCM</h1>
 
-<%= mount_menu %>
+<% content_for :menu do -%>
+  <h1>NCM</h1>
+  <%= mount_menu %>
+<% end -%>
 
-<p>
-  <b>Code:</b>
-  <%=h @ncm.code %>
-</p>
 
-<p>
-  <b>Description:</b>
-  <%=h @ncm.description %>
-</p>
-
-<p>
-  <b>Unit:</b>
-  <%=h @ncm.unit %>
-</p>
-
-<p>
-  <b>Ipi:</b>
-  <%=h @ncm.ipi %>
-</p>
+<%= print_content "Descrição", h(@ncm.description), 50 %>
+<%= print_content "Código"   , h(@ncm.code)       , 25 %>
+<%= print_content "Unidade"  , h(@ncm.unit)       , 25 %>
+<%= print_content "IPI"      , h(@ncm.ipi)        , 25 %>
 

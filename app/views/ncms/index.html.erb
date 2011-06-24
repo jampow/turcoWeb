@@ -1,28 +1,8 @@
-<h1>NCM's</h1>
+<% content_for :menu do -%>
+  <h1>NCM's</h1>
+  <%= mount_menu %>
+<% end -%>
 
-<%= mount_menu %>
 
-<table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Código</th>
-      <th>Descrição</th>
-      <th>Unidade</th>
-      <th>IPI</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @ncms.each do |ncm| %>
-    <tr>
-      <td><%=h ncm.id %></td>
-      <td><%=h ncm.code %></td>
-      <td><%=h ncm.description %></td>
-      <td><%=h ncm.unit %></td>
-      <td><%=h ncm.ipi %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= table @ncms, ['code', 'Código'], ['description', 'Descrição'], ['unit', 'Unidade'], ['ipi', 'IPI'] %>
 

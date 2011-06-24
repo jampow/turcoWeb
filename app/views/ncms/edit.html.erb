@@ -1,21 +1,16 @@
-<h1>Editando NCM</h1>
+<% content_for :menu do -%>
+  <h1>Editando NCM</h1>
+  <%= mount_menu %>
+<% end -%>
+
 
 <% form_for(@ncm) do |f| %>
-  <%= f.error_messages %>
-
-  <%= mount_menu %>
-
-  <p>
-    <%= f.label :code, "Código: " + f.text_field(:code)%>
-  </p>
-  <p>
-    <%= f.label :description, "Descrição: " + f.text_field(:description)%>
-  </p>
-  <p>
-    <%= f.label :unit, "Unidade: " + f.text_field(:unit)%>
-  </p>
-  <p>
-    <%= f.label :ipi, "IPI: " + f.text_field(:ipi)%>
-  </p>
+  <div class="form-wrapper">
+    <%= f.error_messages %>
+    <%= f.text_field :description, :label => 'Descrição', :size => 50 %>
+    <%= f.text_field :code       , :label => 'Código' %>
+    <%= f.text_field :unit       , :label => 'Unidade' %>
+    <%= f.text_field :ipi        , :label => 'IPI' %>
+  </div>
 <% end %>
 
