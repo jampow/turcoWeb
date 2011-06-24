@@ -60,7 +60,7 @@ form label {
 	border: 0;
 	float: left;
 	display: table;
-	width: 1%;
+	/*width: 1%;*/
 }
 /*form.dm_form span.wrapper {*/
 form span.wrapper {
