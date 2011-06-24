@@ -61,15 +61,16 @@
           window.location = "/home";
         }, //close success
         error: function(data){
-          errors = $('error', data.responseText);
+          errors = $('error', data.responseText); //Pega mensagem de erro do XML de resposta do servidor
           msgBox ="<div class=\"ui-widget\" id=\"msgError\">"+
 				            "<div style=\"padding: 0pt 0.7em;\" class=\"ui-state-error ui-corner-all\">"+
 				              "<p><span style=\"float: left; margin-right: 0.3em;\" class=\"ui-icon ui-icon-alert\"></span>"+
 					            "<strong>Erro:</strong> "+errors.text()+"</p>"+
 				            "</div>"+
-			            "</div>"
-			    $('#msgError').remove();
-			    form.before(msgBox);
+			            "</div>"                  //monta HTML de exibição do erro
+			    $('#msgError').remove();          //Remove mensagem d3e erro anterior se houver
+			    form.before(msgBox);              //adiciona nova mensagem de erro ao DOM, antes do form
+			    dialog.dialog({"height":"auto"}); //Redimensiona o dialog para exibir a mensagem de erro sem que apareça um scroll
         } //close errors
       }); //close ajax
     } //close function
