@@ -1,0 +1,9 @@
+<% content_for :menu do -%>
+  <h1>Feriado</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content 'Feriado', h(@hollyday.name)                        , 50 %>
+<%= print_content 'Data'   , h(@hollyday.date)                        , 25 %>
+<%= print_content 'ativo'  , h(@hollyday.active ? "Ativo" : "Inativo"), 25 %>
+

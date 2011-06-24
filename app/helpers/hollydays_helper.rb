@@ -1,0 +1,2 @@
+module HollydaysHelper
+end

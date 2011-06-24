@@ -1,0 +1,7 @@
+<% content_for :menu do -%>
+  <h1>Feriados</h1>
+<%= mount_menu %>
+<% end -%>
+
+<%= table @hollydays,['date','Data'],['name','Feriado'],['active','Ativo'] %>
+
