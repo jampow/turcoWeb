@@ -1,9 +1,7 @@
-
 <% content_for :menu do -%>
   <h1>NCM</h1>
   <%= mount_menu %>
 <% end -%>
-
 
 <%= print_content "Descrição", h(@ncm.description), 50 %>
 <%= print_content "Código"   , h(@ncm.code)       , 25 %>

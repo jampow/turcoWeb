@@ -3,8 +3,5 @@
   <%= mount_menu %>
 <% end %>
 
-<p>
-  <b>Name:</b>
-  <%=h @activity.name %>
-</p>
+<%= print_content "Nome", h(@activity.name) %>
 

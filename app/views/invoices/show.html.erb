@@ -1,153 +1,33 @@
-<p>
-  <b>Operation:</b>
-  <%=h @invoice.operation %>
-</p>
-
-<p>
-  <b>Invoice number:</b>
-  <%=h @invoice.invoice_number %>
-</p>
-
-<p>
-  <b>Client:</b>
-  <%=h @invoice.client_id %>
-</p>
-
-<p>
-  <b>Seller:</b>
-  <%=h @invoice.seller_id %>
-</p>
-
-<p>
-  <b>Term:</b>
-  <%=h @invoice.term_id %>
-</p>
-
-<p>
-  <b>Ipi:</b>
-  <%=h @invoice.ipi %>
-</p>
-
-<p>
-  <b>Icms base:</b>
-  <%=h @invoice.icms_base %>
-</p>
-
-<p>
-  <b>Icms:</b>
-  <%=h @invoice.icms %>
-</p>
-
-<p>
-  <b>Pis:</b>
-  <%=h @invoice.pis %>
-</p>
-
-<p>
-  <b>Cofins:</b>
-  <%=h @invoice.cofins %>
-</p>
-
-<p>
-  <b>Products value:</b>
-  <%=h @invoice.products_value %>
-</p>
-
-<p>
-  <b>Invoice value:</b>
-  <%=h @invoice.invoice_value %>
-</p>
-
-<p>
-  <b>Commission rate:</b>
-  <%=h @invoice.commission_rate %>
-</p>
-
-<p>
-  <b>Activity:</b>
-  <%=h @invoice.activity_id %>
-</p>
-
-<p>
-  <b>Observations:</b>
-  <%=h @invoice.observations %>
-</p>
-
-<p>
-  <b>Sell:</b>
-  <%=h @invoice.sell_id %>
-</p>
-
-<p>
-  <b>Parcels:</b>
-  <%=h @invoice.parcels %>
-</p>
-
-<p>
-  <b>Natop:</b>
-  <%=h @invoice.natop_id %>
-</p>
-
-<p>
-  <b>Delivery:</b>
-  <%=h @invoice.delivery %>
-</p>
-
-<p>
-  <b>Freight:</b>
-  <%=h @invoice.freight %>
-</p>
-
-<p>
-  <b>Insurance:</b>
-  <%=h @invoice.insurance %>
-</p>
-
-<p>
-  <b>Carrier:</b>
-  <%=h @invoice.carrier_id %>
-</p>
-
-<p>
-  <b>Freight type:</b>
-  <%=h @invoice.freight_type %>
-</p>
-
-<p>
-  <b>Nfe:</b>
-  <%=h @invoice.nfe %>
-</p>
-
-<p>
-  <b>Nfe received key:</b>
-  <%=h @invoice.nfe_received_key %>
-</p>
-
-<p>
-  <b>Nfe key:</b>
-  <%=h @invoice.nfe_key %>
-</p>
-
-<p>
-  <b>Nfe protocol:</b>
-  <%=h @invoice.nfe_protocol %>
-</p>
-
-<p>
-  <b>Nfe env:</b>
-  <%=h @invoice.nfe_env %>
-</p>
-
-<p>
-  <b>Manaus discount:</b>
-  <%=h @invoice.manaus_discount %>
-</p>
-
-<p>
-  <b>Canceled:</b>
-  <%=h @invoice.canceled %>
-</p>
+<% content_for :menu do -%>
+  <h1>Nota Fiscal</h1>
+  <%= mount_menu %>
+<% end -%>
 
 
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-<%= link_to 'Back', invoices_path %>
+<%= print_content "Operação"                 , h(@invoice.operation)       %>
+<%= print_content "Número da NF"             , h(@invoice.invoice_number)  %>
+<%= print_content "Cliente"                  , h(@invoice.client_id)       %>
+<%= print_content "Vendedor"                 , h(@invoice.seller_id)       %>
+<%= print_content "Termo"                    , h(@invoice.term_id)         %>
+<%= print_content "IPI"                      , h(@invoice.ipi)             %>
+<%= print_content "Base do ICMS"             , h(@invoice.icms_base)       %>
+<%= print_content "ICMS"                     , h(@invoice.icms)            %>
+<%= print_content "PIS"                      , h(@invoice.pis)             %>
+<%= print_content "Cofins"                   , h(@invoice.cofins)          %>
+<%= print_content "Valor dos produtos"       , h(@invoice.products_value)  %>
+<%= print_content "Valor da NF"              , h(@invoice.invoice_value)   %>
+<%= print_content "Percentagem de comição"   , h(@invoice.commission_rate) %>
+<%= print_content "Ramo de tividade"         , h(@invoice.activity.id)     %>
+<%= print_content "Observações"              , h(@invoice.observations)    %>
+<%= print_content "Vendedor"                 , h(@invoice.sell_id)         %>
+<%= print_content "parcela"                  , h(@invoice.parcels)         %>
+<%= print_content "Natureza da operação"     , h(@invoice.natop_id)        %>
+<%= print_content "Entrega"                  , h(@invoice.delivery)        %>
+<%= print_content "Frete"                    , h(@invoice.freight)         %>
+<%= print_content "Tipo de frete"            , h(@invoice.freight_type)    %>
+<%= print_content "Seguro"                   , h(@invoice.insurance)       %>
+<%= print_content "Transportadora"           , h(@invoice.carrier_id)      %>
+<%= print_content "Nfe"                      , h(@invoice.nfe)             %>
+<%= print_content "Disconto manaus"          , h(@invoice.manaus_discount) %>
+<%= print_content "Cancelada"                , h(@invoice.canceled)        %>
+

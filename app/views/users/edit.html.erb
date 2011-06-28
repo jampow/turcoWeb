@@ -1,24 +1,16 @@
-<h1>Editando Usuário</h1>
+<% content_for :menu do -%>
+  <h1>Editando Usuário</h1>
+  <%= mount_menu %>
+<% end -%>
 
 <% form_for(@user) do |f| %>
-  <%= f.error_messages %>
-
-  <%= mount_menu %>
-
-  <p>
-    <%= f.label :name, "Nome: " + f.text_field(:name)%>
-  </p>
-  <p>
-    <%= f.label :login, "Login: " + f.text_field(:login)%>
-  </p>
-  <p>
-    <%= f.label :email, "E-Mail: " + f.text_field(:email)%>
-  </p>
-  <p>
-    <%= f.label :password, "Senha: " + f.password_field(:password)%>
-  </p>
-  <p>
-    <%= f.label :password_confirmation, "Confirme a senha: " + f.password_field(:password_confirmation)%>
-  </p>
+  <div class="form-wrapper">
+    <%= f.error_messages %>
+    <%= f.text_field     :name                 , :label => 'Nome'             %>
+    <%= f.text_field     :login                , :label => 'Login'            %>
+    <%= f.text_field     :email                , :label => 'E-Mail'           %>
+    <%= f.password_field :password             , :label => 'Senha'            %>
+    <%= f.password_field :password_confirmation, :label => 'Confirme a senha' %>
+  </div>
 <% end %>
 

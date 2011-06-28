@@ -3,21 +3,5 @@
   <%= mount_menu %>
 <% end -%>
 
-<table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @func_contacts.each do |func_contact| %>
-    <tr>
-      <td><%=h func_contact.id %></td>
-      <td><%=h func_contact.name %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= table @func_contacts, ['name', 'Nome'] %>
 

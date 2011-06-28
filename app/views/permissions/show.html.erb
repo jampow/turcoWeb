@@ -1,4 +1,7 @@
-<h1>Permissões de <%= @user.name %></h1>
+<% content_for :menu do -%>
+  <h1>Permissões de <%= @user.name %></h1>
+  <%= mount_menu %>
+<% end -%>
 
 <%= perm_table @perm %>
 

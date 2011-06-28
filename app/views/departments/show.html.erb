@@ -1,9 +1,7 @@
-<h1>Departamento</h1>
+<% content_for :menu do -%>
+  <h1>Departamento</h1>
+  <%= mount_menu %>
+<% end -%>
 
-<%= mount_menu %>
-
-<p>
-  <b>Nome:</b>
-  <%=h @department.name %>
-</p>
+<%= print_content "Nome", h(@department.name) %>
 

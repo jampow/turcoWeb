@@ -4,9 +4,9 @@
 <% end %>
 
 <% form_for(@activity) do |f| %>
-  <%= f.error_messages %>
-
+  <div class="form-wrapper">
+    <%= f.error_messages %>
     <%= f.text_field :name, :label => "Nome", :required => true %>
-
+  </div>
 <% end %>
 

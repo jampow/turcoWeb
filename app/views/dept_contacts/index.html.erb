@@ -3,20 +3,5 @@
   <%= mount_menu %>
 <% end %>
 
-<table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-<tbody>
-  <% @dept_contacts.each do |dept_contact| %>
-    <tr>
-      <td><%=h dept_contact.id %></td>
-      <td><%=h dept_contact.name %></td>
-    </tr>
-  <% end %>
-</tbody>
-</table>
+<%= table @dept_contacts, ["name", "Nome"] %>
 

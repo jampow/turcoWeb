@@ -1,19 +1,9 @@
-<h1>Usuário</h1>
+<% content_for :menu do -%>
+  <h1>Usuário</h1>
+  <%= mount_menu %>
+<% end -%>
 
-<%= mount_menu %>
-
-<p>
-  <b>Nome:</b>
-  <%=h @user.name %>
-</p>
-
-<p>
-  <b>Login:</b>
-  <%=h @user.login %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
-</p>
+<%= print_content "Nome"  , h(@user.name)  %>
+<%= print_content "Login" , h(@user.login) %>
+<%= print_content "E-Mail", h(@user.email) %>
 

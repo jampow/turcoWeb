@@ -1,56 +1,23 @@
-<h1>Editing receivable</h1>
+<% content_for :menu do -%>
+  <h1>Título a receber</h1>
+  <%= mount_menu %>
+<% end -%>
 
 <% form_for(@receivable) do |f| %>
-  <%= f.error_messages %>
+  <div class="form-wrapper">
+    <%= f.error_messages %>
 
-  <p>
-    <%= f.label :invoice_number %><br />
-    <%= f.text_field :invoice_number %>
-  </p>
-  <p>
-    <%= f.label :parcel %><br />
-    <%= f.text_field :parcel %>
-  </p>
-  <p>
-    <%= f.label :due_date %><br />
-    <%= f.date_select :due_date %>
-  </p>
-  <p>
-    <%= f.label :value %><br />
-    <%= f.text_field :value %>
-  </p>
-  <p>
-    <%= f.label :bank_id %><br />
-    <%= f.text_field :bank_id %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :deposit_id %><br />
-    <%= f.text_field :deposit_id %>
-  </p>
-  <p>
-    <%= f.label :payment_date %><br />
-    <%= f.date_select :payment_date %>
-  </p>
-  <p>
-    <%= f.label :collection_number %><br />
-    <%= f.text_field :collection_number %>
-  </p>
-  <p>
-    <%= f.label :daily_penalty %><br />
-    <%= f.text_field :daily_penalty %>
-  </p>
-  <p>
-    <%= f.label :observations %><br />
-    <%= f.text_area :observations %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+    <%= f.text_field  :invoice_number   , :label => "Número da NF"      %>
+    <%= f.text_field  :parcel           , :label => "Parcela"           %>
+    <%= f.date_select :due_date         , :label => "Vencimento"        %>
+    <%= f.text_field  :value            , :label => "Valor"             %>
+    <%= f.text_field  :bank_id          , :label => "Banco"             %>
+    <%= f.text_field  :email            , :label => "E-Mail"            %>
+    <%= f.text_field  :deposit_id       , :label => "Depósito"          %>
+    <%= f.date_select :payment_date     , :label => "Data de pagamento" %>
+    <%= f.text_field  :collection_number, :label => "Número do banco"   %>
+    <%= f.text_field  :daily_penalty    , :label => "Mora ao dia"       %>
+    <%= f.text_area   :observations     , :label => "Observações"       %>
+  </div>
 <% end %>
 
-<%= link_to 'Show', @receivable %> |
-<%= link_to 'Back', receivables_path %>

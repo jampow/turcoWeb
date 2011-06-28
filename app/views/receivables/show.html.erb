@@ -1,58 +1,17 @@
-<p>
-  <b>Invoice number:</b>
-  <%=h @receivable.invoice_number %>
-</p>
+<% content_for :menu do -%>
+  <h1>Título a receber</h1>
+  <%= mount_menu %>
+<% end -%>
 
-<p>
-  <b>Parcel:</b>
-  <%=h @receivable.parcel %>
-</p>
+<%= print_content "Número da NF"          , h(@receivable.invoice_number      %>
+<%= print_content "Parcela"               , h(@receivable.parcel              %>
+<%= print_content "Vencimento"            , h(@receivable.due_date            %>
+<%= print_content "Valor"                 , h(@receivable.value               %>
+<%= print_content "Banco"                 , h(@receivable.bank_id             %>
+<%= print_content "E-Mail"                , h(@receivable.email               %>
+<%= print_content "???"                   , h(@receivable.deposit_id          %>
+<%= print_content "Data de pagamento"     , h(@receivable.payment_date        %>
+<%= print_content "Número do banco"       , h(@receivable.collection_number   %>
+<%= print_content "Mora ao dia"           , h(@receivable.daily_penalty       %>
+<%= print_content "Observações"           , h(@receivable.observations        %>
 
-<p>
-  <b>Due date:</b>
-  <%=h @receivable.due_date %>
-</p>
-
-<p>
-  <b>Value:</b>
-  <%=h @receivable.value %>
-</p>
-
-<p>
-  <b>Bank:</b>
-  <%=h @receivable.bank_id %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%=h @receivable.email %>
-</p>
-
-<p>
-  <b>Deposit:</b>
-  <%=h @receivable.deposit_id %>
-</p>
-
-<p>
-  <b>Payment date:</b>
-  <%=h @receivable.payment_date %>
-</p>
-
-<p>
-  <b>Collection number:</b>
-  <%=h @receivable.collection_number %>
-</p>
-
-<p>
-  <b>Daily penalty:</b>
-  <%=h @receivable.daily_penalty %>
-</p>
-
-<p>
-  <b>Observations:</b>
-  <%=h @receivable.observations %>
-</p>
-
-
-<%= link_to 'Edit', edit_receivable_path(@receivable) %> |
-<%= link_to 'Back', receivables_path %>

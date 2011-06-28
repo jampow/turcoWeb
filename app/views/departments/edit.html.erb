@@ -1,13 +1,12 @@
-<h1>Editando departamento</h1>
+<% content_for :menu do -%>
+  <h1>Editando departamento</h1>
+  <%= mount_menu %>
+<% end -%>
 
 <% form_for(@department) do |f| %>
-
-  <%= mount_menu %>
-
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :name, "Nome: " + f.text_field(:name)%>
-  </p>
+  <div class="form-wrapper">
+    <%= f.error_messages %>
+    <%= f.text_field :name, :label => "Nome" %>
+  </div>
 <% end %>
 

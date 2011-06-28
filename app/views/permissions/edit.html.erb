@@ -4,14 +4,13 @@
 <% end -%>
 
 <% form_for :permissions, :url => '/permissions/update' do |f| %>
+  <div class="form-wrapper">
+    <%= f.error_messages %>
+    <%= hidden_field :user, :id %>
 
-  <%= f.error_messages %>
-
-  <%= hidden_field :user, :id %>
-
-  <% @controllers.each do |cont, nick| %>
-    <%= perm_options(cont, nick, @user) %>
-  <% end %>
-
+    <% @controllers.each do |cont, nick| %>
+      <%= perm_options(cont, nick, @user) %>
+    <% end %>
+  </div>
 <% end %>
 
