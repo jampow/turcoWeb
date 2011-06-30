@@ -125,7 +125,7 @@ module ApplicationHelper
   # 3 - classes    => string com as classes de cada coluna
   def table(obj, *fields)
     s = <<-TABLE
-          <table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
+          <table class="list" cellpading="0" cellspacing="0" border="0" width="100%">
             <thead>
               <tr>
                 #{table_header(fields)}

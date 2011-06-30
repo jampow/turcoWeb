@@ -55,14 +55,14 @@ $(function(){
   }); //fecha formulários com requisição ajax
 
   //Seleciona e desseleciona o item do dataTable no clique simples
-  $('table#list tbody tr').live('click', function(){
+  $('table.list tbody tr').live('click', function(){
     t = $(this);
     controller = $('#controller').val();
     id = $(':first-child',t).html()
 
     klass = 'ui-state-default';
 
-    $('table#list tbody tr.'+klass).removeClass(klass);
+    $('table.list tbody tr.'+klass).removeClass(klass);
     t.addClass(klass);
 
     url = '/' + controller + '/';
@@ -73,7 +73,7 @@ $(function(){
   });
 
   //Abre pra item para edição no duplo clique
-  $('table#list tbody tr').live('dblclick', function(){$('.button.show').click();});
+  $('table.list tbody tr').live('dblclick', function(){$('.button.show').click();});
 
   //todos os links em 'west' e 'center' ou em 'north' com o parâmetro ajax="true" com requisição ajax
   $('#menu a[href*=/], .ui-layout-center a[href*=/], .ui-layout-north a[href*=/][ajax=true]').live('click', function(){
@@ -131,7 +131,7 @@ $(function(){
     //Lista organizável
     //$('#sortable').sortable({ axis: 'y', placeholder: 'ui-state-highlight' }).disableSelection();
 
-    $('table#list').dataTable({
+    $('table.list').dataTable({
 			  "bJQueryUI": true
 			, "sPaginationType": "full_numbers"
 		  , "oLanguage": {

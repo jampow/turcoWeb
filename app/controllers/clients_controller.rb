@@ -19,6 +19,9 @@ class ClientsController < ApplicationController
     @delivery_address = @client.delivery_address
     @contacts         = @client.contacts
 
+    @invoices         = @client.invoices
+    @receivables      = @client.receivables
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @client }
@@ -93,16 +96,6 @@ class ClientsController < ApplicationController
       format.html { redirect_to(clients_url) }
       format.xml  { head :ok }
     end
-  end
-
-  def invoices
-    @client      = Client.find(params[:id])
-    @invoices    = @client.invoices
-  end
-
-  def receivables
-    @client      = Client.find(params[:id])
-    @receivables = @client.receivables
   end
 
 protected
