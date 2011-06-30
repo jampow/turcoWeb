@@ -73,7 +73,7 @@ $(function(){
   });
 
   //Abre pra item para edição no duplo clique
-  $('table#list tbody tr').live('dblclick', function(){$('.button.edit').click();});
+  $('table#list tbody tr').live('dblclick', function(){$('.button.show').click();});
 
   //todos os links em 'west' e 'center' ou em 'north' com o parâmetro ajax="true" com requisição ajax
   $('#menu a[href*=/], .ui-layout-center a[href*=/], .ui-layout-north a[href*=/][ajax=true]').live('click', function(){
