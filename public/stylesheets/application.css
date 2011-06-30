@@ -241,10 +241,13 @@ div.w100 {
 
 div.w25+h2 {
   clear: left;
+}
+
+h2 {
+  color: #00b;
   padding: 15px;
   margin: 0;
 }
-
 
 div.separator {
   border-radius: 6px;

@@ -54,14 +54,14 @@
 
 <div style="float:left;width:50%">
   <div style="padding:10px 5px 0 0;">
-    <h2>Última NF's</h2>
+    <h2>NF's</h2>
     <%= table @invoices, ["operation", "Data"], ["invoice_number", "Número"], ["invoice_value", "Valor da Nota"] %>
   </div>
 </div>
 
 <div style="float:left;width:50%">
   <div style="padding:10px 0 0 5px;">
-    <h2>Últimas cobranças</h2>
+    <h2>Cobranças</h2>
     <%= table @receivables, ["parcel", "Parcela"], ["value", "Valor"], ["due_date", "Vencimento"] %>
   </div>
 </div>
