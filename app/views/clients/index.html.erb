@@ -3,5 +3,5 @@
   <%= mount_menu %>
 <% end %>
 
-<%= table @clients, ["name", "Nome"], ["nickname", "Fantasia"], ["cnpj", "CNPJ", "center"], ["ie", "Insc. Estadual", "center"] %>
+<%= table @clients, ["name", "Nome"], ["nickname", "Fantasia"], ["cnpj", "CNPJ", {:class => "center"}], ["ie", "Insc. Estadual", {:class => "center"}] %>
 

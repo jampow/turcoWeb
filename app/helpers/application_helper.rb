@@ -120,9 +120,9 @@ module ApplicationHelper
 
   # fields cada valor de fields deve ser um array, cada array pode ter até 3
   # valores sendo os dois primeiros obrigatórios.
-  # 1 - field_name => nome do campo na tabela
-  # 2 - head_name  => nome no cabeçalho da tabela
-  # 3 - classes    => string com as classes de cada coluna
+  # 1 - field_name     => nome do campo na tabela
+  # 2 - head_name      => nome no cabeçalho da tabela
+  # 3 - hash de opções => pode definir align e format {:class => "center", :format => "number_to_currency"}
   def table(obj, *fields)
     s = <<-TABLE
           <table class="list" cellpading="0" cellspacing="0" border="0" width="100%">
@@ -150,10 +150,11 @@ module ApplicationHelper
   def table_body(obj, *fields)
     s = ""
     obj.each do |o|
-      s += "<tr><td>#{o.id}</td>"
+      s += "<tr><td class=\"right\">#{o.id}</td>"
       fields[0].each do |field|
-        x = "o." + field[0].to_s
-        s += "<td class=\"#{field[2]}\">#{h eval(x)}</td>"
+        field[2] ||= {}
+        field[2][:format].nil? ? x = "o.#{field[0].to_s}" : x = "#{field[2][:format]}(o.#{field[0].to_s})"
+        s += "<td class=\"#{field[2][:class]}\">#{h eval(x)}</td>"
       end
       s += "</tr>"
     end
@@ -164,7 +165,7 @@ module ApplicationHelper
   def print_content(label, content, width = 25)
     [25, 50, 75, 100].include? width ? w = width : w = 25
     s = <<-HTML
-          <div class="w#{w.to_s}">
+          <div class="w#{w.to_s} pcontent">
             <b>#{label.to_s}:</b>
             #{content.to_s}
           </div>
