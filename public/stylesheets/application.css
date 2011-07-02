@@ -87,18 +87,20 @@ table.list tbody tr {
   cursor: pointer;
 }
 
-table.list tbody tr td.center {
+
+table.list .center {
   text-align:center;
 }
 
-table.list tbody tr td.right {
+table.list .right {
   text-align:right;
 }
 
 table.list .odd  { background-color: #fff; }
 table.list .even { background-color: rgb(240, 240, 240); }
 
-.list tbody td {
+
+.list td, .list th {
   padding: 2px 10px;
 }
 

@@ -16,7 +16,7 @@
   <script type="text/javascript">
     $(function(){
 
-      dialog = $("#dialog").dialog({
+      dial = $("#dialog").dialog({
 			  autoOpen: false,
 			  height: 200,
 			  width: 280,
@@ -30,7 +30,7 @@
 				  }
 			  },
 			  close: function(){
-			    dialog.dialog('open');
+			    dial.dialog('open');
 			  }
 		  });
 
@@ -42,7 +42,7 @@
 
      $('a.ui-dialog-titlebar-close').hide();
 
-     dialog.dialog('open');
+     dial.dialog('open');
 
      $('#user_session_login').focus();
 
@@ -70,7 +70,7 @@
 			            "</div>"                  //monta HTML de exibição do erro
 			    $('#msgError').remove();          //Remove mensagem d3e erro anterior se houver
 			    form.before(msgBox);              //adiciona nova mensagem de erro ao DOM, antes do form
-			    dialog.dialog({"height":"auto"}); //Redimensiona o dialog para exibir a mensagem de erro sem que apareça um scroll
+			    dial.dialog({"height":"auto"}); //Redimensiona o dialog para exibir a mensagem de erro sem que apareça um scroll
         } //close errors
       }); //close ajax
     } //close function

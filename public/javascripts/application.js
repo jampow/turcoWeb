@@ -134,23 +134,9 @@ $(function(){
     $('table.list').dataTable({
 			  "bJQueryUI": true
 			, "sPaginationType": "full_numbers"
-		  , "oLanguage": {
-			    "sLengthMenu": "_MENU_ itens por página"
-			  , "sZeroRecords": "Desculpe - Nenhum registro encontrado"
-			  , "sInfo": "Registros de _START_ até _END_ de um total de _TOTAL_"
-			  , "sInfoEmpty": "Registros de 0 até 0 de um total de 0"
-			  , "sInfoFiltered": "(filtrado de um total de _MAX_ registros)"
-	      , "sProcessing": "Processando..."
-	      , "sInfoPostFix": ""
-	      , "sSearch": "Busca"
-	      , "sUrl": ""
-	      , "oPaginate": {
-		        "sFirst":    "Primeira"
-		      , "sPrevious": "Anterior"
-		      , "sNext":     "Próxima"
-		      , "sLast":     "Última"
-	        }
-		    }
+			, "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
+			, "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
+			, "bRetrieve": true
 		});
 
     $('.buttonset').buttonset();
@@ -205,5 +191,19 @@ function make_buttons() {
     i = t.attr('icon') //icone
     i == undefined ? t.button() : t.button({icons:{primary: 'ui-icon-' + i} })
   });
+}
+
+// Passar valor como 123456.78 (ponto como separador de decimais)
+// Será retornado um valor 123.46,78
+function toCurrency(nStr){
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? ',' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + '.' + '$2');
+	}
+	return x1 + x2;
 }
 
