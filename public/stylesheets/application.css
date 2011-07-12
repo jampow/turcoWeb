@@ -38,12 +38,20 @@ body {
 
 #menu li {
   list-style: none;
-  padding: 2px 5px 3px 30px;
+  padding: 2px 5px 3px 5px;
   display: block;
+  text-align: center;
+  margin: 3px;
+}
+
+#menu li:hover {
+  border: 1px outset #ccc;
+  background-color: #eee;
 }
 
 #menu li > a {
   text-decoration: none;
+  display: block;
 }
 
 #waiting {

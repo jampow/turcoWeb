@@ -34,11 +34,11 @@ $(function(){
     //Gera inputs para cadastrar a ordem da lista
     //if (form.attr('id') == 'order') {
     //  var order = 1;
-		//  $('#sortable li').each(function(){
-		//	  var id = $(this).attr('id');
-		//	  $('#sortable').after('<input type="hidden" name="organizer['+id+']" value="'+order+'">');
-		//	  order++;
-		//  });
+        //  $('#sortable li').each(function(){
+        //    var id = $(this).attr('id');
+        //    $('#sortable').after('<input type="hidden" name="organizer['+id+']" value="'+order+'">');
+        //    order++;
+        //  });
     //}
 
     $.ajax({
@@ -108,9 +108,9 @@ $(function(){
 
     //$('#waiting').css('display', 'block').fadeTo(0, 0.3);
 
-	  //Antes de enviar intervalos
-	  //if ($('form.edit_interval').length != 0 ) {
-	  //  //console.log($('form.edit_interval').attr('action'));
+      //Antes de enviar intervalos
+      //if ($('form.edit_interval').length != 0 ) {
+      //  //console.log($('form.edit_interval').attr('action'));
     //}
 
     //destroy all instances of CKEditor
@@ -132,12 +132,12 @@ $(function(){
     //$('#sortable').sortable({ axis: 'y', placeholder: 'ui-state-highlight' }).disableSelection();
 
     $('table.list').dataTable({
-			  "bJQueryUI": true
-			, "sPaginationType": "full_numbers"
-			, "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
-			, "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
-			, "bRetrieve": true
-		});
+        "bJQueryUI": true
+      , "sPaginationType": "full_numbers"
+      , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
+      , "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
+      , "bRetrieve": true
+    });
 
     $('.buttonset').buttonset();
 
@@ -196,14 +196,14 @@ function make_buttons() {
 // Passar valor como 123456.78 (ponto como separador de decimais)
 // Será retornado um valor 123.46,78
 function toCurrency(nStr){
-	nStr += '';
-	x = nStr.split('.');
-	x1 = x[0];
-	x2 = x.length > 1 ? ',' + x[1] : '';
-	var rgx = /(\d+)(\d{3})/;
-	while (rgx.test(x1)) {
-		x1 = x1.replace(rgx, '$1' + '.' + '$2');
-	}
-	return x1 + x2;
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? ',' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
 }
 
