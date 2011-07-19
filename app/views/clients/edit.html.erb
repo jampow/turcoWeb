@@ -10,50 +10,55 @@
     <%= f.error_messages %>
 
     <% field_set_tag "Dados do cliente" do %>
-      <%= f.text_field :name                                                  , :label => "Raz. Social"       , :required => true %>
-      <%= f.text_field :nickname                                              , :label => "Fantasia"          %>
-      <%= f.text_field :cnpj                                                  , :label => "CNPJ"              %>
-      <%= f.text_field :ie                                                    , :label => "IE"                %>
-      <%= f.check_box  :active                                                , :label => "Ativo"             %>
-      <%= f.select     :activity_id, Activity.all.collect {|a| [a.name, a.id]}, :label => "Ramo de atividade" , :include_blank => true%>
+      <%= f.text_field :name                                                , :label => "Raz. Social"          , :size => 50 , :required => true %>
+      <%= f.text_field :nickname                                            , :label => "Fantasia"             , :size => 50 %>
+      <%= f.text_area  :observations                                        , :label => "Observações"          , :size => 50 %>
+      <%= f.text_field :cnpj                                                , :label => "CNPJ"                 , :class => "mask-cnpj"%>
+      <%= f.text_field :ie                                                  , :label => "Inscriçao Estadual"   %>
+      <%= f.text_field :im                                                  , :label => "Inscriçao Municipal"  %>
+      <%= f.text_field :sci                                                 , :label => "SCI"                  %>
+      <%= f.select     :activity_id, @activities                            , :label => "Ramo de atividade"    , :include_blank => true %>
+      <%= f.select     :ind_com    , [["Indústria", "I"], ["Comércio", "C"]], :label => "Indústria & Comércio" %>
+      <%= f.text_field :email_nfe                                           , :label => "E-mail NFe"           %>
+      <%= f.check_box  :active                                              , :label => "Ativo"                %>
     <% end %>
 
     <% field_set_tag "Endereço principal" do %>
       <% f.fields_for :main_address do |ma| %>
-        <%= ma.text_field :street                                               , :label => "Endereço"    %>
-        <%= ma.text_field :number                                               , :label => "Número"      %>
-        <%= ma.text_field :complement                                           , :label => "Complemento" %>
-        <%= ma.text_field :neighborhood                                         , :label => "Bairro"      %>
-        <%= ma.text_field :city                                                 , :label => "Cidade"      %>
-        <%= ma.select     :estate_id   , Estate.all.collect {|e| [e.name, e.id]}, :label => "Estado"      %>
-        <%= ma.text_field :country                                              , :label => "País"        %>
-        <%= ma.text_field :cep                                                  , :label => "CEP"         %>
+        <%= ma.text_field :street               , :label => "Endereço"    %>
+        <%= ma.text_field :number               , :label => "Número"      %>
+        <%= ma.text_field :complement           , :label => "Complemento" %>
+        <%= ma.text_field :neighborhood         , :label => "Bairro"      %>
+        <%= ma.text_field :city                 , :label => "Cidade"      %>
+        <%= ma.select     :estate_id, @estate   , :label => "Estado"      %>
+        <%= ma.text_field :country              , :label => "País"        %>
+        <%= ma.text_field :cep                  , :label => "CEP"         %>
       <% end %>
     <% end %>
 
     <% field_set_tag "Endereço de cobrança" do %>
       <% f.fields_for :billing_address do |ba| %>
-        <%= ba.text_field :street                                               , :label => "Endereço"    %>
-        <%= ba.text_field :number                                               , :label => "Número"      %>
-        <%= ba.text_field :complement                                           , :label => "Complemento" %>
-        <%= ba.text_field :neighborhood                                         , :label => "Bairro"      %>
-        <%= ba.text_field :city                                                 , :label => "Cidade"      %>
-        <%= ba.select     :estate_id   , Estate.all.collect {|e| [e.name, e.id]}, :label => "Estado"      %>
-        <%= ba.text_field :country                                              , :label => "País"        %>
-        <%= ba.text_field :cep                                                  , :label => "CEP"         %>
+        <%= ba.text_field :street               , :label => "Endereço"    %>
+        <%= ba.text_field :number               , :label => "Número"      %>
+        <%= ba.text_field :complement           , :label => "Complemento" %>
+        <%= ba.text_field :neighborhood         , :label => "Bairro"      %>
+        <%= ba.text_field :city                 , :label => "Cidade"      %>
+        <%= ba.select     :estate_id, @estate   , :label => "Estado"      %>
+        <%= ba.text_field :country              , :label => "País"        %>
+        <%= ba.text_field :cep                  , :label => "CEP"         %>
       <% end %>
     <% end %>
 
     <% field_set_tag "Endereço de entrega" do %>
       <% f.fields_for :delivery_address do |da| %>
-        <%= da.text_field :street                                               , :label => "Endereço"    %>
-        <%= da.text_field :number                                               , :label => "Número"      %>
-        <%= da.text_field :complement                                           , :label => "Complemento" %>
-        <%= da.text_field :neighborhood                                         , :label => "Bairro"      %>
-        <%= da.text_field :city                                                 , :label => "Cidade"      %>
-        <%= da.select     :estate_id   , Estate.all.collect {|e| [e.name, e.id]}, :label => "Estado"      %>
-        <%= da.text_field :country                                              , :label => "País"        %>
-        <%= da.text_field :cep                                                  , :label => "CEP"         %>
+        <%= da.text_field :street               , :label => "Endereço"    %>
+        <%= da.text_field :number               , :label => "Número"      %>
+        <%= da.text_field :complement           , :label => "Complemento" %>
+        <%= da.text_field :neighborhood         , :label => "Bairro"      %>
+        <%= da.text_field :city                 , :label => "Cidade"      %>
+        <%= da.select     :estate_id, @estate   , :label => "Estado"      %>
+        <%= da.text_field :country              , :label => "País"        %>
+        <%= da.text_field :cep                  , :label => "CEP"         %>
       <% end %>
     <% end %>
 

@@ -3,12 +3,19 @@
   <%= mount_menu %>
 <% end %>
 
-<%= print_content "Razão Social"     , h(@client.name)                         %>
-<%= print_content "Fantasia"         , h(@client.nickname)                     %>
-<%= print_content "CNPJ"             , h(@client.cnpj)                         %>
-<%= print_content "IE"               , h(@client.ie)                           %>
-<%= print_content "Situação"         , h(@client.active ? "Ativo" : "Inativo") %>
-<%= print_content "Ramo de atividade", h(@client.activity.name)                %>
+<h2>Dados principais</h2>
+<div class="featured-font">
+  <%= print_content "Razão Social"        , h(@client.name)                         , 50%>
+  <%= print_content "Fantasia"            , h(@client.nickname)                     , 50%>
+  <%= print_content "Observações"         , h(@client.observations)                 , 50%>
+  <%= print_content "CNPJ"                , h(@client.cnpj)                         %>
+  <%= print_content "Inscriçao Estadual"  , h(@client.ie)                           %>
+  <%= print_content "Inscriçao Municipal" , h(@client.im)                           %>
+  <%= print_content "SCI"                 , h(@client.sci)                          %>
+  <%= print_content "Situação"            , h(@client.active ? "Ativo" : "Inativo") %>
+  <%= print_content "Ramo de atividade"   , h(@client.activity.name)                %>
+  <div class="clear"></div>
+</div>
 
 <h2>Endereço principal</h2>
 <%= print_content "Endereço"   , h(@main_address.street)                                   %>

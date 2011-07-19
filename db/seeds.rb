@@ -129,6 +129,16 @@ else
   puts "Tabela de clientes não semeada, já contem registros"
 end
 
+#Arruma os CNPJ's
+clients = Client.all
+clients.each do |client|
+  if client.cnpj.length == 14
+    cnpj = client.cnpj
+    client.cnpj = "#{cnpj[0..1]}.#{cnpj[2..4]}.#{cnpj[5..7]}/#{cnpj[8..11]}-#{cnpj[12..13]}"
+    client.save!
+  end
+end
+
 
 # NOTAS FISCAIS
 

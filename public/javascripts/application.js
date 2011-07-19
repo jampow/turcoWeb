@@ -150,6 +150,11 @@ $(function(){
     $('.editpass').button( "option", "icons", {primary:'ui-icon-key'              });
     $('.back'    ).button( "option", "icons", {primary:'ui-icon-triangle-1-w'     });
     $('.save'    ).button( "option", "icons", {primary:'ui-icon-disk'             });
+
+    //masking some inputs
+    $('.mask-phone').mask("(99) 9999-9999? r.9999",{placeholder:" "});
+    $('.mask-cnpj' ).mask("99.999.999/9999-99"    ,{placeholder:" "});
+
     message();
     limit_div_content();
     make_buttons();
