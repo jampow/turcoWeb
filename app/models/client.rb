@@ -18,5 +18,13 @@ class Client < ActiveRecord::Base
   validates_presence_of :activity_id
 
   named_scope :actives, :conditions => { :active => true }, :order => "name"
+
+  before_save :mark_contact_for_removal
+
+  def mark_contact_for_removal
+    contacts.each do |child|
+      child.mark_for_destruction if child.name.blank?
+    end
+  end
 end
 

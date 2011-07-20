@@ -53,11 +53,20 @@
 
 <% @contacts.each do |c| %>
 
-  <%= print_content "Nome"  , h(c.name)           , 50 %>
-  <%= print_content "Setor" , h(c.department.name)     %>
-  <%= print_content "Função", h(c.function.name)       %>
+  <%= print_content "Nome"  , h(c.name)            %>
+  <%= print_content "E-mail", h(c.email)  %>
+  <%= print_content "Setor" , h(c.department.name) %>
+  <%= print_content "Função", h(c.function.name)   %>
+
+  <% c.phones.each do |phone| -%>
+    <%= print_content "Telefone", h(phone.number)  %>
+  <% end -%>
+
+  <div class="clear" style="height: 20px"> </div>
 <%   end
    end %>
+
+<div class="clear"></div>
 
 <div style="float:left;width:50%">
   <div style="padding:10px 5px 0 0;">

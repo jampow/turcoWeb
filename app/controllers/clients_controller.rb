@@ -35,7 +35,10 @@ class ClientsController < ApplicationController
     @client.main_address     = Address.new
     @client.billing_address  = Address.new
     @client.delivery_address = Address.new
-    5.times { @client.contacts.build }
+    5.times {
+      contact = @client.contacts.build
+      2.times { contact.phones.build }
+    }
     default_data
 
     respond_to do |format|
@@ -47,7 +50,12 @@ class ClientsController < ApplicationController
   # GET /clients/1/edit
   def edit
     @client = Client.find(params[:id])
-    5.times { @client.contacts.build }
+    @client.contacts.each { |contact| 2.times { contact.phones.build } }
+
+    2.times {
+      contact = @client.contacts.build
+      2.times { contact.phones.build }
+    }
     default_data
   end
 
