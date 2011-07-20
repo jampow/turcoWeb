@@ -175,6 +175,8 @@ function message() {
       position: 'center',
       header: '<b>MENSAGEM</b>'
     });
+
+    $('.notice').remove();
   }
 }
 
