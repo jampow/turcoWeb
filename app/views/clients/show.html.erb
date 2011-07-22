@@ -7,7 +7,13 @@
 <div class="featured-font">
   <%= print_content "Razão Social"        , h(@client.name)                         , 50%>
   <%= print_content "Fantasia"            , h(@client.nickname)                     , 50%>
-  <%= print_content "Observações"         , h(@client.observations)                 , 50%>
+  <%# print_content "Observações"         , h(@client.observations)                 , 50%>
+
+  <div class="w50 pcontent" style="min-height: 63px;">
+    <b>Observações:</b>
+    <%=h @client.observations %>
+  </div>
+
   <%= print_content "CNPJ"                , h(@client.cnpj)                         %>
   <%= print_content "Inscriçao Estadual"  , h(@client.ie)                           %>
   <%= print_content "Inscriçao Municipal" , h(@client.im)                           %>

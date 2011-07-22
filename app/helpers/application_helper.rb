@@ -161,7 +161,7 @@ module ApplicationHelper
     s
   end
 
-
+  #TODO: colocar opção pra classes adicionais
   def print_content(label, content, width = 25)
     [25, 50, 75, 100].include? width ? w = width : w = 25
     s = <<-HTML
