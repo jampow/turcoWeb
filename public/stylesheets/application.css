@@ -260,7 +260,7 @@ table#permissions>tbody tr td span.ui-icon {
 
 .pcontent:hover { background-color: #ff8 }
 
-.pcontent > b { padding: 0 10px 0 0; }
+.pcontent > b, .pcontent > span { padding: 0 10px 0 0; }
 
 .featured-font {
   font-size: 1.3em;

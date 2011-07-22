@@ -167,7 +167,7 @@ module ApplicationHelper
     s = <<-HTML
           <div class="w#{w.to_s} pcontent">
             <b>#{label.to_s}:</b>
-            #{content.to_s}
+            <span>#{content.to_s}</span>
           </div>
         HTML
     s
