@@ -155,6 +155,14 @@ $(function(){
     $('.mask-phone').mask("(99) 9999-9999? r.9999",{placeholder:" "});
     $('.mask-cnpj' ).mask("99.999.999/9999-99"    ,{placeholder:" "});
 
+    //toggleables em show
+    $('.toggleable').each(function(){
+      toggle = $(this);
+      toggle.hide().prev().css('cursor', 'pointer').click(function(){
+        $(this).next().toggle();
+      });
+    });
+
     message();
     limit_div_content();
     make_buttons();
