@@ -24,6 +24,10 @@
     <% end %>
 
     <% field_set_tag "Endereço principal" do %>
+      <div class="address-toolbar">
+        <a href="#" class="copy ">Copiar</a>
+        <a href="#" class="paste">Colar</a>
+      </div>
       <% f.fields_for :main_address do |ma| %>
         <%= ma.text_field :street               , :label => "Endereço"    %>
         <%= ma.text_field :number               , :label => "Número"      %>
@@ -37,6 +41,10 @@
     <% end %>
 
     <% field_set_tag "Endereço de cobrança" do %>
+      <div class="address-toolbar">
+        <a href="#" class="copy ">Copiar</a>
+        <a href="#" class="paste">Colar</a>
+      </div>
       <% f.fields_for :billing_address do |ba| %>
         <%= ba.text_field :street               , :label => "Endereço"    %>
         <%= ba.text_field :number               , :label => "Número"      %>
@@ -50,6 +58,10 @@
     <% end %>
 
     <% field_set_tag "Endereço de entrega" do %>
+      <div class="address-toolbar">
+        <a href="#" class="copy ">Copiar</a>
+        <a href="#" class="paste">Colar</a>
+      </div>
       <% f.fields_for :delivery_address do |da| %>
         <%= da.text_field :street               , :label => "Endereço"    %>
         <%= da.text_field :number               , :label => "Número"      %>
@@ -78,4 +90,30 @@
     <% end %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+    $('.copy' ).button({icons: {primary: "ui-icon-copy"     }, text: false });
+    $('.paste').button({icons: {primary: "ui-icon-clipboard"}, text: false });
+
+    $('a.copy').click(function(){
+      $('.copyied').removeClass('copyied');
+      $(this).parent().addClass('copyied');
+      return false;
+    });
+
+    $('a.paste').click(function(){
+      fieldsFrom = $('.copyied').parent();
+      fieldsTo   = $(this).parent().parent();
+
+      fieldsTo.find('input[name*=street]'      ).attr('value', fieldsFrom.find('input[name*=street]'      ).attr('value'));
+      fieldsTo.find('input[name*=number]'      ).attr('value', fieldsFrom.find('input[name*=number]'      ).attr('value'));
+      fieldsTo.find('input[name*=complement]'  ).attr('value', fieldsFrom.find('input[name*=complement]'  ).attr('value'));
+      fieldsTo.find('input[name*=neighborhood]').attr('value', fieldsFrom.find('input[name*=neighborhood]').attr('value'));
+      fieldsTo.find('input[name*=city]'        ).attr('value', fieldsFrom.find('input[name*=city]'        ).attr('value'));
+      fieldsTo.find('select[name*=estate_id]'  ).attr('value', fieldsFrom.find('select[name*=estate_id]'  ).attr('value'));
+      fieldsTo.find('input[name*=country]'     ).attr('value', fieldsFrom.find('input[name*=country]'     ).attr('value'));
+      fieldsTo.find('input[name*=cep]'         ).attr('value', fieldsFrom.find('input[name*=cep]'         ).attr('value'));
+      return false;
+    });
+</script>
 
