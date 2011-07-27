@@ -4,24 +4,16 @@
 <% end %>
 
 <h2>Dados principais</h2>
-<div class="featured-font">
-  <%= print_content "Razão Social"        , h(@client.name)                         , 50%>
-  <%= print_content "Fantasia"            , h(@client.nickname)                     , 50%>
-  <%# print_content "Observações"         , h(@client.observations)                 , 50%>
-
-  <div class="w50 pcontent" style="min-height: 63px;">
-    <b>Observações:</b>
-    <span><%=h @client.observations %></span>
-  </div>
-
+  <%= print_content "Razão Social"        , h(@client.name)                         , 50 %>
+  <%= print_content "Fantasia"            , h(@client.nickname)                     , 50 %>
   <%= print_content "CNPJ"                , h(@client.cnpj)                         %>
-  <%= print_content "Inscriçao Estadual"  , h(@client.ie)                           %>
-  <%= print_content "Inscriçao Municipal" , h(@client.im)                           %>
+  <%= print_content "Inscrição Estadual"  , h(@client.ie)                           %>
+  <%= print_content "Inscrição Municipal" , h(@client.im)                           %>
   <%= print_content "SCI"                 , h(@client.sci)                          %>
   <%= print_content "Situação"            , h(@client.active ? "Ativo" : "Inativo") %>
   <%= print_content "Ramo de atividade"   , h(@client.activity.name)                %>
+  <%= print_content "Observações"         , h(@client.observations)                 , 100 %>
   <div class="clear"></div>
-</div>
 
 <h2>Endereço principal</h2>
 <div class="toggleable">
@@ -33,6 +25,7 @@
   <%= print_content "Estado"     , h((@main_address.estate.name if @main_address.estate_id)) %>
   <%= print_content "País"       , h(@main_address.country)                                  %>
   <%= print_content "CEP"        , h(@main_address.cep)                                      %>
+  <div class="clear"></div>
 </div>
 
 <h2>Endereço cobrança</h2>
@@ -45,6 +38,7 @@
   <%= print_content "Estado"     , h((@billing_address.estate.name if @billing_address.estate_id)) %>
   <%= print_content "País"       , h(@billing_address.country)                                     %>
   <%= print_content "CEP"        , h(@billing_address.cep)                                         %>
+  <div class="clear"></div>
 </div>
 
 <h2>Endereço entrega</h2>
@@ -57,6 +51,7 @@
   <%= print_content "Estado"     , h((@delivery_address.estate.name if @delivery_address.estate_id)) %>
   <%= print_content "País"       , h(@delivery_address.country)                                      %>
   <%= print_content "CEP"        , h(@delivery_address.cep)                                          %>
+  <div class="clear"></div>
 </div>
 
 
@@ -74,7 +69,7 @@
       <%= print_content "Telefone", h(phone.number)  %>
     <% end -%>
 
-    <div class="clear" style="height: 20px"> </div>
+    <div class="clear" style="height: 10px"> </div>
   <% end %>
 </div>
 <% end %>

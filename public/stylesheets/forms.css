@@ -326,7 +326,7 @@ form label.radiocheck span.title {
 clearing elements
 --------------------------- */
 
-.clear {
+form .clear {
 	clear: both;
 	display: block;
 	padding: 0 0 10px 0;

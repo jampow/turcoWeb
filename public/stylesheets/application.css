@@ -222,7 +222,7 @@ h1 {
 
 h2 {
   color: #00b;
-  margin: 0 0 15px 0;
+  margin: 15px 0 15px 0;
   padding: 10px 10px 0 0;
   border-bottom: 1px dotted;
   font-size: 12px;
@@ -262,7 +262,19 @@ table#permissions>tbody tr td span.ui-icon {
 
 .pcontent:hover { background-color: #ff8 }
 
-.pcontent > b, .pcontent > span { padding: 0 10px 0 0; }
+.pcontent > b {
+  display: block;
+  padding: 0 0 2px 5px;
+}
+
+.pcontent > span {
+  border: solid 1px #ddd;
+  display: block;
+  padding: 3px;
+  height: 1em;
+  background-color: #fff;
+  margin: 0 5px;
+}
 
 .featured-font {
   font-size: 1.3em;
@@ -298,5 +310,14 @@ div.separator {
   width        : 2px;
 }
 
-.clear { clear: both; }
+.clear {
+  clear: both;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.address-toolbar {
+  margin: 5px 1%;
+}
 
