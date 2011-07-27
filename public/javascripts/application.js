@@ -57,7 +57,7 @@ $(function(){
   //Seleciona e desseleciona o item do dataTable no clique simples
   $('table.list tbody tr').live('click', function(){
     t = $(this);
-    controller = $('#controller').val();
+    ctrl = $('#controller').val();
     id = $(':first-child',t).html()
 
     klass = 'ui-state-default';
@@ -65,7 +65,7 @@ $(function(){
     $('table.list tbody tr.'+klass).removeClass(klass);
     t.addClass(klass);
 
-    url = '/' + controller + '/';
+    url = '/' + ctrl + '/';
     $('.button.show'    ).attr('href', url + id              );
     $('.button.edit'    ).attr('href', url + id + '/edit'    );
     $('.button.delete'  ).attr('href', url + id              );
@@ -190,14 +190,14 @@ function message() {
 
 function limit_div_content() {
   center  = $('.ui-layout-center').outerHeight();
-  menu    = $('#menu_wrapper').outerHeight();
+  mnu     = $('#menu_wrapper').outerHeight();
   content = $('#content_wrapper');
 
   ctt_padding_top    = content.css('padding-top').match(new RegExp('[0-9]+', ""))*1;
   ctt_padding_bottom = content.css('padding-bottom').match(new RegExp('[0-9]+', ""))*1;
   ctt_padding = ctt_padding_bottom + ctt_padding_top;
 
-  content.css('height', (center - menu - ctt_padding) + 'px')
+  content.css('height', (center - mnu - ctt_padding) + 'px')
 }
 
 function make_buttons() {

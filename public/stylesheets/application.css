@@ -3,6 +3,8 @@ body {
   font-size: 12px;
 }
 
+img { border: none; }
+
 .ui-layout-west{
   padding:0px !important;
   overflow:hidden !important;
