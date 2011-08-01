@@ -8,11 +8,90 @@
         <link  href="/javascripts/senchaTouch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
 
         <script type="text/javascript">
+
+          var doLogin = function()
+          {
+            //display Loading indicator to user
+            Ext.getBody().mask('Loading...', 'x-mask-loading', false);
+
+
+            Ext.Ajax.request({
+                url: '/user_session.json',
+                success: function(response, opts) {
+                    Ext.getCmp('content').update(response.responseText);
+                    Ext.getCmp('status').setTitle('Static test.json file loaded');
+                    Ext.getBody().unmask();
+                }
+            });
+
+
+            Ext.Ajax.request({
+              url: '/user_session.js',
+              method: 'post',
+              //params: {user_session[login] : myForm.getValues().username, user_session[password] : myForm.getValues().password},
+              failure : function(response){
+                 data = Ext.decode(response.responseText);
+                 Ext.Msg.alert('Login Error', data.errorMessage, Ext.emptyFn);
+              },
+              success: function(response, opts) {
+                data = Ext.decode(response.responseText);
+                if (data.errorMessage != null)
+                {
+                  Ext.Msg.alert('Login Error', data.errorMessage, Ext.emptyFn);
+                  Ext.getBody().mask('Loading...', 'x-mask-loading', false);
+                } else {
+                  //hide the Loading mask
+                  Ext.getBody().mask('Loading...', 'x-mask-loading', false);
+                  //show the next screen
+                  mainPanel.setActiveItem(dashboard, 'slide');
+                }
+              }
+            });
+          }
+
+          var myToolbar = new Ext.Toolbar({
+                            dock: 'top',
+                            title: 'turcoWeb'
+                          });
+
+          var myForm =  new Ext.form.FormPanel({
+                          items: [
+                            {
+                              xtype: 'fieldset',
+                              title: 'Login',
+                              items: [
+                                {
+                                  xtype: 'textfield',
+                                  name : 'username',
+                                  placeHolder: 'Usuário'
+                                },
+                                {
+                                  xtype: 'passwordfield',
+                                  name : 'password',
+                                  placeHolder: 'Senha'
+                                }
+                              ]
+                            },
+                            {
+                              layout: {type: 'vbox'},
+                              items:
+                              {
+                                xtype: 'button',
+                                text: 'Entrar',
+                                handler: function(btn){
+                                  doLogin();
+                                }
+                              }
+                            }
+                          ]
+                        });
+
           new Ext.Application({
               launch: function() {
                   new Ext.Panel({
                       fullscreen: true,
-                      html: 'Hello World!'
+                      dockedItems: myToolbar,
+                      items: myForm
                   });
               }
           });
