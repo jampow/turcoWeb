@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 	filter_parameter_logging :password, :password_confirmation
 	helper_method :current_user, :current_user_session
 
-  has_mobile_fu true
+  has_mobile_fu #true #pass true parameter to test on webkit
 
 private
 

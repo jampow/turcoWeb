@@ -1,0 +1,11 @@
+.card .x-panel-body {
+    text-align: center;
+    font-size: 24px;
+    line-height: 26px;
+    font-weight: bold;
+    color: rgba(0,0,0,.4);
+    text-shadow: rgba(255,255,255,.2) 0 1px 0;
+    background-color: #ccc;
+    padding: 1em 5%;
+}
+
