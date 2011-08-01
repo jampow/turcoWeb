@@ -15,6 +15,18 @@
   <%= print_content "Observações"         , h(@client.observations)                 , 100 %>
   <div class="clear"></div>
 
+<% unless @other_contacts.blank? %>
+  <h2>Contato Principal</h2>
+    <%= print_content "Nome"   , h(@main_contact.name)            %>
+    <%= print_content "Setor"  , h(@main_contact.department.name) %>
+    <%= print_content "Função" , h(@main_contact.function.name)   %>
+    <%= print_content "E-mail" , h(@main_contact.email)           %>
+    <% @main_contact.phones.each do |phone| -%>
+      <%= print_content "Telefone" , h(phone.number) %>
+    <% end -%>
+    <div class="clear"></div>
+<% end -%>
+
 <h2>Endereço principal</h2>
 <div class="toggleable">
   <%= print_content "Endereço"   , h(@main_address.street)                                   %>
@@ -55,10 +67,10 @@
 </div>
 
 
-<% unless @contacts.blank? %>
+<% unless @other_contacts.blank? %>
 <h2>Contatos</h2>
 <div class="toggleable">
-  <% @contacts.each do |c| %>
+  <% @other_contacts.each do |c| %>
 
     <%= print_content "Nome"  , h(c.name)            %>
     <%= print_content "E-mail", h(c.email)  %>

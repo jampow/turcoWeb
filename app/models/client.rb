@@ -26,5 +26,24 @@ class Client < ActiveRecord::Base
       child.mark_for_destruction if child.name.blank?
     end
   end
+
+
+#  Select Cli.id
+#       , Cli.name
+#       , Cli.nickname
+#       , Cli.cnpj
+#       , Peo.name as contact
+#       , Pho.number
+#    From clients Cli Left Join
+#         people  Peo On Peo.external_id = Cli.id Left Join
+#         phones  Pho On Pho.person_id   = Peo.id
+#   Where Cli.active = 1 And (Pho.main is null or Pho.main = 1)
+
+  named_scope :grid, {
+    :select     => "Cli.id, Cli.name, Cli.nickname, Cli.cnpj, Peo.name as contact, Pho.number",
+    :joins      => "Cli Left Join people Peo On Peo.external_id = Cli.id Left Join phones Pho On Pho.person_id = Peo.id",
+    :conditions => "Cli.active = 1 And (Pho.main is null or Pho.main = 1)"
+  }
+
 end
 

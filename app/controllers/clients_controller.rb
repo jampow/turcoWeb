@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.xml
   def index
-    @clients = Client.actives
+    @clients = Client.grid
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,7 +17,8 @@ class ClientsController < ApplicationController
     @main_address     = @client.main_address
     @billing_address  = @client.billing_address
     @delivery_address = @client.delivery_address
-    @contacts         = @client.contacts
+    @main_contact     = @client.contacts.main[0]
+    @other_contacts   = @client.contacts.others
 
     @invoices         = @client.invoices
     @receivables      = @client.receivables
@@ -50,12 +51,16 @@ class ClientsController < ApplicationController
   # GET /clients/1/edit
   def edit
     @client = Client.find(params[:id])
+
+    #Adiciona dois novos telefones pros contatos existentes
     @client.contacts.each { |contact| 2.times { contact.phones.build } }
 
+    #Adiciona dois novos contatos com dois telefones cada um
     2.times {
       contact = @client.contacts.build
       2.times { contact.phones.build }
     }
+
     default_data
   end
 

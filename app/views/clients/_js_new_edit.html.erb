@@ -1,0 +1,66 @@
+<script type="text/javascript">
+    //Copy & Paste de endereços
+    $('.copy' ).button({icons: {primary: "ui-icon-copy"     }, text: false });
+    $('.paste').button({icons: {primary: "ui-icon-clipboard"}, text: false });
+
+    $('a.copy').click(function(){
+      $('.copyied').removeClass('copyied');
+      $(this).parent().addClass('copyied');
+      return false;
+    });
+
+    $('a.paste').click(function(){
+      fieldsFrom = $('.copyied').parent();
+      fieldsTo   = $(this).parent().parent();
+
+      fieldsTo.find( 'input[name$=street]'      ).attr('value', fieldsFrom.find( 'input[name$=street]'      ).attr('value'));
+      fieldsTo.find( 'input[name$=number]'      ).attr('value', fieldsFrom.find( 'input[name$=number]'      ).attr('value'));
+      fieldsTo.find( 'input[name$=complement]'  ).attr('value', fieldsFrom.find( 'input[name$=complement]'  ).attr('value'));
+      fieldsTo.find( 'input[name$=neighborhood]').attr('value', fieldsFrom.find( 'input[name$=neighborhood]').attr('value'));
+      fieldsTo.find( 'input[name$=city]'        ).attr('value', fieldsFrom.find( 'input[name$=city]'        ).attr('value'));
+      fieldsTo.find('select[name$=estate_id]'   ).attr('value', fieldsFrom.find('select[name$=estate_id]'   ).attr('value'));
+      fieldsTo.find( 'input[name$=country]'     ).attr('value', fieldsFrom.find( 'input[name$=country]'     ).attr('value'));
+      fieldsTo.find( 'input[name$=cep]'         ).attr('value', fieldsFrom.find( 'input[name$=cep]'         ).attr('value'));
+      return false;
+    });
+
+    //marca contato principal
+    function markMainPhone() {
+      $('span.main').removeClass('main').text('Telefone');
+
+      target = $('input[type=hidden][name*=main][value=1]');
+      target.prev().find('.title').addClass('main').text('Telefone (Principal)');
+
+      //client_contacts_attributes_1_phones_attributes_0_main
+      $('.main-phone').removeClass('main-phone');
+      id = target.attr('id').slice(0,28);
+      $('input[id^='+id+'][type!=hidden], select[id^='+id+']').each(function(){
+        $(this).parent().parent().addClass('main-phone');
+      });
+    }
+
+    $('.mask-phone').prev().click(function(){
+      id = $(this).next().attr('id').replace('number', 'main');
+      $('input[type=hidden][name*=main][value=1]').attr('value', '0');
+      $('#' + id                                 ).attr('value', '1');
+
+      markMainPhone();
+    });
+
+    //prevent phone[main] = null
+    $('input[type=hidden]').each(function(){
+      if ($(this).attr('value') == "") {
+        $(this).attr('value', '0')
+      }
+    });
+
+    markMainPhone();
+</script>
+
+<style type="text/css">
+.main-phone {
+  font-weight: bold;
+  color: #00f;
+}
+</style>
+
