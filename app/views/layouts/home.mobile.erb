@@ -1,10 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>TurcoWeb</title>
 
-<div id="<%= controller_action_name %>">
-  <div class="toolbar">
-    <%= yield :toolbar %>
-  </div>
-  <div>
-    <%= yield %>
-  </div>
-</div>
+        <script src="/javascripts/senchaTouch/sencha-touch.js" type="text/javascript"></script>
+        <link  href="/javascripts/senchaTouch/resources/css/sencha-touch.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript">
+
+          var myToolbar = new Ext.Toolbar({
+                            dock: 'top',
+                            title: 'turcoWeb',
+                            items: {
+                              xtype: 'button',
+                              text: 'Sair'
+                            }
+                          });
+
+          var myForm =  new Ext.form.FormPanel({
+                          standardSubmit: true,
+                          frame: true,
+                          items: [
+                            {
+                              xtype: 'fieldset',
+                              title: 'Login',
+                              items: [
+                                {
+                                  xtype: 'textfield',
+                                  name : 'user_session[username]',
+                                  placeHolder: 'Usuário'
+                                },
+                                {
+                                  xtype: 'passwordfield',
+                                  name : 'user_session[password]',
+                                  placeHolder: 'Senha'
+                                }
+                              ]
+                            },
+                            {
+                              layout: {type: 'vbox'},
+                              items:
+                              {
+                                xtype: 'button',
+                                text: 'Entrar',
+                                handler: function(){
+		                              myForm.getEl().dom.action = '/user_session';
+	                                myForm.getEl().dom.method = 'POST';
+                                  myForm.submit();
+                                }
+                              }
+                            }
+                          ]
+                        });
+
+          new Ext.Application({
+              launch: function() {
+                  new Ext.Panel({
+                      fullscreen: true,
+                      dockedItems: myToolbar,
+                      html: 'test',
+                      items: myForm
+                  });
+              }
+          });
+
+        </script>
+
+    </head>
+    <body></body>
+</html>
 
