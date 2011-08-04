@@ -88,17 +88,20 @@ $(function(){
       type = 'GET'
     }
 
-    $.ajax({
-      url: url,
-      data: data,
-      type: type,
-      dataType: 'html',
-      success: function(data){
-        $('.ui-layout-center').empty().append(data);
-      }
-    });
+    if ($(this).attr('ajax') != "false") {
 
-    return false;
+      $.ajax({
+        url: url,
+        data: data,
+        type: type,
+        dataType: 'html',
+        success: function(data){
+          $('.ui-layout-center').empty().append(data);
+        }
+      });
+
+      return false;
+    }
   }); //fecha todos os links em 'west' e 'center' ou em 'north' com o parâmetro ajax="true" com requisição ajax
 
   //Executar antes de todas as requisições ajax

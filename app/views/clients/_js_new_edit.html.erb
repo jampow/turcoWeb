@@ -2,6 +2,7 @@
     //Copy & Paste de endereços
     $('.copy' ).button({icons: {primary: "ui-icon-copy"     }, text: false });
     $('.paste').button({icons: {primary: "ui-icon-clipboard"}, text: false });
+    $('.map').button({icons: {primary: "ui-icon-flag"     }, text: false });
 
     $('a.copy').click(function(){
       $('.copyied').removeClass('copyied');
@@ -13,15 +14,31 @@
       fieldsFrom = $('.copyied').parent();
       fieldsTo   = $(this).parent().parent();
 
-      fieldsTo.find( 'input[name$=street]'      ).attr('value', fieldsFrom.find( 'input[name$=street]'      ).attr('value'));
-      fieldsTo.find( 'input[name$=number]'      ).attr('value', fieldsFrom.find( 'input[name$=number]'      ).attr('value'));
-      fieldsTo.find( 'input[name$=complement]'  ).attr('value', fieldsFrom.find( 'input[name$=complement]'  ).attr('value'));
-      fieldsTo.find( 'input[name$=neighborhood]').attr('value', fieldsFrom.find( 'input[name$=neighborhood]').attr('value'));
-      fieldsTo.find( 'input[name$=city]'        ).attr('value', fieldsFrom.find( 'input[name$=city]'        ).attr('value'));
-      fieldsTo.find('select[name$=estate_id]'   ).attr('value', fieldsFrom.find('select[name$=estate_id]'   ).attr('value'));
-      fieldsTo.find( 'input[name$=country]'     ).attr('value', fieldsFrom.find( 'input[name$=country]'     ).attr('value'));
-      fieldsTo.find( 'input[name$=cep]'         ).attr('value', fieldsFrom.find( 'input[name$=cep]'         ).attr('value'));
+      fieldsTo.find( 'input[name$=street\]]'      ).attr('value', fieldsFrom.find( 'input[name$=street\]]'      ).attr('value'));
+      fieldsTo.find( 'input[name$=number\]]'      ).attr('value', fieldsFrom.find( 'input[name$=number\]]'      ).attr('value'));
+      fieldsTo.find( 'input[name$=complement\]]'  ).attr('value', fieldsFrom.find( 'input[name$=complement\]]'  ).attr('value'));
+      fieldsTo.find( 'input[name$=neighborhood\]]').attr('value', fieldsFrom.find( 'input[name$=neighborhood\]]').attr('value'));
+      fieldsTo.find( 'input[name$=city\]]'        ).attr('value', fieldsFrom.find( 'input[name$=city\]]'        ).attr('value'));
+      fieldsTo.find('select[name$=estate_id\]]'   ).attr('value', fieldsFrom.find('select[name$=estate_id\]]'   ).attr('value'));
+      fieldsTo.find( 'input[name$=country\]]'     ).attr('value', fieldsFrom.find( 'input[name$=country\]]'     ).attr('value'));
+      fieldsTo.find( 'input[name$=cep\]]'         ).attr('value', fieldsFrom.find( 'input[name$=cep\]]'         ).attr('value'));
       return false;
+    });
+
+    $('.map').click(function(){
+      context = $(this).parent().parent();
+      stt = context.find( 'input[name$=street\]]'                   ).attr('value');
+      nbr = context.find( 'input[name$=number\]]'                   ).attr('value');
+      nbh = context.find( 'input[name$=neighborhood\]]'             ).attr('value');
+      cty = context.find( 'input[name$=city\]]'                     ).attr('value');
+      cep = context.find( 'input[name$=cep\]]'                      ).attr('value');
+      ett = context.find('select[name$=estate_id\]] option:selected').text();
+
+      //http://maps.google.com.br/maps?q=Av.+Lacerda+Franco,+404+-+Liberdade,+S%C3%A3o+Paulo+-+S%C3%A3o+Paulo,+01536-000&hl=pt-BR
+      address = escape(stt + ', ' + nbr + ' - ' + nbh + ', ' + cty + ' - ' + ett + ', ' + cep);
+
+      $(this).attr('href', 'http://maps.google.com.br?q=' + address);
+      //return false;
     });
 
     //marca contato principal
