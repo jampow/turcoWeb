@@ -6,6 +6,7 @@ module ClientsHelper
                 <a href="#" class="copy "                              >Copiar</a>
                 <a href="#" class="paste"                              >Colar</a>
                 <a href="#" class="map"   target="_blank" ajax="false" >Ver no mapa</a>
+                <a href="#" class="cep"                                >Consultar CEP</a>
               </div>
             HTML
   end

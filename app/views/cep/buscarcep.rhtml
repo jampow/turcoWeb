@@ -1,0 +1,17 @@
+
+<% if '1'==@data['resultado'] %>
+
+    <div><label>Cidade: <%= text_field_tag :cidade, @data['cidade'] %></div>
+    <div><label>UF: <%= text_field_tag :uf, @data['uf'] %></div>
+    <div><label>Endereço: <%= text_field_tag :endereco, @data['logradouro'] %></div>
+    <div><label>Complemento: <%= text_field_tag :complemento %></div>
+    <div><label>Bairro: <%= text_field_tag :bairro, @data['bairro'] %></div>
+
+    <%= submit_tag "Cadastrar", :disabled => 'disabled' %>
+
+<% else %>
+
+  <p><%= @data['resultado_txt'] %></p>
+
+<% end %>
+

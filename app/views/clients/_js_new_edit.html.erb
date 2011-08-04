@@ -1,8 +1,9 @@
 <script type="text/javascript">
     //Copy & Paste de endereços
-    $('.copy' ).button({icons: {primary: "ui-icon-copy"     }, text: false });
-    $('.paste').button({icons: {primary: "ui-icon-clipboard"}, text: false });
-    $('.map').button({icons: {primary: "ui-icon-flag"     }, text: false });
+    $('.copy' ).button({icons: {primary: "ui-icon-copy"       }, text: false });
+    $('.paste').button({icons: {primary: "ui-icon-clipboard"  }, text: false });
+    $('.map'  ).button({icons: {primary: "ui-icon-pin-s"      }, text: false });
+    $('.cep'  ).button({icons: {primary: "ui-icon-mail-closed"}, text: false });
 
     $('a.copy').click(function(){
       $('.copyied').removeClass('copyied');
@@ -34,11 +35,40 @@
       cep = context.find( 'input[name$=cep\]]'                      ).attr('value');
       ett = context.find('select[name$=estate_id\]] option:selected').text();
 
-      //http://maps.google.com.br/maps?q=Av.+Lacerda+Franco,+404+-+Liberdade,+S%C3%A3o+Paulo+-+S%C3%A3o+Paulo,+01536-000&hl=pt-BR
       address = escape(stt + ', ' + nbr + ' - ' + nbh + ', ' + cty + ' - ' + ett + ', ' + cep);
-
       $(this).attr('href', 'http://maps.google.com.br?q=' + address);
-      //return false;
+    });
+
+    //Consulta CEP
+    $('.cep').click(function(){
+
+      context = $(this).parent().parent();
+      cep     = context.find('input[name$=cep\]]').attr('value');
+
+      if (cep == "" || cep.length <= 4)
+      {
+        alert('CEP inválido');
+      }
+      else
+      {
+        $.ajax({
+          url: '/cep/findCep',
+          data: 'cep=' + cep,
+          type: 'GET',
+          dataType: 'json',
+          success: function(data){
+
+            result = eval(data);
+
+            context.find( 'input[name$=street\]]'      ).attr('value', result.logradouro);
+            context.find( 'input[name$=neighborhood\]]').attr('value', result.bairro);
+            context.find( 'input[name$=city\]]'        ).attr('value', result.cidade);
+            context.find('select[name$=estate_id\]]'   ).attr('value', result.estate_id);
+            context.find( 'input[name$=country\]]'     ).attr('value', 'Brasil');
+            context.find( 'input[name$=number\]]'      ).focus();
+          }
+        });
+      }
     });
 
     //marca contato principal
