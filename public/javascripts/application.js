@@ -109,7 +109,7 @@ $(function(){
     //Some com a explicação de erros
     $('#errorExplanation').slideUp('fast');
 
-    //$('#waiting').css('display', 'block').fadeTo(0, 0.3);
+    $('#waiting').fadeTo('normal', 0.9);
 
       //Antes de enviar intervalos
       //if ($('form.edit_interval').length != 0 ) {
@@ -129,7 +129,7 @@ $(function(){
     $('#errorExplanation').hide().slideDown('slow');
 
     //fadeOut na div de processamento
-    //$('#waiting').fadeOut('fast');
+    $('#waiting').fadeOut('normal');
 
     //Lista organizável
     //$('#sortable').sortable({ axis: 'y', placeholder: 'ui-state-highlight' }).disableSelection();
@@ -171,8 +171,16 @@ $(function(){
     limit_div_content();
     make_buttons();
   }); // fecha ajaxSuccess
+
+  $('body').ajaxError(function(){
+    alert('Erro');
+
+    //fadeOut na div de processamento
+    $('#waiting').fadeOut('normal');
+  });
+
   message();
-  limit_div_content
+  limit_div_content();
 });
 
 $(window).bind('resize', limit_div_content);

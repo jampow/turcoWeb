@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110720203410) do
+ActiveRecord::Schema.define(:version => 20110808212733) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20110720203410) do
     t.string   "city"
     t.integer  "estate_id"
     t.string   "country"
-    t.integer  "cep"
+    t.string   "cep",              :limit => 9
     t.string   "addressable_type"
     t.integer  "addressable_id"
     t.datetime "created_at"

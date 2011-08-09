@@ -129,15 +129,40 @@ else
   puts "Tabela de clientes não semeada, já contem registros"
 end
 
-#Arruma os CNPJ's
+#Arruma mascara dos CNPJ's
 clients = Client.all
+cnpj_count = 0
 clients.each do |client|
   if client.cnpj.length == 14
     cnpj = client.cnpj
     client.cnpj = "#{cnpj[0..1]}.#{cnpj[2..4]}.#{cnpj[5..7]}/#{cnpj[8..11]}-#{cnpj[12..13]}"
     client.save!
+    cnpj_count += 1
   end
 end
+puts cnpj_count.to_s + ' máscaras de CNPJ aplicadas' if cnpj_count > 0
+
+#Arruma mascara dos CEP's
+ceps = Address.find(:all, :select => 'id, cep')
+cep_count = 0
+ceps.each do |cep|
+  cepn = cep.cep
+  if cepn != nil
+    if cepn.length == 8
+      cep.cep = "#{cepn[0..4]}-#{cepn[5..7]}"
+      cep.save!
+      cep_count += 1
+    elsif cepn.length == 7
+      cep.cep = "0#{cepn[0..3]}-#{cepn[4..6]}"
+      cep.save!
+      cep_count += 1
+    end
+  end
+end
+puts cep_count.to_s + ' máscaras de CEP aplicadas' if cep_count > 0
+
+
+
 
 
 # NOTAS FISCAIS
