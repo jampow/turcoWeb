@@ -28,13 +28,9 @@ class CepController < ApplicationController
       p = p.split("=")
       data[p[0]] = Iconv.conv('utf-8', 'ISO-8859-1', p[1]) if p[0]
     }
-<<<<<<< HEAD
-    data['estate_id'] = findIdUf data['uf']
-=======
 
     data['estate_id'] = findIdUf data['uf'] unless data['uf'].blank?
 
->>>>>>> working
     return data
   end
 
