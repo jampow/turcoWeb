@@ -148,7 +148,7 @@ $(function(){
     $('.show'    ).button( "option", "icons", {primary:'ui-icon-search'           });
     $('.edit'    ).button( "option", "icons", {primary:'ui-icon-pencil'           });
     $('.delete'  ).button( "option", "icons", {primary:'ui-icon-trash'            });
-    $('.new'     ).button( "option", "icons", {primary:'ui-icon-document'         });
+    $('.new'     ).button( "option", "icons", {primary:'ui-icon-plusthick'        });
     $('.order'   ).button( "option", "icons", {primary:'ui-icon-transferthick-e-w'});
     $('.editpass').button( "option", "icons", {primary:'ui-icon-key'              });
     $('.back'    ).button( "option", "icons", {primary:'ui-icon-triangle-1-w'     });

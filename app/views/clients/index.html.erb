@@ -1,6 +1,7 @@
 <% content_for :menu do %>
   <h1>Clientes</h1>
   <%= mount_menu %>
+  <a href="/clients.xls" class="button" icon="document" ajax="false">Excel</a>
 <% end %>
 
 <%= table @clients, ["name", "Nome"], ["nickname", "Fantasia"], ["cnpj", "CNPJ", {:class => "center"}], ["contact", "Contato"], ["number", "Telefone"] %>
