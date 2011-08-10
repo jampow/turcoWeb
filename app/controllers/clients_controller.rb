@@ -3,10 +3,12 @@ class ClientsController < ApplicationController
   # GET /clients.xml
   def index
     @clients = Client.grid
+    @all_clients = Client.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @clients }
+      format.xls
     end
   end
 
