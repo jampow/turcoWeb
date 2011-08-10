@@ -80,6 +80,11 @@
       $('span.main').removeClass('main').text('Telefone');
 
       target = $('input[type=hidden][name*=main][value=1]');
+      if (target.length == 0){
+        target = $('#client_contacts_attributes_0_phones_attributes_0_main');
+        target.attr('value', '1');
+      }
+
       target.prev().find('.title').addClass('main').text('Telefone (Principal)');
 
       //client_contacts_attributes_1_phones_attributes_0_main
