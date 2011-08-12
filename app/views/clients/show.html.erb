@@ -4,15 +4,15 @@
 <% end %>
 
 <h2>Dados principais</h2>
-  <%= print_content "Razão Social"        , h(@client.name)                         , 50 %>
-  <%= print_content "Fantasia"            , h(@client.nickname)                     , 50 %>
+  <%= print_content "Razão Social"        , h(@client.name)                         , :width => 50 %>
+  <%= print_content "Fantasia"            , h(@client.nickname)                     , :width => 50 %>
   <%= print_content "CNPJ"                , h(@client.cnpj)                         %>
   <%= print_content "Inscrição Estadual"  , h(@client.ie)                           %>
   <%= print_content "Inscrição Municipal" , h(@client.im)                           %>
   <%= print_content "SCI"                 , h(@client.sci)                          %>
   <%= print_content "Situação"            , h(@client.active ? "Ativo" : "Inativo") %>
   <%= print_content "Ramo de atividade"   , h(@client.activity.name)                %>
-  <%= print_content "Observações"         , h(@client.observations)                 , 100 %>
+  <%= print_content "Observações"         , h(@client.observations)                 , :width => 100 %>
   <div class="clear"></div>
 
 <% unless @main_contact.blank? %>
@@ -20,7 +20,7 @@
     <%= print_content "Nome"   , h(@main_contact.name)            %>
     <%= print_content "Setor"  , h(@main_contact.department.name) %>
     <%= print_content "Função" , h(@main_contact.function.name)   %>
-    <%= print_content "E-mail" , h(@main_contact.email)           %>
+    <%= print_content "E-mail" , h(@main_contact.email)           , :email => true %>
     <% @main_contact.phones.each do |phone| -%>
       <%= print_content "Telefone" , h(phone.number) %>
     <% end -%>
@@ -79,7 +79,7 @@
   <% @other_contacts.each do |c| %>
 
     <%= print_content "Nome"  , h(c.name)            %>
-    <%= print_content "E-mail", h(c.email)  %>
+    <%= print_content "E-mail", h(c.email)           , :email => true %>
     <%= print_content "Setor" , h(c.department.name) %>
     <%= print_content "Função", h(c.function.name)   %>
 

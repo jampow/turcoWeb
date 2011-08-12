@@ -162,10 +162,19 @@ module ApplicationHelper
   end
 
   #TODO: colocar opção pra classes adicionais
-  def print_content(label, content, width = 25)
-    [25, 50, 75, 100].include? width ? w = width : w = 25
+  def print_content(label, content, options = {:width => 25} )
+    [25, 50, 75, 100].include? options[:width] ? w = options[:width] : w = 25
+
+    if options[:email] == true
+      email = "link-to-email"
+      mail_icon = "<span class=\"ui-icon ui-icon-mail-closed\"></span>"
+      content = "<a href=\"mailto:#{content}\">#{content}#{mail_icon}</a>"
+    else
+      email = ""
+    end
+
     s = <<-HTML
-          <div class="w#{w.to_s} pcontent">
+          <div class="w#{w.to_s} pcontent #{email}">
             <b>#{label.to_s}:</b>
             <span>#{content.to_s}</span>
           </div>

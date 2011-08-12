@@ -222,11 +222,14 @@ h1 {
 
 h2 {
   color: #00b;
-  margin: 15px 0 15px 0;
+  margin: 15px 0;
   padding: 10px 10px 0 0;
   border-bottom: 1px dotted;
-  font-size: 12px;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: normal;
 }
+
 
 .perm_label {
   width:200px;
@@ -274,6 +277,24 @@ table#permissions>tbody tr td span.ui-icon {
   min-height: 1.4em;
   background-color: #fff;
   margin: 0 5px;
+}
+
+.pcontent.link-to-email span {
+  cursor: pointer;
+}
+
+.pcontent.link-to-email a span.ui-icon {
+  display: none;
+  float: right;
+}
+
+.pcontent.link-to-email a:hover span.ui-icon {
+  display: inline-block;
+}
+
+.pcontent.link-to-email span a {
+  text-decoration: none;
+  display: block;
 }
 
 .featured-font {

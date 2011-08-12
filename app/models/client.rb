@@ -27,7 +27,6 @@ class Client < ActiveRecord::Base
     end
   end
 
-
 #  Select Cli.id
 #       , Cli.name
 #       , Cli.nickname
