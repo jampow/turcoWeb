@@ -131,6 +131,13 @@ $(function(){
     //fadeOut na div de processamento
     $('#waiting').fadeOut('normal');
 
+    //prevent ajaxSuccess twice or more
+    if ($('#ajaxSuccess').attr('value') == 'true') {
+      return false;
+    } else {
+      $('#waiting').after('<input type="hidden" id="ajaxSuccess" value="true"/>');
+    }
+
     //Lista organizável
     //$('#sortable').sortable({ axis: 'y', placeholder: 'ui-state-highlight' }).disableSelection();
 
@@ -144,16 +151,6 @@ $(function(){
 
     $('.buttonset').buttonset();
 
-    $('.button'  ).button();
-    $('.show'    ).button( "option", "icons", {primary:'ui-icon-search'           });
-    $('.edit'    ).button( "option", "icons", {primary:'ui-icon-pencil'           });
-    $('.delete'  ).button( "option", "icons", {primary:'ui-icon-trash'            });
-    $('.new'     ).button( "option", "icons", {primary:'ui-icon-plusthick'        });
-    $('.order'   ).button( "option", "icons", {primary:'ui-icon-transferthick-e-w'});
-    $('.editpass').button( "option", "icons", {primary:'ui-icon-key'              });
-    $('.back'    ).button( "option", "icons", {primary:'ui-icon-triangle-1-w'     });
-    $('.save'    ).button( "option", "icons", {primary:'ui-icon-disk'             });
-
     //masking some inputs
     $('.mask-phone').mask("(99) 9999-9999? r.9999",{placeholder:" "});
     $('.mask-cnpj' ).mask("99.999.999/9999-99"    ,{placeholder:" "});
@@ -162,8 +159,17 @@ $(function(){
     //toggleables em show
     $('.toggleable').each(function(){
       toggle = $(this);
-      toggle.hide().prev().css('cursor', 'pointer').click(function(){
-        $(this).next().toggle();
+      title = toggle.hide().prev();
+
+      title.css('cursor', 'pointer');
+      title.prepend('<span class="ui-icon ui-icon-triangle-1-e" style="display:inline-block"></span>');
+
+      title.click(function(){
+        t = $(this);
+        t.next().slideToggle();
+        ind = $('span', t);
+        ind.toggleClass('ui-icon-triangle-1-e');
+        ind.toggleClass('ui-icon-triangle-1-s');
       });
     });
 
@@ -215,8 +221,15 @@ function limit_div_content() {
 function make_buttons() {
   $('.button').each(function(){
     t = $(this);
-    i = t.attr('icon') //icone
-    i == undefined ? t.button() : t.button({icons:{primary: 'ui-icon-' + i} })
+    params = {icons: {primary: ''}, text: true};
+
+    icn = t.attr('icon'); //icone
+    if (icn != undefined && icn != '') params['icons']['primary'] = 'ui-icon-' + icn;
+
+    txt = t.attr('caption'); //text boolean
+    if (txt != undefined && txt != '' && txt == 'false') params['text'] = false;
+
+    t.button(params);
   });
 }
 

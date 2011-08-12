@@ -86,35 +86,35 @@ module ApplicationHelper
   end
 
   def btn_new(controller)
-    link_to "Novo", "/#{controller}/new", {:class => "button new"}
+    link_to "Novo", "/#{controller}/new", {:class => "button new", :icon => "plusthick"}
   end
 
   def btn_edit(controller, id)
-    link_to "Editar", "/#{controller}/#{id}/edit", {:class => "button edit"}
+    link_to "Editar", "/#{controller}/#{id}/edit", {:class => "button edit", :icon => "pencil"}
   end
 
   def btn_save
-    link_to "Salvar", "#", {:class => "button save"}
+    link_to "Salvar", "#", {:class => "button save", :icon => "disk"}
   end
 
   def btn_show(controller, id)
-    link_to "Mostrar", "/#{controller}/#{id}", {:class => "button show"}
+    link_to "Mostrar", "/#{controller}/#{id}", {:class => "button show", :icon => "search"}
   end
 
   def btn_back(controller)
-    link_to "Voltar", "/#{controller}", {:class => "button back"}
+    link_to "Voltar", "/#{controller}", {:class => "button back", :icon => "triangle-1-w"}
   end
 
   def btn_delete(controller, id)
-    link_to "Deletar", "/#{controller}/#{id}", {:class => "button delete"}
+    link_to "Deletar", "/#{controller}/#{id}", {:class => "button delete", :icon => "trash"}
   end
 
   def btn_editpass(controller, id)
-    link_to "Alterar senha", "/#{controller}/editpass/#{id}", {:class => "button editpass"}
+    link_to "Alterar senha", "/#{controller}/editpass/#{id}", {:class => "button editpass", :icon => "key"}
   end
 
   def btn_organizer(controller)
-    link_to "Ordenar", "/#{controller}/order", {:class => "button order"}
+    link_to "Ordenar", "/#{controller}/order", {:class => "button order", :icon => "transferthick-e-w"}
   end
 
 
