@@ -187,6 +187,11 @@ $(function(){
 
   message();
   limit_div_content();
+
+  //logout_on_timeout
+  set_timeout();
+  $(document).bind('mousemove click keypress scroll', reset_timer);
+
 });
 
 $(window).bind('resize', limit_div_content);
@@ -245,5 +250,24 @@ function toCurrency(nStr){
         x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
+}
+
+var timer;
+
+function reset_timer() {
+  window.clearInterval(timer);
+  set_timeout();
+}
+
+function set_timeout() {
+  timer=setInterval("logout()",5*60000); // 5 min
+}
+
+function logout(){
+  $.get('/user_session/timeout.json', function(force_logout){
+    if (force_logout) {
+      window.location = "/logout";
+    }
+  });
 }
 

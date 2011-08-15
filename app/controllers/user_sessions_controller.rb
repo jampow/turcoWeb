@@ -29,5 +29,29 @@ class UserSessionsController < ApplicationController
     redirect_back_or_default login_url
 	end
 
+
+  def timeout
+    if Rails.env.development?
+      logout = false
+    else
+      logout = current_user_session.stale?
+    end
+
+    respond_to do |format|
+      format.json { render :json => logout}
+    end
+  end
+
+  # Authlogic attempts to call this method within your
+  # controller, you can define whatever you'd like in here to
+  # not track the last_request_at. We need to disable the
+  # update of last_request_at for our ajax timeout action 'timeout'
+  # since we would basically be overwriting ourselves. You can
+  # put whatever functionality you need in here, it just needs
+  # to return true/false.
+  def last_request_update_allowed?
+    action_name != "timeout"
+  end
+
 end
 
