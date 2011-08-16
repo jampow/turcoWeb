@@ -22,6 +22,7 @@ img { border: none; }
 .header {
   padding: 10px;
   background: url(../images/turcoWeb_P.png) no-repeat right 50%;
+  font-weight: normal;
 }
 
 #menu {

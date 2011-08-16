@@ -1,6 +1,6 @@
 <% content_for :menu do %>
   <h1>Clientes</h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[default separator] %>
   <a href="/clients.xls" class="button" icon="document" ajax="false">Excel</a>
 <% end %>
 

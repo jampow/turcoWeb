@@ -19,6 +19,7 @@
       <%= link_to "Perfil",        {:controller => 'users', :action => 'editme',   :id => :current} , :class => "button", :icon => "person", :ajax => "true" %>
       <%= link_to "Alterar senha", {:controller => 'users', :action => 'editpass', :id => :current} , :class => "button", :icon => "key"   , :ajax => "true" %>
       <%= link_to "Sair",          logout_path ,                                                      :class => "button", :icon => "power" %>
+      <span><strong>Usuário:</strong> <%= current_user.name %></span>
     </div>
   </div>
 
