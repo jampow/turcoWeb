@@ -251,7 +251,8 @@ module ApplicationHelper
   def js_map
     html  = <<-JS
               $('.map').click(function(){
-                context = $(this).parent().parent();
+                t = $(this);
+                context = t.parent().parent();
                 stt = context.find( 'input[name$=street\]]'                   ).attr('value');
                 nbr = context.find( 'input[name$=number\]]'                   ).attr('value');
                 nbh = context.find( 'input[name$=neighborhood\]]'             ).attr('value');
