@@ -1,0 +1,59 @@
+<% content_for :menu do %>
+  <h1>Novo Fornecedor</h1>
+  <%= mount_menu %>
+<% end %>
+
+<% form_for(@provider) do |f| %>
+
+  <div class="form-wrapper">
+
+    <%= f.error_messages %>
+
+    <% field_set_tag "Dados do fornecedor" do %>
+      <%= f.text_field :name                                                , :label => "Raz. Social"          , :size => 50 , :required => true %>
+      <%= f.text_field :cnpj                                                , :label => "CNPJ"                 , :class => "mask-cnpj"%>
+      <%= f.select     :prod_cost  , [["Produtos", "P"], ["Despesas", "C"]] , :label => "Produtos ou despesas" %>
+      <%= f.text_area  :observations                                        , :label => "Observações"          , :size => 50 %>
+      <%= f.text_field :ie                                                  , :label => "Inscriçao Estadual"   %>
+      <%= f.text_field :phone                                               , :label => "Telefone"             %>
+      <%= f.text_field :fax                                                 , :label => "Fax"                  %>
+      <%= f.text_field :email                                               , :label => "E-mail"               %>
+      <%= f.text_field :bank                                                , :label => "Banco"                %>
+      <%= f.check_box  :carrier                                             , :label => "Transportadora"       %>
+    <% end %>
+
+    <% field_set_tag "Endereço" do %>
+      <%= address_toolbar ['cep', 'map'] %>
+      <% f.fields_for :address do |ma| %>
+        <%= address_fields(ma) %>
+      <% end %>
+    <% end %>
+
+    <% field_set_tag 'Contato de venda' do %>
+      <% f.fields_for :seller_contact do |sc| %>
+        <%= sc.text_field :name  , :label => "Nome"   %>
+        <%= sc.text_field :email , :label => "E-mail" %>
+
+        <% sc.fields_for :phones do |ph| %>
+          <%= ph.text_field :number, :label => "Telefone" , :class => "mask-phone" %>
+        <% end %>
+        <div class="clear" style="height: 20px"> </div>
+
+      <% end %>
+    <% end %>
+
+    <% field_set_tag 'Contato de cogrança' do %>
+      <% f.fields_for :invoicer_contact do |ic| %>
+        <%= ic.text_field :name  , :label => "Nome"   %>
+        <%= ic.text_field :email , :label => "E-mail" %>
+
+        <% ic.fields_for :phones do |ph| %>
+          <%= ph.text_field :number, :label => "Telefone" , :class => "mask-phone" %>
+        <% end %>
+        <div class="clear" style="height: 20px"> </div>
+
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+

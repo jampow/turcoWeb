@@ -19,6 +19,20 @@ img { border: none; }
   overflow:hidden;
 }
 
+.ui-layout-toggler {
+  background-color: #ccc;
+}
+
+/*
+.ui-layout-toggler-east-open {
+  background-color: #ccc;
+}
+
+.ui-layout-toggler-east-closed {
+  background-color: #444;
+}
+*/
+
 .header {
   padding: 10px;
   background: url(../images/turcoWeb_P.png) no-repeat right 50%;

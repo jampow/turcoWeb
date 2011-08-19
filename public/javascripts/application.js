@@ -9,7 +9,11 @@ $(function(){
     north__resizable: false,
     west__slidable: false,
     west__closable: false,
-    west__resizable: false
+    west__resizable: false,
+    east__slidable: false,
+    east__closable: true,
+    east__resizable: false,
+    east__minSize: 237
   });
 
 
@@ -53,6 +57,12 @@ $(function(){
 
     return false;
   }); //fecha formulários com requisição ajax
+
+  $('form input').live('keydown',function(e){
+    if (e.which == '13') {
+      $('input[type=submit], .button.save').click();
+    }
+  });
 
   //Seleciona e desseleciona o item do dataTable no clique simples
   $('table.list tbody tr').live('click', function(){
@@ -184,6 +194,8 @@ $(function(){
     //fadeOut na div de processamento
     $('#waiting').fadeOut('normal');
   });
+
+  $('#calendario').datepicker();
 
   message();
   limit_div_content();

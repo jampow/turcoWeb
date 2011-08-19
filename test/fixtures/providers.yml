@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  address_id: 1
+  phone: MyString
+  fax: MyString
+  email: MyString
+  carrier: false
+  ie: MyString
+  cnpj: MyString
+  bank: MyString
+  observations: MyText
+  seller_id: 1
+  invoice_id: 1
+
+two:
+  name: MyString
+  address_id: 1
+  phone: MyString
+  fax: MyString
+  email: MyString
+  carrier: false
+  ie: MyString
+  cnpj: MyString
+  bank: MyString
+  observations: MyText
+  seller_id: 1
+  invoice_id: 1

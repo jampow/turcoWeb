@@ -1,0 +1,53 @@
+<% content_for :menu do %>
+  <h1>Fornecedor</h1>
+  <%= mount_menu %>
+<% end %>
+
+<h2>Dados principais</h2>
+  <%= print_content "Razão Social"        , h(@provider.name)         , :width => 50 %>
+  <%= print_content "CNPJ"                , h(@provider.cnpj)         , :width => 50 %>
+  <%= print_content "Produtos ou Despesas", h(@provider.prod_cost)    %>
+  <%= print_content "Inscrição Estadual"  , h(@provider.ie)           %>
+  <%= print_content "Fone"                , h(@provider.phone)        %>
+  <%= print_content "Fax"                 , h(@provider.fax)          %>
+  <%= print_content "E-mail"              , h(@provider.email)        %>
+  <%= print_content "Transportadora"      , h(@provider.carrier)      %>
+  <%= print_content "Banco"               , h(@provider.bank)         %>
+  <%= print_content "Observações"         , h(@provider.observations) , :width => 100 %>
+  <div class="clear"></div>
+
+<h2>Endereço</h2>
+<div class="toggleable">
+  <%= address_toolbar 'map' %>
+
+  <%= print_content "CEP"        , h( @address.cep)                                %>
+  <%= print_content "Endereço"   , h( @address.street)                             %>
+  <%= print_content "Número"     , h( @address.number)                             %>
+  <%= print_content "Complemento", h( @address.complement)                         %>
+  <%= print_content "Bairro"     , h( @address.neighborhood)                       %>
+  <%= print_content "Cidade"     , h( @address.city)                               %>
+  <%= print_content "Estado"     , h((@address.estate.name if @address.estate_id)) %>
+  <%= print_content "País"       , h( @address.country)                            %>
+  <div class="clear"></div>
+</div>
+
+<% unless @seller.nil? %>
+<h2>Contato de Vendas</h2>
+  <%= print_content "Nome"   , h(@seller.name)  %>
+  <%= print_content "E-mail" , h(@seller.email) , :email => true %>
+
+  <% @seller.phones.each do |phone| -%>
+    <%= print_content "Telefone", h(phone.number)  %>
+  <% end -%>
+<% end -%>
+
+<% unless @invoicer.nil? %>
+<h2>Contato de Compras</h2>
+  <%= print_content "Nome"   , h(@invoicer.name)  %>
+  <%= print_content "E-mail" , h(@invoicer.email) , :email => true %>
+
+  <% @invoicer.phones.each do |phone| -%>
+    <%= print_content "Telefone", h(phone.number)  %>
+  <% end -%>
+<% end -%>
+
