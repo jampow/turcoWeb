@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110816234036) do
+ActiveRecord::Schema.define(:version => 20110818231345) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(:version => 20110816234036) do
     t.string   "cep",              :limit => 9
     t.string   "addressable_type"
     t.integer  "addressable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attachments", :force => true do |t|
+    t.integer  "external_id"
+    t.string   "table_rel"
+    t.string   "description"
+    t.integer  "level"
+    t.string   "filename"
+    t.string   "content_type"
+    t.binary   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

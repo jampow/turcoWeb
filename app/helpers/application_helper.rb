@@ -36,6 +36,7 @@ module ApplicationHelper
         s += btn_delete(controller, id)           if btn == "delete"
         s += btn_editpass(controller, id)         if btn == "editpass"
         s += btn_organizer(controller)            if btn == "order"
+        s += btn_upload(controller, id)           if btn == "upload"
       end
     else
       s += default_btn(action, controller, id)
@@ -117,6 +118,9 @@ module ApplicationHelper
     link_to "Ordenar", "/#{controller}/order", {:class => "button order", :icon => "transferthick-e-w"}
   end
 
+  def btn_upload(controller, id)
+    link_to "Enviar arquivo", "/attachments?model=#{controller}&id=#{id}", {:class => "button upload", :icon => "arrowthick-1-n", :ajax => false}
+  end
 
   # fields cada valor de fields deve ser um array, cada array pode ter até 3
   # valores sendo os dois primeiros obrigatórios.

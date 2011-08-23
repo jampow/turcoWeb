@@ -1,6 +1,6 @@
 <% content_for :menu do %>
   <h1>Cliente</h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[default separator upload] %>
 <% end %>
 
 <h2>Dados principais</h2>
@@ -13,7 +13,7 @@
   <%= print_content "Situação"            , h(@client.active ? "Ativo" : "Inativo") %>
   <%= print_content "Ramo de atividade"   , h(@client.activity.name)                %>
   <%= print_content "Observações"         , h(@client.observations)                 , :width => 100 %>
-  <div class="clear"></div>
+<div class="clear"></div>
 
 <% unless @main_contact.blank? %>
   <h2>Contato Principal</h2>
@@ -157,6 +157,35 @@
     </table>
   </div>
 </div>
+
+<div class="clear"></div>
+
+<% unless @attachments.blank? -%>
+  <h2>Arquivos</h2>
+
+  <div class="toggleable">
+    <table class="list" id="files_table" cellpading="0" cellspacing="0" border="0" width="100%">
+      <thead>
+        <tr>
+          <th>Download</th>
+          <th>Nome do arquivo</th>
+          <th>Descrição</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @attachments.each do |file| -%>
+        <tr>
+          <td class="center"><%= link_to image_tag('/images/blue-file-icon.png'), '/attachments/show/' + file.id.to_s, {:ajax => 'false'} %></td>
+          <td><%= file.filename %></td>
+          <td><%= file.description %></td>
+          <td class="center"><%= link_to 'Deletar', "/attachments/#{file.id}.json", :class => 'delete' %></td>
+        </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+<% end -%>
 
 <script type="text/javascript">
 

@@ -31,9 +31,9 @@ $(function(){
     //}
 
     //form = $(this).parents('form');
-    form = $('form');
-    url = form.attr('action');
-    fdata = form.serializeArray();
+    form   = $('form');
+    url    = form.attr('action');
+    fdata  = form.serializeArray();
 
     //Gera inputs para cadastrar a ordem da lista
     //if (form.attr('id') == 'order') {
@@ -58,6 +58,7 @@ $(function(){
     return false;
   }); //fecha formulários com requisição ajax
 
+  //binda o enter dentro do form para enviar o form com ajax
   $('form input').live('keydown',function(e){
     if (e.which == '13') {
       $('input[type=submit], .button.save').click();
@@ -87,32 +88,47 @@ $(function(){
 
   //todos os links em 'west' e 'center' ou em 'north' com o parâmetro ajax="true" com requisição ajax
   $('#menu a[href*=/], .ui-layout-center a[href*=/], .ui-layout-north a[href*=/][ajax=true]').live('click', function(){
-    url = $(this).attr('href');
+    t = $(this);
+    url = t.attr('href');
     data = '';
+    type = 'GET';
+    dataType = 'html'
 
-    if ($(this).hasClass('delete')){
+    rgx_json = /json$/gi
+    is_json = rgx_json.test(url);
+
+    if (t.hasClass('delete')){
       data = '_method=delete';
       type = 'POST';
       if (!confirm('Tem certeza?')){return false;}
-    } else {
-      type = 'GET'
     }
 
-    if ($(this).attr('ajax') != "false") {
+    if (t.attr('ajax') != "false") {
 
       $.ajax({
         url: url,
         data: data,
         type: type,
-        dataType: 'html',
+        dataType: dataType,
         success: function(data){
-          $('.ui-layout-center').empty().append(data);
+          if (is_json) {
+            eval(data);
+          } else {
+            $('.ui-layout-center').empty().append(data);
+          }
         }
       });
 
       return false;
     }
+
   }); //fecha todos os links em 'west' e 'center' ou em 'north' com o parâmetro ajax="true" com requisição ajax
+
+  $('.button.upload').live('click', function(){
+    t = $(this);
+    showDialog(t.attr('href'));
+    return false;
+  });
 
   //Executar antes de todas as requisições ajax
   $('body').ajaxStart(function(){
@@ -204,7 +220,7 @@ $(function(){
   set_timeout();
   $(document).bind('mousemove click keypress scroll', reset_timer);
 
-});
+}); //close document.read
 
 $(window).bind('resize', limit_div_content);
 
@@ -232,7 +248,7 @@ function limit_div_content() {
   ctt_padding_bottom = content.css('padding-bottom').match(new RegExp('[0-9]+', ""))*1;
   ctt_padding = ctt_padding_bottom + ctt_padding_top;
 
-  content.css('height', (center - mnu - ctt_padding) + 'px')
+  content.css('height', (center - mnu - ctt_padding - 10) + 'px');
 }
 
 function make_buttons() {
@@ -281,5 +297,47 @@ function logout(){
       window.location = "/logout";
     }
   });
+}
+
+function showDialog(url){
+  rdm = Math.floor(Math.random()*1001);
+  ctr = 'ctr'+rdm;
+  ifm = 'ifm'+rdm;
+  dlH = 280; //Dialog Height
+
+  $('.ui-layout-center').append('<div id="'+ctr+'" title="Upload de arquivo" />');
+  contnr = $("#"+ctr);
+  contnr.html('<iframe id="'+ifm+'" name="'+ifm+'" width="100%" height="100%" marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto" />');
+  contnr.dialog({
+    modal: true,
+    show: 'fade',
+    height: 215,
+    width: 550,
+    hide: 'fade',
+    buttons: [{
+      text: "Enviar",
+      click: function() {
+        $('form', frames[ifm].document).submit();
+        if (contnr.dialog( "option", "height") != dlH ) {
+          contnr.dialog( "option", "height", dlH );
+        }
+        //setTimeout("contnr.dialog('close');", 5000);
+      }
+    }],
+    close: function(event, ui) {
+      contnr.dialog('destroy');
+      $('#'+ifm).remove()
+    }
+  });
+  $("#"+ifm).attr("src", url);
+  return false;
+}
+
+function removeParentTR(obj) {
+  //acha TR pai do objeto passado como parâmetro
+  while (!obj.is('tr')) {
+    obj = obj.parent();
+  }
+  obj.remove(); //remove TR pai
 }
 

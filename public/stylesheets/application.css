@@ -357,3 +357,19 @@ div.separator {
   margin: 5px 1%;
 }
 
+ul.file-list {
+  -moz-columns: 4;
+  -webkit-columns: 4;
+}
+ul.file-list li {
+  list-style: url(../images/blue-file-icon.png);
+}
+
+ul.file-list li a {
+  text-decoration: none;
+}
+
+ul.file-list li a:hover {
+  text-decoration: underline;
+}
+

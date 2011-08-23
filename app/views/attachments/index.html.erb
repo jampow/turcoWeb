@@ -1,0 +1,54 @@
+
+<% if flash[:notice] -%>
+  <div class="ui-widget">
+	  <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
+		  <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+		  <%= flash[:notice] %></p>
+	  </div>
+  </div>
+<% end -%>
+
+
+<p></p>
+
+<% form_tag '/attachments/create', :multipart => true do %>
+  <div class="form-wrapper">
+    <%= hidden_field_tag 'attachment[table_rel]'    , @model %>
+    <%= hidden_field_tag 'attachment[external_id]'  , @id    %>
+
+    <label class="w100 inputselect mandatory" for="attachment_uploaded_file">
+      <span class="wrapper">
+        <span class="title">Arquivo</span>
+        <%= file_field_tag 'attachment[uploaded_file]', :class => 'field'         %>
+      </span>
+    </label>
+
+    <label class="w50 inputselect" for="attachment_description">
+      <span class="wrapper">
+        <span class="title">Descrição</span>
+        <%= text_field_tag 'attachment[description]' %>
+      </span>
+    </label>
+
+    <label class="w50 inputselect" for="attachment_level">
+      <span class="wrapper">
+        <span class="title">Nível de acesso</span>
+        <%= select_tag 'attachment[level]', '<option value="1">Básico</option><option value="2">Intermediário</option><option value="3">Avançado</option>' %>
+      </span>
+    </label>
+
+    <%# submit_tag "enviar" %>
+  </div>
+<% end %>
+
+<% if flash[:update_list] -%>
+  <script type="text/javascript">
+    var image_link  = '<%= link_to image_tag('/images/blue-file-icon.png'), '/attachments/show/' + @attachment.id.to_s, {:ajax => 'false'} %>';
+    var filename    = '<%= @attachment.filename %>';
+    var description = '<%= @attachment.description %>';
+    var delete_link = '<%= link_to 'Deletar', "/attachments/#{@attachment.id}.json", :class => 'delete' %>';
+
+    parent.$('#files_table').dataTable().fnAddData([image_link, filename, description, delete_link]);
+  </script>
+<% end -%>
+

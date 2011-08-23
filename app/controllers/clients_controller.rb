@@ -24,6 +24,7 @@ class ClientsController < ApplicationController
 
     @invoices         = @client.invoices
     @receivables      = @client.receivables
+    @attachments      = @client.attachments.from_client
 
     respond_to do |format|
       format.html # show.html.erb
