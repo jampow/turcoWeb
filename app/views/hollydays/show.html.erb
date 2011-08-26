@@ -4,6 +4,7 @@
 <% end -%>
 
 <%= print_content 'Feriado', h(@hollyday.name)                        , 50 %>
-<%= print_content 'Data'   , h(@hollyday.date)                        , 25 %>
+<%= print_content 'Dia'    , h(@hollyday.day)                         , 25 %>
+<%= print_content 'Month'  , h(@hollyday.month)                       , 25 %>
 <%= print_content 'ativo'  , h(@hollyday.active ? "Ativo" : "Inativo"), 25 %>
 

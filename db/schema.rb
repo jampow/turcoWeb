@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110818231345) do
+ActiveRecord::Schema.define(:version => 20110825235029) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -86,11 +86,12 @@ ActiveRecord::Schema.define(:version => 20110818231345) do
   end
 
   create_table "hollydays", :force => true do |t|
-    t.date     "date"
     t.string   "name"
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "day"
+    t.integer  "month"
   end
 
   create_table "invoices", :force => true do |t|

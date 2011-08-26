@@ -44,7 +44,7 @@ class HollydaysController < ApplicationController
 
     respond_to do |format|
       if @hollyday.save
-        flash[:notice] = 'Hollyday was successfully created.'
+        flash[:notice] = 'Feriado salvo.'
         format.html { redirect_to(@hollyday) }
         format.xml  { render :xml => @hollyday, :status => :created, :location => @hollyday }
       else
@@ -61,7 +61,7 @@ class HollydaysController < ApplicationController
 
     respond_to do |format|
       if @hollyday.update_attributes(params[:hollyday])
-        flash[:notice] = 'Hollyday was successfully updated.'
+        flash[:notice] = 'Feriado atualizado.'
         format.html { redirect_to(@hollyday) }
         format.xml  { head :ok }
       else
@@ -83,3 +83,4 @@ class HollydaysController < ApplicationController
     end
   end
 end
+

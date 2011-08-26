@@ -3,5 +3,5 @@
 <%= mount_menu %>
 <% end -%>
 
-<%= table @hollydays,['date','Data'],['name','Feriado'],['active','Ativo'] %>
+<%= table @hollydays,['day','Dia',{:class=>'center'}],['month','Mês',{:class=>'center'}],['name','Feriado'],['active','Ativo'] %>
 

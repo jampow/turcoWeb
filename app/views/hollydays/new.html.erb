@@ -7,7 +7,8 @@
   <div class="form-wrapper">
     <%= f.error_messages %>
     <%= f.text_field  :name   ,:label  => 'Feriado', :size => 50      %>
-    <%= f.date_select :date   ,:label  => 'Data'                      %>
+    <%= f.text_field  :day    ,:label  => 'Dia'                       %>
+    <%= f.text_field  :month  ,:label  => 'Mês'                       %>
     <%= f.check_box   :active ,:label  => 'Ativo'  , :checked => true %>
   </div>
 <% end -%>
