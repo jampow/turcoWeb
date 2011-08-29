@@ -41,14 +41,18 @@
   </div>
 <% end %>
 
-<% if flash[:update_list] -%>
-  <script type="text/javascript">
-    var image_link  = '<%= link_to image_tag('/images/blue-file-icon.png'), '/attachments/show/' + @attachment.id.to_s, {:ajax => 'false'} %>';
-    var filename    = '<%= @attachment.filename %>';
-    var description = '<%= @attachment.description %>';
-    var delete_link = '<%= link_to 'Deletar', "/attachments/#{@attachment.id}.json", :class => 'delete' %>';
+<div id="waiting"></div>
 
-    parent.$('#files_table').dataTable().fnAddData([image_link, filename, description, delete_link]);
-  </script>
+
+
+<% if flash[:update_list] -%>
+<script type="text/javascript">
+  var image_link  = '<%= link_to image_tag('/images/blue-file-icon.png'), '/attachments/show/' + @attachment.id.to_s, {:ajax => 'false'} %>';
+  var filename    = '<%= @attachment.filename %>';
+  var description = '<%= @attachment.description %>';
+  var delete_link = '<%= link_to 'Deletar', "/attachments/#{@attachment.id}.json", :class => 'delete' %>';
+
+  parent.$('#files_table').dataTable().fnAddData([image_link, filename, description, delete_link]);
+</script>
 <% end -%>
 

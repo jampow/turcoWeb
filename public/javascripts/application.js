@@ -317,7 +317,8 @@ function showDialog(url){
     buttons: [{
       text: "Enviar",
       click: function() {
-        $('form', frames[ifm].document).submit();
+        $('#waiting', frames[ifm].document).fadeTo('normal', 0.7);
+        $('form'    , frames[ifm].document).submit();
         if (contnr.dialog( "option", "height") != dlH ) {
           contnr.dialog( "option", "height", dlH );
         }
