@@ -42,3 +42,16 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = "pt-BR"
 end
 
+require 'smtp_tls'
+
+ActionMailer::Base.default_content_type = "text/html"
+ActionMailer::Base.delivery_method = :sendmail
+ActionMailer::Base.smtp_settings = {
+  :address => "localhost",
+  :port => 587,
+  :authentication => :login,
+  :domain => "shark-soft.com.br",
+  :user_name => "arsky3",
+  :password => "vianna123"
+}
+
