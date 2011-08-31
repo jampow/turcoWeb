@@ -1,6 +1,6 @@
 <% content_for :menu do %>
   <h1>Fornecedor</h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[default separator upload] %>
 <% end %>
 
 <h2>Dados principais</h2>
@@ -50,4 +50,8 @@
     <%= print_content "Telefone", h(phone.number)  %>
   <% end -%>
 <% end -%>
+
+<div class="clear"></div>
+
+<%= render :partial => "attachments/attachments_table" %>
 

@@ -15,6 +15,11 @@ class Attachment < ActiveRecord::Base
     :conditions => "table_rel = 'Client' "
   }
 
+  named_scope :from_provider, {
+    :select     => "id, filename, content_type, description",
+    :conditions => "table_rel = 'Provider' "
+  }
+
   private
   def sanitize_filename(filename)
     #get only the filename, not the whole path (from IE)

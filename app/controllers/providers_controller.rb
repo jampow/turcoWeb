@@ -13,10 +13,11 @@ class ProvidersController < ApplicationController
   # GET /providers/1
   # GET /providers/1.xml
   def show
-    @provider = Provider.find(params[:id])
-    @address  = @provider.address
-    @seller   = @provider.seller_contact
-    @invoicer = @provider.invoicer_contact
+    @provider    = Provider.find(params[:id])
+    @address     = @provider.address
+    @seller      = @provider.seller_contact
+    @invoicer    = @provider.invoicer_contact
+    @attachments = @provider.attachments.from_provider
 
     respond_to do |format|
       format.html # show.html.erb

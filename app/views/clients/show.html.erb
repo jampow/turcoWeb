@@ -27,50 +27,11 @@
     <div class="clear"></div>
 <% end -%>
 
-<h2>Endereço principal</h2>
-<div class="toggleable">
-  <%= address_toolbar 'map' %>
+<%= address_container 'Endereço principal', @main_address     %>
 
-  <%= print_content "CEP"        , h(@main_address.cep)                                      %>
-  <%= print_content "Endereço"   , h(@main_address.street)                                   %>
-  <%= print_content "Número"     , h(@main_address.number)                                   %>
-  <%= print_content "Complemento", h(@main_address.complement)                               %>
-  <%= print_content "Bairro"     , h(@main_address.neighborhood)                             %>
-  <%= print_content "Cidade"     , h(@main_address.city)                                     %>
-  <%= print_content "Estado"     , h((@main_address.estate.name if @main_address.estate_id)) %>
-  <%= print_content "País"       , h(@main_address.country)                                  %>
-  <div class="clear"></div>
-</div>
+<%= address_container 'Endereço cobrança' , @billing_address  %>
 
-<h2>Endereço cobrança</h2>
-<div class="toggleable">
-  <%= address_toolbar 'map' %>
-
-  <%= print_content "CEP"        , h(@billing_address.cep)                                         %>
-  <%= print_content "Endereço"   , h(@billing_address.street)                                      %>
-  <%= print_content "Número"     , h(@billing_address.number)                                      %>
-  <%= print_content "Complemento", h(@billing_address.complement)                                  %>
-  <%= print_content "Bairro"     , h(@billing_address.neighborhood)                                %>
-  <%= print_content "Cidade"     , h(@billing_address.city)                                        %>
-  <%= print_content "Estado"     , h((@billing_address.estate.name if @billing_address.estate_id)) %>
-  <%= print_content "País"       , h(@billing_address.country)                                     %>
-  <div class="clear"></div>
-</div>
-
-<h2>Endereço entrega</h2>
-<div class="toggleable">
-  <%= address_toolbar 'map' %>
-
-  <%= print_content "CEP"        , h(@delivery_address.cep)                                          %>
-  <%= print_content "Endereço"   , h(@delivery_address.street)                                       %>
-  <%= print_content "Número"     , h(@delivery_address.number)                                       %>
-  <%= print_content "Complemento", h(@delivery_address.complement)                                   %>
-  <%= print_content "Bairro"     , h(@delivery_address.neighborhood)                                 %>
-  <%= print_content "Cidade"     , h(@delivery_address.city)                                         %>
-  <%= print_content "Estado"     , h((@delivery_address.estate.name if @delivery_address.estate_id)) %>
-  <%= print_content "País"       , h(@delivery_address.country)                                      %>
-  <div class="clear"></div>
-</div>
+<%= address_container 'Endereço entrega'  , @delivery_address %>
 
 
 <% unless @other_contacts.blank? %>
@@ -206,24 +167,5 @@
         }
 		});
 
-    $('.map').click(function(){
-      context = $(this).parent().parent();
-      fields = $('div.pcontent', context);
-
-      values = [];
-      fields.each(function(){
-        values.push($(this).children('span').text());
-      });
-
-      cep = values[0];
-      stt = values[1];
-      nbr = values[2];
-      nbh = values[4];
-      cty = values[5];
-      ett = values[6];
-
-      address = escape(stt + ', ' + nbr + ' - ' + nbh + ', ' + cty + ' - ' + ett + ', ' + cep);
-      $(this).attr('href', 'http://maps.google.com.br?q=' + address);
-    });
 </script>
 

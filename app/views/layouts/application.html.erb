@@ -9,9 +9,10 @@
 <div id="waiting"> </div>
 
 <script type="text/javascript">
-  <%= js_copy  if flash[:btn_copy]  %>
-  <%= js_paste if flash[:btn_paste] %>
-  <%= js_map   if flash[:btn_map]   %>
-  <%= js_cep   if flash[:btn_cep]   %>
+  <%= js_copy     if flash[:btn_copy]     %>
+  <%= js_paste    if flash[:btn_paste]    %>
+  <%= js_map_form if flash[:btn_map_form] %>
+  <%= js_map_show if flash[:btn_map_show] %>
+  <%= js_cep      if flash[:btn_cep]      %>
 </script>
 
