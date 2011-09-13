@@ -3,12 +3,16 @@ class Role < ActiveRecord::Base
 
   has_and_belongs_to_many :users
 
-  ROLES = {:departments => 'Departamentos',
-           :ncms        => 'NCM\'s',
-           :permissions => 'Permissões',
-           :users       => 'Usuários'
+  ROLES = {:clients       => 'Clientes',
+           :departments   => 'Departamentos',
+           :dept_contacts => 'Departamentos dos contatos',
+           :func_contacts => 'Funções dos contatos',
+           :ncms          => 'NCM\'s',
+           :permissions   => 'Permissões',
+           :providers     => 'Fornecedores',
+           :terms         => 'Termos',
+           :users         => 'Usuários'
            }
-
 
   def self.roles
     ROLES

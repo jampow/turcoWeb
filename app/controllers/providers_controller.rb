@@ -1,6 +1,13 @@
 class ProvidersController < ApplicationController
   # GET /providers
   # GET /providers.xml
+
+  access_control do
+    allow :providers_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :providers_l, :to => [:index, :show]
+    allow :providers_s, :to => []
+  end
+
   def index
     @providers = Provider.all
 

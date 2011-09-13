@@ -23,9 +23,16 @@
     <% end %>
 
     <% field_set_tag "Endereço" do %>
-      <%= address_toolbar ['cep', 'map'] %>
-      <% f.fields_for :address do |ma| %>
-        <%= address_fields(ma) %>
+      <%= address_toolbar ['cep', 'map']%>
+      <% f.fields_for :main_address do |ma| %>
+        <%= ma.text_field :cep                  , :label => "CEP"         , :class => 'mask-cep' %>
+        <%= ma.text_field :street               , :label => "Endereço"                           %>
+        <%= ma.text_field :number               , :label => "Número"                             %>
+        <%= ma.text_field :complement           , :label => "Complemento"                        %>
+        <%= ma.text_field :neighborhood         , :label => "Bairro"                             %>
+        <%= ma.text_field :city                 , :label => "Cidade"                             %>
+        <%= ma.select     :estate_id, @estate   , :label => "Estado"                             %>
+        <%= ma.text_field :country              , :label => "País"                               %>
       <% end %>
     <% end %>
 

@@ -1,4 +1,11 @@
 class FuncContactsController < ApplicationController
+
+  access_control do
+    allow :func_contacts_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :func_contacts_l, :to => [:index, :show]
+    allow :func_contacts_s, :to => []
+  end
+
   # GET /func_contacts
   # GET /func_contacts.xml
   def index
@@ -83,3 +90,4 @@ class FuncContactsController < ApplicationController
     end
   end
 end
+

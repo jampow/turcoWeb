@@ -1,4 +1,11 @@
 class TermsController < ApplicationController
+
+  access_control do
+    allow :terms_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :terms_l, :to => [:index, :show]
+    allow :terms_s, :to => []
+  end
+
   # GET /terms
   # GET /terms.xml
   def index
@@ -44,7 +51,7 @@ class TermsController < ApplicationController
 
     respond_to do |format|
       if @term.save
-        flash[:notice] = 'Term was successfully created.'
+        flash[:notice] = 'Termo criado.'
         format.html { redirect_to(@term) }
         format.xml  { render :xml => @term, :status => :created, :location => @term }
       else
@@ -61,7 +68,7 @@ class TermsController < ApplicationController
 
     respond_to do |format|
       if @term.update_attributes(params[:term])
-        flash[:notice] = 'Term was successfully updated.'
+        flash[:notice] = 'Termo atualizado.'
         format.html { redirect_to(@term) }
         format.xml  { head :ok }
       else
@@ -83,3 +90,4 @@ class TermsController < ApplicationController
     end
   end
 end
+

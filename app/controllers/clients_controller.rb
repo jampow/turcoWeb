@@ -1,4 +1,12 @@
 class ClientsController < ApplicationController
+
+  access_control do
+    allow :clients_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :clients_l, :to => [:index, :show]
+    allow :clients_s, :to => []
+  end
+
+
   # GET /clients
   # GET /clients.xml
   def index

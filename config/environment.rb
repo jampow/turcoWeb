@@ -55,3 +55,7 @@ ActionMailer::Base.smtp_settings = {
   :password => "vianna123"
 }
 
+ExceptionNotification::Notifier.exception_recipients = %w(gianpaulosoares@gmail.com)
+ExceptionNotification::Notifier.sender_address = %("Application Error" <notificacao@shark-soft.com.br>)
+ExceptionNotification::Notifier.email_prefix = "[TurcoWeb] "
+

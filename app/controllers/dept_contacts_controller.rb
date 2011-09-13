@@ -1,4 +1,11 @@
 class DeptContactsController < ApplicationController
+
+  access_control do
+    allow :dept_contacts_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :dept_contacts_l, :to => [:index, :show]
+    allow :dept_contacts_s, :to => []
+  end
+
   # GET /dept_contacts
   # GET /dept_contacts.xml
   def index
@@ -83,3 +90,4 @@ class DeptContactsController < ApplicationController
     end
   end
 end
+
