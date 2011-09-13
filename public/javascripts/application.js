@@ -204,41 +204,28 @@ $(function(){
     make_buttons();
   }); // fecha ajaxSuccess
 
-  var notifyError = true;
+//  var notifyError = true;
 
   $('body').ajaxError(function(jqXHR, textStatus, errorThrown){
-//    alert('Algo imprevisto ocorreu');
 
-    if (notifyError){
-      notifyError = false;
-      $.ajax({
-        url: '/emailers/notify_error',
-        data: 'message=' + textStatus.responseText,
-        type: 'POST',
-        dataType: 'html',
-        success: function(){
-          thisDialog = $('<div />', {'title': 'Erro'}).appendTo('.ui-layout-center');
-          thisDialog.append('<p>Ocorreu algo inesperado no sistema.</p>');
-          thisDialog.append('<p>Informações sobre este erro foram enviadas ao administrador do sistema.</p>');
-          thisDialog.dialog({
-            show: 'fade',
-            hide: 'fade',
-            buttons: [{
-              text: "Ok",
-              click: function() {
-                thisDialog.dialog('close');
-              }
-            }],
-            close: function(event, ui) {
-              thisDialog.dialog('destroy');
-              thisDialog.remove();
-            }
-          });
+    thisDialog = $('<div />', {'title': 'Erro'}).appendTo('.ui-layout-center');
+    thisDialog.append('<p>Ocorreu algo inesperado no sistema.</p>');
+    thisDialog.append('<p>Informações sobre este erro foram enviadas ao administrador do sistema.</p>');
+    thisDialog.dialog({
+      show: 'fade',
+      hide: 'fade',
+      buttons: [{
+        text: "Ok",
+        click: function() {
+          thisDialog.dialog('close');
         }
-      });
-    } else {
-      notifyError = true;
-    }
+      }],
+      close: function(event, ui) {
+        thisDialog.dialog('destroy');
+        thisDialog.remove();
+      }
+    });
+
     //fadeOut na div de processamento
     $('#waiting').fadeOut('normal');
   });
