@@ -32,11 +32,11 @@ module ExceptionNotification::Notifiable
         write_inheritable_attribute(:exception_data, deliverer)
       end
     end
-    
+
     def skip_exception_notifications(boolean=true)
       write_inheritable_attribute(:skip_exception_notifications, boolean)
     end
-    
+
     def skip_exception_notifications?
       read_inheritable_attribute(:skip_exception_notifications)
     end
@@ -48,11 +48,11 @@ private
     super
     notify_about_exception(exception) if deliver_exception_notification?
   end
-  
+
   def deliver_exception_notification?
-    !self.class.skip_exception_notifications? && ![404, "404 Not Found"].include?(response.status)
+    !self.class.skip_exception_notifications? #&& ![404, "404 Not Found"].include?(response.status)
   end
-  
+
   def notify_about_exception(exception)
     deliverer = self.class.exception_data
     data = case deliverer
@@ -64,3 +64,4 @@ private
     ExceptionNotification::Notifier.deliver_exception_notification(exception, self, request, data)
   end
 end
+
