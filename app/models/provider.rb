@@ -1,5 +1,7 @@
 class Provider < ActiveRecord::Base
   has_many   :attachments                               , :foreign_key => 'external_id', :dependent => :destroy
+  has_many   :invoices
+  has_many   :receivables     , :through => :invoices
 
   belongs_to :address                                                                  , :dependent => :destroy
   belongs_to :seller_contact  , :class_name => 'Contact', :foreign_key => 'seller_id'  , :dependent => :destroy

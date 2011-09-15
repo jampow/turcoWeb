@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110825235029) do
+ActiveRecord::Schema.define(:version => 20110913211829) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20110825235029) do
     t.date     "operation"
     t.integer  "invoice_number"
     t.integer  "client_id"
+    t.integer  "provider_id"
     t.integer  "seller_id"
     t.integer  "term_id"
     t.decimal  "ipi",              :precision => 9, :scale => 3

@@ -1,6 +1,4 @@
 class ProvidersController < ApplicationController
-  # GET /providers
-  # GET /providers.xml
 
   access_control do
     allow :providers_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
@@ -8,6 +6,8 @@ class ProvidersController < ApplicationController
     allow :providers_s, :to => []
   end
 
+  # GET /providers
+  # GET /providers.xml
   def index
     @providers = Provider.all
 
@@ -24,6 +24,9 @@ class ProvidersController < ApplicationController
     @address     = @provider.address
     @seller      = @provider.seller_contact
     @invoicer    = @provider.invoicer_contact
+
+    @invoices    = @provider.invoices
+    @receivables = @provider.receivables
     @attachments = @provider.attachments.from_provider
 
     respond_to do |format|
