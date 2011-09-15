@@ -1,0 +1,7 @@
+<% content_for :menu do %>
+  <h1>Mensagens</h1>
+  <%= mount_menu %>
+<% end %>
+
+<%= table @messages, ["message", "Mensagem"] %>
+

@@ -1,6 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
 
-
   map.resources :activities
   map.resources :attachments
   map.resources :clients
@@ -9,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :func_contacts
   map.resources :hollydays
   map.resources :invoices
+  map.resources :messages
   map.resources :ncms
   map.resources :permissions
   map.resources :providers

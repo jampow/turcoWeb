@@ -230,7 +230,7 @@ $(function(){
     $('#waiting').fadeOut('normal');
   });
 
-  $('#calendario').datepicker();
+  $('#calendar').datepicker();
 
   message();
   limit_div_content();

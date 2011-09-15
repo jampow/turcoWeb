@@ -1,0 +1,13 @@
+<% content_for :menu do %>
+  <h1>Editando Mensagem</h1>
+  <%= mount_menu %>
+<% end %>
+
+<% form_for(@message) do |f| %>
+  <div class="form-wrapper">
+    <%= f.error_messages %>
+
+    <%= f.text_area :message, :label => "Mensagem", :size => 100, :required => true %>
+  </div>
+<% end %>
+

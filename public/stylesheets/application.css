@@ -373,13 +373,23 @@ ul.file-list li a:hover {
   text-decoration: underline;
 }
 
-#chat {
+.screenlet {
+  margin-bottom: 5px;
+}
+
+#bossMessage {
+  padding: 3px;
+  min-height: 150px;
+  overflow: auto;
+}
+
+/*#chat {
   position: absolute;
   bottom:0;
-}
+}*/
 .chat-history {
   padding: 3px;
-  height: 300px;
+  min-height: 150px;
   overflow: auto;
 }
 .chat-who {

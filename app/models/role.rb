@@ -7,6 +7,7 @@ class Role < ActiveRecord::Base
            :departments   => 'Departamentos',
            :dept_contacts => 'Departamentos dos contatos',
            :func_contacts => 'Funções dos contatos',
+           :messages      => 'Mensagens',
            :ncms          => 'NCM\'s',
            :permissions   => 'Permissões',
            :providers     => 'Fornecedores',

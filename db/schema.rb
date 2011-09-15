@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110913211829) do
+ActiveRecord::Schema.define(:version => 20110915003730) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -126,6 +126,12 @@ ActiveRecord::Schema.define(:version => 20110913211829) do
     t.integer  "nfe_env"
     t.decimal  "manaus_discount",  :precision => 9, :scale => 3
     t.boolean  "canceled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

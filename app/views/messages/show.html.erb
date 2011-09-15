@@ -1,0 +1,7 @@
+<% content_for :menu do %>
+  <h1>Mensagem</h1>
+  <%= mount_menu %>
+<% end %>
+
+<%= print_content "Mensagem", h(@message.message), :width => 100 %>
+

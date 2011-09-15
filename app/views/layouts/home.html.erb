@@ -42,16 +42,19 @@
   </div>
 
   <div class="ui-layout-east">
-    <div id="calendario"></div>
+    <div id="calendar" class="screenlet"></div>
 
-    <div id="chat" class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" style="display: block;">
+    <div id="bossMessageContainer" class="screenlet ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" style="display: block;">
       <div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all">
-        <!--a title="Prev" onclick="DP_jQuery_1314046214815.datepicker._adjustDate('#calendario', -1, 'M');" class="ui-datepicker-prev ui-corner-all">
-          <span class="ui-icon ui-icon-circle-triangle-w">Prev</span>
-        </a>
-        <a title="Next" onclick="DP_jQuery_1314046214815.datepicker._adjustDate('#calendario', +1, 'M');" class="ui-datepicker-next ui-corner-all">
-          <span class="ui-icon ui-icon-circle-triangle-e">Next</span>
-        </a-->
+        <div class="ui-datepicker-title">
+          <span class="ui-datepicker-month">Mensagem</span>
+        </div>
+      </div>
+      <div id="bossMessage"><p><%= @message %></p></div>
+    </div>
+
+    <div id="chat" class="screenlet ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" style="display: block;">
+      <div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all">
         <div class="ui-datepicker-title">
           <span class="ui-datepicker-month">Chat</span>
         </div>
