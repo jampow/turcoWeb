@@ -239,6 +239,13 @@ $(function(){
   set_timeout();
   $(document).bind('mousemove click keypress scroll', reset_timer);
 
+  $('#chatMessage').bind('keypress', function(event){
+    if ( event.which == 13 ) {
+      $('.chat-history').append('<p><span class="chat-who">Usuário: </span>'+$(this).val()+'</p>');
+      $(this).val('');
+    }
+  });
+
 }); //close document.read
 
 $(window).bind('resize', limit_div_content);
