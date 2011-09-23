@@ -243,6 +243,7 @@ $(function(){
     if ( event.which == 13 ) {
       $('.chat-history').append('<p><span class="chat-who">Usuário: </span>'+$(this).val()+'</p>');
       $(this).val('');
+      $('.chat-history').attr({scrollTop: $('.chat-history').attr('scrollHeight')});
     }
   });
 

@@ -390,6 +390,7 @@ ul.file-list li a:hover {
 .chat-history {
   padding: 3px;
   min-height: 150px;
+  height: 200px;
   overflow: auto;
 }
 .chat-who {
