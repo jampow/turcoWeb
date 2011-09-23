@@ -79,7 +79,6 @@ class ClientsController < ApplicationController
   # POST /clients.xml
   def create
     @client = Client.new(params[:client])
-    default_data
 
     respond_to do |format|
       if @client.save
@@ -87,6 +86,7 @@ class ClientsController < ApplicationController
         format.html { redirect_to(@client) }
         format.xml  { render :xml => @client, :status => :created, :location => @client }
       else
+        default_data
         format.html { render :action => "new" }
         format.xml  { render :xml => @client.errors, :status => :unprocessable_entity }
       end
@@ -97,7 +97,6 @@ class ClientsController < ApplicationController
   # PUT /clients/1.xml
   def update
     @client = Client.find(params[:id])
-    default_data
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
@@ -105,6 +104,7 @@ class ClientsController < ApplicationController
         format.html { redirect_to(@client) }
         format.xml  { head :ok }
       else
+        default_data
         format.html { render :action => "edit" }
         format.xml  { render :xml => @client.errors, :status => :unprocessable_entity }
       end
