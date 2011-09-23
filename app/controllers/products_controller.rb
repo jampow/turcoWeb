@@ -24,6 +24,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   # GET /products/new.xml
   def new
+    default_data
     @product = Product.new
 
     respond_to do |format|
@@ -34,6 +35,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    default_data
     @product = Product.find(params[:id])
   end
 
@@ -48,6 +50,7 @@ class ProductsController < ApplicationController
         format.html { redirect_to(@product) }
         format.xml  { render :xml => @product, :status => :created, :location => @product }
       else
+        default_data
         format.html { render :action => "new" }
         format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
       end
@@ -65,6 +68,7 @@ class ProductsController < ApplicationController
         format.html { redirect_to(@product) }
         format.xml  { head :ok }
       else
+        default_data
         format.html { render :action => "edit" }
         format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
       end
@@ -82,4 +86,11 @@ class ProductsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+protected
+
+  def default_data
+    @product_kinds = ProductKind.all.collect { |a| [a.name, a.id] }
+  end
 end
+

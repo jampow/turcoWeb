@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
+
   map.resources :activities
   map.resources :attachments
   map.resources :clients
@@ -11,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :messages
   map.resources :ncms
   map.resources :permissions
+  map.resources :product_kinds
   map.resources :products
   map.resources :providers
   map.resources :receivables

@@ -1,0 +1,8 @@
+<% content_for :menu do -%>
+  <h1>Tipo de menu</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Nome"       , h(@product_kind.name)       , :width => 100 %>
+<%= print_content "Observações", h(@product_kind.observation), :width => 100 %>
+

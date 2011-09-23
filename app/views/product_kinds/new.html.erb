@@ -1,0 +1,16 @@
+<% content_for :menu do -%>
+  <h1>Novo tipo de produto</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@product_kind) do |f| %>
+
+  <div class="form-wrapper">
+    <%= f.error_messages %>
+
+    <%= f.text_field :name       , :label => "Nome"       , :size => 100 %>
+    <%= f.text_area  :observation, :label => "Observações", :size => 100 %>
+  </div>
+
+<% end %>
+
