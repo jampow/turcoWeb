@@ -90,7 +90,8 @@ class ProductsController < ApplicationController
 protected
 
   def default_data
-    @product_kinds = ProductKind.all.collect { |a| [a.name, a.id] }
+    @product_kinds    = ProductKind.all.collect   { |a| [a.name, a.id] }
+    @product_families = ProductFamily.all.collect { |a| [a.name, a.id] }
   end
 end
 

@@ -44,7 +44,7 @@ class ProductKindsController < ApplicationController
 
     respond_to do |format|
       if @product_kind.save
-        flash[:notice] = 'ProductKind was successfully created.'
+        flash[:notice] = 'Tipo de produto criado.'
         format.html { redirect_to(@product_kind) }
         format.xml  { render :xml => @product_kind, :status => :created, :location => @product_kind }
       else
@@ -61,7 +61,7 @@ class ProductKindsController < ApplicationController
 
     respond_to do |format|
       if @product_kind.update_attributes(params[:product_kind])
-        flash[:notice] = 'ProductKind was successfully updated.'
+        flash[:notice] = 'Tipo de produto atualizado.'
         format.html { redirect_to(@product_kind) }
         format.xml  { head :ok }
       else
@@ -83,3 +83,4 @@ class ProductKindsController < ApplicationController
     end
   end
 end
+

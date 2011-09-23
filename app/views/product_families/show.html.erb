@@ -1,0 +1,8 @@
+<% content_for :menu do -%>
+  <h1>Família do produto</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Nome"       , h(@product_family.name)       , :width => 100 %>
+<%= print_content "Observações", h(@product_family.observation), :width => 100 %>
+
