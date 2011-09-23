@@ -180,7 +180,7 @@ $(function(){
     //masking some inputs
     $('.mask-phone').mask("(99) 9999-9999? r.9999",{placeholder:" "});
     $('.mask-cnpj' ).mask("99.999.999/9999-99"    ,{placeholder:" "});
-    $('.mask-cep'  ).mask("99999-999"             ,{placeholder:" "});
+    $('.mask-code' ).mask("aaa.***.***.***"       ,{placeholder:" "});
 
     //toggleables em show
     $('.toggleable').each(function(){

@@ -1,0 +1,45 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  code: MyString
+  name: MyString
+  type: MyString
+  unity: MyString
+  weight: 1.5
+  ipi: 1.5
+  fiscal_code: MyString
+  tributary_code: 1
+  ncm: MyString
+  price: 1.5
+  cost: 1.5
+  liquid_price: 1.5
+  family_id: 1
+  type_id: 1
+  csticm_id: 1
+  cstipi_id: 1
+  cstpis_id: 1
+  pis: 1.5
+  cstcofins_id: 1
+  cofins: 1.5
+
+two:
+  code: MyString
+  name: MyString
+  type: MyString
+  unity: MyString
+  weight: 1.5
+  ipi: 1.5
+  fiscal_code: MyString
+  tributary_code: 1
+  ncm: MyString
+  price: 1.5
+  cost: 1.5
+  liquid_price: 1.5
+  family_id: 1
+  type_id: 1
+  csticm_id: 1
+  cstipi_id: 1
+  cstpis_id: 1
+  pis: 1.5
+  cstcofins_id: 1
+  cofins: 1.5

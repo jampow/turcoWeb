@@ -402,4 +402,7 @@ ul.file-list li a:hover {
 .chat-message input {
   width: 97%;
 }
+.mask-code {
+  text-transform: uppercase;
+}
 

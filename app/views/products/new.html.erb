@@ -1,0 +1,32 @@
+<% content_for :menu do -%>
+  <h1>Novo produto</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@product) do |f| %>
+  <div class="form-wrapper">
+  <%= f.error_messages %>
+
+    <%= f.text_field :code          , :label => "Código"           , :class => "mask-code" %>
+    <%= f.text_field :name          , :label => "Descrição"                                %>
+    <%= f.text_field :kind          , :label => "Espécie"                                  %>
+    <%= f.text_field :unity         , :label => "Unidade"                                  %>
+    <%= f.text_field :weight        , :label => "Peso (Kg's)"                              %>
+    <%= f.text_field :ipi           , :label => "IPI"                                      %>
+    <%= f.text_field :fiscal_code   , :label => "Código Fiscal"                            %>
+    <%= f.text_field :tributary_code, :label => "Código Tributário"                        %>
+    <%= f.text_field :ncm           , :label => "NCM"                                      %>
+    <%= f.text_field :price         , :label => "Preço"                                    %>
+    <%= f.text_field :cost          , :label => "Custo"                                    %>
+    <%= f.text_field :liquid_price  , :label => "Preço Líquido"                            %>
+    <%= f.text_field :family_id     , :label => "Família"                                  %>
+    <%= f.text_field :type_id       , :label => "Tipo"                                     %>
+    <%= f.text_field :csticm_id     , :label => "CST ICM"                                  %>
+    <%= f.text_field :cstipi_id     , :label => "CST IPI"                                  %>
+    <%= f.text_field :cstpis_id     , :label => "CST PIS"                                  %>
+    <%= f.text_field :pis           , :label => "PIS"                                      %>
+    <%= f.text_field :cstcofins_id  , :label => "CST COFINS"                               %>
+    <%= f.text_field :cofins        , :label => "COFINS"                                   %>
+  </div>
+<% end %>
+

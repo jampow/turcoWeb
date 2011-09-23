@@ -1,0 +1,7 @@
+<% content_for :menu do -%>
+  <h1>Produtos</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @products, ["code", "Código"], ["name", "Nome"], ["family_id", "Família"] %>
+
