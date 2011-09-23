@@ -21,11 +21,11 @@
     <%= f.text_field :liquid_price                     , :label => "Preço Líquido"                            %>
     <%= f.select     :family_id     , @product_families, :label => "Família"                                  %>
     <%= f.select     :type_id       , @product_kinds   , :label => "Tipo"                                     %>
-    <%= f.text_field :csticm_id                        , :label => "CST ICM"                                  %>
-    <%= f.text_field :cstipi_id                        , :label => "CST IPI"                                  %>
-    <%= f.text_field :cstpis_id                        , :label => "CST PIS"                                  %>
+    <%= f.select     :cst_icm_id    , @cst_icm         , :label => "CST ICM"                                  %>
+    <%= f.select     :cst_ipi_id    , @cst_ipi         , :label => "CST IPI"                                  %>
+    <%= f.select     :cst_pis_id    , @cst_pis         , :label => "CST PIS"                                  %>
     <%= f.text_field :pis                              , :label => "PIS"                                      %>
-    <%= f.text_field :cstcofins_id                     , :label => "CST COFINS"                               %>
+    <%= f.select     :cst_cofins_id , @cst_cofins      , :label => "CST COFINS"                               %>
     <%= f.text_field :cofins                           , :label => "COFINS"                                   %>
   </div>
 <% end %>

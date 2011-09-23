@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110922221611) do
+ActiveRecord::Schema.define(:version => 20110922225753) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -62,6 +62,12 @@ ActiveRecord::Schema.define(:version => 20110922221611) do
     t.integer  "old_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "csts", :force => true do |t|
+    t.string "code"
+    t.string "description"
+    t.string "type"
   end
 
   create_table "departments", :force => true do |t|
@@ -193,11 +199,11 @@ ActiveRecord::Schema.define(:version => 20110922221611) do
     t.float    "liquid_price"
     t.integer  "family_id"
     t.integer  "type_id"
-    t.integer  "csticm_id"
-    t.integer  "cstipi_id"
-    t.integer  "cstpis_id"
+    t.integer  "cst_icm_id"
+    t.integer  "cst_ipi_id"
+    t.integer  "cst_pis_id"
+    t.integer  "cst_cofins_id"
     t.float    "pis"
-    t.integer  "cstcofins_id"
     t.float    "cofins"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -3,24 +3,24 @@
   <%= mount_menu %>
 <% end -%>
 
-<%= print_content "Código"           , h(@product.code)                %>
-<%= print_content "Nome"             , h(@product.name)                %>
-<%= print_content "Espécie"          , h(@product.kind)                %>
-<%= print_content "Unidade"          , h(@product.unity)               %>
-<%= print_content "Peso (Kg's)"      , h(@product.weight)              %>
-<%= print_content "IPI"              , h(@product.ipi)                 %>
-<%= print_content "Código Fiscal"    , h(@product.fiscal_code)         %>
-<%= print_content "Código Tributário", h(@product.tributary_code)      %>
-<%= print_content "NCM"              , h(@product.ncm)                 %>
-<%= print_content "Preço"            , h(@product.price)               %>
-<%= print_content "Custo"            , h(@product.cost)                %>
-<%= print_content "Preço líquido"    , h(@product.liquid_price)        %>
-<%= print_content "Família"          , h(@product.product_family.name) %>
-<%= print_content "Tipo"             , h(@product.product_kind.name)   %>
-<%= print_content "CST ICM"          , h(@product.csticm_id)           %>
-<%= print_content "CST IPI"          , h(@product.cstipi_id)           %>
-<%= print_content "CST PIS"          , h(@product.cstpis_id)           %>
-<%= print_content "PIS"              , h(@product.pis)                 %>
-<%= print_content "CST COFINS"       , h(@product.cstcofins_id)        %>
-<%= print_content "COFINS"           , h(@product.cofins)              %>
+<%= print_content "Código"           , h(@product.code)                   %>
+<%= print_content "Nome"             , h(@product.name)                   %>
+<%= print_content "Espécie"          , h(@product.kind)                   %>
+<%= print_content "Unidade"          , h(@product.unity)                  %>
+<%= print_content "Peso (Kg's)"      , h(@product.weight)                 %>
+<%= print_content "IPI"              , h(@product.ipi)                    %>
+<%= print_content "Código Fiscal"    , h(@product.fiscal_code)            %>
+<%= print_content "Código Tributário", h(@product.tributary_code)         %>
+<%= print_content "NCM"              , h(@product.ncm)                    %>
+<%= print_content "Preço"            , h(@product.price)                  %>
+<%= print_content "Custo"            , h(@product.cost)                   %>
+<%= print_content "Preço líquido"    , h(@product.liquid_price)           %>
+<%= print_content "Família"          , h(@product.product_family.name)    %>
+<%= print_content "Tipo"             , h(@product.product_kind.name)      %>
+<%= print_content "CST ICM"          , h(@product.cst_icm.description)    %>
+<%= print_content "CST IPI"          , h(@product.cst_ipi.description)    %>
+<%= print_content "CST PIS"          , h(@product.cst_pis.description)    %>
+<%= print_content "PIS"              , h(@product.pis)                    %>
+<%= print_content "CST COFINS"       , h(@product.cst_cofins.description) %>
+<%= print_content "COFINS"           , h(@product.cofins)                 %>
 

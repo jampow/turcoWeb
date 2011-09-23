@@ -92,6 +92,10 @@ protected
   def default_data
     @product_kinds    = ProductKind.all.collect   { |a| [a.name, a.id] }
     @product_families = ProductFamily.all.collect { |a| [a.name, a.id] }
+    @cst_cofins       = CstCofins.all.collect     { |a| [a.code + ' - ' + a.description, a.id] }
+    @cst_icm          = CstIcm.all.collect        { |a| [a.code + ' - ' + a.description, a.id] }
+    @cst_ipi          = CstIpi.all.collect        { |a| [a.code + ' - ' + a.description, a.id] }
+    @cst_pis          = CstPis.all.collect        { |a| [a.code + ' - ' + a.description, a.id] }
   end
 end
 

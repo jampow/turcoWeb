@@ -15,11 +15,11 @@ class CreateProducts < ActiveRecord::Migration
       t.float    :liquid_price
       t.integer  :family_id
       t.integer  :type_id
-      t.integer  :csticm_id
-      t.integer  :cstipi_id
-      t.integer  :cstpis_id
+      t.integer  :cst_icm_id
+      t.integer  :cst_ipi_id
+      t.integer  :cst_pis_id
+      t.integer  :cst_cofins_id
       t.float    :pis
-      t.integer  :cstcofins_id
       t.float    :cofins
 
       t.timestamps

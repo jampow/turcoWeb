@@ -200,7 +200,13 @@
 
     models:
       activity: "Ramo de atividade"
-      client: "cliente"
+      client: "Cliente"
+      product: "Produto"
+      cst: "Subst. Tributária"
+      cst_cofins: "Subst. Tributária Cofins"
+      cst_icm: "Subst. Tributária Icm"
+      cst_ipi: "Subst. Tributária Ipi"
+      cst_pis: "Subst. Tributária Pis"
 
     attributes:
       activity:
@@ -212,4 +218,7 @@
         ie: "IE"
         active: "Ativo"
         activity_id: "Ramo de atividade"
+      cst:
+        code: "Código"
+        description: "Descrição"
 

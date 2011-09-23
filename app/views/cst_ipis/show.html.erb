@@ -1,0 +1,8 @@
+<% content_for :menu do -%>
+  <h1>Subst. Tribut. Ipi</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Código"   , h(@cst_ipi.code)       , :width => 50 %>
+<%= print_content "Descrição", h(@cst_ipi.description), :width => 50 %>
+

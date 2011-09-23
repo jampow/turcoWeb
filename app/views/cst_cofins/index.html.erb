@@ -1,0 +1,7 @@
+<% content_for :menu do -%>
+  <h1>Subst. Tribut. Cofins</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @cst_cofins, ["code", "Código"], ["description", "Descrição"] %>
+

@@ -3,6 +3,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :activities
   map.resources :attachments
   map.resources :clients
+  map.resources :cst_cofins
+  map.resources :cst_icms
+  map.resources :cst_ipis
+  map.resources :cst_pis
   map.resources :departments
   map.resources :dept_contacts
   map.resources :func_contacts
