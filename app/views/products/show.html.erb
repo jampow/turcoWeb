@@ -1,6 +1,6 @@
 <% content_for :menu do -%>
   <h1>Produto</h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[default separator upload] %>
 <% end -%>
 
 <%= print_content "Código"           , h(@product.code)                   %>
@@ -23,4 +23,8 @@
 <%= print_content "PIS"              , h(@product.pis)                    %>
 <%= print_content "CST COFINS"       , h(@product.cst_cofins.description) %>
 <%= print_content "COFINS"           , h(@product.cofins)                 %>
+
+<div class="clear"></div>
+
+<%= render :partial => "attachments/attachments_table" %>
 

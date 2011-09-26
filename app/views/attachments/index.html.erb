@@ -37,22 +37,19 @@
       </span>
     </label>
 
-    <%# submit_tag "enviar" %>
   </div>
 <% end %>
 
 <div id="waiting"></div>
 
-
-
 <% if flash[:update_list] -%>
 <script type="text/javascript">
-  var image_link  = '<%= link_to image_tag('/images/blue-file-icon.png'), '/attachments/show/' + @attachment.id.to_s, {:ajax => 'false'} %>';
+  var image_link  = '<%= link_to image_tag("/images/blue-file-icon.png"), "/attachments/show/" + @attachment.id.to_s, {:ajax => "false"} %>';
   var filename    = '<%= @attachment.filename %>';
   var description = '<%= @attachment.description %>';
-  var delete_link = '<%= link_to 'Deletar', "/attachments/#{@attachment.id}.json", :class => 'delete' %>';
+  var delete_link = '<%= link_to "Deletar", "/attachments/#{@attachment.id}.json", :class => "delete" %>';
 
-  parent.$('#files_table').dataTable().fnAddData([image_link, filename, description, delete_link]);
+  parent.$('#files_table tbody').append('<tr><td class="center">'+image_link+'</td><td>'+filename+'</td><td>'+description+'</td><td class="center">'+delete_link+'</td></tr>')
 </script>
 <% end -%>
 

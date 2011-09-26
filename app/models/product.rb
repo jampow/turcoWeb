@@ -5,5 +5,6 @@ class Product < ActiveRecord::Base
   belongs_to :cst_icm
   belongs_to :cst_ipi
   belongs_to :cst_pis
+  has_many   :attachments, :foreign_key => 'external_id', :dependent => :destroy
 end
 
