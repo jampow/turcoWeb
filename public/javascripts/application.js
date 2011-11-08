@@ -199,6 +199,8 @@ $(function(){
       });
     });
 
+    $('.datepicker').datepicker({'dateFormat': 'yy-mm-dd'});
+
     message();
     limit_div_content();
     make_buttons();

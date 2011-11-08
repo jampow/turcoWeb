@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  number: MyString
+  order_type_id: 1
+  sale_type_id: 1
+  date: 2011-09-26
+  prevision: 2011-09-26
+  billed: 2011-09-26
+  client_id: 1
+  seller_id: 1
+  commission: 1.5
+  contact_id: 1
+  payment_condition_id: 1
+  carrier_id: 1
+  freight: 1.5
+  freight_type_id: 1
+  attendant_id: 1
+  observation: MyText
+
+two:
+  number: MyString
+  order_type_id: 1
+  sale_type_id: 1
+  date: 2011-09-26
+  prevision: 2011-09-26
+  billed: 2011-09-26
+  client_id: 1
+  seller_id: 1
+  commission: 1.5
+  contact_id: 1
+  payment_condition_id: 1
+  carrier_id: 1
+  freight: 1.5
+  freight_type_id: 1
+  attendant_id: 1
+  observation: MyText
