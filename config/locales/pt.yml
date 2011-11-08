@@ -207,6 +207,7 @@
       cst_icm: "Subst. Tributária Icm"
       cst_ipi: "Subst. Tributária Ipi"
       cst_pis: "Subst. Tributária Pis"
+      sales_order: "Pedido de venda"
 
     attributes:
       activity:
@@ -221,4 +222,6 @@
       cst:
         code: "Código"
         description: "Descrição"
+      sales_order:
+        client_id: "Cliente"
 
