@@ -38,11 +38,11 @@ $(function(){
     //Gera inputs para cadastrar a ordem da lista
     //if (form.attr('id') == 'order') {
     //  var order = 1;
-        //  $('#sortable li').each(function(){
-        //    var id = $(this).attr('id');
-        //    $('#sortable').after('<input type="hidden" name="organizer['+id+']" value="'+order+'">');
-        //    order++;
-        //  });
+    //  $('#sortable li').each(function(){
+    //    var id = $(this).attr('id');
+    //    $('#sortable').after('<input type="hidden" name="organizer['+id+']" value="'+order+'">');
+    //    order++;
+    //  });
     //}
 
     $.ajax({
@@ -379,11 +379,17 @@ function showDialog(url){
   return false;
 }
 
-function removeParentTR(obj) {
+function removeParentTR(ref) {
   //acha TR pai do objeto passado como parâmetro
-  while (!obj.is('tr')) {
+  var obj = findParent(ref, 'tr');
+  obj.remove(); //remove TR pai
+}
+
+function findParent(ref, parentSelector) {
+  var obj = ref.parent();
+  while (!obj.is(parentSelector)) {
     obj = obj.parent();
   }
-  obj.remove(); //remove TR pai
+  return obj;
 }
 

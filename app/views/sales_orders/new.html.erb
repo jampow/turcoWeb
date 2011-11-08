@@ -31,15 +31,26 @@
     <%= f.text_field   :attendant_id        , :label => "Atendente"             %>
 
     <% field_set_tag 'Itens' do -%>
+      <%= new_item_toolbar f %>
       <% f.fields_for :sales_order_items do |soi| %>
-        <%= soi.hidden_field :product_id %>
-        <%= soi.text_field :product_name, :label => "Produto"         , :class => "autocomplete", :source => "product" %>
-        <%= soi.text_field :quantity    , :label => "Quantidade"      %>
-        <%= soi.text_field :unit_value  , :label => "Valor unitário"  %>
-        <%= soi.text_field :total_value , :label => "Valor total"     %>
-        <%= soi.text_field :delivery    , :label => "Data de entrega" , :class => 'datepicker' %>
-        <div class="clear"></div>
+        <%= render :partial => "sales_order_item_fields", :locals => {:f => soi} %>
       <% end -%>
+
+      <table id="sales_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
+        <thead>
+          <tr>
+            <th class="hide">Id Produto    </th>
+            <th>Produto        </th>
+            <th>Quantidade     </th>
+            <th>Valor Unitário </th>
+            <th>Valor Total    </th>
+            <th>Data de entrega</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
     <% end -%>
 
   </div>

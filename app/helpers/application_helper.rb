@@ -186,5 +186,13 @@ module ApplicationHelper
     s
   end
 
+  def new_fields(f, association)
+    new_object = f.object.class.reflect_on_association(association).klass.new
+    fields = f.fields_for(association, new_object, :child_index => "new_record") do |builder|
+      render(association.to_s.singularize + "_fields", :f => builder)
+    end
+    fields
+  end
+
 end
 

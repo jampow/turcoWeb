@@ -33,7 +33,7 @@ module AddressHelper
   end
 
   def address_toolbar btns = ['copy', 'paste', 'map', 'cep']
-    s  = "<div class=\"address-toolbar\">"
+    s  = "<div class=\"form-toolbar\">"
     s +=   btn_copy  if btns.include? 'copy'
     s +=   btn_paste if btns.include? 'paste'
     s +=   btn_map   if btns.include? 'map'

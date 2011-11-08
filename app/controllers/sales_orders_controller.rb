@@ -25,7 +25,7 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/new.xml
   def new
     @sales_order = SalesOrder.new
-    3.times { @sales_order.sales_order_items.build }
+    @sales_order.sales_order_items.build
 
     respond_to do |format|
       format.html # new.html.erb
