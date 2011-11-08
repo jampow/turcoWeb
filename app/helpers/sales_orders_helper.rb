@@ -37,9 +37,8 @@ module SalesOrdersHelper
   def js_new_item
     html  = <<-JS
               $('a.new-item').click(function(){
-                var scope = findParent($(this),'fieldset');
-                var inpts = $('label input', scope);
-                inpts.val('');
+                $('.form-toolbar ~ label input').val('');
+                return false;
               });
             JS
     flash[:btn_new_item] = false
