@@ -42,6 +42,7 @@ class SalesOrdersController < ApplicationController
   # POST /sales_orders.xml
   def create
     @sales_order = SalesOrder.new(params[:sales_order])
+    @sales_order.sales_order_items.build
 
     respond_to do |format|
       if @sales_order.save

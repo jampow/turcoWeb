@@ -51,6 +51,21 @@
         </tbody>
       </table>
 
+      <script type="text/javascript">
+        $('#sales_order_items').undelegate('tr', 'click');
+        $('#sales_order_items').delegate(  'tr', 'click', function(){
+          var t = $(this);
+          $('tr.ui-state-default').removeClass('ui-state-default');
+          t.addClass('ui-state-default');
+          $('input', t).each(function(){
+            var th = $(this);
+            var id = th.attr('id');
+            var newId = id.replace(/_([0-9]){1,2}_/, '_0_');
+            $('#'+newId).val( th.val() );
+          });
+        });
+      </script>
+
     <% end -%>
 
   </div>
