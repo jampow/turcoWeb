@@ -3,7 +3,7 @@ class AutocompleteController < ApplicationController
   #            , { "id": "", "label": "", "value": "" }]
   def client
     @list = Client.find(:all,
-                        :select => "id, name as label, id as value",
+                        :select => "id, name as label, name as value",
                         :conditions => ["name like ?", "%#{params[:term]}%"])
 
     respond_to do |format|
@@ -21,6 +21,7 @@ class AutocompleteController < ApplicationController
     end
   end
 
+  #criada só pra renderizar
   def autocomplete
   end
 

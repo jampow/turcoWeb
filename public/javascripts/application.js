@@ -58,10 +58,11 @@ $(function(){
     return false;
   }); //fecha formulários com requisição ajax
 
-  //binda o enter dentro do form para enviar o form com ajax
+  //binda o enter dentro do form para não fazer nada, nem enviar o form
   $('form input').live('keydown',function(e){
     if (e.which == '13') {
-      $('input[type=submit], .button.save').click();
+      //$('input[type=submit], .button.save').click();
+      return false;
     }
   });
 
@@ -203,8 +204,15 @@ $(function(){
     $('.autocomplete').each(function(){
       var t   = $(this);
       var src = t.attr('source');
-      t.autocomplete({source   : "/autocomplete/"+src,
-			               minLength: 3});
+      t.autocomplete({
+        source   : "/autocomplete/"+src,
+        minLength: 3,
+        select   : function(event, ui){
+          var tid = t.attr('id');
+          t.val(ui.item.value);
+          $('#'+tid+'_id').val(ui.item.id);
+        }
+			});
     });
 
     message();

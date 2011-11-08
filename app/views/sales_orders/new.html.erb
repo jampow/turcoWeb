@@ -13,7 +13,14 @@
     <%= f.text_field  :date                , :label => "Data do pedido"        , :class => 'datepicker' %>
     <%= f.text_field  :prevision           , :label => "Previsão de entrega"   , :class => 'datepicker' %>
     <%= f.text_field  :billed              , :label => "Faturado"              , :class => 'datepicker' %>
-    <%= f.text_field  :client_id           , :label => "Cliente"               , :class => 'autocomplete', :source => 'client' %>
+    <%= f.hidden_field  :client_id           , :label => "Id do cliente"            %>
+    <%# text_field_tag f,  :client_name         , :label => "Cliente"               , :class => 'autocomplete', :source => 'client' %>
+    <label class="inputselect w25" for="sales_order_client">
+      <span class="wrapper">
+        <span class="title">Cliente</span>
+        <input type="text" size="30" name="client_name" id="sales_order_client" class="autocomplete" source="client">
+      </span>
+    </label>
     <%= f.text_field  :seller_id           , :label => "Vendedor"              %>
     <%= f.text_field  :commission          , :label => "Comissão"              %>
     <%= f.text_field  :contact_id          , :label => "Contato"               %>
