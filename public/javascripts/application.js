@@ -199,7 +199,13 @@ $(function(){
       });
     });
 
-    $('.datepicker').datepicker({'dateFormat': 'yy-mm-dd'});
+    $('.datepicker'  ).datepicker({'dateFormat': 'yy-mm-dd'});
+    $('.autocomplete').each(function(){
+      var t   = $(this);
+      var src = t.attr('source');
+      t.autocomplete({source   : "/autocomplete/"+src,
+			               minLength: 3});
+    });
 
     message();
     limit_div_content();

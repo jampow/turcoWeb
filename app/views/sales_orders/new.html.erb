@@ -13,7 +13,7 @@
     <%= f.text_field  :date                , :label => "Data do pedido"        , :class => 'datepicker' %>
     <%= f.text_field  :prevision           , :label => "Previsão de entrega"   , :class => 'datepicker' %>
     <%= f.text_field  :billed              , :label => "Faturado"              , :class => 'datepicker' %>
-    <%= f.text_field  :client_id           , :label => "Cliente"               %>
+    <%= f.text_field  :client_id           , :label => "Cliente"               , :class => 'autocomplete', :source => 'client' %>
     <%= f.text_field  :seller_id           , :label => "Vendedor"              %>
     <%= f.text_field  :commission          , :label => "Comissão"              %>
     <%= f.text_field  :contact_id          , :label => "Contato"               %>
