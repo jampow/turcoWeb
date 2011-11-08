@@ -13,7 +13,7 @@ class AutocompleteController < ApplicationController
 
   def product
     @list = Product.find(:all,
-                        :select => "id, name as label, id as value",
+                        :select => "id, name as label, name as value",
                         :conditions => ["name like ?", "%#{params[:term]}%"])
 
     respond_to do |format|

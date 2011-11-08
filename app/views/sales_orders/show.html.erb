@@ -9,7 +9,7 @@
 <%= print_content "Data"                 , h(@sales_order.date)                 %>
 <%= print_content "Previsão"             , h(@sales_order.prevision)            %>
 <%= print_content "Faturado"             , h(@sales_order.billed)               %>
-<%= print_content "Cliente"              , h(@sales_order.client_id)            %>
+<%= print_content "Cliente"              , h(@sales_order.client.name)          %>
 <%= print_content "Vendedor"             , h(@sales_order.seller_id)            %>
 <%= print_content "Comissão"             , h(@sales_order.commission)           %>
 <%= print_content "Contato"              , h(@sales_order.contact_id)           %>

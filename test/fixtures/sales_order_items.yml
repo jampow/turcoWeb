@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sales_order_id: 1
+  product_id: 1
+  product_name: MyString
+  quantity: 1.5
+  unit_value: 1.5
+  total_value: 1.5
+  delivery: 2011-10-04
+
+two:
+  sales_order_id: 1
+  product_id: 1
+  product_name: MyString
+  quantity: 1.5
+  unit_value: 1.5
+  total_value: 1.5
+  delivery: 2011-10-04
