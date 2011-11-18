@@ -1,9 +1,11 @@
 module SalesOrdersHelper
 
-  def new_item_toolbar f , btns = ['add', 'save']
+
+  def new_item_toolbar f , btns = ['add', 'save', 'del']
     flash[:create_table_item] = true
     s  = "<div class=\"form-toolbar\">"
     s += btn_new_item  if btns.include? 'add'
+    s += btn_del_item  if btns.include? 'del'
     s += btn_save_item if btns.include? 'save'
     #s += hidden_field "new_item", new_fields(f, :sales_order_items)
     s += "</div>"
@@ -11,7 +13,12 @@ module SalesOrdersHelper
 
   def btn_new_item
     flash[:btn_new_item] = true
-    html = "<a href=\"#\" class=\"button new-item\" caption=\"false\" icon=\"plus\" >Novo Item</a>"
+    html = "<a href=\"#\" class=\"button new-item\" caption=\"false\" icon=\"plus\" >Adicionar Item</a>"
+  end
+
+  def btn_del_item
+    flash[:btn_del_item] = true
+    html = "<a href=\"#\" class=\"button del-item\" caption=\"false\" icon=\"minus\" >Remover Item</a>"
   end
 
   def btn_save_item
@@ -46,12 +53,23 @@ module SalesOrdersHelper
     html
   end
 
+  def js_del_item
+    html =  <<-JS
+              $('a.del-item').click(function(){
+                var rowIdx = $('tr.ui-state-default').index('#sales_order_items tbody tr');
+                oTable.fnDeleteRow( rowIdx );
+              });
+            JS
+    flash[:btn_del_item] = false
+    html
+  end
+
   def js_save_item
     html  = <<-JS
               $('a.save-item').click(function(){
                 var row     = [];
                 var values  = [];
-                var nextRow = oTable.fnGetNodes().length + 1;
+                var nextRow = new Date().getTime();
                 var scope   = findParent($(this),'fieldset');
                 var inpts   = $('label input', scope);
                 inpts.each(function(){

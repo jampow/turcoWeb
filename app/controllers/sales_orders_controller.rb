@@ -36,6 +36,9 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/1/edit
   def edit
     @sales_order = SalesOrder.find(params[:id])
+    @item_form   = @sales_order.sales_order_items.build
+    #sales_order_sales_order_item              _product_name
+    #sales_order_sales_order_items_attributes_0_product_name
   end
 
   # POST /sales_orders
