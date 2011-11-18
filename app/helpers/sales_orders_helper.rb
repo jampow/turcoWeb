@@ -35,8 +35,14 @@ module SalesOrdersHelper
                              , "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
                              , "bRetrieve": true
                            });
-              var invCols = ['0']; //Array com o index das colunas q deve ser ocultadas
+              //Array com o index das colunas q deve ser ocultadas
+              var invCols = ['0'];
             JS
+
+    if action_name == 'edit'
+      html += "invCols.push('1');"
+    end
+
     flash[:create_table_item] = false
     html
   end
@@ -82,11 +88,11 @@ module SalesOrdersHelper
                   row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" /><span>'+value+'</span>');
                 });
                 if ($('tr.ui-state-default').length == 0) {
-                  var item = oTable.fnAddData(row)[0]+1;
-                  var trow = $('tr:eq('+item+')', oTable);
-                  for (i = 0; i < invCols.length; i++) {
-                    $('td:eq('+invCols[i]+')', trow).addClass('hide');
-                  }
+                  $('#sales_order_items tbody tr').each(function(){
+                    for (i = 0; i < invCols.length; i++) {
+                      $('td:eq('+invCols[i]+')', $(this)).addClass('hide');
+                    }
+                  });
                 } else {
                   $('tr.ui-state-default td').each(function(){
                     var t     = $(this);

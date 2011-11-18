@@ -32,13 +32,14 @@
 
     <% field_set_tag 'Itens' do -%>
       <%= new_item_toolbar f %>
-      <% f.fields_for @item_form do |soi| %>
+      <% f.fields_for :sales_order_items, @item_form do |soi| %>
         <%= render :partial => "sales_order_item_fields", :locals => {:f => soi} %>
       <% end -%>
 
       <table id="sales_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
         <thead>
           <tr>
+            <th class="hide">Id do item   </th>
             <th class="hide">Id Produto     </th>
             <th>             Produto        </th>
             <th>             Quantidade     </th>
@@ -50,6 +51,7 @@
         <tbody>
         <% f.fields_for :sales_order_items do |soi| %>
           <tr>
+            <td class="hide"><%= soi.hidden_field :id           %><span></span></td>
             <td class="hide"><%= soi.hidden_field :product_id   %><span></span></td>
             <td>             <%= soi.hidden_field :product_name %><span></span></td>
             <td>             <%= soi.hidden_field :quantity     %><span></span></td>
