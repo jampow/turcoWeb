@@ -39,32 +39,21 @@
       <table id="sales_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
         <thead>
           <tr>
+            <th class="hide">Id do item     </th>
             <th class="hide">Id Produto     </th>
-            <th>Produto        </th>
-            <th>Quantidade     </th>
-            <th>Valor Unitário </th>
-            <th>Valor Total    </th>
-            <th>Data de entrega</th>
+            <th>             Produto        </th>
+            <th>             Quantidade     </th>
+            <th>             Valor Unitário </th>
+            <th>             Valor Total    </th>
+            <th>             Data de entrega</th>
           </tr>
         </thead>
         <tbody>
         </tbody>
       </table>
 
-      <script type="text/javascript">
-        $('#sales_order_items').undelegate('tr', 'click');
-        $('#sales_order_items').delegate(  'tr', 'click', function(){
-          var t = $(this);
-          $('tr.ui-state-default').removeClass('ui-state-default');
-          t.addClass('ui-state-default');
-          $('input', t).each(function(){
-            var th = $(this);
-            var id = th.attr('id');
-            var newId = id.replace(/_([0-9]){1,2}_/, '_0_');
-            $('#'+newId).val( th.val() );
-          });
-        });
-      </script>
+      <div id="trash" class="hide"></div>
+
 
     <% end -%>
 

@@ -14,6 +14,7 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/1.xml
   def show
     @sales_order = SalesOrder.find(params[:id])
+    @items       = @sales_order.sales_order_items
 
     respond_to do |format|
       format.html # show.html.erb

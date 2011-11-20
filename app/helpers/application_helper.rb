@@ -13,7 +13,9 @@ module ApplicationHelper
     self.controller.action_name
   end
 
-
+  def editing?
+    action_name == 'edit'
+  end
 
   #monta menu das telas administrativas
   def mount_menu(*btns)

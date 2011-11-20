@@ -39,7 +39,7 @@
       <table id="sales_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
         <thead>
           <tr>
-            <th class="hide">Id do item   </th>
+            <th class="hide">Id do item     </th>
             <th class="hide">Id Produto     </th>
             <th>             Produto        </th>
             <th>             Quantidade     </th>
@@ -64,27 +64,6 @@
       </table>
     <% end -%>
   </div>
+  <div id="trash" class="hide"></div>
 <% end %>
-
-<script type="text/javascript">
-  $('#sales_order_items').undelegate('tr', 'click');
-  $('#sales_order_items').delegate(  'tr', 'click', function(){
-    var t = $(this);
-    $('tr.ui-state-default').removeClass('ui-state-default');
-    t.addClass('ui-state-default');
-    $('input', t).each(function(){
-      var th = $(this);
-      var id = th.attr('id');
-      var newId = id.replace(/_([0-9])+_/, '_0_');
-      console.log(newId);
-      $('#'+newId).val( th.val() );
-    });
-  });
-  $('#sales_order_items tbody td input').each(function(){
-    var t   = $(this);
-    var val = t.val();
-    t.next().append(val);
-  });
-  $('#sales_order_items tbody tr:last').remove();
-</script>
 

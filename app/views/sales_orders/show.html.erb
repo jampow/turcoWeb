@@ -20,3 +20,39 @@
 <%= print_content "Atendente"            , h(@sales_order.attendant_id)         %>
 <%= print_content "Observações"          , h(@sales_order.observation)          %>
 
+<div class="clear"></div>
+
+<h2>Items</h2>
+<table id="sales_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
+  <thead>
+    <tr>
+      <th>Produto        </th>
+      <th>Quantidade     </th>
+      <th>Valor Unitário </th>
+      <th>Valor Total    </th>
+      <th>Data de entrega</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @items.each do |soi| %>
+    <tr>
+      <td><%= soi.product_name %></td>
+      <td><%= soi.quantity     %></td>
+      <td><%= soi.unit_value   %></td>
+      <td><%= soi.total_value  %></td>
+      <td><%= soi.delivery     %></td>
+    </tr>
+  <% end -%>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  var oTable = $('#sales_order_items').dataTable({
+                   "bJQueryUI": true
+                 , "sPaginationType": "full_numbers"
+                 , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
+                 , "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
+                 , "bRetrieve": true
+               });
+</script>
+
