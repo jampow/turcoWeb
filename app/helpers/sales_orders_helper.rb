@@ -37,7 +37,7 @@ module SalesOrdersHelper
                              , "bRetrieve": true
                            });
               //Array com o index das colunas q deve ser ocultadas
-              var invCols = [0,1];
+              //var invCols = [0,1];
 
               $('#sales_order_items').undelegate('tr', 'click');
               $('#sales_order_items').delegate(  'tr', 'click', function(){
@@ -122,11 +122,11 @@ module SalesOrdersHelper
 
                 if ($('tr.ui-state-default').length == 0) {
                   oTable.fnAddData(row);
-                  $('#sales_order_items tbody tr').each(function(){
-                    for (i = 0; i < invCols.length; i++) {
-                      $('td:eq('+invCols[i]+')', $(this)).addClass('hide');
-                    }
-                  });
+                  //$('#sales_order_items tbody tr').each(function(){
+                  //  for (i = 0; i < invCols.length; i++) {
+                  //    $('td:eq('+invCols[i]+')', $(this)).addClass('hide');
+                  //  }
+                  //});
                 } else {
                   $('tr.ui-state-default td').each(function(){
                     var t     = $(this);
