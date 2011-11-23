@@ -121,10 +121,7 @@ module SalesOrdersHelper
                 }
 
                 if ($('tr.ui-state-default').length == 0) {
-<<<<<<< HEAD
-=======
                   oTable.fnAddData(row);
->>>>>>> working
                   $('#sales_order_items tbody tr').each(function(){
                     for (i = 0; i < invCols.length; i++) {
                       $('td:eq('+invCols[i]+')', $(this)).addClass('hide');
