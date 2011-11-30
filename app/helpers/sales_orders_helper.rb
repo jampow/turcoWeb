@@ -132,7 +132,7 @@ module SalesOrdersHelper
                     var t     = $(this);
                     var idx   = $('tr.ui-state-default td').index(t);
                     var to    = $('input', t).attr('id');
-                    var from  = to.replace(/_([0-9])+ _/, '_0_');
+                    var from  = to.replace(/_([0-9])+_/, '_0_');
                     var value = values[idx];
                     $('#'+to).val(value);
                     $('span', t).text(value);
