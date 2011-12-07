@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111004233831) do
+ActiveRecord::Schema.define(:version => 20111130220415) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -151,6 +151,40 @@ ActiveRecord::Schema.define(:version => 20111004233831) do
     t.datetime "updated_at"
   end
 
+  create_table "order_items", :force => true do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.string   "product_name"
+    t.float    "quantity"
+    t.float    "unit_value"
+    t.float    "total_value"
+    t.date     "delivery"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string   "number"
+    t.integer  "order_type_id"
+    t.integer  "sale_type_id"
+    t.date     "date"
+    t.date     "prevision"
+    t.date     "billed"
+    t.integer  "client_id"
+    t.integer  "seller_id"
+    t.float    "commission"
+    t.integer  "contact_id"
+    t.integer  "payment_condition_id"
+    t.integer  "carrier_id"
+    t.float    "freight"
+    t.integer  "freight_type_id"
+    t.integer  "attendant_id"
+    t.text     "observation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+  end
+
   create_table "people", :force => true do |t|
     t.string   "name"
     t.integer  "external_id"
@@ -254,39 +288,6 @@ ActiveRecord::Schema.define(:version => 20111004233831) do
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "sales_order_items", :force => true do |t|
-    t.integer  "sales_order_id"
-    t.integer  "product_id"
-    t.string   "product_name"
-    t.float    "quantity"
-    t.float    "unit_value"
-    t.float    "total_value"
-    t.date     "delivery"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "sales_orders", :force => true do |t|
-    t.string   "number"
-    t.integer  "order_type_id"
-    t.integer  "sale_type_id"
-    t.date     "date"
-    t.date     "prevision"
-    t.date     "billed"
-    t.integer  "client_id"
-    t.integer  "seller_id"
-    t.float    "commission"
-    t.integer  "contact_id"
-    t.integer  "payment_condition_id"
-    t.integer  "carrier_id"
-    t.float    "freight"
-    t.integer  "freight_type_id"
-    t.integer  "attendant_id"
-    t.text     "observation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

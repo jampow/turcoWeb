@@ -15,9 +15,14 @@
   <%= js_map_show if flash[:btn_map_show] %>
   <%= js_cep      if flash[:btn_cep]      %>
 
-  <%= js_create_table_item if flash[:create_table_item] %>
-  <%= js_new_item          if flash[:btn_new_item]      %>
-  <%= js_del_item          if flash[:btn_del_item]      %>
-  <%= js_save_item         if flash[:btn_save_item]     %>
+  <%= js_sales_create_table_item if flash[:create_sales_table_item] %>
+  <%= js_sales_new_item          if flash[:btn_sales_new_item]      %>
+  <%= js_sales_del_item          if flash[:btn_sales_del_item]      %>
+  <%= js_sales_save_item         if flash[:btn_sales_save_item]     %>
+  
+  <%= js_purchase_create_table_item if flash[:create_purchase_table_item] %>
+  <%= js_purchase_new_item          if flash[:btn_purchase_new_item]      %>
+  <%= js_purchase_del_item          if flash[:btn_purchase_del_item]      %>
+  <%= js_purchase_save_item         if flash[:btn_purchase_save_item]     %>
 </script>
 

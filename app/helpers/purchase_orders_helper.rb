@@ -1,35 +1,34 @@
-module SalesOrdersHelper
-
-
-  def new_sales_item_toolbar f , btns = ['add', 'save', 'del']
-    flash[:create_sales_table_item] = true
+module PurchaseOrdersHelper
+  
+  def new_purchase_item_toolbar f , btns = ['add', 'save', 'del']
+    flash[:create_purchase_table_item] = true
     s  = "<div class=\"form-toolbar\">"
-    s += btn_sales_new_item  if btns.include? 'add'
-    s += btn_sales_del_item  if btns.include? 'del'
-    s += btn_sales_save_item if btns.include? 'save'
-    #s += hidden_field "new_item", new_fields(f, :sales_order_items)
+    s += btn_purchase_new_item  if btns.include? 'add'
+    s += btn_purchase_del_item  if btns.include? 'del'
+    s += btn_purchase_save_item if btns.include? 'save'
+    #s += hidden_field "new_item", new_fields(f, :purchase_order_items)
     s += "</div>"
   end
 
-  def btn_sales_new_item
-    flash[:btn_sales_new_item] = true
+  def btn_purchase_new_item
+    flash[:btn_purchase_new_item] = true
     html = "<a href=\"#\" class=\"button new-item\" caption=\"false\" icon=\"plus\" >Adicionar Item</a>"
   end
 
-  def btn_sales_del_item
-    flash[:btn_sales_del_item] = true
+  def btn_purchase_del_item
+    flash[:btn_purchase_del_item] = true
     html = "<a href=\"#\" class=\"button del-item\" caption=\"false\" icon=\"minus\" >Remover Item</a>"
   end
 
-  def btn_sales_save_item
-    flash[:btn_sales_save_item] = true
+  def btn_purchase_save_item
+    flash[:btn_purchase_save_item] = true
     html = "<a href=\"#\" class=\"button save-item\" caption=\"false\" icon=\"check\" >Salvar Item</a>"
   end
 
-  def js_sales_create_table_item
-    editing? ? html = "$('#sales_order_items tbody tr:last').remove();" : html = ''
+  def js_purchase_create_table_item
+    editing? ? html = "$('#purchase_order_items tbody tr:last').remove();" : html = ''
     html += <<-JS
-              var oTable = $('#sales_order_items').dataTable({
+              var oTable = $('#purchase_order_items').dataTable({
                                "bJQueryUI": true
                              , "sPaginationType": "full_numbers"
                              , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
@@ -39,8 +38,8 @@ module SalesOrdersHelper
               //Array com o index das colunas q deve ser ocultadas
               //var invCols = [0,1];
 
-              $('#sales_order_items').undelegate('tr', 'click');
-              $('#sales_order_items').delegate(  'tr', 'click', function(){
+              $('#purchase_order_items').undelegate('tr', 'click');
+              $('#purchase_order_items').delegate(  'tr', 'click', function(){
                 var t = $(this);
                 $('tr.ui-state-default').removeClass('ui-state-default');
                 t.addClass('ui-state-default');
@@ -55,7 +54,7 @@ module SalesOrdersHelper
 
     if editing?
       html += <<-JS
-              $('#sales_order_items tbody td input').each(function(){
+              $('#purchase_order_items tbody td input').each(function(){
                 var t   = $(this);
                 var val = t.val();
                 t.next().append(val);
@@ -63,11 +62,11 @@ module SalesOrdersHelper
               JS
     end
 
-    flash[:create_sales_table_item] = false
+    flash[:create_purchase_table_item] = false
     html
   end
 
-  def js_sales_new_item
+  def js_purchase_new_item
     html  = <<-JS
               $('a.new-item').click(function(){
                 $('.form-toolbar ~ label input').val('');
@@ -75,24 +74,24 @@ module SalesOrdersHelper
                 return false;
               });
             JS
-    flash[:btn_sales_new_item] = false
+    flash[:btn_purchase_new_item] = false
     html
   end
 
-  def js_sales_del_item
+  def js_purchase_del_item
     html =  <<-JS
               $('a.del-item').click(function(){
                 $('tr.ui-state-default input').appendTo('#trash');
                 $('input[id$=_name]', '#trash').val('');
-                var rowIdx = $('tr.ui-state-default').index('#sales_order_items tbody tr');
+                var rowIdx = $('tr.ui-state-default').index('#purchase_order_items tbody tr');
                 oTable.fnDeleteRow( rowIdx );
               });
             JS
-    flash[:btn_sales_del_item] = false
+    flash[:btn_purchase_del_item] = false
     html
   end
 
-  def js_sales_save_item
+  def js_purchase_save_item
     html  = <<-JS
               $('a.save-item').click(function(){
                 var row            = [];
@@ -122,7 +121,7 @@ module SalesOrdersHelper
 
                 if ($('tr.ui-state-default').length == 0) {
                   oTable.fnAddData(row);
-                  //$('#sales_order_items tbody tr').each(function(){
+                  //$('#purchase_order_items tbody tr').each(function(){
                   //  for (i = 0; i < invCols.length; i++) {
                   //    $('td:eq('+invCols[i]+')', $(this)).addClass('hide');
                   //  }
@@ -143,9 +142,8 @@ module SalesOrdersHelper
                 return false;
               });
             JS
-    flash[:btn_sales_save_item] = false
+    flash[:btn_purchase_save_item] = false
     html
   end
 
 end
-

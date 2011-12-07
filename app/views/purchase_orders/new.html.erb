@@ -1,9 +1,9 @@
 <% content_for :menu do -%>
-  <h1>Novo pedido de vendas</h1>
+  <h1>Novo pedido de compras</h1>
   <%= mount_menu %>
 <% end -%>
 
-<% form_for(@sales_order) do |f| %>
+<% form_for(@purchase_order) do |f| %>
   <div class="form-wrapper">
     <%= f.error_messages %>
 
@@ -15,10 +15,10 @@
     <%= f.text_field   :prevision           , :label => "Previsão de entrega"   , :class => 'datepicker' %>
     <%= f.text_field   :billed              , :label => "Faturado"              , :class => 'datepicker' %>
     <%= f.hidden_field :client_id %>
-    <label class="inputselect w25" for="sales_order_client">
+    <label class="inputselect w25" for="purchase_order_client">
       <span class="wrapper">
-        <span class="title">Cliente</span>
-        <input type="text" size="30" name="client_name" id="sales_order_client_name" class="autocomplete" source="client">
+        <span class="title">Fornecedor</span>
+        <input type="text" size="30" name="client_name" id="purchase_order_client_name" class="autocomplete" source="provider">
       </span>
     </label>
     <%= f.text_field   :seller_id           , :label => "Vendedor"              %>
@@ -31,12 +31,12 @@
     <%= f.text_field   :attendant_id        , :label => "Atendente"             %>
 
     <% field_set_tag 'Itens' do -%>
-      <%= new_sales_item_toolbar f %>
-      <% f.fields_for :order_items do |soi| %>
-        <%= render :partial => "sales_order_item_fields", :locals => {:f => soi} %>
+      <%= new_purchase_item_toolbar f %>
+      <% f.fields_for :order_items do |poi| %>
+        <%= render :partial => "purchase_order_item_fields", :locals => {:f => poi} %>
       <% end -%>
 
-      <table id="sales_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
+      <table id="purchase_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
         <thead>
           <tr>
             <th>Id do item     </th>

@@ -21,6 +21,16 @@ class AutocompleteController < ApplicationController
     end
   end
 
+  def provider
+    @list = Provider.find(:all,
+                          :select => "id, name as label, name as value",
+                          :conditions => ["name like ?", "%#{params[:term]}%"])
+
+    respond_to do |format|
+      format.js { render :action => "autocomplete" }
+    end
+  end
+
   #criada só pra renderizar
   def autocomplete
   end

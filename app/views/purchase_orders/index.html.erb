@@ -1,0 +1,11 @@
+<% content_for :menu do -%>
+  <h1>Pedidos de compra</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @purchase_orders,
+          ["number"     , "Número"  ],
+          ["date"       , "Data"    ],
+          ["client.name", "Cliente" ],
+          ["billed"     , "Faturado"] %>
+

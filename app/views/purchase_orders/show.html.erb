@@ -1,0 +1,58 @@
+<% content_for :menu do -%>
+  <h1>Pedido de compra</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Número"               , h(@purchase_order.number)               %>
+<%= print_content "Tipo de pedido"       , h(@purchase_order.order_type_id)        %>
+<%= print_content "Tipo de venda"        , h(@purchase_order.sale_type_id)         %>
+<%= print_content "Data"                 , h(@purchase_order.date)                 %>
+<%= print_content "Previsão"             , h(@purchase_order.prevision)            %>
+<%= print_content "Faturado"             , h(@purchase_order.billed)               %>
+<%= print_content "Cliente"              , h(@purchase_order.client.name)          %>
+<%= print_content "Vendedor"             , h(@purchase_order.seller_id)            %>
+<%= print_content "Comissão"             , h(@purchase_order.commission)           %>
+<%= print_content "Contato"              , h(@purchase_order.contact_id)           %>
+<%= print_content "Condição de pagamento", h(@purchase_order.payment_condition_id) %>
+<%= print_content "Transportadora"       , h(@purchase_order.carrier_id)           %>
+<%= print_content "Frete"                , h(@purchase_order.freight)              %>
+<%= print_content "Tipo de frete"        , h(@purchase_order.freight_type_id)      %>
+<%= print_content "Atendente"            , h(@purchase_order.attendant_id)         %>
+<%= print_content "Observações"          , h(@purchase_order.observation)          %>
+
+<div class="clear"></div>
+
+<h2>Items</h2>
+<table id="purchase_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
+  <thead>
+    <tr>
+      <th>Produto        </th>
+      <th>Quantidade     </th>
+      <th>Valor Unitário </th>
+      <th>Valor Total    </th>
+      <th>Data de entrega</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @items.each do |poi| %>
+    <tr>
+      <td><%= poi.product_name %></td>
+      <td><%= poi.quantity     %></td>
+      <td><%= poi.unit_value   %></td>
+      <td><%= poi.total_value  %></td>
+      <td><%= poi.delivery     %></td>
+    </tr>
+  <% end -%>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  var oTable = $('#purchase_order_items').dataTable({
+                   "bJQueryUI": true
+                 , "sPaginationType": "full_numbers"
+                 , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
+                 , "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
+                 , "bRetrieve": true
+               });
+</script>
+

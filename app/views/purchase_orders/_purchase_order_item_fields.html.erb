@@ -8,19 +8,16 @@
 
 <div class="clear"></div>
 <script type="text/javascript">
-
-  var calcFields =   '#sales_order_order_items_attributes_0_quantity'
-  calcFields    += ', #sales_order_order_items_attributes_0_unit_value'
+  var calcFields =   '#purchase_order_order_items_attributes_0_quantity'
+  calcFields    += ', #purchase_order_order_items_attributes_0_unit_value'
   $(calcFields).bind('change', function(){
-    var x = $('#sales_order_order_items_attributes_0_quantity'  ).val();
-    var y = $('#sales_order_order_items_attributes_0_unit_value').val();
-
+    var x = $('#purchase_order_order_items_attributes_0_quantity'  ).val();
+    var y = $('#purchase_order_order_items_attributes_0_unit_value').val();
     x = x.replace(',', '.');
     y = y.replace(',', '.');
     var z = (x*y) + '';
     z = z.replace('.', ',');
-
-    $('#sales_order_order_items_attributes_0_total_value').val(z);
+    $('#purchase_order_order_items_attributes_0_total_value').val(z);
   });
 </script>
 

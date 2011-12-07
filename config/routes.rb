@@ -19,6 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :product_kinds
   map.resources :products
   map.resources :providers
+  map.resources :purchase_orders
   map.resources :receivables
   map.resources :sales_orders
   map.resources :terms

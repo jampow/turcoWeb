@@ -14,7 +14,7 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/1.xml
   def show
     @sales_order = SalesOrder.find(params[:id])
-    @items       = @sales_order.sales_order_items
+    @items       = @sales_order.order_items
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,7 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/new.xml
   def new
     @sales_order = SalesOrder.new
-    @sales_order.sales_order_items.build
+    @sales_order.order_items.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,20 +37,18 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/1/edit
   def edit
     @sales_order = SalesOrder.find(params[:id])
-    @item_form   = @sales_order.sales_order_items.build
-    #sales_order_sales_order_item              _product_name
-    #sales_order_sales_order_items_attributes_0_product_name
+    @item_form   = @sales_order.order_items.build
   end
 
   # POST /sales_orders
   # POST /sales_orders.xml
   def create
     @sales_order = SalesOrder.new(params[:sales_order])
-    @sales_order.sales_order_items.build
+    @sales_order.order_items.build
 
     respond_to do |format|
       if @sales_order.save
-        flash[:notice] = 'SalesOrder was successfully created.'
+        flash[:notice] = 'Pedido de venda criado.'
         format.html { redirect_to(@sales_order) }
         format.xml  { render :xml => @sales_order, :status => :created, :location => @sales_order }
       else
@@ -67,7 +65,7 @@ class SalesOrdersController < ApplicationController
 
     respond_to do |format|
       if @sales_order.update_attributes(params[:sales_order])
-        flash[:notice] = 'SalesOrder was successfully updated.'
+        flash[:notice] = 'Pedido de venda atualizado.'
         format.html { redirect_to(@sales_order) }
         format.xml  { head :ok }
       else
