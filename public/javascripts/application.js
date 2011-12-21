@@ -200,7 +200,7 @@ $(function(){
       });
     });
 
-    $('.datepicker'  ).datepicker({'dateFormat': 'yy-mm-dd'});
+    $('.datepicker').datepicker({'dateFormat': 'yy-mm-dd'});
     $('.autocomplete').each(function(){
       var t   = $(this);
       var src = t.attr('source');
@@ -214,7 +214,7 @@ $(function(){
           t.val(ui.item.value);
           $('#'+tid+'_id').val(ui.item.id);
         }
-			});
+      });
     });
 
     message();

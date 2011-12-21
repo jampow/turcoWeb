@@ -7,17 +7,35 @@
   <div class="form-wrapper">
     <%= f.error_messages %>
 
-    <%= f.text_field  :invoice_number   , :label => "Número da NF"      %>
-    <%= f.text_field  :parcel           , :label => "Parcela"           %>
-    <%= f.date_select :due_date         , :label => "Vencimento"        %>
-    <%= f.text_field  :value            , :label => "Valor"             %>
-    <%= f.text_field  :bank_id          , :label => "Banco"             %>
-    <%= f.text_field  :email            , :label => "E-Mail"            %>
-    <%= f.text_field  :deposit_id       , :label => "Depósito"          %>
-    <%= f.date_select :payment_date     , :label => "Data de pagamento" %>
-    <%= f.text_field  :collection_number, :label => "Número do banco"   %>
-    <%= f.text_field  :daily_penalty    , :label => "Mora ao dia"       %>
-    <%= f.text_area   :observations     , :label => "Observações"       %>
+    <fieldset>
+      <legend>Origem</legend>
+      <%= f.text_field :client_id, :label => "Receber de" %>
+      <%= f.text_field :historic, :label => "Histórico" %>
+      <%= f.text_field :issue_date, :label => "Data de Emissão", :class => 'datepicker' %>
+      <%= f.select :document_kind_id, Receivable::DocumentKind.to_select, :label => 'Documento' %>
+      <%= f.text_field :invoice_number , :label => "Número da NF" %>
+    </fieldset>
+    <fieldset>
+      <legend>Recebimento</legend>
+      <%= f.select :account_id, Account.to_select, :label => 'Conta' %>
+      <%= f.select :payment_method_id, Receivable::PaymentMethod.to_select, :label => 'Meio de Pagamento' %>
+      <%= f.text_field :due_date, :label => "Vencimento", :class => 'datepicker' %>
+      <%= f.select :frequency_id, Receivable::Frequency.to_select, :label => 'Frequencia' %>
+      <%= f.text_field :value, :label => "Valor" %>
+
+    </fieldset>
+    <fieldset>
+      <%= f.select :account_plan_id, AccountPlan.to_select, :label => 'Plano de Contas' %>
+
+    </fieldset>
+    <%= f.text_field :parcel, :label => "Parcela" %>
+    <%= f.text_field :bank_id, :label => "Banco" %>
+    <%= f.text_field :email, :label => "E-Mail" %>
+    <%= f.text_field :deposit_id, :label => "Depósito" %>
+    <%= f.date_select :payment_date, :label => "Data de pagamento" %>
+    <%= f.text_field :collection_number, :label => "Número do banco" %>
+    <%= f.text_field :daily_penalty, :label => "Mora ao dia" %>
+    <%= f.text_area :observations, :label => "Observações" %>
   </div>
 <% end %>
 
