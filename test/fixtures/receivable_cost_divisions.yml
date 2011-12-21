@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  account_plan_id: 1
+  cost_center_id: 1
+  observations: MyText
+  value: 1.5
+
+two:
+  account_plan_id: 1
+  cost_center_id: 1
+  observations: MyText
+  value: 1.5
