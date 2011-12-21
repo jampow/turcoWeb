@@ -10,7 +10,7 @@
     <fieldset>
       <legend>Origem</legend>
       <%= f.hidden_field :client_id %>
-      <label class="inputselect w25" for="sales_order_client">
+      <label class="inputselect w25" for="receivable_client_name">
         <span class="wrapper">
           <span class="title">Receber de</span>
           <input type="text" size="30" name="client_name" id="receivable_client_name" class="autocomplete" source="client">
@@ -30,10 +30,51 @@
       <%= f.text_field :value, :label => "Valor" %>
 
     </fieldset>
-    <fieldset>
-      <%= f.select :account_plan_id, AccountPlan.to_select, :label => 'Plano de Contas' %>
-
-    </fieldset>
+    <div id="full_division">
+      <fieldset>
+        <% f.fields_for :receivable_cost_divisions do |division| %>
+          <%= division.select :account_plan_id, AccountPlan.to_select, :label => 'Plano de Contas' %>
+          <%= division.select :cost_center_id, AccountPlan.to_select, :label => 'Centro de Custo' %>
+          <%= division.hidden_field :value %>
+        <% end %>
+      </fieldset>
+    </div>
+    <div id="division_parts" class="clear hhide">
+      <fieldset>
+        <legend>Divisão/Rateio do Valor</legend>
+        <table>
+          <tr>
+            <th>Plano de Conta</th>
+            <th>Centro de Custos</th>
+            <th>Observação</th>
+            <th>Valor</th>
+            <th></th>
+          </tr>
+          <% f.fields_for :receivable_cost_divisions do |division| %>
+            <tr>
+              <td>
+                <%= division.hidden_field :account_plan_id %>
+                <input type="text" size="30" name="account_plan_name" id="receivable_account_plan_name" class="autocomplete" source="account_plan">
+              </td>
+              <td>
+                <%= division.hidden_field :cost_center_id %>
+                <input type="text" size="30" name="cost_center_name" id="receivable_cost_center_name" class="autocomplete" source="cost_center">
+              </td>
+              <td>
+                <%= division.text_field :observations, :original => true %>
+              </td>
+              <td>
+                <%= division.text_field :value, :original => true %>
+              </td>
+              <td>
+                <button>+</button>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </fieldset>
+    </div>
   </div>
 <% end %>
 
+<%= render :partial => "js_new_edit" %>

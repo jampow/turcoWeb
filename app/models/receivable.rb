@@ -42,6 +42,7 @@ class Receivable < ActiveRecord::Base
 
   belongs_to :invoice, :primary_key => "invoice_number", :foreign_key => "invoice_number"
   has_many :receivable_cost_divisions
-  accept_nested_attributes_for :receivable_cost_divisions, :allow_destroy => true
+
+  accepts_nested_attributes_for :receivable_cost_divisions, :allow_destroy => true
 end
 

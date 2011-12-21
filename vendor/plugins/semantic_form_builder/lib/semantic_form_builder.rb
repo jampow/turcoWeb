@@ -34,6 +34,7 @@ class SemanticFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def text_field(method, options)
+    return super if options[:original]
     #options[:def_class] ||= ""
     #options[:def_class] += " field"
     field_name, label, options = field_settings(method, options)
