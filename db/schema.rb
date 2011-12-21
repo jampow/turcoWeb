@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111220112659) do
+ActiveRecord::Schema.define(:version => 20111220113010) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -286,6 +286,7 @@ ActiveRecord::Schema.define(:version => 20111220112659) do
     t.float    "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "receivable_id"
   end
 
   create_table "receivables", :force => true do |t|
