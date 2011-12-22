@@ -22,6 +22,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :purchase_orders
   map.resources :receivables
   map.resources :sales_orders
+  map.resources :sellers
+  map.resources :seller_credit_accounts
   map.resources :terms
   map.resources :users
   map.resource  :user_session, :collection => {:timeout => :get}

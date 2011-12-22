@@ -328,6 +328,36 @@ ActiveRecord::Schema.define(:version => 20111220113010) do
     t.datetime "updated_at"
   end
 
+  create_table "seller_credit_accounts", :force => true do |t|
+    t.integer  "seller_id"
+    t.string   "name"
+    t.string   "historic"
+    t.float    "credit"
+    t.float    "debit"
+    t.date     "date"
+    t.text     "observations"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sellers", :force => true do |t|
+    t.string   "name"
+    t.string   "contact"
+    t.integer  "address_id"
+    t.string   "core"
+    t.string   "person"
+    t.string   "cnpj"
+    t.string   "document"
+    t.boolean  "iss"
+    t.integer  "bank_id"
+    t.string   "agency"
+    t.string   "account"
+    t.string   "inss_base"
+    t.text     "observation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "terms", :force => true do |t|
     t.string   "name"
     t.text     "term"

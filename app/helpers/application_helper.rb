@@ -39,6 +39,7 @@ module ApplicationHelper
         s += btn_editpass(controller, id)         if btn == "editpass"
         s += btn_organizer(controller)            if btn == "order"
         s += btn_upload(controller, id)           if btn == "upload"
+        s += btn_credit_account(id)               if btn == "credit_account"
       end
     else
       s += default_btn(action, controller, id)
