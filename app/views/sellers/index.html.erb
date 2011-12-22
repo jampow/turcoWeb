@@ -1,0 +1,8 @@
+<% content_for :menu do -%>
+  <h1>Representantes</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @sellers, ['name'   , 'Nome'   ],
+                    ['contact', 'Contato'] %>
+

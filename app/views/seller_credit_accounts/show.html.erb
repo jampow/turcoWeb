@@ -1,0 +1,14 @@
+<% content_for :menu do -%>
+  <h1>Movimento de conta corrente <%= @seller.name %></h1>
+  <%= mount_menu %>
+<% end -%>
+
+
+<%= print_content 'Representante', h(@seller.name)                        %>
+<%= print_content 'Nome'         , h(@seller_credit_account.name)         %>
+<%= print_content 'Histórico'    , h(@seller_credit_account.historic)     %>
+<%= print_content 'Crédito'      , h(@seller_credit_account.credit)       %>
+<%= print_content 'Débito'       , h(@seller_credit_account.debit)        %>
+<%= print_content 'Data'         , h(@seller_credit_account.date)         %>
+<%= print_content 'Observações'  , h(@seller_credit_account.observations) %>
+

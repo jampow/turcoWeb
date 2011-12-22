@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  contact: MyString
+  address_id: 1
+  core: MyString
+  person: MyString
+  cnpj: MyString
+  document: MyString
+  iss: false
+  bank_id: 1
+  agency: MyString
+  account: MyString
+  inss_base: MyString
+  observation: MyText
+
+two:
+  name: MyString
+  contact: MyString
+  address_id: 1
+  core: MyString
+  person: MyString
+  cnpj: MyString
+  document: MyString
+  iss: false
+  bank_id: 1
+  agency: MyString
+  account: MyString
+  inss_base: MyString
+  observation: MyText

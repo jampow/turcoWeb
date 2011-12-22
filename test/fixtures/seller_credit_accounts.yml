@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  seller_id: 1
+  name: MyString
+  historic: MyString
+  credit: 1.5
+  debit: 1.5
+  date: 2011-12-19
+  observations: MyText
+
+two:
+  seller_id: 1
+  name: MyString
+  historic: MyString
+  credit: 1.5
+  debit: 1.5
+  date: 2011-12-19
+  observations: MyText

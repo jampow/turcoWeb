@@ -1,0 +1,2 @@
+module SellerCreditAccountsHelper
+end

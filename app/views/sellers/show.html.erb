@@ -1,0 +1,88 @@
+<% content_for :menu do -%>
+  <h1>Representante</h1>
+  <%= mount_menu %w[default separator credit_account] %>
+<% end -%>
+
+<%= print_content 'Nome'       , h(@seller.name)        %>
+<%= print_content 'Contato'    , h(@seller.contact)     %>
+<%= print_content 'Core'       , h(@seller.core)        %>
+<%= print_content 'Pessoa'     , h(@seller.person)      %>
+<%= print_content 'CNPJ/CPF'   , h(@seller.cnpj)        %>
+<%= print_content 'Documento'  , h(@seller.document)    %>
+<%= print_content 'ISS'        , h(@seller.iss)         %>
+<%= print_content 'Agência'    , h(@seller.agency)      %>
+<%= print_content 'Conta'      , h(@seller.account)     %>
+<%= print_content 'INSS Base'  , h(@seller.inss_base)   %>
+<%= print_content 'Observações', h(@seller.observation) %>
+<%# print_content 'Banco', h(@seller.bank.name) %>
+
+<%= address_container 'Endereço', @address     %>
+
+<div class="clear"></div>
+
+
+<div style="float:left;width:50%">
+  <div style="padding:10px 5px 0 0;">
+    <h2>Extrato da conta</h2>
+    <table id="account_statement" cellpading="0" cellspacing="0" border="0" width="100%">
+      <thead>
+        <tr>
+          <th>Data     </th>
+          <th>Histórico</th>
+          <th>Crédito  </th>
+          <th>Débito   </th>
+          <th>Saldo    </th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @credit_accounts.each do |ca| %>
+        <tr>
+          <td><%= ca.date     %></td>
+          <td><%= ca.historic %></td>
+          <td><%= ca.credit   %></td>
+          <td><%= ca.debit    %></td>
+          <td><%= ca.balance  %></td>
+        </tr>
+      <% end -%>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div style="float:left;width:50%">
+  <div style="padding:10px 5px 0 0;">
+    <h2>Faturamento do período</h2>
+    <table id="invoices" cellpading="0" cellspacing="0" border="0" width="100%">
+      <thead>
+        <tr>
+          <th>Data    </th>
+          <th>Nota    </th>
+          <th>Cliente </th>
+          <th>Total   </th>
+          <th>Comissão</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @invoices.each do |i| %>
+        <tr>
+          <td><%= i.operation      %></td>
+          <td><%= i.invoice_number %></td>
+          <td><%= i.client.name    %></td>
+          <td><%= i.products_value %></td>
+          <td><%= i.commission_rate %></td>
+        </tr>
+      <% end -%>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var oTable = $('#account_statement, #invoices').dataTable({
+                   "bJQueryUI": true
+                 , "sPaginationType": "full_numbers"
+                 , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
+                 , "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
+                 , "bRetrieve": true
+               });
+</script>

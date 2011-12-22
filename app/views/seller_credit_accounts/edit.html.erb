@@ -1,0 +1,19 @@
+<% content_for :menu do -%>
+  <h1>Editando movimento de conta corrente</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@seller_credit_account) do |f| %>
+  <%= f.error_messages %>
+
+    <%= f.hidden_field :seller_id %>
+    
+    <%= f.text_area  :observations, :label => 'Observações' %>
+    <%= f.text_field :name        , :label => 'Nome'        %>
+    <%= f.text_field :historic    , :label => 'Histórico'   %>
+    <%= f.text_field :date        , :label => 'Data'        , :class => 'datepicker' %>
+    <%= f.text_field :credit      , :label => 'Crédito'     %>
+    <%= f.text_field :debit       , :label => 'Débito'      %>
+
+<% end %>
+

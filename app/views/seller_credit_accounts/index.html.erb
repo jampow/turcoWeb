@@ -1,0 +1,11 @@
+<% content_for :menu do -%>
+  <h1>Lançamentos do representante <%= @seller.name %></h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @seller_credit_accounts, ['name'    , 'Nome'     ],
+                                   ['historic', 'Histórico'],
+                                   ['credit'  , 'Crédito'  ],
+                                   ['debit'   , 'Débito'   ] %>
+
+
