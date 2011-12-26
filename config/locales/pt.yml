@@ -208,6 +208,7 @@
       cst_ipi: "Subst. Tributária Ipi"
       cst_pis: "Subst. Tributária Pis"
       sales_order: "Pedido de venda"
+      cost_center: "Centro de Custos"
 
     attributes:
       activity:
@@ -224,4 +225,5 @@
         description: "Descrição"
       sales_order:
         client_id: "Cliente"
-
+      cost_center:
+        name: "Nome"

@@ -1,0 +1,10 @@
+<% content_for :menu do -%>
+  <h1>Novo Centro de Custo</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@cost_center) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field :name, :label => "Nome", :required => true %>
+<% end %>

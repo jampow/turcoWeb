@@ -1,0 +1,7 @@
+<% content_for :menu do -%>
+  <h1>Centros de custo</h1>
+  <%= mount_menu %>
+<% end -%>  
+
+<%= table @cost_centers, ['name', 'Nome'] %>
+

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :cost_centers
+
 
   map.resources :activities
   map.resources :attachments
