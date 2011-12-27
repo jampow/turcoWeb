@@ -1,9 +1,17 @@
 <script type="text/javascript">
   $(function(){
     $('#receivable_value').change(function(){
-      alert($(this).val());
       $('#receivable_receivable_cost_divisions_attributes_0_value').val($(this).val());
     });
+    function addClick(event){
+      event.preventDefault();
+      var content = $(this).parents('tr').html();
+      var original = $('<tr></tr>').html(content);
+      original.find('.add').click(addClick);
+      $(this).parents('tr').before(original);
+      $(this).parents('tr').find('td:last').empty();
+    }
+    $('.add').click(addClick);
   });
 </script>
 

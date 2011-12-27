@@ -3,15 +3,7 @@
   <%= mount_menu %>
 <% end -%>
 
-<%= print_content "Número da NF"          , h(@receivable.invoice_number      %>
-<%= print_content "Parcela"               , h(@receivable.parcel              %>
-<%= print_content "Vencimento"            , h(@receivable.due_date            %>
-<%= print_content "Valor"                 , h(@receivable.value               %>
-<%= print_content "Banco"                 , h(@receivable.bank_id             %>
-<%= print_content "E-Mail"                , h(@receivable.email               %>
-<%= print_content "???"                   , h(@receivable.deposit_id          %>
-<%= print_content "Data de pagamento"     , h(@receivable.payment_date        %>
-<%= print_content "Número do banco"       , h(@receivable.collection_number   %>
-<%= print_content "Mora ao dia"           , h(@receivable.daily_penalty       %>
-<%= print_content "Observações"           , h(@receivable.observations        %>
+<%= print_content "Número da NF"          , h(@receivable.invoice_number)      %>
+<%= print_content "Vencimento"            , h(@receivable.due_date)            %>
+<%= print_content "Valor"                 , h(@receivable.value)               %>
 
