@@ -5,3 +5,31 @@
 
 <%= print_content "Nome", h(@account_plan.name) %>
 
+<div class="clear"></div>
+
+<table id="apportionments" cellpading="0" cellspacing="0" border="0" width="100%">
+  <thead>
+    <tr>
+      <th>Centro de custo</th>
+      <th>Porcentagem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @apportionments.each do |app| -%>
+    <tr>
+      <td><%=h app.cost_center_name %></td>
+      <td><%=h app.rate             %></td>
+    </tr>
+    <% end -%>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $('#apportionments').dataTable({
+     "bJQueryUI": true
+   , "sPaginationType": "full_numbers"
+   , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
+   , "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
+   , "bRetrieve": true
+  });
+</script>

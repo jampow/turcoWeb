@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111220113010) do
+ActiveRecord::Schema.define(:version => 20111227125510) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(:version => 20111220113010) do
     t.string   "cep",              :limit => 9
     t.string   "addressable_type"
     t.integer  "addressable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "apportionments", :force => true do |t|
+    t.integer  "account_plan_id"
+    t.integer  "cost_center_id"
+    t.string   "cost_center_name"
+    t.float    "rate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -13,7 +13,8 @@ class AccountPlansController < ApplicationController
   # GET /account_plans/1
   # GET /account_plans/1.xml
   def show
-    @account_plan = AccountPlan.find(params[:id])
+    @account_plan   = AccountPlan.find(params[:id])
+    @apportionments = @account_plan.apportionments
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +26,7 @@ class AccountPlansController < ApplicationController
   # GET /account_plans/new.xml
   def new
     @account_plan = AccountPlan.new
+    @account_plan.apportionments.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +36,15 @@ class AccountPlansController < ApplicationController
 
   # GET /account_plans/1/edit
   def edit
-    @account_plan = AccountPlan.find(params[:id])
+    @account_plan        = AccountPlan.find(params[:id])
+    @apportionments_form = @account_plan.apportionments.build
   end
 
   # POST /account_plans
   # POST /account_plans.xml
   def create
     @account_plan = AccountPlan.new(params[:account_plan])
+    @account_plan.apportionments.build
 
     respond_to do |format|
       if @account_plan.save
