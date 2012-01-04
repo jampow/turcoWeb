@@ -24,5 +24,10 @@
   <%= js_purchase_new_item          if flash[:btn_purchase_new_item]      %>
   <%= js_purchase_del_item          if flash[:btn_purchase_del_item]      %>
   <%= js_purchase_save_item         if flash[:btn_purchase_save_item]     %>
+  
+  <%= js_apportionments_create_table if flash[:create_apportionments_table] %>
+  <%= js_apportionments_add          if flash[:btn_apportionments_add]      %>
+  <%= js_apportionments_del          if flash[:btn_apportionments_del]      %>
+  <%= js_apportionments_save         if flash[:btn_apportionments_save]     %>
 </script>
 

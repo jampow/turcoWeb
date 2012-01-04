@@ -1,8 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.resources :account_plans
   map.resources :activities
   map.resources :attachments
   map.resources :clients
+  map.resources :cost_centers
   map.resources :cst_cofins
   map.resources :cst_icms
   map.resources :cst_ipis

@@ -1,0 +1,44 @@
+<% content_for :menu do -%>
+  <h1>Editando plano de contas</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@account_plan) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field :name, :label => "Nome", :required => true %>
+  
+  <% field_set_tag 'Rateio' do -%>
+    <%= apportionments_toolbar f %>
+    <% f.fields_for :apportionments, @apportionments_form do |app| %>
+      <%= render :partial => "apportionments", :locals => { :app => app } %>
+    <% end -%>
+  <% end -%>
+  
+  <table id="apportionments" cellpading="0" cellspacing="0" border="0" width="100%">
+    <thead>
+      <tr>
+        <th>Id                 </th>
+        <th>Id Plano de Contas </th>
+        <th>Id Centro de Custos</th>
+        <th>Centro de Custo    </th>
+        <th>Porcentagem        </th>
+      </tr>
+    </thead>
+    <tbody>
+    <% f.fields_for :apportionments, @apportionments do |appo| %>
+      <tr>
+        <td><%= appo.hidden_field :id               %><span></span></td>
+        <td><%= appo.hidden_field :account_plan_id  %><span></span></td>
+        <td><%= appo.hidden_field :cost_center_id   %><span></span></td>
+        <td><%= appo.hidden_field :cost_center_name %><span></span></td>
+        <td><%= appo.hidden_field :rate             %><span></span></td>
+      </tr>
+    <% end -%>
+    </tbody>
+  </table>
+
+  <div id="trash" class="hide"></div>
+  
+  
+<% end %>

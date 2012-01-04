@@ -1,0 +1,7 @@
+<% content_for :menu do -%>
+  <h1>Planos de conta</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @account_plans, ['name', 'Nome'] %>
+

@@ -199,17 +199,21 @@
         format: "%{attribute} %{message}"
 
     models:
+      account_plan: "Plano de contas"
       activity: "Ramo de atividade"
       client: "Cliente"
-      product: "Produto"
+      cost_center: "Centro de Custos"
       cst: "Subst. Tributária"
       cst_cofins: "Subst. Tributária Cofins"
       cst_icm: "Subst. Tributária Icm"
       cst_ipi: "Subst. Tributária Ipi"
       cst_pis: "Subst. Tributária Pis"
+      product: "Produto"
       sales_order: "Pedido de venda"
 
     attributes:
+      account_plan:
+        name: "Nome"
       activity:
         name: "Nome"
       client:
@@ -219,6 +223,8 @@
         ie: "IE"
         active: "Ativo"
         activity_id: "Ramo de atividade"
+      cost_center:
+        name: "Nome"
       cst:
         code: "Código"
         description: "Descrição"
