@@ -37,11 +37,11 @@
       <tbody>
       <% @credit_accounts.each do |ca| %>
         <tr>
-          <td><%= ca.date     %></td>
+          <td class="center"><%= l ca.date     %></td>
           <td><%= ca.historic %></td>
-          <td><%= ca.credit   %></td>
-          <td><%= ca.debit    %></td>
-          <td><%= ca.balance  %></td>
+          <td class="right"><%= number_to_currency ca.credit   %></td>
+          <td class="right"><%= number_to_currency ca.debit    %></td>
+          <td class="right"><%= number_to_currency ca.balance  %></td>
         </tr>
       <% end -%>
       </tbody>
@@ -65,10 +65,10 @@
       <tbody>
       <% @invoices.each do |i| %>
         <tr>
-          <td><%= i.operation      %></td>
+          <td class="center"><%= l i.operation      %></td>
           <td><%= i.invoice_number %></td>
           <td><%= i.client.name    %></td>
-          <td><%= i.products_value %></td>
+          <td class="right"><%= number_to_currency i.products_value %></td>
           <td><%= i.commission_rate %></td>
         </tr>
       <% end -%>
