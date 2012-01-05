@@ -39,6 +39,35 @@ class Receivable < ActiveRecord::Base
     end
   end
 
+  class RateType <
+    Struct.new(:id, :name)
+    VALUES = [
+      {:id => 1, :name => 'Manualmente'},
+      {:id => 2, :name => 'Automaticamente'}
+    ]
+    def self.all
+      VALUES.map { |v| self.new(v[:id], v[:name]) }
+    end
+
+    def self.to_select
+      VALUES.map { |v| [v[:name], v[:id]] }
+    end
+  end
+
+  class RateCalculationType <
+    Struct.new(:id, :name)
+    VALUES = [
+      {:id => 1, :name => 'Diariamente'},
+      {:id => 2, :name => 'Mensalmente'}
+    ]
+    def self.all
+      VALUES.map { |v| self.new(v[:id], v[:name]) }
+    end
+
+    def self.to_select
+      VALUES.map { |v| [v[:name], v[:id]] }
+    end
+  end
 
   belongs_to :invoice, :primary_key => "invoice_number", :foreign_key => "invoice_number"
   has_many :receivable_cost_divisions
