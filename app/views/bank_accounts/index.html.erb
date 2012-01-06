@@ -1,0 +1,10 @@
+<% content_for :menu do -%>
+  <h1>Contas bancárias</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @bank_accounts, ['bank_name'     , 'Banco'   ], 
+                          ['agency_number' , 'Agência' ],
+                          ['account_number', 'Conta'   ],
+                          ['phone'         , 'Telefone'] %>
+
