@@ -1,6 +1,6 @@
 <% content_for :menu do -%>
   <h1>Conta bancária</h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[default separator transactions] %>
 <% end -%>
 
 <%= print_content "Contato"           , h(@bank_account.contact)        %>

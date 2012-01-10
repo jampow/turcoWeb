@@ -1,0 +1,12 @@
+<% content_for :menu do -%>
+  <h1>Movimentações bancárias</h1>
+  <h3><%= @bank_account.bank_name + ' (Ag.: ' + @bank_account.agency_number + ' - Conta: ' + @bank_account.account_number + ')' %></h3>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Nome"     , h(@bank_account_transaction.name)                   , :width => 50 %>
+<%= print_content "Histórico", h(@bank_account_transaction.historic)               , :width => 50 %>
+<%= print_content "Crédito"  , number_to_currency(@bank_account_transaction.credit)               %>
+<%= print_content "Débito"   , number_to_currency(@bank_account_transaction.debit)                %>
+<%= print_content "Data"     , l(@bank_account_transaction.date)                                  %>
+

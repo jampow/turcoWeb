@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120105222456) do
+ActiveRecord::Schema.define(:version => 20120109130003) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(:version => 20120105222456) do
     t.string   "filename"
     t.string   "content_type"
     t.binary   "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bank_account_transactions", :force => true do |t|
+    t.integer  "bank_account_id"
+    t.string   "name"
+    t.string   "historic"
+    t.decimal  "debit",           :precision => 9, :scale => 3
+    t.decimal  "credit",          :precision => 9, :scale => 3
+    t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

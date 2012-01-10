@@ -1,0 +1,17 @@
+<% content_for :menu do -%>
+  <h1>Nova transação</h1>
+  <h3><%= @bank_account.bank_name + ' (Ag.: ' + @bank_account.agency_number + ' - Conta: ' + @bank_account.account_number + ')' %></h3>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@bank_account_transaction) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.hidden_field :bank_account_id  %>
+  <%= f.text_field   :name        , :label => "Nome"      , :size => 50 %>
+  <%= f.text_field   :historic    , :label => "Historico" , :size => 50 %>
+  <%= f.text_field   :credit      , :label => "Crédito"   %>
+  <%= f.text_field   :debit       , :label => "Débito"    %>
+  <%= f.text_field   :date        , :label => "Data"      , :class => "datepicker" %>
+<% end %>
+
