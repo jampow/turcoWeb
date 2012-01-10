@@ -1,0 +1,35 @@
+<% content_for :menu do -%>
+  <h1>Nova conta</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@bank_account) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_area  :observations  , :label => "Observações"        %>
+  <%= f.text_field :bank_name     , :label => "Banco"              %>
+  <%= f.text_field :agency_number , :label => "Número da agência"  %>
+  <%= f.text_field :account_number, :label => "Número da conta"    %>
+  <%= f.text_field :contact       , :label => "Contato"            %>
+  <%= f.text_field :phone         , :label => "Telefone"          , :class => "mask-phone" %>
+  <%= f.text_field :fax           , :label => "Fax"               , :class => "mask-phone" %>
+  <%= f.text_field :email_cob     , :label => "E-mail de cobrança" %>
+  <%= f.text_field :email_ger     , :label => "E-mail da gerência" %>
+  <%= f.text_field :manager       , :label => "Gerente"            %>
+  <%= f.text_field :manager_cel   , :label => "Celular do gerente", :class => "mask-phone" %>
+
+  <% field_set_tag "Endereço" do %>
+    <%= address_toolbar %w[map cep] %>
+    <% f.fields_for :address do |a| %>
+      <%= a.text_field :cep                  , :label => "CEP"         , :class => 'mask-cep' %>
+      <%= a.text_field :street               , :label => "Endereço"                           %>
+      <%= a.text_field :number               , :label => "Número"                             %>
+      <%= a.text_field :complement           , :label => "Complemento"                        %>
+      <%= a.text_field :neighborhood         , :label => "Bairro"                             %>
+      <%= a.text_field :city                 , :label => "Cidade"                             %>
+      <%= a.select     :estate_id, @estate   , :label => "Estado"                             %>
+      <%= a.text_field :country              , :label => "País"                               %>
+    <% end %>
+  <% end %>
+  
+<% end -%>

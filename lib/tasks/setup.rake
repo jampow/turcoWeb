@@ -10,6 +10,7 @@ namespace :database do
       u.password_confirmation = '123456'
     end
     user.has_role! :master
+    user.has_role! :permissions_e
     puts 'Novo usuário criado'
     puts 'Username: ' << user.login
     puts 'Email   : ' << user.email

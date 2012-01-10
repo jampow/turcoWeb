@@ -1,5 +1,7 @@
 class Contact < Person
   belongs_to :client    , :foreign_key => "external_id"
+  
+  # Setor e Função do contato
   belongs_to :department, :foreign_key => "department_id", :class_name => "DeptContact"
   belongs_to :function  , :foreign_key => "function_id"  , :class_name => "FuncContact"
 

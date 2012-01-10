@@ -27,19 +27,21 @@ module ApplicationHelper
 
     if btns.length > 0
       btns[0].each do |btn|
-        s += default_btn(action, controller, id)  if btn == "default"
-
-        s += btn_separator                        if btn == "separator"
-        s += btn_save                             if btn == "save"
-        s += btn_show(controller, id)             if btn == "show"
-        s += btn_back(controller)                 if btn == "back"
-        s += btn_new(controller)                  if btn == "new"
-        s += btn_edit(controller, id)             if btn == "edit"
-        s += btn_delete(controller, id)           if btn == "delete"
-        s += btn_editpass(controller, id)         if btn == "editpass"
-        s += btn_organizer(controller)            if btn == "order"
-        s += btn_upload(controller, id)           if btn == "upload"
-        s += btn_credit_account(id)               if btn == "credit_account"
+        s += case btn
+               when "default"       : default_btn        action, controller, id
+               when "separator"     : btn_separator
+               when "save"          : btn_save
+               when "show"          : btn_show                   controller, id
+               when "back"          : btn_back                   controller
+               when "new"           : btn_new                    controller
+               when "edit"          : btn_edit                   controller, id
+               when "delete"        : btn_delete                 controller, id
+               when "editpass"      : btn_editpass               controller, id
+               when "organizer"     : btn_organizer              controller
+               when "upload"        : btn_upload                 controller, id
+               when "credit_account": btn_credit_account                     id
+               when "transactions"  : btn_transactions                       id
+             end
       end
     else
       s += default_btn(action, controller, id)

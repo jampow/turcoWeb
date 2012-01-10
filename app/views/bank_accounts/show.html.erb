@@ -1,0 +1,20 @@
+<% content_for :menu do -%>
+  <h1>Conta bancária</h1>
+  <%= mount_menu %w[default separator transactions] %>
+<% end -%>
+
+<%= print_content "Contato"           , h(@bank_account.contact)        %>
+<%= print_content "Telefone"          , h(@bank_account.phone)          %>
+<%= print_content "Fax"               , h(@bank_account.fax)            %>
+<%= print_content "E-mail de cobrança", h(@bank_account.email_cob)      %>
+<%= print_content "E-mail da gerência", h(@bank_account.email_ger)      %>
+<%= print_content "Gerente"           , h(@bank_account.manager)        %>
+<%= print_content "Celular do gerente", h(@bank_account.manager_cel)    %>
+<%= print_content "Agência"           , h(@bank_account.agency_number)  %>
+<%= print_content "Conta"             , h(@bank_account.account_number) %>
+<%= print_content "Observações"       , h(@bank_account.observations)   , :width => 100 %>
+
+<div class="clear"></div>
+
+<%= address_container 'Endereço', @address %>
+

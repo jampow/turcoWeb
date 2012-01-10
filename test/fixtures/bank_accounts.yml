@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  contato: MyString
+  phone: MyString
+  fax: MyString
+  email_cob: MyString
+  email_sal: MyString
+  email_ger: MyString
+  address_id: 1
+  manager: MyString
+  manager_cel: MyString
+  agency_number: MyString
+  account_number: MyString
+  observations: MyText
+
+two:
+  contato: MyString
+  phone: MyString
+  fax: MyString
+  email_cob: MyString
+  email_sal: MyString
+  email_ger: MyString
+  address_id: 1
+  manager: MyString
+  manager_cel: MyString
+  agency_number: MyString
+  account_number: MyString
+  observations: MyText

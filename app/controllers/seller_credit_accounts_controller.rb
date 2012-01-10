@@ -4,7 +4,6 @@ class SellerCreditAccountsController < ApplicationController
   def index
     session[:seller_id] = params[:seller_id] if params[:seller_id]
     @seller_credit_accounts = SellerCreditAccount.find(:all, :conditions => ['seller_id = ?', session[:seller_id]])
-    @seller_credit_accounts = [] if @seller_credit_accounts.nil?
     default_data
 
     respond_to do |format|
