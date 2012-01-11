@@ -49,39 +49,39 @@
           </fieldset>
         </div>
         <div id="division_parts" class="hide">
-          <fieldset>
-            <legend>Divisão/Rateio do Valor</legend>
-            <table>
-              <tr>
-                <th style="width:">Plano de Conta</th>
-                <th style="">Centro de Custos</th>
-                <th style="">Observação</th>
-                <th style="">Valor</th>
-                <th style=""></th>
-              </tr>
-              <% f.fields_for :receivable_cost_divisions do |division| %>
+          <% field_set_tag 'Divisão/Rateio do Valor' do -%>
+            <%= new_receivable_division_item_toolbar f %>
+            <% f.fields_for :receivable_cost_divisions do |rcd| %>
+              <label class="hide"><%= rcd.hidden_field :id %></label>
+              <label class="hide"><%= rcd.hidden_field :account_plan_id %></label>
+              <%= rcd.text_field :account_plan_name, :label => 'Plano de Conta', :class => 'autocomplete', :source => 'account_plan' %>
+              <label class="hide"><%= rcd.hidden_field :cost_center_id %></label>
+              <%= rcd.text_field :cost_center_name, :label => 'Centro de Custo', :class => 'autocomplete', :source => 'cost_center' %>
+              <%= rcd.text_field :observations, :label => 'Observação' %>
+              <%= rcd.text_field :value, :label => 'Valor' %>
+              <div class="clear"></div>
+            <% end -%>
+
+            <table id="receivable_division_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
+              <thead>
                 <tr>
-                  <td>
-                    <%= division.hidden_field :account_plan_id %>
-                    <input type="text" size="30" name="account_plan_name" id="receivable_account_plan_name" class="autocomplete" source="account_plan">
-                  </td>
-                  <td>
-                    <%= division.hidden_field :cost_center_id %>
-                    <input type="text" size="30" name="cost_center_name" id="receivable_cost_center_name" class="autocomplete" source="cost_center">
-                  </td>
-                  <td>
-                    <%= division.text_field :observations, :original => true, :style => "width:300px;" %>
-                  </td>
-                  <td>
-                    <%= division.text_field :value, :original => true, :style => "width:60px;" %>
-                  </td>
-                  <td>
-                    <a class="button add" href="#">+</a>
-                  </td>
+                  <th>Id</th>
+                  <th>Id do Plano</th>
+                  <th style="width:">Plano de Conta</th>
+                  <th>Id do Centro</th>
+                  <th style="">Centro de Custos</th>
+                  <th style="">Observação</th>
+                  <th style="">Valor</th>
                 </tr>
-              <% end %>
+              </thead>
+              <tbody>
+              </tbody>
             </table>
-          </fieldset>
+
+            <div id="trash" class="hide"></div>
+
+          <% end -%>
+
           <div class="clear">
             <a id="exclude_divisions" class="button" href="#">Excluir Todas as Divisões</a>
           </div>
@@ -102,6 +102,13 @@
       </div>
     </div>
   </div>
+<% end %>
+
+<% content_for :script do %>
+  <%= js_receivable_division_create_table_item %>
+  <%= js_receivable_division_new_item %>
+  <%= js_receivable_division_save_item %>
+  <%= js_receivable_division_del_item %>
 <% end %>
 
 <%= render :partial => "js_new_edit" %>
