@@ -41,6 +41,8 @@ module ApplicationHelper
                when "upload"        : btn_upload                 controller, id
                when "credit_account": btn_credit_account                     id
                when "transactions"  : btn_transactions                       id
+               when "measureunits"  : btn_measure_units                      id
+               when "stocks"        : btn_stocks                             id
              end
       end
     else
@@ -199,5 +201,8 @@ module ApplicationHelper
     fields
   end
 
+  def human_boolean(bool)
+    bool ? "Sim" : "Não"
+  end
 end
 

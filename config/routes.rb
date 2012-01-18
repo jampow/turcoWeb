@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :func_contacts
   map.resources :hollydays
   map.resources :invoices
+  map.resources :measure_units
   map.resources :messages
   map.resources :ncms
   map.resources :permissions
@@ -28,6 +29,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sales_orders
   map.resources :sellers
   map.resources :seller_credit_accounts
+  map.resources :stocks
   map.resources :terms
   map.resources :users
   map.resource  :user_session, :collection => {:timeout => :get}
