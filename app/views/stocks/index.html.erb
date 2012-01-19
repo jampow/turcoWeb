@@ -3,8 +3,8 @@
   <%= mount_menu %w[new show]%>
 <% end -%>
 
-<%= table @stocks, ["description" , "Descrição" ],
-                   ["total_before", "Total Antes", {:class => "right"}],
-                   ["quantity"    , "Quantidade" , {:class => "right"}],
-                   ["total"       , "Total"      , {:class => "right"}] %>
+<%= table @stocks, ["description"                    , "Descrição" ],
+                   ["total_before.to_s + ' ' + o.tb_munit" , "Total Antes", {:class => "right"}],
+                   ["quantity.to_s     + ' ' + o.mu_munit" , "Quantidade" , {:class => "right"}],
+                   ["total.to_s        + ' ' + o.tm_munit" , "Total"      , {:class => "right"}] %>
 
