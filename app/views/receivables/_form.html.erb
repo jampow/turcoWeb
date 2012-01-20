@@ -1,0 +1,114 @@
+<% content_for :menu do -%>
+  <h1>Título a receber</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@receivable) do |f| %>
+  <div class="form-wrapper">
+    <div id="tabs">
+      <ul>
+        <li><a href="#general">Geral</a></li>
+        <li><a href="#aditional-informations">Informações Adicionais</a></li>
+      </ul>
+      <div id="general">
+        <%= f.error_messages %>
+
+        <fieldset>
+          <legend>Origem</legend>
+          <%= f.hidden_field :client_id %>
+          <label class="inputselect w25" for="receivable_client_name">
+            <span class="wrapper">
+              <span class="title">Receber de</span>
+              <input type="text" size="30" name="client_name" id="receivable_client_name" class="autocomplete" source="client">
+            </span>
+          </label>
+          <%= f.text_field :historic, :label => "Histórico" %>
+          <%= f.text_field :issue_date, :label => "Data de Emissão", :class => 'datepicker' %>
+          <%= f.select :document_kind_id, Receivable::DocumentKind.to_select, :label => 'Documento' %>
+          <%= f.text_field :invoice_number , :label => "Número da NF" %>
+        </fieldset>
+        <fieldset>
+          <legend>Recebimento</legend>
+          <%= f.select :account_id, Account.to_select, :label => 'Conta' %>
+          <%= f.select :payment_method_id, Receivable::PaymentMethod.to_select, :label => 'Meio de Pagamento' %>
+          <%= f.text_field :due_date, :label => "Vencimento", :class => 'datepicker' %>
+          <%= f.select :frequency_id, Receivable::Frequency.to_select, :label => 'Frequencia' %>
+          <%= f.text_field :value, :label => "Valor" %>
+
+        </fieldset>
+        <div id="full_division">
+          <fieldset>
+            <% f.fields_for :receivable_cost_divisions do |division| %>
+              <%= division.select :account_plan_id, AccountPlan.to_select, :label => 'Plano de Contas' %>
+              <%= division.select :cost_center_id, CostCenter.to_select, :label => 'Centro de Custo' %>
+              <%= division.hidden_field :value %>
+            <% end %>
+            <div class="clear">
+              <a id="divide_value" class="button" href="#">Dividir/Ratear Valor</a>
+            </div>
+          </fieldset>
+        </div>
+        <div id="division_parts" class="hide">
+          <% field_set_tag 'Divisão/Rateio do Valor' do -%>
+            <%= new_receivable_division_item_toolbar f %>
+            <% f.fields_for :receivable_cost_divisions do |rcd| %>
+              <label class="hide"><%= rcd.hidden_field :id %></label>
+              <label class="hide"><%= rcd.hidden_field :account_plan_id %></label>
+              <%= rcd.text_field :account_plan_name, :label => 'Plano de Conta', :class => 'autocomplete', :source => 'account_plan' %>
+              <label class="hide"><%= rcd.hidden_field :cost_center_id %></label>
+              <%= rcd.text_field :cost_center_name, :label => 'Centro de Custo', :class => 'autocomplete', :source => 'cost_center' %>
+              <%= rcd.text_field :observations, :label => 'Observação' %>
+              <%= rcd.text_field :value, :label => 'Valor' %>
+              <div class="clear"></div>
+            <% end -%>
+
+            <table id="receivable_division_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Id do Plano</th>
+                  <th style="width:">Plano de Conta</th>
+                  <th>Id do Centro</th>
+                  <th style="">Centro de Custos</th>
+                  <th style="">Observação</th>
+                  <th style="">Valor</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+            <div id="trash" class="hide"></div>
+
+          <% end -%>
+
+          <div class="clear">
+            <a id="exclude_divisions" class="button" href="#">Excluir Todas as Divisões</a>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div id="aditional-informations">
+        <%= f.text_field :competence, :label => 'Competência', :class => 'datepicker' %>
+        <%= f.text_field :serie_number, :label => 'Num. Doc. Série' %>
+        <%= f.text_field :carrier, :label => 'Portador' %>
+        <%= f.text_field :barcode, :label => 'Código de Barras do Doc.' %>
+        <%= f.select :rate_type_id, Receivable::RateType.to_select, :label => 'Lançar' %>
+        <%= f.text_field :fine, :label => 'Multa' %>
+        <%= f.text_field :rate, :label => 'Juros' %>
+        <%= f.select :rate_calculation_type_id, Receivable::RateCalculationType.to_select, :label => 'Calcular' %>
+        <%= f.text_area :observations %>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :script do %>
+  <%= js_receivable_division_create_table_item %>
+  <%= js_receivable_division_new_item %>
+  <%= js_receivable_division_save_item %>
+  <%= js_receivable_division_del_item %>
+<% end %>
+
+<%= render :partial => "js_new_edit" %>
