@@ -29,7 +29,7 @@
         </fieldset>
         <fieldset>
           <legend>Recebimento</legend>
-          <%= f.select :account_id, Account.to_select, :label => 'Conta' %>
+          <%= f.select :account_id, BankAccount.to_select, :label => 'Conta' %>
           <%= f.select :payment_method_id, Receivable::PaymentMethod.to_select, :label => 'Meio de Pagamento' %>
           <%= f.text_field :due_date, :label => "Vencimento", :class => 'datepicker' %>
           <%= f.select :frequency_id, Receivable::Frequency.to_select, :label => 'Frequencia' %>

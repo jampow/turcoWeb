@@ -20,7 +20,7 @@
       </fieldset>
       <fieldset>
         <legend>Recebimento</legend>
-        <%= print_content 'Conta', (@receivable.account || {})[:name] %>
+        <%= print_content 'Conta', (@receivable.bank_account || {})[:name] %>
         <%= print_content 'Meio de Pagamento', (Receivable::PaymentMethod.find(@receivable.payment_method_id) || {})[:name] %>
         <%= print_content "Vencimento", h(@receivable.due_date) %>
         <%= print_content 'Frequencia', (Receivable::Frequency.find(@receivable.frequency_id) || {})[:name]  %>
@@ -33,11 +33,11 @@
             <tr>
               <th>Id</th>
               <th>Id do Plano</th>
-              <th style="width:">Plano de Conta</th>
+              <th>Plano de Conta</th>
               <th>Id do Centro</th>
-              <th style="">Centro de Custos</th>
-              <th style="">Observação</th>
-              <th style="">Valor</th>
+              <th>Centro de Custos</th>
+              <th>Observação</th>
+              <th>Valor</th>
             </tr>
           </thead>
           <tbody>
@@ -45,11 +45,11 @@
               <tr>
                 <td><%= div.id %></td>
                 <td><%= div.account_plan_id %></td>
-                <td style="width:"><%= (div.account_plan || {})[:name] %></td>
+                <td><%= (div.account_plan || {})[:name] %></td>
                 <td><%= div.cost_center_id %></td>
-                <td style=""><%= (div.cost_center || {})[:name] %></td>
-                <td style=""><%= div.observations %></td>
-                <td style=""><%= div.value %></td>
+                <td><%= (div.cost_center || {})[:name] %></td>
+                <td><%= div.observations %></td>
+                <td><%= div.value %></td>
               </tr>
             <% end %>
           </tbody>
