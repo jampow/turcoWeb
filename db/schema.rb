@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120111143205) do
+ActiveRecord::Schema.define(:version => 20120119215154) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -239,6 +239,7 @@ ActiveRecord::Schema.define(:version => 20120111143205) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+    t.boolean  "closed"
   end
 
   create_table "people", :force => true do |t|
