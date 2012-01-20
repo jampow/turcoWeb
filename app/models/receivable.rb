@@ -11,6 +11,12 @@ class Receivable < ActiveRecord::Base
     def self.to_select
       VALUES.map { |v| [v[:kind], v[:id]] }
     end
+
+    def self.find(id)
+      h=VALUES.find { |v| v[:id] == id }
+      return nil if h.nil?
+      self.new(h[:id], h[:kind])
+    end
   end
   class PaymentMethod <
     Struct.new(:id, :name)
@@ -24,6 +30,12 @@ class Receivable < ActiveRecord::Base
     def self.to_select
       VALUES.map { |v| [v[:name], v[:id]] }
     end
+
+    def self.find(id)
+      h=VALUES.find { |v| v[:id] == id }
+      return nil if h.nil?
+      self.new(h[:id], h[:name])
+    end
   end
   class Frequency <
     Struct.new(:id, :name)
@@ -36,6 +48,12 @@ class Receivable < ActiveRecord::Base
 
     def self.to_select
       VALUES.map { |v| [v[:name], v[:id]] }
+    end
+
+    def self.find(id)
+      h=VALUES.find { |v| v[:id] == id }
+      return nil if h.nil?
+      self.new(h[:id], h[:name])
     end
   end
 
@@ -52,6 +70,12 @@ class Receivable < ActiveRecord::Base
     def self.to_select
       VALUES.map { |v| [v[:name], v[:id]] }
     end
+
+    def self.find(id)
+      h=VALUES.find { |v| v[:id] == id }
+      return nil if h.nil?
+      self.new(h[:id], h[:name])
+    end
   end
 
   class RateCalculationType <
@@ -67,10 +91,18 @@ class Receivable < ActiveRecord::Base
     def self.to_select
       VALUES.map { |v| [v[:name], v[:id]] }
     end
+
+    def self.find(id)
+      h=VALUES.find { |v| v[:id] == id }
+      return nil if h.nil?
+      self.new(h[:id], h[:name])
+    end
   end
 
   belongs_to :invoice, :primary_key => "invoice_number", :foreign_key => "invoice_number"
   has_many :receivable_cost_divisions
+  belongs_to :client
+  belongs_to :account
 
   accepts_nested_attributes_for :receivable_cost_divisions, :allow_destroy => true, :reject_if => proc { |attributes| attributes['value'].blank? }
 end
