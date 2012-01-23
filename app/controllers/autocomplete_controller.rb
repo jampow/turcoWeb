@@ -31,6 +31,16 @@ class AutocompleteController < ApplicationController
       format.js { render :action => "autocomplete" }
     end
   end
+  
+  def measure_units
+    @list = MeasureUnit.find(:all,
+                             :select => "id, measure_unit as label, measure_unit as value",
+                             :conditions => ["product_id = ?", params[:prod_id]])
+
+    respond_to do |format|
+      format.js { render :action => "autocomplete" }
+    end
+  end
 
   def product
     @list = Product.find(:all,

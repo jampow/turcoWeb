@@ -205,6 +205,7 @@ $(function(){
     $('.autocomplete').each(function(){
       var t   = $(this);
       var src = t.attr('source');
+      var cbk = t.attr('callback');
       t.autocomplete({
         source   : "/autocomplete/"+src,
         minLength: 3,
@@ -214,6 +215,8 @@ $(function(){
           tid = tid.join('_');
           t.val(ui.item.value);
           $('#'+tid+'_id').val(ui.item.id);
+          
+          eval(cbk);
         }
       });
     });
