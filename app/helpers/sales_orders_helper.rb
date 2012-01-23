@@ -27,7 +27,8 @@ module SalesOrdersHelper
   end
 
   def js_sales_create_table_item
-    editing? ? html = "$('#sales_order_items tbody tr:last').remove();" : html = ''
+    #editing? ? html = "$('#sales_order_items tbody tr:last').remove();" : html = ''
+    html = ''
     html += <<-JS
               var oTable = $('#sales_order_items').dataTable({
                                "bJQueryUI": true
@@ -50,6 +51,7 @@ module SalesOrdersHelper
                   var newId = id.replace(/_([0-9])+_/, '_0_');
                   $('#'+newId).val( th.val() );
                 });
+                $('#sales_order_order_items_attributes_0_product_id').trigger('change');
               });
             JS
 
@@ -99,7 +101,7 @@ module SalesOrdersHelper
                 var values         = [];
                 var nextRow        = new Date().getTime();
                 var scope          = findParent($(this),'fieldset');
-                var inpts          = $('label input', scope);
+                var inpts          = $('label input, label select', scope);
                 var empty          = false;
                 var validateFields = ['name', 'quantity', 'unit_value'];
                 inpts.each(function(){

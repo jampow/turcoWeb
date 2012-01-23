@@ -1,0 +1,9 @@
+<% content_for :menu do -%>
+  <h1>Unidades de medida (<%= @product.name %>)</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @measure_units, ["measure_unit", "Unidade de medida"],
+                          ["ratio"       , "Proporção"        , {:class => "right"}],
+                          ["main"        , "Principal"        , {:class => "center", :format => "human_boolean"}] %>  
+

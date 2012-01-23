@@ -1,0 +1,13 @@
+<% content_for :menu do -%>
+  <h1>Alterando unidade de medida (<%= @product.name %>)</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@measure_unit) do |f| %>
+  <%= f.error_messages %>
+
+    <%= f.text_field :measure_unit, :label => "Unidade de medida" %>
+    <%= f.text_field :ratio       , :label => "Proporção"         %>
+    <%= f.check_box  :main        , :label => "Principal"         %>
+<% end %>
+

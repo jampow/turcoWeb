@@ -1,0 +1,12 @@
+<% content_for :menu do -%>
+  <h1>Alterando movimentação de estoque (<%= @product.name %>)</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@stock) do |f| %>
+  <%= f.error_messages %>
+                                    
+  <%= f.text_field   :description , :label => "Descrição" %>
+  <%= f.text_field   :quantity    , :label => "Quantidade" %>
+  <%= f.check_box    :adjustment  , :label => "Ajuste" %>
+<% end -%>

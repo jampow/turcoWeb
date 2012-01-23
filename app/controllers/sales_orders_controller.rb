@@ -38,6 +38,7 @@ class SalesOrdersController < ApplicationController
   def edit
     @sales_order = SalesOrder.find(params[:id])
     @item_form   = @sales_order.order_items.build
+    @grid        = OrderItem.grid @sales_order.id
   end
 
   # POST /sales_orders

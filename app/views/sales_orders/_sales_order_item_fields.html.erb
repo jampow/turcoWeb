@@ -1,10 +1,11 @@
 <label class="hide"><%= f.hidden_field :id %></label>
 <label class="hide"><%= f.hidden_field :product_id %></label>
-<%= f.text_field :product_name, :label => "Produto"         , :class => "autocomplete", :source => "product" %>
-<%= f.text_field :quantity    , :label => "Quantidade"      %>
-<%= f.text_field :unit_value  , :label => "Valor unitário"  %>
-<%= f.text_field :total_value , :label => "Valor total"     , :disabled => "deisabled" %>
-<%= f.text_field :delivery    , :label => "Data de entrega" , :class => 'datepicker' %>
+<%= f.text_field :product_name       , :label => "Produto"           , :class => "autocomplete", :source => "product", :callback => "loadMeasureUnits()" %>
+<%= f.text_field :quantity           , :label => "Quantidade"        %>
+<%= f.select     :measure_unit_id, [], :label => "Unidade de medida" %>
+<%= f.text_field :unit_value         , :label => "Valor unitário"    %>
+<%= f.text_field :total_value        , :label => "Valor total"       , :disabled => "deisabled" %>
+<%= f.text_field :delivery           , :label => "Data de entrega"   , :class => 'datepicker' %>
 
 <div class="clear"></div>
 <script type="text/javascript">
@@ -22,5 +23,26 @@
 
     $('#sales_order_order_items_attributes_0_total_value').val(z);
   });
+  
+  var loadMeasureUnits = function() {
+    var prod_id = $("#sales_order_order_items_attributes_0_product_id").val();
+    console.log('loading measure units');
+    $.ajax({
+      url: '/autocomplete/measure_units',
+      data: 'prod_id=' + prod_id,
+      type: 'GET',
+      dataType: 'json',
+      success: function(data){
+        var opts = '';
+        for (i = 0; i < data.length - 1; i++){
+          var t = data[i];
+          opts += '<option value="' + t.id + '">' + t.value + '</option>';
+        };
+        $('#sales_order_order_items_attributes_0_measure_unit_id').html(opts);
+      }
+    });
+  }
+
+  $("#sales_order_order_items_attributes_0_product_id").bind('change', loadMeasureUnits);
 </script>
 

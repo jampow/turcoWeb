@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120109130003) do
+ActiveRecord::Schema.define(:version => 20120120172030) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -185,6 +185,13 @@ ActiveRecord::Schema.define(:version => 20120109130003) do
     t.datetime "updated_at"
   end
 
+  create_table "measure_units", :force => true do |t|
+    t.integer "product_id"
+    t.string  "measure_unit"
+    t.boolean "main"
+    t.decimal "ratio",        :precision => 15, :scale => 5
+  end
+
   create_table "messages", :force => true do |t|
     t.text     "message"
     t.datetime "created_at"
@@ -203,13 +210,13 @@ ActiveRecord::Schema.define(:version => 20120109130003) do
   create_table "order_items", :force => true do |t|
     t.integer  "order_id"
     t.integer  "product_id"
-    t.string   "product_name"
     t.float    "quantity"
-    t.float    "unit_value"
     t.float    "total_value"
     t.date     "delivery"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "unit_value"
+    t.integer  "measure_unit_id"
   end
 
   create_table "orders", :force => true do |t|
@@ -232,6 +239,7 @@ ActiveRecord::Schema.define(:version => 20120109130003) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+    t.boolean  "closed"
   end
 
   create_table "people", :force => true do |t|
@@ -393,6 +401,20 @@ ActiveRecord::Schema.define(:version => 20120109130003) do
     t.string   "account"
     t.string   "inss_base"
     t.text     "observation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stocks", :force => true do |t|
+    t.integer  "product_id"
+    t.string   "description"
+    t.decimal  "quantity_out",                 :precision => 15, :scale => 6
+    t.decimal  "quantity_in",                  :precision => 15, :scale => 6
+    t.integer  "measure_unit_id"
+    t.decimal  "total_before",                 :precision => 15, :scale => 6
+    t.integer  "total_before_measure_unit_id"
+    t.decimal  "total",                        :precision => 15, :scale => 6
+    t.integer  "total_measure_unit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

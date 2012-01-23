@@ -1,0 +1,10 @@
+<% content_for :menu do -%>
+  <h1>Movimentações de estoque (<%= @product.name %>)</h1>
+  <%= mount_menu %w[new show]%>
+<% end -%>
+
+<%= table @stocks, ["description"                    , "Descrição" ],
+                   ["total_before.to_s + ' ' + o.tb_munit" , "Total Antes", {:class => "right"}],
+                   ["quantity.to_s     + ' ' + o.mu_munit" , "Quantidade" , {:class => "right"}],
+                   ["total.to_s        + ' ' + o.tm_munit" , "Total"      , {:class => "right"}] %>
+

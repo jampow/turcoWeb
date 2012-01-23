@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  product_id: 1
+  measure_unit: MyString
+  main: false
+  ratio: 9.99
+
+two:
+  product_id: 1
+  measure_unit: MyString
+  main: false
+  ratio: 9.99

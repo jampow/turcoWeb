@@ -1,0 +1,80 @@
+<% content_for :menu do -%>
+  <h1>Nova movimentação de estoque (<%= @product.name %>)</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@stock) do |f| %>
+  <%= f.error_messages %>
+    
+  <%= f.text_field   :description                     , :label => "Descrição"         %>
+  <%= f.text_field   :quantity_in                     , :label => "Entrada"           %>
+  <%= f.text_field   :quantity_out                    , :label => "Saída"             %>
+  <%= f.select       :measure_unit_id, @measure_select, :label => "Unidade de medida" %>
+  <%= f.hidden_field :total_before                    , :label => "Antes (#{@main_unit.measure_unit})"  %>
+  <%= f.text_field   :total_before_to_show            , :label => "Antes (#{@main_unit.measure_unit})" , :disabled => true %>
+  <%= f.hidden_field :total_before_measure_unit_id    , :label => "Unidade de medida do total anterior" %>
+  <%= f.hidden_field :total                           , :label => "Depois (#{@main_unit.measure_unit})" %>
+  <%= f.text_field   :total_to_show                   , :label => "Depois (#{@main_unit.measure_unit})", :disabled => true %>
+  <%= f.hidden_field :total_measure_unit_id           , :label => "Unidade de medida do total"    %>
+<% end -%>
+
+<script type="text/javascript">
+  var previous = { "qtd": <%= @last.total rescue 0 %>
+                 , "id" : <%= @last.total_measure_unit_id rescue @main_unit.id %>
+                 , "unt":"<%= @last.total_measure_unit.measure_unit rescue @main_unit.measure_unit %>" };
+                 
+  var measure_units = {
+  <% @measure_units.each do |mu| -%>
+    "<%= mu.id %>": { "ratio": <%= mu.ratio %>
+                    , "measure_unit": "<%= mu.measure_unit %>"
+                    , "main": <%= mu.main %> },
+  <% end -%>
+  "0":{}};
+  
+  var calculate = function(inout){
+    var prevVal = previous.qtd;
+    var value   = $("#stock_quantity_" + inout).val();
+    var unitId  = $('#stock_measure_unit_id').val();
+    var ratio   = measure_units[unitId].ratio;
+    var convVal = value * ratio; //converted value
+    
+    if (inout == "out") { convVal = 0 - convVal };
+    var total   = prevVal + convVal;
+    
+    $('#stock_total, #stock_total_to_show').val(total);
+  };
+  
+  $('#stock_total_before, #stock_total_before_to_show').val(previous.qtd);
+  $('#stock_total_before_measure_unit_id'             ).val(previous.id);
+  $('#stock_total_measure_unit_id'                    ).val(previous.id);
+
+  $('#stock_measure_unit_id').change(function(){
+    if ($('#stock_quantity_out').val() != "") {
+      calculate("out");
+    } else {
+      calculate("in");
+    }
+  });
+
+  //habilita e desabilita entrada e saída de acordo com o campo preenchido  
+  $('#stock_quantity_in, #stock_quantity_out').keyup(function(){
+    var t = $(this);
+    var tid = t.attr('id');
+    if (tid == 'stock_quantity_in') {
+      if (t.val() != "") {
+        $('#stock_quantity_out').attr('disabled', 'disabled');
+      } else {
+        $('#stock_quantity_out').attr('disabled', '');
+      }
+      calculate("in");
+    } else {
+      if (t.val() != "") {
+        $('#stock_quantity_in').attr('disabled', 'disabled');
+      } else {
+        $('#stock_quantity_in').attr('disabled', '');
+      }
+      calculate("out");
+    }
+  });
+  
+</script>

@@ -152,7 +152,9 @@ form label span.example {
 ---------------------------
 input/select fields
 --------------------------- */
-
+form label textarea {
+  resize: none;
+}
 /*form.dm_form label input.field,
 form.dm_form label select.field,
 form.dm_form label textarea.field {*/

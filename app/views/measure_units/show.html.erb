@@ -1,0 +1,9 @@
+<% content_for :menu do -%>
+  <h1>Unidade de medida (<%= @product.name %>)</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Unidade de medida", h(@measure_unit.measure_unit) %>
+<%= print_content "Proporção"        , h(@measure_unit.ratio) %>
+<%= print_content "Principal"        , human_boolean(@measure_unit.main) %>
+

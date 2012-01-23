@@ -205,6 +205,7 @@ $(function(){
     $('.autocomplete').each(function(){
       var t   = $(this);
       var src = t.attr('source');
+      var cbk = t.attr('callback');
       t.autocomplete({
         source   : "/autocomplete/"+src,
         minLength: 3,
@@ -214,13 +215,15 @@ $(function(){
           tid = tid.join('_');
           t.val(ui.item.value);
           $('#'+tid+'_id').val(ui.item.id);
+          
+          eval(cbk);
         }
       });
     });
 
     message();
-    limit_div_content();
     make_buttons();
+    limit_div_content(); //must be the last call in this block
   }); // fecha ajaxSuccess
 
 //  var notifyError = true;
@@ -286,15 +289,10 @@ function message() {
 }
 
 function limit_div_content() {
-  center  = $('.ui-layout-center').outerHeight();
-  mnu     = $('#menu_wrapper').outerHeight();
-  content = $('#content_wrapper');
+  center = $('.ui-layout-center').outerHeight();
+  mnu    = $('#menu_wrapper').outerHeight();
 
-  ctt_padding_top    = content.css('padding-top').match(new RegExp('[0-9]+', ""))*1;
-  ctt_padding_bottom = content.css('padding-bottom').match(new RegExp('[0-9]+', ""))*1;
-  ctt_padding = ctt_padding_bottom + ctt_padding_top;
-
-  content.css('height', (center - mnu - ctt_padding - 10) + 'px');
+  $('#content_wrapper').outerHeight(center - mnu);
 }
 
 function make_buttons() {
