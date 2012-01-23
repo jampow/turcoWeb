@@ -1,10 +1,31 @@
 class AutocompleteController < ApplicationController
   #must return [ { "id": "", "label": "", "value": "" }
   #            , { "id": "", "label": "", "value": "" }]
+
+  def account_plan
+    @list = AccountPlan.find(:all,
+                             :select => "id, name as label, name as value",
+                             :conditions => ["name like ?", "%#{params[:term]}%"])
+
+    respond_to do |format|
+      format.js { render :action => "autocomplete" }
+    end
+  end  
+  
   def client
     @list = Client.find(:all,
                         :select => "id, name as label, name as value",
                         :conditions => ["name like ?", "%#{params[:term]}%"])
+
+    respond_to do |format|
+      format.js { render :action => "autocomplete" }
+    end
+  end
+
+  def cost_center
+    @list = CostCenter.find(:all,
+                            :select => "id, name as label, name as value",
+                            :conditions => ["name like ?", "%#{params[:term]}%"])
 
     respond_to do |format|
       format.js { render :action => "autocomplete" }
@@ -25,26 +46,6 @@ class AutocompleteController < ApplicationController
     @list = Provider.find(:all,
                           :select => "id, name as label, name as value",
                           :conditions => ["name like ?", "%#{params[:term]}%"])
-
-    respond_to do |format|
-      format.js { render :action => "autocomplete" }
-    end
-  end
-
-  def account_plan
-    @list = AccountPlan.find(:all,
-                             :select => "id, name as label, name as value",
-                             :conditions => ["name like ?", "%#{params[:term]}%"])
-
-    respond_to do |format|
-      format.js { render :action => "autocomplete" }
-    end
-  end
-
-  def cost_center
-    @list = CostCenter.find(:all,
-                            :select => "id, name as label, name as value",
-                            :conditions => ["name like ?", "%#{params[:term]}%"])
 
     respond_to do |format|
       format.js { render :action => "autocomplete" }
