@@ -6,10 +6,6 @@
 <% form_for(@receivable) do |f| %>
   <div class="form-wrapper">
     <div id="tabs">
-      <ul>
-        <li><a href="#general">Geral</a></li>
-        <li><a href="#aditional-informations">Informações Adicionais</a></li>
-      </ul>
       <div id="general">
         <%= f.error_messages %>
 
@@ -36,6 +32,18 @@
           <%= f.text_field :value, :label => "Valor" %>
 
         </fieldset>
+        <div id="aditional-informations">
+          <%= f.text_field :competence, :label => 'Competência', :class => 'datepicker' %>
+          <%= f.text_field :serie_number, :label => 'Num. Doc. Série' %>
+          <%= f.text_field :carrier, :label => 'Portador' %>
+          <%= f.text_field :barcode, :label => 'Código de Barras do Doc.' %>
+          <%= f.select :rate_type_id, Receivable::RateType.to_select, :label => 'Lançar' %>
+          <%= f.text_field :fine, :label => 'Multa' %>
+          <%= f.text_field :rate, :label => 'Juros' %>
+          <%= f.select :rate_calculation_type_id, Receivable::RateCalculationType.to_select, :label => 'Calcular' %>
+          <%= f.text_area :observations %>
+          <div class="clear"></div>
+        </div>
         <div id="full_division">
           <fieldset>
             <% f.fields_for :receivable_cost_divisions do |division| %>
@@ -86,18 +94,6 @@
             <a id="exclude_divisions" class="button" href="#">Excluir Todas as Divisões</a>
           </div>
         </div>
-        <div class="clear"></div>
-      </div>
-      <div id="aditional-informations">
-        <%= f.text_field :competence, :label => 'Competência', :class => 'datepicker' %>
-        <%= f.text_field :serie_number, :label => 'Num. Doc. Série' %>
-        <%= f.text_field :carrier, :label => 'Portador' %>
-        <%= f.text_field :barcode, :label => 'Código de Barras do Doc.' %>
-        <%= f.select :rate_type_id, Receivable::RateType.to_select, :label => 'Lançar' %>
-        <%= f.text_field :fine, :label => 'Multa' %>
-        <%= f.text_field :rate, :label => 'Juros' %>
-        <%= f.select :rate_calculation_type_id, Receivable::RateCalculationType.to_select, :label => 'Calcular' %>
-        <%= f.text_area :observations %>
         <div class="clear"></div>
       </div>
     </div>

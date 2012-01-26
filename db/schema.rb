@@ -211,11 +211,11 @@ ActiveRecord::Schema.define(:version => 20120120172030) do
     t.integer  "order_id"
     t.integer  "product_id"
     t.float    "quantity"
+    t.float    "unit_value"
     t.float    "total_value"
     t.date     "delivery"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "unit_value"
     t.integer  "measure_unit_id"
   end
 
