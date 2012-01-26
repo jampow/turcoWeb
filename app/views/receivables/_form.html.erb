@@ -47,19 +47,7 @@
             <div class="clear"></div>
           </div>
         </fieldset>
-        <div id="full_division">
-          <fieldset>
-            <% f.fields_for :receivable_cost_divisions do |division| %>
-              <%= division.select :account_plan_id, AccountPlan.to_select, :label => 'Plano de Contas' %>
-              <%= division.select :cost_center_id, CostCenter.to_select, :label => 'Centro de Custo' %>
-              <%= division.hidden_field :value %>
-            <% end %>
-            <div class="clear">
-              <a id="divide_value" class="button" href="#">Dividir/Ratear Valor</a>
-            </div>
-          </fieldset>
-        </div>
-        <div id="division_parts" class="hide">
+        <div id="division_parts">
           <% field_set_tag 'Divisão/Rateio do Valor' do -%>
             <%= new_receivable_division_item_toolbar f %>
             <% f.fields_for :receivable_cost_divisions do |rcd| %>
@@ -94,10 +82,6 @@
             <div id="trash" class="hide"></div>
 
           <% end -%>
-
-          <div class="clear">
-            <a id="exclude_divisions" class="button" href="#">Excluir Todas as Divisões</a>
-          </div>
         </div>
         <div class="clear"></div>
       </div>
