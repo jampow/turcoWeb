@@ -1,34 +1,23 @@
 <script type="text/javascript">
   $(function(){
-    $('#receivable_value').change(function(){
-      $('#receivable_receivable_cost_divisions_attributes_0_value').val($(this).val());
-    });
-    function addClick(event){
-      event.preventDefault();
-      var content = $(this).parents('tr').html();
-      var original = $('<tr></tr>').html(content);
-      original.find('.add').click(addClick);
-      $(this).parents('tr').before(original);
-      $(this).parents('tr').find('td:last').empty();
-    }
-    $('.add').click(addClick);
-    $('#divide_value,#exclude_divisions').click(function(e) {
-      e.preventDefault();
-      $('#full_division').slideToggle();
-      $('#division_parts').slideToggle();
-    });
-    $(".receivable_cost_division_value").keyup(function(){
-      var it = $(this)
-      var percent_id = it.attr('id').replace(/value/, 'percent');
-      var total_value = $('#receivable_value').val();
-      $('#' + percent_id).val((it.val() / total_value) * 100 );
-    });
-    $(".receivable_cost_division_percent").keyup(function(){
+    function fill_value(){
       var it = $(this)
       var value_id = it.attr('id').replace(/percent/, 'value');
       var total_value = $('#receivable_value').val();
       $('#' + value_id).val((it.val() * total_value) / 100 );
+    }
+    function fill_percent(){
+      var it = $(this)
+      var percent_id = it.attr('id').replace(/value/, 'percent');
+      var total_value = $('#receivable_value').val();
+      $('#' + percent_id).val((it.val() / total_value) * 100 );
+    }
+    $('#receivable_value').keyup(function(){
+      $('#receivable_receivable_cost_divisions_attributes_0_value').val($(this).val());
+      $('#receivable_receivable_cost_divisions_attributes_0_percent').val('100');
     });
+    $(".receivable_cost_division_value").keyup(fill_percent);
+    $(".receivable_cost_division_percent").keyup(fill_value);
   });
 </script>
 
