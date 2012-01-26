@@ -5,30 +5,37 @@
 
 <div class="form-wrapper">
   <div id="tabs">
-    <ul>
-      <li><a href="#general">Geral</a></li>
-      <li><a href="#aditional-informations">Informações Adicionais</a></li>
-    </ul>
     <div id="general">
-      <fieldset>
-        <legend>Origem</legend>
-        <%= print_content 'Receber de', h((@receivable.client || {})[:name]) %>
-        <%= print_content "Histórico", h(@receivable.historic) %>
-        <%= print_content "Data de Emissão", h(@receivable.issue_date) %>
-        <%= print_content 'Documento', (Receivable::DocumentKind.find(@receivable.document_kind_id) || {})[:kind] %>
-        <%= print_content "Número da NF", h(@receivable.invoice_number) %>
-      </fieldset>
-      <fieldset>
-        <legend>Recebimento</legend>
-        <%= print_content 'Conta', (@receivable.bank_account || {})[:name] %>
-        <%= print_content 'Meio de Pagamento', (Receivable::PaymentMethod.find(@receivable.payment_method_id) || {})[:name] %>
-        <%= print_content "Vencimento", h(@receivable.due_date) %>
-        <%= print_content 'Frequencia', (Receivable::Frequency.find(@receivable.frequency_id) || {})[:name]  %>
-        <%= print_content "Valor", h(@receivable.value) %>
+      <h2>Origem</h2>
+      <%= print_content 'Receber de', h((@receivable.client || {})[:name]) %>
+      <%= print_content "Histórico", h(@receivable.historic) %>
+      <%= print_content "Data de Emissão", h(@receivable.issue_date) %>
+      <%= print_content 'Documento', (Receivable::DocumentKind.find(@receivable.document_kind_id) || {})[:kind] %>
+      <%= print_content "Número da NF", h(@receivable.invoice_number) %>
 
-      </fieldset>
+      <h2>Recebimento</h2>
+      <%= print_content 'Conta', (@receivable.bank_account || {})[:name] %>
+      <%= print_content 'Meio de Pagamento', (Receivable::PaymentMethod.find(@receivable.payment_method_id) || {})[:name] %>
+      <%= print_content "Vencimento", h(@receivable.due_date) %>
+      <%= print_content 'Frequencia', (Receivable::Frequency.find(@receivable.frequency_id) || {})[:name]  %>
+      <%= print_content "Valor", h(@receivable.value) %>
+
+      <h2>Informações Adicionais</h2>
+      <div id="aditional-informations">
+        <%= print_content 'Competência', @receivable.competence %>
+        <%= print_content 'Num. Doc. Série', @receivable.serie_number %>
+        <%= print_content 'Portador', @receivable.carrier %>
+        <%= print_content 'Código de Barras do Doc.', @receivable.barcode %>
+        <%= print_content 'Lançar', (Receivable::RateType.find(@receivable.rate_type_id) || {})[:name] %>
+        <%= print_content 'Multa', @receivable.fine %>
+        <%= print_content 'Juros', @receivable.rate %>
+        <%= print_content 'Calcular', (Receivable::RateCalculationType.find(@receivable.rate_calculation_type_id)||{})[:name] %>
+        <%= print_content 'Observações', @receivable.observations %>
+      </div>
+      <div class="clear"></div>
       <div id="division_parts">
-        <table id="receivable_division_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
+        <h2>Separação de Custos</h2>
+        <table id="receivable_division_order_items" cellpading="0" cellspacing="0" border="0" width="100%" class="list" >
           <thead>
             <tr>
               <th>Id</th>
@@ -38,6 +45,7 @@
               <th>Centro de Custos</th>
               <th>Observação</th>
               <th>Valor</th>
+              <th>%</th>
             </tr>
           </thead>
           <tbody>
@@ -50,22 +58,12 @@
                 <td><%= (div.cost_center || {})[:name] %></td>
                 <td><%= div.observations %></td>
                 <td><%= div.value %></td>
+                <td><%= div.value / @receivable.value * 100 %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
-    </div>
-    <div id="aditional-informations">
-      <%= print_content 'Competência', @receivable.competence %>
-      <%= print_content 'Num. Doc. Série', @receivable.serie_number %>
-      <%= print_content 'Portador', @receivable.carrier %>
-      <%= print_content 'Código de Barras do Doc.', @receivable.barcode %>
-      <%= print_content 'Lançar', (Receivable::RateType.find(@receivable.rate_type_id) || {})[:name] %>
-      <%= print_content 'Multa', @receivable.fine %>
-      <%= print_content 'Juros', @receivable.rate %>
-      <%= print_content 'Calcular', (Receivable::RateCalculationType.find(@receivable.rate_calculation_type_id)||{})[:name] %>
-      <%= print_content 'Observações', @receivable.observations %>
     </div>
   </div>
 </div>
