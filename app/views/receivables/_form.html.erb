@@ -66,7 +66,8 @@
               <label class="hide"><%= rcd.hidden_field :cost_center_id %></label>
               <%= rcd.text_field :cost_center_name, :label => 'Centro de Custo', :class => 'autocomplete', :source => 'cost_center' %>
               <%= rcd.text_field :observations, :label => 'Observação' %>
-              <%= rcd.text_field :value, :label => 'Valor' %>
+              <%= rcd.text_field :value, :label => 'Valor', :class => 'receivable_cost_division_value' %>
+              <%= rcd.text_field :percent, :label => '% do Total' %>
               <div class="clear"></div>
             <% end -%>
 
@@ -80,6 +81,7 @@
                   <th style="">Centro de Custos</th>
                   <th style="">Observação</th>
                   <th style="">Valor</th>
+                  <th style="">%</th>
                 </tr>
               </thead>
               <tbody>

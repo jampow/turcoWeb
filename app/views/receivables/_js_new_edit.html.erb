@@ -17,6 +17,12 @@
       $('#full_division').slideToggle();
       $('#division_parts').slideToggle();
     });
+    $(".receivable_cost_division_value").keyup(function(){
+      var it = $(this)
+      var percent_id = it.attr('id').replace(/value/, 'percent');
+      var total_value = $('#receivable_value').val();
+      $('#' + percent_id).val((it.val() / total_value) * 100 );
+    });
   });
 </script>
 
