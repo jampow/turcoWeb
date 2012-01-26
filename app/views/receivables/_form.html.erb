@@ -32,18 +32,21 @@
           <%= f.text_field :value, :label => "Valor" %>
 
         </fieldset>
-        <div id="aditional-informations">
-          <%= f.text_field :competence, :label => 'Competência', :class => 'datepicker' %>
-          <%= f.text_field :serie_number, :label => 'Num. Doc. Série' %>
-          <%= f.text_field :carrier, :label => 'Portador' %>
-          <%= f.text_field :barcode, :label => 'Código de Barras do Doc.' %>
-          <%= f.select :rate_type_id, Receivable::RateType.to_select, :label => 'Lançar' %>
-          <%= f.text_field :fine, :label => 'Multa' %>
-          <%= f.text_field :rate, :label => 'Juros' %>
-          <%= f.select :rate_calculation_type_id, Receivable::RateCalculationType.to_select, :label => 'Calcular' %>
-          <%= f.text_area :observations %>
-          <div class="clear"></div>
-        </div>
+        <fieldset>
+          <legend>Informações Adicionais</legend>
+          <div id="aditional-informations">
+            <%= f.text_field :competence, :label => 'Competência', :class => 'datepicker' %>
+            <%= f.text_field :serie_number, :label => 'Num. Doc. Série' %>
+            <%= f.text_field :carrier, :label => 'Portador' %>
+            <%= f.text_field :barcode, :label => 'Código de Barras do Doc.' %>
+            <%= f.select :rate_type_id, Receivable::RateType.to_select, :label => 'Lançar' %>
+            <%= f.text_field :fine, :label => 'Multa' %>
+            <%= f.text_field :rate, :label => 'Juros' %>
+            <%= f.select :rate_calculation_type_id, Receivable::RateCalculationType.to_select, :label => 'Calcular' %>
+            <%= f.text_area :observations %>
+            <div class="clear"></div>
+          </div>
+        </fieldset>
         <div id="full_division">
           <fieldset>
             <% f.fields_for :receivable_cost_divisions do |division| %>
