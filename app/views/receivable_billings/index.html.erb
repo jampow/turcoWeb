@@ -1,0 +1,54 @@
+<h1>Listing receivable_billings</h1>
+
+<table>
+  <tr>
+    <th>Bank account</th>
+    <th>Client</th>
+    <th>History</th>
+    <th>Account plan</th>
+    <th>Cost center</th>
+    <th>Document number</th>
+    <th>Barcode</th>
+    <th>Observations</th>
+    <th>Expire at</th>
+    <th>Parcel</th>
+    <th>Competency</th>
+    <th>Received at</th>
+    <th>Bill number</th>
+    <th>Value</th>
+    <th>Fine</th>
+    <th>Rate</th>
+    <th>Discount</th>
+    <th>Total</th>
+  </tr>
+
+<% @receivable_billings.each do |receivable_billing| %>
+  <tr>
+    <td><%=h receivable_billing.bank_account_id %></td>
+    <td><%=h receivable_billing.client_id %></td>
+    <td><%=h receivable_billing.history %></td>
+    <td><%=h receivable_billing.account_plan_id %></td>
+    <td><%=h receivable_billing.cost_center_id %></td>
+    <td><%=h receivable_billing.document_number %></td>
+    <td><%=h receivable_billing.barcode %></td>
+    <td><%=h receivable_billing.observations %></td>
+    <td><%=h receivable_billing.expire_at %></td>
+    <td><%=h receivable_billing.parcel %></td>
+    <td><%=h receivable_billing.competency %></td>
+    <td><%=h receivable_billing.received_at %></td>
+    <td><%=h receivable_billing.bill_number %></td>
+    <td><%=h receivable_billing.value %></td>
+    <td><%=h receivable_billing.fine %></td>
+    <td><%=h receivable_billing.rate %></td>
+    <td><%=h receivable_billing.discount %></td>
+    <td><%=h receivable_billing.total %></td>
+    <td><%= link_to 'Show', receivable_billing %></td>
+    <td><%= link_to 'Edit', edit_receivable_billing_path(receivable_billing) %></td>
+    <td><%= link_to 'Destroy', receivable_billing, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New receivable_billing', new_receivable_billing_path %>

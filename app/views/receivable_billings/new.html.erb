@@ -1,0 +1,83 @@
+<h1>New receivable_billing</h1>
+
+<% form_for(@receivable_billing) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :bank_account_id %><br />
+    <%= f.text_field :bank_account_id %>
+  </p>
+  <p>
+    <%= f.label :client_id %><br />
+    <%= f.text_field :client_id %>
+  </p>
+  <p>
+    <%= f.label :history %><br />
+    <%= f.text_field :history %>
+  </p>
+  <p>
+    <%= f.label :account_plan_id %><br />
+    <%= f.text_field :account_plan_id %>
+  </p>
+  <p>
+    <%= f.label :cost_center_id %><br />
+    <%= f.text_field :cost_center_id %>
+  </p>
+  <p>
+    <%= f.label :document_number %><br />
+    <%= f.text_field :document_number %>
+  </p>
+  <p>
+    <%= f.label :barcode %><br />
+    <%= f.text_field :barcode %>
+  </p>
+  <p>
+    <%= f.label :observations %><br />
+    <%= f.text_area :observations %>
+  </p>
+  <p>
+    <%= f.label :expire_at %><br />
+    <%= f.datetime_select :expire_at %>
+  </p>
+  <p>
+    <%= f.label :parcel %><br />
+    <%= f.text_field :parcel %>
+  </p>
+  <p>
+    <%= f.label :competency %><br />
+    <%= f.datetime_select :competency %>
+  </p>
+  <p>
+    <%= f.label :received_at %><br />
+    <%= f.datetime_select :received_at %>
+  </p>
+  <p>
+    <%= f.label :bill_number %><br />
+    <%= f.text_field :bill_number %>
+  </p>
+  <p>
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </p>
+  <p>
+    <%= f.label :fine %><br />
+    <%= f.text_field :fine %>
+  </p>
+  <p>
+    <%= f.label :rate %><br />
+    <%= f.text_field :rate %>
+  </p>
+  <p>
+    <%= f.label :discount %><br />
+    <%= f.text_field :discount %>
+  </p>
+  <p>
+    <%= f.label :total %><br />
+    <%= f.text_field :total %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', receivable_billings_path %>
