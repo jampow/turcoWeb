@@ -23,6 +23,12 @@
       var total_value = $('#receivable_value').val();
       $('#' + percent_id).val((it.val() / total_value) * 100 );
     });
+    $(".receivable_cost_division_percent").keyup(function(){
+      var it = $(this)
+      var value_id = it.attr('id').replace(/percent/, 'value');
+      var total_value = $('#receivable_value').val();
+      $('#' + value_id).val((it.val() * total_value) / 100 );
+    });
   });
 </script>
 
