@@ -24,7 +24,7 @@
 
     <% field_set_tag "Endereço" do %>
       <%= address_toolbar ['cep', 'map']%>
-      <% f.fields_for :main_address do |ma| %>
+      <% f.fields_for :address do |ma| %>
         <%= ma.text_field :cep                  , :label => "CEP"         , :class => 'mask-cep' %>
         <%= ma.text_field :street               , :label => "Endereço"                           %>
         <%= ma.text_field :number               , :label => "Número"                             %>
