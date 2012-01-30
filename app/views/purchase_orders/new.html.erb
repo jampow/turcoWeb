@@ -29,6 +29,7 @@
     <%= f.text_field   :freight             , :label => "Frete"                 %>
     <%= f.text_field   :freight_type_id     , :label => "Tipo de frete"         %>
     <%= f.text_field   :attendant_id        , :label => "Atendente"             %>
+    <%= f.check_box    :closed              , :label => 'Fechado'               %>
 
     <% field_set_tag 'Itens' do -%>
       <%= new_purchase_item_toolbar f %>
@@ -39,13 +40,14 @@
       <table id="purchase_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
         <thead>
           <tr>
-            <th>Id do item     </th>
-            <th>Id Produto     </th>
-            <th>Produto        </th>
-            <th>Quantidade     </th>
-            <th>Valor Unitário </th>
-            <th>Valor Total    </th>
-            <th>Data de entrega</th>
+            <th>Id do item       </th>
+            <th>Id Produto       </th>
+            <th>Produto          </th>
+            <th>Quantidade       </th>
+            <th>Unidade de Medida</th>
+            <th>Valor Unitário   </th>
+            <th>Valor Total      </th>
+            <th>Data de entrega  </th>
           </tr>
         </thead>
         <tbody>

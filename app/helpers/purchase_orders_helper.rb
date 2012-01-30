@@ -1,4 +1,8 @@
 module PurchaseOrdersHelper
+
+  def btn_reverse(id)
+    link_to "Estornar", "/purchase_orders/reverse?id=#{id}", :class => "button confirm", :icon => "arrowreturn-1-w"
+  end
   
   def new_purchase_item_toolbar f , btns = ['add', 'save', 'del']
     flash[:create_purchase_table_item] = true
@@ -26,7 +30,8 @@ module PurchaseOrdersHelper
   end
 
   def js_purchase_create_table_item
-    editing? ? html = "$('#purchase_order_items tbody tr:last').remove();" : html = ''
+    #editing? ? html = "$('#purchase_order_items tbody tr:last').remove();" : html = ''
+    html = ''
     html += <<-JS
               var oTable = $('#purchase_order_items').dataTable({
                                "bJQueryUI": true
@@ -49,6 +54,7 @@ module PurchaseOrdersHelper
                   var newId = id.replace(/_([0-9])+_/, '_0_');
                   $('#'+newId).val( th.val() );
                 });
+                $('#purchase_order_order_items_attributes_0_product_id').trigger('change');
               });
             JS
 
@@ -98,7 +104,7 @@ module PurchaseOrdersHelper
                 var values         = [];
                 var nextRow        = new Date().getTime();
                 var scope          = findParent($(this),'fieldset');
-                var inpts          = $('label input', scope);
+                var inpts          = $('label input, label select', scope);
                 var empty          = false;
                 var validateFields = ['name', 'quantity', 'unit_value'];
                 inpts.each(function(){
@@ -147,3 +153,4 @@ module PurchaseOrdersHelper
   end
 
 end
+
