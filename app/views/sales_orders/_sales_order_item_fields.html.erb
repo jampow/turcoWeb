@@ -26,7 +26,6 @@
   
   var loadMeasureUnits = function() {
     var prod_id = $("#sales_order_order_items_attributes_0_product_id").val();
-    console.log('loading measure units');
     $.ajax({
       url: '/autocomplete/measure_units',
       data: 'prod_id=' + prod_id,

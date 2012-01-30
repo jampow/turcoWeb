@@ -26,9 +26,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :product_kinds
   map.resources :products
   map.resources :providers
-  map.resources :purchase_orders
+  map.resources :purchase_orders, :collection => { :reverse => :get }
   map.resources :receivables
-  map.resources :sales_orders
+  map.resources :sales_orders   , :collection => { :reverse => :get }
   map.resources :sellers
   map.resources :seller_credit_accounts
   map.resources :stocks

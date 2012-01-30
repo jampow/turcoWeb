@@ -97,6 +97,48 @@ form label.w25 {
 	display: block;
 }
 
+/* added by jampow
+form.dm_form label.w10 {*/
+form label.w10 {
+	width: 8%;
+	display: block;
+}
+/*form.dm_form label.w20 {*/
+form label.w20 {
+	width: 18%;
+	display: block;
+}
+/*form.dm_form label.w30 {*/
+form label.w30 {
+	width: 28%;
+	display: block;
+}
+/*form.dm_form label.w40 {*/
+form label.w40 {
+	width: 38%;
+	display: block;
+}
+/*form.dm_form label.w40 {*/
+form label.w60 {
+	width: 58%;
+	display: block;
+}
+/*form.dm_form label.w20 {*/
+form label.w70 {
+	width: 68%;
+	display: block;
+}
+/*form.dm_form label.w30 {*/
+form label.w80 {
+	width: 78%;
+	display: block;
+}
+/*form.dm_form label.w40 {*/
+form label.w90 {
+	width: 88%;
+	display: block;
+}
+
 /*
 ---------------------------
 position

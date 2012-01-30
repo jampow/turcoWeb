@@ -37,13 +37,21 @@ class PurchaseOrdersController < ApplicationController
   # GET /purchase_orders/1/edit
   def edit
     @purchase_order = PurchaseOrder.find(params[:id])
-    @item_form      = @purchase_order.order_items.build
+    
+    if @purchase_order.closed
+      flash[:notice] = "Pedido de compra fechado."
+      redirect_to @purchase_order
+    else
+      @item_form = @purchase_order.order_items.build
+      @grid      = OrderItem.grid @purchase_order.id
+    end
   end
 
   # POST /purchase_orders
   # POST /purchase_orders.xml
   def create
     @purchase_order = PurchaseOrder.new(params[:purchase_order])
+    @purchase_order.order_items.build
 
     respond_to do |format|
       if @purchase_order.save
@@ -83,6 +91,23 @@ class PurchaseOrdersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(purchase_orders_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def reverse
+    @purchase_order = PurchaseOrder.find(params[:id])
+    @purchase_order.reverse = true
+    @purchase_order.closed  = false
+    
+    respond_to do |format|
+      if @purchase_order.save
+        flash[:notice] = 'Pedido de venda estornado.'
+        format.html { redirect_to(@purchase_order) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @purchase_order.errors, :status => :unprocessable_entity }
+      end
     end
   end
 end
