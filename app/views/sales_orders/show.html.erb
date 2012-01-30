@@ -1,6 +1,8 @@
 <% content_for :menu do -%>
   <h1>Pedido de venda</h1>
   <%= mount_menu %>
+  <%= mount_menu "separator" if @sales_order.closed %>
+  <%= btn_reverse(@sales_order.id.to_s) if @sales_order.closed %>
 <% end -%>
 
 <%= print_content "Número"               , h(@sales_order.number)               %>

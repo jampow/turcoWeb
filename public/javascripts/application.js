@@ -98,7 +98,7 @@ $(function(){
     rgx_json = /json$/gi
     is_json = rgx_json.test(url);
 
-    if (t.hasClass('delete')){
+    if (t.hasClass('delete') || t.hasClass('confirm')){
       data = '_method=delete';
       type = 'POST';
       if (!confirm('Tem certeza?')){return false;}

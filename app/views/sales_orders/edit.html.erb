@@ -29,6 +29,7 @@
     <%= f.text_field   :freight             , :label => "Frete"                 %>
     <%= f.text_field   :freight_type_id     , :label => "Tipo de frete"         %>
     <%= f.text_field   :attendant_id        , :label => "Atendente"             %>
+    <%= f.check_box    :closed              , :label => 'Fechado'               %>
 
     <% field_set_tag 'Itens' do -%>
       <%= new_sales_item_toolbar f %>

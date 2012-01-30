@@ -1,5 +1,8 @@
 module SalesOrdersHelper
 
+  def btn_reverse(id)
+    link_to "Estornar", "/sales_orders/reverse?id=#{id}", :class => "button confirm", :icon => "arrowreturn-1-w"
+  end
 
   def new_sales_item_toolbar f , btns = ['add', 'save', 'del']
     flash[:create_sales_table_item] = true

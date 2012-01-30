@@ -37,8 +37,14 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/1/edit
   def edit
     @sales_order = SalesOrder.find(params[:id])
-    @item_form   = @sales_order.order_items.build
-    @grid        = OrderItem.grid @sales_order.id
+    
+    if @sales_order.closed
+      flash[:notice] = "Pedido de venda fechado."
+      redirect_to @sales_order
+    else
+      @item_form = @sales_order.order_items.build
+      @grid      = OrderItem.grid @sales_order.id
+    end
   end
 
   # POST /sales_orders
@@ -87,5 +93,23 @@ class SalesOrdersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def reverse
+    @sales_order = SalesOrder.find(params[:id])
+    @sales_order.reverse = true
+    @sales_order.closed  = false
+    
+    respond_to do |format|
+      if @sales_order.save
+        flash[:notice] = 'Pedido de venda estornado.'
+        format.html { redirect_to(@sales_order) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @sales_order.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
 end
 
