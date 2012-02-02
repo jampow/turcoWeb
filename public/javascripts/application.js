@@ -71,17 +71,22 @@ $(function(){
     t = $(this);
     ctrl = $('#controller').val();
     id = $(':first-child',t).html()
+    
+    if (!isNaN(id)) {
+      klass = 'ui-state-default';
 
-    klass = 'ui-state-default';
+      $('table.list tbody tr.'+klass).removeClass(klass);
+      t.addClass(klass);
 
-    $('table.list tbody tr.'+klass).removeClass(klass);
-    t.addClass(klass);
-
-    url = '/' + ctrl + '/';
-    $('.button.show'    ).attr('href', url + id              );
-    $('.button.edit'    ).attr('href', url + id + '/edit'    );
-    $('.button.delete'  ).attr('href', url + id              );
-    $('.button.editpass').attr('href', url + 'editpass/' + id);
+      url = '/' + ctrl + '/';
+      $('.button.show'    ).attr('href', url + id              );
+      $('.button.edit'    ).attr('href', url + id + '/edit'    );
+      $('.button.delete'  ).attr('href', url + id              );
+      $('.button.editpass').attr('href', url + 'editpass/' + id);
+      $('.button.show, .button.edit, .button.delete, .button.editpass').button({disabled:false});
+    } else {
+      $('.button.show, .button.edit, .button.delete, .button.editpass').attr('href', '#').button({disabled:true});
+    }
   });
 
   //Abre pra item para edição no duplo clique
@@ -94,6 +99,8 @@ $(function(){
     data = '';
     type = 'GET';
     dataType = 'html'
+
+    if (url == '#') {return false;}
 
     rgx_json = /json$/gi
     is_json = rgx_json.test(url);
@@ -305,7 +312,7 @@ function make_buttons() {
 
     txt = t.attr('caption'); //text boolean
     if (txt != undefined && txt != '' && txt == 'false') params['text'] = false;
-
+    
     t.button(params);
   });
 }

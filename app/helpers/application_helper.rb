@@ -98,7 +98,8 @@ module ApplicationHelper
   end
 
   def btn_edit(controller, id)
-    link_to "Editar", "/#{controller}/#{id}/edit", {:class => "button edit", :icon => "pencil"}
+    url = id ? "/#{controller}/#{id}/edit" : "#"
+    link_to "Editar", url, {:class => "button edit", :icon => "pencil"}
   end
 
   def btn_save
@@ -106,7 +107,8 @@ module ApplicationHelper
   end
 
   def btn_show(controller, id)
-    link_to "Mostrar", "/#{controller}/#{id}", {:class => "button show", :icon => "search"}
+    url = id ? "/#{controller}/#{id}" : "#"
+    link_to "Mostrar", url, {:class => "button show", :icon => "search"}
   end
 
   def btn_back(controller)
@@ -114,11 +116,13 @@ module ApplicationHelper
   end
 
   def btn_delete(controller, id)
-    link_to "Deletar", "/#{controller}/#{id}", {:class => "button delete", :icon => "trash"}
+    url = id ? "/#{controller}/#{id}" : "#"
+    link_to "Deletar", url, {:class => "button delete", :icon => "trash"}
   end
 
   def btn_editpass(controller, id)
-    link_to "Alterar senha", "/#{controller}/editpass/#{id}", {:class => "button editpass", :icon => "key"}
+    url = id ? "/#{controller}/editpass/#{id}" : "#"
+    link_to "Alterar senha", url, {:class => "button editpass", :icon => "key"}
   end
 
   def btn_organizer(controller)
@@ -126,7 +130,8 @@ module ApplicationHelper
   end
 
   def btn_upload(controller, id)
-    link_to "Enviar arquivo", "/attachments?model=#{controller}&id=#{id}", {:class => "button upload", :icon => "arrowthick-1-n", :ajax => false}
+    url = id ? "/attachments?model=#{controller}&id=#{id}" : "#"
+    link_to "Enviar arquivo", url, {:class => "button upload", :icon => "arrowthick-1-n", :ajax => false}
   end
 
   # fields cada valor de fields deve ser um array, cada array pode ter até 3
