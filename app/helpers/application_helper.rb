@@ -174,7 +174,7 @@ module ApplicationHelper
 
   #TODO: colocar opção pra classes adicionais
   def print_content(label, content, options = {:width => 25} )
-    [25, 50, 75, 100].include? options[:width] ? w = options[:width] : w = 25
+    [10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100].include? options[:width] ? w = options[:width] : w = 25
 
     if options[:email] == true
       email = "link-to-email"
@@ -203,6 +203,10 @@ module ApplicationHelper
 
   def human_boolean(bool)
     bool ? "Sim" : "Não"
+  end
+  
+  def date(date)
+    date ? date : ""
   end
 end
 

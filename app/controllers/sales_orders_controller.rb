@@ -37,6 +37,7 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/1/edit
   def edit
     @sales_order = SalesOrder.find(params[:id])
+    @sales_order.client_name = @sales_order.client.name
     
     if @sales_order.closed
       flash[:notice] = "Pedido de venda fechado."

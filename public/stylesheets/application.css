@@ -316,21 +316,18 @@ table#permissions>tbody tr td span.ui-icon {
   font-size: 1.3em;
 }
 
-div.w25 {
-  width: 25%;
-}
-
-div.w50 {
-  width: 50%;
-}
-
-div.w75 {
-  width: 75%;
-}
-
-div.w100 {
-  width: 100%;
-}
+div.w10  {width: 10% ;}
+div.w20  {width: 20% ;}
+div.w25  {width: 25% ;}
+div.w30  {width: 30% ;}
+div.w40  {width: 40% ;}
+div.w50  {width: 50% ;}
+div.w60  {width: 60% ;}
+div.w70  {width: 70% ;}
+div.w75  {width: 75% ;}
+div.w80  {width: 80% ;}
+div.w90  {width: 90% ;}
+div.w100 {width: 100%;}
 
 div.w25+h2 {
   clear: left;

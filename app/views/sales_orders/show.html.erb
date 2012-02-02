@@ -5,22 +5,23 @@
   <%= btn_reverse(@sales_order.id.to_s) if @sales_order.closed %>
 <% end -%>
 
-<%= print_content "Número"               , h(@sales_order.number)               %>
-<%= print_content "Tipo de pedido"       , h(@sales_order.order_type_id)        %>
-<%= print_content "Tipo de venda"        , h(@sales_order.sale_type_id)         %>
-<%= print_content "Data"                 , h(@sales_order.date)                 %>
-<%= print_content "Previsão"             , h(@sales_order.prevision)            %>
-<%= print_content "Faturado"             , h(@sales_order.billed)               %>
-<%= print_content "Cliente"              , h(@sales_order.client.name)          %>
-<%= print_content "Vendedor"             , h(@sales_order.seller_id)            %>
-<%= print_content "Comissão"             , h(@sales_order.commission)           %>
-<%= print_content "Contato"              , h(@sales_order.contact_id)           %>
-<%= print_content "Condição de pagamento", h(@sales_order.payment_condition_id) %>
-<%= print_content "Transportadora"       , h(@sales_order.carrier_id)           %>
-<%= print_content "Frete"                , h(@sales_order.freight)              %>
-<%= print_content "Tipo de frete"        , h(@sales_order.freight_type_id)      %>
-<%= print_content "Atendente"            , h(@sales_order.attendant_id)         %>
-<%= print_content "Observações"          , h(@sales_order.observation)          %>
+<%= print_content "Número"               , h(@sales_order.number)              , :width => 10  %>
+<%= print_content "Tipo de pedido"       , h(@sales_order.order_type_id)       , :width => 20  %>
+<%= print_content "Tipo de venda"        , h(@sales_order.sale_type_id)        , :width => 20  %>
+<%= print_content "Data"                 , date(@sales_order.date)             , :width => 10  %>
+<%= print_content "Previsão"             , date(@sales_order.prevision)        , :width => 10  %>
+<%= print_content "Faturado"             , date(@sales_order.billed)           , :width => 10  %>
+<%= print_content "Fechado"              , human_boolean(@sales_order.closed)  , :width => 10  %>
+<%= print_content "Cliente"              , h(@sales_order.client.name)         , :width => 20  %>
+<%= print_content "Vendedor"             , h(@sales_order.seller_id)           , :width => 20  %>
+<%= print_content "Comissão"             , h(@sales_order.commission)          , :width => 10  %>
+<%= print_content "Contato"              , h(@sales_order.contact_id)          , :width => 20  %>
+<%= print_content "Condição de pagamento", h(@sales_order.payment_condition_id), :width => 20  %>
+<%= print_content "Transportadora"       , h(@sales_order.carrier_id)          , :width => 20  %>
+<%= print_content "Frete"                , h(@sales_order.freight)             , :width => 20  %>
+<%= print_content "Tipo de frete"        , h(@sales_order.freight_type_id)     , :width => 20  %>
+<%= print_content "Atendente"            , h(@sales_order.attendant_id)        , :width => 20  %>
+<%= print_content "Observações"          , h(@sales_order.observation)         , :width => 100 %>
 
 <div class="clear"></div>
 

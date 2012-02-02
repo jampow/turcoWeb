@@ -197,6 +197,11 @@ input/select fields
 form label textarea {
   resize: none;
 }
+
+form label.w100 textarea {
+  height: 72px;
+}
+
 /*form.dm_form label input.field,
 form.dm_form label select.field,
 form.dm_form label textarea.field {*/

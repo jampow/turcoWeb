@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
   before_save :mark_item_for_removal
   before_save :moviment_stock
   
+  attr_accessor :client_name
   attr_accessor :reverse #Estorno
   
 protected
