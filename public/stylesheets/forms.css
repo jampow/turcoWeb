@@ -221,9 +221,14 @@ form label textarea {
 	-ms-box-sizing: border-box; /* IE */
 }
 
+form label input[type=checkbox] {
+  margin-top   : 6px;
+  margin-bottom: 6px;
+}
+
 /*form.dm_form label select.field {*/
 form label select {
-	padding: 4px 1px 1px 1px; /* have to try out */
+	padding: 4px 1px; /* have to try out */
 }
 
 /*form.dm_form label input.field:focus,
