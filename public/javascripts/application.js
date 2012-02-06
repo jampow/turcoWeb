@@ -89,7 +89,7 @@ $(function(){
     }
   });
 
-  //Abre pra item para edição no duplo clique
+  //Exibe item da tabela no duplo clique
   $('table.list tbody tr').live('dblclick', function(){$('.button.show').click();});
 
   //todos os links em 'west' e 'center' ou em 'north' com o parâmetro ajax="true" com requisição ajax
@@ -288,10 +288,12 @@ function message() {
       //theme: 'smoke',
       life: 5000,
       position: 'center',
-      header: '<b>MENSAGEM</b>'
+      header: '<b>MENSAGEM</b>',
+      close: function(){
+        $('.notice').remove();
+        $('#jGrowl').hide();
+      }
     });
-
-    $('.notice').remove();
   }
 }
 
