@@ -4,7 +4,6 @@ class HomeController < ApplicationController
 
   #FIXME: mensagem de boas vindas aparece duas vezes.
   def index
-    flash[:notice] = "Bem vindo #{current_user.name}."
     @message = Message.last.message rescue ''
   end
 
