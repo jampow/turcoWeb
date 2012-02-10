@@ -4,33 +4,48 @@
 <% end -%>
 
 <% form_for(@invoice) do |f| %>
-  <div class="form-wrapper">
-    <%= f.error_messages %>
-    <%= f.date_select :operation        , :label => "Operação"                  %>
-    <%= f.text_field  :invoice_number   , :label => "Número da Nota"            %>
-    <%= f.text_field  :client_id        , :label => "Cliente"                   %>
-    <%= f.text_field  :seller_id        , :label => "Vendedor"                  %>
-    <%= f.text_field  :term_id          , :label => "Termo"                     %>
-    <%= f.text_field  :ipi              , :label => "IPI"                       %>
-    <%= f.text_field  :icms_base        , :label => "Base do ICMS"              %>
-    <%= f.text_field  :icms             , :label => "ICMS"                      %>
-    <%= f.text_field  :pis              , :label => "PIS"                       %>
-    <%= f.text_field  :cofins           , :label => "COFINS"                    %>
-    <%= f.text_field  :products_value   , :label => "Valor dos produtos"        %>
-    <%= f.text_field  :invoice_value    , :label => "Valor da Nota"             %>
-    <%= f.text_field  :commission_rate  , :label => "Percentagem de comissão"   %>
-    <%= f.text_field  :activity_id      , :label => "Ramo de atividade"         %>
-    <%= f.text_area   :observations     , :label => "Observações"               %>
-    <%= f.text_field  :sell_id          , :label => "Vendedor"                  %>
-    <%= f.text_field  :parcels          , :label => "Parcelas"                  %>
-    <%= f.text_field  :natop_id         , :label => "Natureza da operação"      %>
-    <%= f.check_box   :delivery         , :label => "Entrega"                   %>
-    <%= f.text_field  :freight          , :label => "Frete"                     %>
-    <%= f.text_field  :freight_type     , :label => "Tipo do frete"             %>
-    <%= f.text_field  :insurance        , :label => "Seguro"                    %>
-    <%= f.text_field  :carrier_id       , :label => "Transportadora"            %>
-    <%= f.text_field  :manaus_discount  , :label => "Desconto Manaus"           %>
-    <%= f.check_box   :canceled         , :label => "Cancelada"                 %>
-  </div>
+  <%= f.error_messages %>
+  <%= f.text_field   :invoice_number             , :label => "Número da Nota"         , :size => 10  %>
+  <%= f.text_field   :operation                  , :label => "Operação"               , :size => 20, :class => 'datepicker'   %>
+  <%= f.select       :seller_id        , @sellers, :label => "Id do Vendedor"         , :size => 40  %>
+  <%= f.text_field   :commission_rate            , :label => "Comissão"               , :size => 10  %>
+  <%= f.text_field   :sell_id                    , :label => "Tipo"                   , :size => 20  %>
+  
+  <% field_set_tag "Cliente" do %>
+    <%= f.hidden_field :client_id                  , :label => "Cliente"                , :size => 10  %>
+    <%= f.text_field   :client_name                , :label => "Cliente"                , :size => 40, :class => 'autocomplete', :source => 'client'  %>
+    <%# PRECISA DO CNPJ DESNORMALIZADO?!?!?!?!?!? %>
+    <%= f.select       :term_id        , @terms    , :label => "Termo"                  , :size => 10  %>
+  
+    <%= f.text_area    :observations               , :label => "Observações"            , :size => 100 %>
+  <% end -%>
+
+  <% field_set_tag "Itens" do -%>
+  <% end -%>
+  
+  <% field_set_tag "Impostos" do -%>
+    <%= f.text_field   :ipi                        , :label => "Total IPI"              , :size => 20  %>
+    <%= f.text_field   :icms_base                  , :label => "Base do ICMS"           , :size => 20  %>
+    <%= f.text_field   :icms                       , :label => "Total ICMS"             , :size => 20  %>
+    <%= f.text_field   :pis                        , :label => "PIS"                    , :size => 20  %>
+    <%= f.text_field   :cofins                     , :label => "Cofins"                 , :size => 20  %>
+    
+    <%= f.text_field   :products_value             , :label => "Total produtos"         , :size => 20  %>
+    <%= f.text_field   :invoice_value              , :label => "Total geral"            , :size => 20  %>
+    <%# f.text_field   :activity_id                , :label => "Ramo de atividade"      , :size => 20  %>
+    <%= f.text_field   :parcels                    , :label => "Parcelas"               , :size => 20  %>
+    <%= f.text_field   :natop_id                   , :label => "Nat da op. (String)"    , :size => 20  %>
+  <% end -%>
+  
+  
+  <% field_set_tag "Entrega" do -%>
+    <%= f.check_box    :delivery                   , :label => "Entrega"                , :size => 10  %>
+    <%= f.text_field   :freight                    , :label => "Frete"                  , :size => 10  %>
+    <%= f.text_field   :freight_type               , :label => "Tipo do frete"          , :size => 10  %>
+    <%= f.text_field   :insurance                  , :label => "Seguro"                 , :size => 10  %>
+    <%= f.text_field   :carrier_id                 , :label => "Transportadora"         , :size => 10  %>
+    <%= f.text_field   :manaus_discount            , :label => "Desconto Manaus"        , :size => 10  %>
+    <%= f.check_box    :canceled                   , :label => "Cancelada"              , :size => 10  %>
+  <% end -%>
 <% end %>
 
