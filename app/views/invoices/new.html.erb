@@ -7,7 +7,7 @@
   <%= f.error_messages %>
   <%= f.text_field   :invoice_number             , :label => "Número da Nota"         , :size => 10  %>
   <%= f.text_field   :operation                  , :label => "Operação"               , :size => 20, :class => 'datepicker'   %>
-  <%= f.select       :seller_id        , @sellers, :label => "Id do Vendedor"         , :size => 40  %>
+  <%= f.select       :seller_id        , @sellers, :label => "Vendedor"               , :size => 40  %>
   <%= f.text_field   :commission_rate            , :label => "Comissão"               , :size => 10  %>
   <%= f.text_field   :sell_id                    , :label => "Tipo"                   , :size => 20  %>
   
@@ -21,6 +21,33 @@
   <% end -%>
 
   <% field_set_tag "Itens" do -%>
+    <%= invoice_item_toolbar f %>
+    <% f.fields_for :invoice_items do |ii| %>
+      <%= render :partial => "invoice_item_fields", :locals => {:f => ii} %>
+    <% end -%>
+
+    <table id="invoice_items" cellpading="0" cellspacing="0" border="0" width="100%">
+      <thead>
+        <tr>
+          <th>Id do item       </th>
+          <th>Código do Produto</th>
+          <th>Produto          </th>
+          <th>Quantidade       </th>
+          <th>Unidade de medida</th>
+          <th>Número de peças  </th>
+          <th>Valor unitário   </th>
+          <th>Valor Total      </th>
+          <th>ICM              </th>
+          <th>IPI              </th>
+          <th>PIS              </th>
+          <th>COFINS           </th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+
+    <div id="trash" class="hide"></div>
   <% end -%>
   
   <% field_set_tag "Impostos" do -%>
