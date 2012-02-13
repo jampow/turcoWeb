@@ -14,6 +14,7 @@ class InvoicesController < ApplicationController
   # GET /invoices/1.xml
   def show
     @invoice = Invoice.find(params[:id])
+    @grid_itens = InvoiceItem.grid_itens @invoice.id
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +26,7 @@ class InvoicesController < ApplicationController
   # GET /invoices/new.xml
   def new
     @invoice = Invoice.new
+    @invoice.itens.build
     default_data
 
     respond_to do |format|
@@ -35,7 +37,9 @@ class InvoicesController < ApplicationController
 
   # GET /invoices/1/edit
   def edit
-    @invoice = Invoice.find(params[:id])
+    @invoice   = Invoice.find(params[:id])
+    @grid      = @invoice.itens
+    @item_form = InvoiceItem.new
     default_data
   end
 
@@ -46,7 +50,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
-        flash[:notice] = 'Invoice was successfully created.'
+        flash[:notice] = 'Nota fiscal criada.'
         format.html { redirect_to(@invoice) }
         format.xml  { render :xml => @invoice, :status => :created, :location => @invoice }
       else
@@ -64,7 +68,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.update_attributes(params[:invoice])
-        flash[:notice] = 'Invoice was successfully updated.'
+        flash[:notice] = 'Nota fiscal atualizada.'
         format.html { redirect_to(@invoice) }
         format.xml  { head :ok }
       else

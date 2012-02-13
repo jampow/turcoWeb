@@ -21,6 +21,49 @@
   <% end -%>
 
   <% field_set_tag "Itens" do -%>
+    <%= invoice_item_toolbar f %>
+    <% f.fields_for :itens, @item_form do |ii| %>
+      <%= render :partial => "invoice_item_fields", :locals => {:f => ii} %>
+    <% end -%>
+
+    <table id="invoice_items" cellpading="0" cellspacing="0" border="0" width="100%">
+      <thead>
+        <tr>
+          <th>Id do item       </th>
+          <th>Id do produto    </th>
+          <th>Produto          </th>
+          <th>Quantidade       </th>
+          <th>Unidade de medida</th>
+          <th>Número de peças  </th>
+          <th>Valor unitário   </th>
+          <th>Valor Total      </th>
+          <th>ICM              </th>
+          <th>IPI              </th>
+          <th>PIS              </th>
+          <th>COFINS           </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% f.fields_for :itens, @grid do |ti| %>
+          <tr>
+            <td><%= ti.hidden_field :id              %><span></span></td>
+            <td><%= ti.hidden_field :product_id      %><span></span></td>
+            <td><%= ti.hidden_field :product_name    %><span></span></td>
+            <td><%= ti.hidden_field :quantity        %><span></span></td>
+            <td><%= ti.hidden_field :measure_unit_id %><span></span></td>
+            <td><%= ti.hidden_field :parts           %><span></span></td>
+            <td><%= ti.hidden_field :unit_value      %><span></span></td>
+            <td><%= ti.hidden_field :total_value     %><span></span></td>
+            <td><%= ti.hidden_field :icm             %><span></span></td>
+            <td><%= ti.hidden_field :ipi             %><span></span></td>
+            <td><%= ti.hidden_field :pis             %><span></span></td>
+            <td><%= ti.hidden_field :cofins          %><span></span></td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+
+    <div id="trash" class="hide"></div>
   <% end -%>
   
   <% field_set_tag "Impostos" do -%>
