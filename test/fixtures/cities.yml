@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  estate_acronym: MyString
+  ibge_cod: 1
+  name: MyString
+
+two:
+  estate_acronym: MyString
+  ibge_cod: 1
+  name: MyString

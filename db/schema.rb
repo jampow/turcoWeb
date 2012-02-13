@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120126020101) do
+ActiveRecord::Schema.define(:version => 20120209173704) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -87,6 +87,12 @@ ActiveRecord::Schema.define(:version => 20120126020101) do
     t.datetime "updated_at"
   end
 
+  create_table "cities", :force => true do |t|
+    t.string  "estate_acronym", :limit => 2
+    t.integer "ibge_cod"
+    t.string  "name",           :limit => 40
+  end
+
   create_table "clients", :force => true do |t|
     t.string   "name"
     t.string   "nickname"
@@ -131,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20120126020101) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ibge_cod"
   end
 
   create_table "functions", :force => true do |t|
@@ -211,11 +218,11 @@ ActiveRecord::Schema.define(:version => 20120126020101) do
     t.integer  "order_id"
     t.integer  "product_id"
     t.float    "quantity"
-    t.float    "unit_value"
     t.float    "total_value"
     t.date     "delivery"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "unit_value"
     t.integer  "measure_unit_id"
   end
 
