@@ -19,6 +19,11 @@
   <%= js_sales_new_item          if flash[:btn_sales_new_item]      %>
   <%= js_sales_del_item          if flash[:btn_sales_del_item]      %>
   <%= js_sales_save_item         if flash[:btn_sales_save_item]     %>
+
+  <%= js_invoice_create_table_item if flash[:create_invoice_table_item] %>
+  <%= js_invoice_new_item          if flash[:btn_invoice_new_item]      %>
+  <%= js_invoice_del_item          if flash[:btn_invoice_del_item]      %>
+  <%= js_invoice_save_item         if flash[:btn_invoice_save_item]     %>
   
   <%= js_purchase_create_table_item if flash[:create_purchase_table_item] %>
   <%= js_purchase_new_item          if flash[:btn_purchase_new_item]      %>

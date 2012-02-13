@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  product_id: 1
+  product_cod: MyString
+  product_name: MyString
+  quantity: 9.99
+  parts: 1
+  unit_value: 9.99
+  total_value: 9.99
+  icm: 9.99
+  ipi: 9.99
+  pis: 9.99
+  cofins: 9.99
+
+two:
+  product_id: 1
+  product_cod: MyString
+  product_name: MyString
+  quantity: 9.99
+  parts: 1
+  unit_value: 9.99
+  total_value: 9.99
+  icm: 9.99
+  ipi: 9.99
+  pis: 9.99
+  cofins: 9.99
