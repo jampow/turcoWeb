@@ -282,15 +282,15 @@ $(window).bind('resize', limit_div_content);
 
 function message() {
   msg = $('.notice').text();
+  $('.notice').remove();
 
   if ( msg != "" ) {
+    $('#jGrowl').show();
     $.jGrowl(msg,{
-      //theme: 'smoke',
       life: 5000,
       position: 'center',
       header: '<b>MENSAGEM</b>',
       close: function(){
-        $('.notice').remove();
         $('#jGrowl').hide();
       }
     });
