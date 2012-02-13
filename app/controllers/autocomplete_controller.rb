@@ -5,7 +5,8 @@ class AutocompleteController < ApplicationController
   def account_plan
     @list = AccountPlan.find(:all,
                              :select => "id, name as label, name as value",
-                             :conditions => ["name like ?", "%#{params[:term]}%"])
+                             :conditions => ["name like ?", "%#{params[:term]}%"],
+                             :order => "name")
 
     respond_to do |format|
       format.js { render :action => "autocomplete" }
@@ -15,7 +16,8 @@ class AutocompleteController < ApplicationController
   def client
     @list = Client.find(:all,
                         :select => "id, name as label, name as value",
-                        :conditions => ["name like ?", "%#{params[:term]}%"])
+                        :conditions => ["name like ? And active = 1", "%#{params[:term]}%"],
+                        :order => "name")
 
     respond_to do |format|
       format.js { render :action => "autocomplete" }
@@ -25,7 +27,8 @@ class AutocompleteController < ApplicationController
   def cost_center
     @list = CostCenter.find(:all,
                             :select => "id, name as label, name as value",
-                            :conditions => ["name like ?", "%#{params[:term]}%"])
+                            :conditions => ["name like ?", "%#{params[:term]}%"],
+                            :order => "name")
 
     respond_to do |format|
       format.js { render :action => "autocomplete" }
@@ -35,7 +38,8 @@ class AutocompleteController < ApplicationController
   def measure_units
     @list = MeasureUnit.find(:all,
                              :select => "id, measure_unit as label, measure_unit as value",
-                             :conditions => ["product_id = ?", params[:prod_id]])
+                             :conditions => ["product_id = ?", params[:prod_id]],
+                             :order => "measure_unit")
 
     respond_to do |format|
       format.js { render :action => "autocomplete" }
@@ -43,9 +47,7 @@ class AutocompleteController < ApplicationController
   end
 
   def product
-    @list = Product.find(:all,
-                        :select => "id, name as label, name as value",
-                        :conditions => ["name like ?", "%#{params[:term]}%"])
+    @list = Product.to_autocomplete params[:term]
 
     respond_to do |format|
       format.js { render :action => "autocomplete" }
@@ -55,14 +57,15 @@ class AutocompleteController < ApplicationController
   def provider
     @list = Provider.find(:all,
                           :select => "id, name as label, name as value",
-                          :conditions => ["name like ?", "%#{params[:term]}%"])
+                          :conditions => ["name like ?", "%#{params[:term]}%"],
+                          :order => "name")
 
     respond_to do |format|
       format.js { render :action => "autocomplete" }
     end
   end
 
-  #criada só pra renderizar
+  #renderiza
   def autocomplete
   end
 

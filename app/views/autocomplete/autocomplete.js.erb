@@ -1,4 +1,6 @@
 [<% @list.each do |item| -%>
-{"id": "<%= item.id %>", "label": "<%= item.label %>", "value": "<%= item.value %>"},
+  {<% item.attributes.each do |key, value| -%>
+    "<%= key %>": "<%= value %>",
+  <% end -%>"":""},
 <% end -%>{}]
 
