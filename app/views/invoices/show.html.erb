@@ -17,6 +17,15 @@
 <%= print_content "Observações"              , h(@invoice.observations)                  , :width => 100 %>
 
 <h2>Itens</h2>
+<%= table @grid_itens, ['product_name', 'Produto'                           ],
+                       ['quantity'    , 'Quantidade'   , {:class => 'right'}],
+                       ['measure_unit', 'Unid. Medida'                      ],
+                       ['parts'       , 'Núm. de peças', {:class => 'right'}],
+                       ['unit_value'  , 'total_value'  , {:class => 'right'}],
+                       ['icm'         , 'ICM'          , {:class => 'right'}],
+                       ['ipi'         , 'IPI'          , {:class => 'right'}],
+                       ['pis'         , 'PIS'          , {:class => 'right'}],
+                       ['cofins'      , 'COFINS'       , {:class => 'right'}] %>
 
 <h2>Impostos</h2>
 <%= print_content "Total IPI"                , number_to_currency(@invoice.ipi)           , :width => 20 %>

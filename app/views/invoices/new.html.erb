@@ -22,7 +22,7 @@
 
   <% field_set_tag "Itens" do -%>
     <%= invoice_item_toolbar f %>
-    <% f.fields_for :invoice_items do |ii| %>
+    <% f.fields_for :itens do |ii| %>
       <%= render :partial => "invoice_item_fields", :locals => {:f => ii} %>
     <% end -%>
 
