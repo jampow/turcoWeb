@@ -25,6 +25,7 @@ class InvoicesController < ApplicationController
   # GET /invoices/new.xml
   def new
     @invoice = Invoice.new
+    default_data
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class InvoicesController < ApplicationController
   # GET /invoices/1/edit
   def edit
     @invoice = Invoice.find(params[:id])
+    default_data
   end
 
   # POST /invoices
@@ -48,6 +50,7 @@ class InvoicesController < ApplicationController
         format.html { redirect_to(@invoice) }
         format.xml  { render :xml => @invoice, :status => :created, :location => @invoice }
       else
+        default_data
         format.html { render :action => "new" }
         format.xml  { render :xml => @invoice.errors, :status => :unprocessable_entity }
       end
@@ -65,6 +68,7 @@ class InvoicesController < ApplicationController
         format.html { redirect_to(@invoice) }
         format.xml  { head :ok }
       else
+        default_data
         format.html { render :action => "edit" }
         format.xml  { render :xml => @invoice.errors, :status => :unprocessable_entity }
       end
@@ -81,5 +85,12 @@ class InvoicesController < ApplicationController
       format.html { redirect_to(invoices_url) }
       format.xml  { head :ok }
     end
+  end
+  
+protected
+  
+  def default_data
+    @sellers = Seller.all.collect { |s| [s.name, s.id] }
+    @terms   = Term.all.collect   { |t| [t.name, t.id] }
   end
 end
