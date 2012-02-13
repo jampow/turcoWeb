@@ -140,23 +140,38 @@ module ApplicationHelper
   # 2 - head_name      => nome no cabeçalho da tabela
   # 3 - hash de opções => pode definir align e format {:class => "center", :format => "number_to_currency"}
   def table(obj, *fields)
-    s = <<-TABLE
-          <table class="list" cellpading="0" cellspacing="0" border="0" width="100%">
-            <thead>
-              <tr>
-                #{table_header(fields)}
-              </tr>
-            </thead>
+    if !obj[0]
+      s = <<-TABLE
+            <table class="list" cellpading="0" cellspacing="0" border="0" width="100%">
+              <thead>
+                <tr>
+                  #{table_header(false, fields)}
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          TABLE
+    else
+      s = <<-TABLE
+            <table class="list" cellpading="0" cellspacing="0" border="0" width="100%">
+              <thead>
+                <tr>
+                  #{table_header(!!obj[0].id, fields)}
+                </tr>
+              </thead>
 
-            <tbody>
-              #{table_body(obj, fields)}
-            </tbody>
-          </table>
-        TABLE
+              <tbody>
+                #{table_body(obj, fields)}
+              </tbody>
+            </table>
+          TABLE
+    end
+    s
   end
 
-  def table_header(*fields)
-    s = "<th>ID</th>"
+  def table_header(id, *fields)
+    s = id ? "<th>ID</th>" : ""
     fields[0].each do |field|
       s += "<th>#{h field[1].to_s}</th>"
     end
@@ -166,7 +181,8 @@ module ApplicationHelper
   def table_body(obj, *fields)
     s = ""
     obj.each do |o|
-      s += "<tr><td class=\"right\">#{o.id}</td>"
+      s += "<tr>"
+      s += "<td class=\"right\">#{o.id}</td>" if o.id
       fields[0].each do |field|
         field[2] ||= {}
         field[2][:format].nil? ? x = "o.#{field[0].to_s}" : x = "#{field[2][:format]}(o.#{field[0].to_s})"
