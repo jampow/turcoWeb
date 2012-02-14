@@ -25,11 +25,5 @@
 </table>
 
 <script type="text/javascript">
-  $('#apportionments').dataTable({
-     "bJQueryUI": true
-   , "sPaginationType": "full_numbers"
-   , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
-   , "oLanguage": dTableConfig
-   , "bRetrieve": true
-  });
+  $('#apportionments').dataTable(dTableConfig);
 </script>

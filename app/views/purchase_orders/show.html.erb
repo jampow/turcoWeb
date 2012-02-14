@@ -47,12 +47,6 @@
 </table>
 
 <script type="text/javascript">
-  var oTable = $('#purchase_order_items').dataTable({
-                   "bJQueryUI": true
-                 , "sPaginationType": "full_numbers"
-                 , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
-                 , "oLanguage": dTableConfig
-                 , "bRetrieve": true
-               });
+  var oTable = $('#purchase_order_items').dataTable(dTableConfig);
 </script>
 
