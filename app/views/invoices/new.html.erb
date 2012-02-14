@@ -1,6 +1,6 @@
 <% content_for :menu do -%>
   <h1>Nova Nota Fiscal</h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[default new]%>
 <% end -%>
 
 <% form_for(@invoice) do |f| %>
@@ -51,17 +51,17 @@
   <% end -%>
   
   <% field_set_tag "Impostos" do -%>
-    <%= f.text_field   :ipi                        , :label => "Total IPI"              , :size => 20  %>
-    <%= f.text_field   :icms_base                  , :label => "Base do ICMS"           , :size => 20  %>
-    <%= f.text_field   :icms                       , :label => "Total ICMS"             , :size => 20  %>
-    <%= f.text_field   :pis                        , :label => "PIS"                    , :size => 20  %>
-    <%= f.text_field   :cofins                     , :label => "Cofins"                 , :size => 20  %>
+    <%= f.text_field   :ipi                        , :label => "Total IPI"              , :size => 10  %>
+    <%= f.text_field   :icms_base                  , :label => "Base do ICMS"           , :size => 10  %>
+    <%= f.text_field   :icms                       , :label => "Total ICMS"             , :size => 10  %>
+    <%= f.text_field   :pis                        , :label => "PIS"                    , :size => 10  %>
+    <%= f.text_field   :cofins                     , :label => "Cofins"                 , :size => 10  %>
     
-    <%= f.text_field   :products_value             , :label => "Total produtos"         , :size => 20  %>
-    <%= f.text_field   :invoice_value              , :label => "Total geral"            , :size => 20  %>
-    <%# f.text_field   :activity_id                , :label => "Ramo de atividade"      , :size => 20  %>
-    <%= f.text_field   :parcels                    , :label => "Parcelas"               , :size => 20  %>
-    <%= f.text_field   :natop_id                   , :label => "Nat da op. (String)"    , :size => 20  %>
+    <%= f.text_field   :products_value             , :label => "Total produtos"         , :size => 10  %>
+    <%= f.text_field   :invoice_value              , :label => "Total geral"            , :size => 10  %>
+    <%# f.text_field   :activity_id                , :label => "Ramo de atividade"      , :size => 10  %>
+    <%= f.text_field   :parcels                    , :label => "Parcelas"               , :size => 10  %>
+    <%= f.text_field   :natop_id                   , :label => "Nat da op. (String)"    , :size => 10  %>
   <% end -%>
   
   
