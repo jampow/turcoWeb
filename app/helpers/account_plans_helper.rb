@@ -40,7 +40,7 @@ module AccountPlansHelper
                                "bJQueryUI": true
                              , "sPaginationType": "full_numbers"
                              , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
-                             , "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
+                             , "oLanguage": dTableConfig
                              , "bRetrieve": true
                            });
               //Array com o index das colunas q deve ser ocultadas

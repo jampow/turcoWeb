@@ -175,11 +175,30 @@ $(function(){
     //Lista organizável
     //$('#sortable').sortable({ axis: 'y', placeholder: 'ui-state-highlight' }).disableSelection();
 
+    var dTableConfig = {
+        "sLengthMenu": "_MENU_ itens por página"
+      , "sZeroRecords": "Nenhum registro encontrado"
+      , "sInfo": "Registros de _START_ até _END_ de um total de _TOTAL_"
+      , "sInfoEmpty": "Registros de 0 até 0 de um total de 0"
+      , "sInfoFiltered": "(filtrado de um total de _MAX_ registros)"
+      , "sProcessing": "Processando..."
+      , "sInfoPostFix": ""
+      , "sSearch": "Busca"
+      , "sUrl": ""
+      , "oPaginate": {
+          "sFirst":    "Primeira"
+        , "sPrevious": "Anterior"
+        , "sNext":     "Próxima"
+        , "sLast":     "Última"
+        }
+    };
+
+
     $('table.list').dataTable({
         "bJQueryUI": true
       , "sPaginationType": "full_numbers"
       , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
-      , "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
+      , "oLanguage": dTableConfig
       , "bRetrieve": true
     });
 
