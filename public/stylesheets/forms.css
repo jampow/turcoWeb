@@ -228,7 +228,7 @@ form label input[type=checkbox] {
 
 /*form.dm_form label select.field {*/
 form label select {
-	padding: 4px 1px; /* have to try out */
+	padding: 3px 1px; /* have to try out */
 }
 
 /*form.dm_form label input.field:focus,
