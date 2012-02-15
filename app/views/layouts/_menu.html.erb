@@ -132,6 +132,11 @@
   	      <li>
   	        <%= link_to image_tag('.png') +  "<br />Mensagens", messages_path %>
   	      </li>
+          <% if current_user.has_role? :master %>
+  	      <li>
+  	        <%= link_to image_tag('.png') +  "<br />Tipos de NF", sells_types_path %>
+  	      </li>
+          <% end -%>
 	      </ul>
 	    </div>
     </div>

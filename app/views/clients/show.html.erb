@@ -125,22 +125,21 @@
 
 <script type="text/javascript">
 
-    $('table.personal_list').dataTable({
-			  "bJQueryUI": true
-			, "sPaginationType": "full_numbers"
-			, "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
-			, "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
-      , "fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
-	        var iTotal = 0;
-	        //Soma das NF's visíveis
-          for ( var i=iStart ; i<iEnd ; i++ )
-	        {
-	          iVal = aaData[aiDisplay[i]][3].replace('R$ ', '').replace(/\./gi, '').replace(',', '.')*1;
-		        iTotal += iVal;
-	        }
-	        $('.sum', this).text('R$ '+ toCurrency(iTotal.toFixed(2)));
+    var conf = {"fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
+        var iTotal = 0;
+        //Soma das NF's visíveis
+        for ( var i=iStart ; i<iEnd ; i++ )
+        {
+          iVal = aaData[aiDisplay[i]][3].replace('R$ ', '').replace(/\./gi, '').replace(',', '.')*1;
+          iTotal += iVal;
         }
-		});
+        $('.sum', this).text('R$ '+ toCurrency(iTotal.toFixed(2)));
+      }
+    };
+
+    var newConf = $.extend(dTableConfig, conf);
+
+    $('table.personal_list').dataTable(newConf);
 
 </script>
 

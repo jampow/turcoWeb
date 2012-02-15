@@ -1,0 +1,11 @@
+<% content_for :menu do -%>
+  <h1>Editando tipo de NF</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@sells_type) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field :name, :label => "Nome"   , :size => 100, :required => true %>
+  <%= f.text_area  :calc, :label => "Cálculo", :size => 100 %>
+<% end %>

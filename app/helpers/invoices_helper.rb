@@ -27,14 +27,7 @@ module InvoicesHelper
   def js_invoice_create_table_item
     html = ''
     html += <<-JS
-              var oTable = $('#invoice_items').dataTable({
-                               "bJQueryUI": true
-                             , "sPaginationType": "full_numbers"
-                             , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
-                             , "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
-                             , "bRetrieve": true
-                           });
-
+              var oTable = $('#invoice_items').dataTable(dTableConfig);
               $('#invoice_items').undelegate('tr', 'click');
               $('#invoice_items').delegate(  'tr', 'click', function(){
                 var t = $(this);

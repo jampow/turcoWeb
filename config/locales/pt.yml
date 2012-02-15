@@ -199,17 +199,18 @@
         format: "%{attribute} %{message}"
 
     models:
-      account_plan: "Plano de contas"
+      account plan: "Plano de contas"
       activity: "Ramo de atividade"
       client: "Cliente"
-      cost_center: "Centro de Custos"
+      cost center: "Centro de Custos"
       cst: "Subst. Tributária"
-      cst_cofins: "Subst. Tributária Cofins"
-      cst_icm: "Subst. Tributária Icm"
-      cst_ipi: "Subst. Tributária Ipi"
-      cst_pis: "Subst. Tributária Pis"
+      cst cofins: "Subst. Tributária Cofins"
+      cst icm: "Subst. Tributária Icm"
+      cst ipi: "Subst. Tributária Ipi"
+      cst pis: "Subst. Tributária Pis"
       product: "Produto"
-      sales_order: "Pedido de venda"
+      sales order: "Pedido de venda"
+      sells type: "Tipos de NF"
 
     attributes:
       account_plan:
@@ -230,4 +231,7 @@
         description: "Descrição"
       sales_order:
         client_id: "Cliente"
+      sells_type:
+        name: "Nome"
+        calc: "Cálculo"
 

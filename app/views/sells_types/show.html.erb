@@ -1,0 +1,7 @@
+<% content_for :menu do -%>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Nome"   , h(@sells_type.name), :width => 100 %>
+<%= print_content "Cálculo", h(@sells_type.calc), :width => 100 %>
+

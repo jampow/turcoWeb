@@ -33,13 +33,7 @@ module SalesOrdersHelper
     #editing? ? html = "$('#sales_order_items tbody tr:last').remove();" : html = ''
     html = ''
     html += <<-JS
-              var oTable = $('#sales_order_items').dataTable({
-                               "bJQueryUI": true
-                             , "sPaginationType": "full_numbers"
-                             , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
-                             , "oLanguage": { "sUrl": "/javascripts/dataTable/pt_BR.txt" }
-                             , "bRetrieve": true
-                           });
+              var oTable = $('#sales_order_items').dataTable(dTableConfig);
               //Array com o index das colunas q deve ser ocultadas
               //var invCols = [0,1];
 
