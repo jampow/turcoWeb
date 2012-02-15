@@ -210,6 +210,7 @@
       cst_pis: "Subst. Tributária Pis"
       product: "Produto"
       sales_order: "Pedido de venda"
+      sells_type: "Tipos de NF"
 
     attributes:
       account_plan:
@@ -230,4 +231,7 @@
         description: "Descrição"
       sales_order:
         client_id: "Cliente"
+      sells_type:
+        name: "Nome"
+        calc: "Cálculo"
 
