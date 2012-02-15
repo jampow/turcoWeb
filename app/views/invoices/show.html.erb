@@ -4,11 +4,11 @@
 <% end -%>
 
 
-<%= print_content "Número da NF"             , h(@invoice.invoice_number)                , :width => 10 %>
-<%= print_content "Operação"                 , l(@invoice.operation)                     , :width => 20 %>
-<%= print_content "Representante"            , h(@invoice.seller.name)                   , :width => 40 %>
-<%= print_content "Comição"                  , h(@invoice.commission_rate)               , :width => 10 %>
-<%= print_content "Tipo"                     , h(@invoice.sell_id)                       , :width => 20 %>
+<%= print_content "Número da NF"             , h(@invoice.invoice_number)         , :width => 10 %>
+<%= print_content "Operação"                 , l(@invoice.operation)              , :width => 20 %>
+<%= print_content "Representante"            , h((@invoice.seller.name rescue '')), :width => 40 %>
+<%= print_content "Comição"                  , h(@invoice.commission_rate)        , :width => 10 %>
+<%= print_content "Tipo"                     , h(@invoice.sell_id)                , :width => 20 %>
 
 <%= print_content "Cliente"                  , h(@invoice.client.name)                   , :width => 50 %>
 <%= print_content "CNPJ"                     , h(@invoice.client.cnpj)                   , :width => 20 %>
