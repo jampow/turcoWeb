@@ -8,6 +8,8 @@ class Product < ActiveRecord::Base
   has_many   :attachments, :foreign_key => 'external_id', :dependent => :destroy
   has_many   :measure_units
   
+  validates_uniqueness_of :code
+  
   #named_scope :quantity, :select => "sum()" :conditions => { :field => condition }, :order => "field"
   
 #  Select pro.id

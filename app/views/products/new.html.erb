@@ -4,29 +4,33 @@
 <% end -%>
 
 <% form_for(@product) do |f| %>
-  <div class="form-wrapper">
   <%= f.error_messages %>
 
-    <%= f.text_field :code                             , :label => "Código"           , :class => "mask-code" %>
-    <%= f.text_field :name                             , :label => "Descrição"                                %>
-    <%= f.text_field :kind                             , :label => "Espécie"                                  %>
-    <%= f.text_field :unity                            , :label => "Unidade"                                  %>
-    <%= f.text_field :weight                           , :label => "Peso (Kg's)"                              %>
-    <%= f.text_field :ipi                              , :label => "IPI"                                      %>
-    <%= f.text_field :fiscal_code                      , :label => "Código Fiscal"                            %>
-    <%= f.text_field :tributary_code                   , :label => "Código Tributário"                        %>
-    <%= f.text_field :ncm                              , :label => "NCM"                                      %>
-    <%= f.text_field :price                            , :label => "Preço"                                    %>
-    <%= f.text_field :cost                             , :label => "Custo"                                    %>
-    <%= f.text_field :liquid_price                     , :label => "Preço Líquido"                            %>
-    <%= f.select     :family_id     , @product_families, :label => "Família"                                  %>
-    <%= f.select     :type_id       , @product_kinds   , :label => "Tipo"                                     %>
-    <%= f.select     :cst_icm_id    , @cst_icm         , :label => "CST ICM"                                  %>
-    <%= f.select     :cst_ipi_id    , @cst_ipi         , :label => "CST IPI"                                  %>
-    <%= f.select     :cst_pis_id    , @cst_pis         , :label => "CST PIS"                                  %>
-    <%= f.text_field :pis                              , :label => "PIS"                                      %>
-    <%= f.select     :cst_cofins_id , @cst_cofins      , :label => "CST COFINS"                               %>
-    <%= f.text_field :cofins                           , :label => "COFINS"                                   %>
-  </div>
+  <%= f.text_field :code                             , :label => "Código"           , :size => 10, :class => "mask-code"  %>
+  <%= f.text_field :name                             , :label => "Descrição"        , :size => 40                         %>
+  <%= f.text_field :kind                             , :label => "Espécie"          , :size => 40                         %>
+  <%# f.text_field :unity                            , :label => "Unidade"          , :size => 20                         %>
+  <%= f.text_field :weight                           , :label => "Peso (Kg's)"      , :size => 10                         %>
+  
+  <%= f.text_field :ipi                              , :label => "IPI"              , :size => 10                         %>
+  <%= f.text_field :fiscal_code                      , :label => "Código Fiscal"    , :size => 10                         %>
+  <%= f.text_field :tributary_code                   , :label => "Código Tributário", :size => 10                         %>
+  <%= f.text_field :ncm                              , :label => "NCM"              , :size => 10                         %>
+  <%= f.text_field :price                            , :label => "Preço"            , :size => 10, :class => "mask-money" %>
+  <%= f.text_field :cost                             , :label => "Custo"            , :size => 10, :class => "mask-money" %>
+  <%= f.text_field :liquid_price                     , :label => "Preço Líquido"    , :size => 10, :class => "mask-money" %>
+  <%= f.select     :family_id     , @product_families, :label => "Família"          , :size => 10                         %>
+  <%= f.select     :type_id       , @product_kinds   , :label => "Tipo"             , :size => 10                         %>
+  
+  <% field_set_tag 'Impostos' do -%>
+    <%= f.select     :cst_ipi_id    , @cst_ipi       , :label => "CST IPI"          , :size => 20                         %>
+    <%= f.select     :cst_pis_id    , @cst_pis       , :label => "CST PIS"          , :size => 20                         %>
+    <%= f.text_field :pis                            , :label => "PIS"              , :size => 10                         %>
+    <%= f.select     :cst_cofins_id , @cst_cofins    , :label => "CST COFINS"       , :size => 20                         %>
+    <%= f.text_field :cofins                         , :label => "COFINS"           , :size => 10                         %>
+    <%= f.select     :cst_icm_id    , @cst_icm       , :label => "CST ICM"          , :size => 20                         %>
+  <% end -%>
+  
+
 <% end %>
 
