@@ -212,6 +212,7 @@
       sales order: "Pedido de venda"
       sells type: "Tipos de NF"
       st icm: "ICMS"
+      st ipi: "IPI"
       st pi: "PIS"
 
     attributes:
@@ -247,4 +248,10 @@
         taxed: "Tributada"
         differential_rate: "Alíquota diferenciada"
         zero_rate: "Alíquota zero"
+      st_ipi:
+        name: "Nome"
+        sai_ent: "Saída ou entrada"
+        taxed: "Tributada"
+        zero_rate: "Alíquota zero"
+        
 

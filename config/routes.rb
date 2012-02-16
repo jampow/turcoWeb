@@ -33,6 +33,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sells_types
   map.resources :stocks
   map.resources :st_icms
+  map.resources :st_ipis
   map.resources :st_pis
   map.resources :terms
   map.resources :users
