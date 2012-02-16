@@ -212,6 +212,7 @@
       sales order: "Pedido de venda"
       sells type: "Tipos de NF"
       st icm: "ICMS"
+      st pi: "PIS"
 
     attributes:
       account_plan:
@@ -240,4 +241,10 @@
         taxed: "Tributada"
         base_reduction: "Redução na base"
         tax_replacement: "Substituição Tributária"
+      st_pi:
+        name: "Nome"
+        aliquot_pis: "Alíquota"
+        taxed: "Tributada"
+        differential_rate: "Alíquota diferenciada"
+        zero_rate: "Alíquota zero"
 

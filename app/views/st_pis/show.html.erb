@@ -1,0 +1,11 @@
+<% content_for :menu do -%>
+  <h1>PIS</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Nome"                 , h(@st_pi.name)                         , :width => 20 %>
+<%= print_content "Alíquota"             , h(@st_pi.aliquot_pis)                  , :width => 20 %>
+<%= print_content "Tributada"            , human_boolean(@st_pi.taxed)            , :width => 20 %>
+<%= print_content "Alíquota diferenciada", human_boolean(@st_pi.differential_rate), :width => 20 %>
+<%= print_content "Alíquota zeroh"       , human_boolean(@st_pi.zero_rate)        , :width => 20 %>
+
