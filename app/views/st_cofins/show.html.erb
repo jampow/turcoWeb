@@ -1,0 +1,11 @@
+<% content_for :menu do -%>
+  <h1>Cofins</h1>
+  <%= mount_menu %>
+<% end -%>
+
+  <%= print_content "Nome"                 , h(@st_cofin.name)                         , :width => 50 %>
+  <%= print_content "Alíquota"             , h(@st_cofin.aliquot)                      , :width => 20 %>
+  <%= print_content "Tributado"            , human_boolean(@st_cofin.taxed)            , :width => 10 %>
+  <%= print_content "Alíquota diferenciada", human_boolean(@st_cofin.differential_rate), :width => 10 %>
+  <%= print_content "Alíquota zero"        , human_boolean(@st_cofin.zero_rate)        , :width => 10 %>
+

@@ -211,6 +211,7 @@
       product: "Produto"
       sales order: "Pedido de venda"
       sells type: "Tipos de NF"
+      st cofin: "Cofins"
       st icm: "ICMS"
       st ipi: "IPI"
       st pi: "PIS"
@@ -253,5 +254,11 @@
         sai_ent: "Saída ou entrada"
         taxed: "Tributada"
         zero_rate: "Alíquota zero"
+      st_cofin:
+        name: "Nome"
+        aliquot: "Alíquota"
+        taxed: "Tributada"
+        differential_rate: "Alíquota diferenciada"
+        zero_rate: "Alíquota zero"
         
-
+        

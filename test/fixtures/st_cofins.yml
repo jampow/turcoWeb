@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  aliquot: 9.99
+  taxed: false
+  differential_rate: false
+  zero_rate: false
+
+two:
+  name: MyString
+  aliquot: 9.99
+  taxed: false
+  differential_rate: false
+  zero_rate: false
