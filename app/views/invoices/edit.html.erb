@@ -5,11 +5,11 @@
 
 <% form_for(@invoice) do |f| %>
   <%= f.error_messages %>
-  <%= f.text_field   :invoice_number             , :label => "Número da Nota"         , :size => 10  %>
-  <%= f.text_field   :operation                  , :label => "Operação"               , :size => 20, :class => 'datepicker'   %>
-  <%= f.select       :seller_id        , @sellers, :label => "Vendedor"               , :size => 40  %>
-  <%= f.text_field   :commission_rate            , :label => "Comissão"               , :size => 10  %>
-  <%= f.text_field   :sell_id                    , :label => "Tipo"                   , :size => 20  %>
+  <%= f.text_field :invoice_number                , :label => "Número da Nota"         , :size => 10  %>
+  <%= f.text_field :operation                     , :label => "Operação"               , :size => 20, :class => 'datepicker'   %>
+  <%= f.select     :seller_id        , @sellers   , :label => "Vendedor"               , :size => 40  %>
+  <%= f.text_field :commission_rate               , :label => "Comissão"               , :size => 10  %>
+  <%= f.select     :sell_id          , @sells_type, :label => "Tipo"                   , :size => 20  %>
   
   <% field_set_tag "Cliente" do %>
     <%= f.hidden_field :client_id                  , :label => "Cliente"                , :size => 10  %>
@@ -30,7 +30,7 @@
       <thead>
         <tr>
           <th>Id do item       </th>
-          <th>Id do produto    </th>
+          <th>Código do produto</th>
           <th>Produto          </th>
           <th>Quantidade       </th>
           <th>Unidade de medida</th>

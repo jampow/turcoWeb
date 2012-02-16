@@ -94,7 +94,8 @@ class InvoicesController < ApplicationController
 protected
   
   def default_data
-    @sellers = Seller.all.collect { |s| [s.name, s.id] }
-    @terms   = Term.all.collect   { |t| [t.name, t.id] }
+    @sellers    = Seller.all.collect    { |s| [s.name, s.id] }
+    @terms      = Term.all.collect      { |t| [t.name, t.id] }
+    @sells_type = SellsType.all.collect { |s| [s.name, s.id] }
   end
 end
