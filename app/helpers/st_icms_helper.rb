@@ -1,0 +1,2 @@
+module StIcmsHelper
+end

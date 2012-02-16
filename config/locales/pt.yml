@@ -211,6 +211,7 @@
       product: "Produto"
       sales order: "Pedido de venda"
       sells type: "Tipos de NF"
+      st icm: "ICMS"
 
     attributes:
       account_plan:
@@ -234,4 +235,9 @@
       sells_type:
         name: "Nome"
         calc: "Cálculo"
+      st_icm:
+        name: "Nome"
+        taxed: "Tributada"
+        base_reduction: "Redução na base"
+        tax_replacement: "Substituição Tributária"
 

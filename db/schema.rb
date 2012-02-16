@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215124645) do
+ActiveRecord::Schema.define(:version => 20120216161400) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -457,6 +457,15 @@ ActiveRecord::Schema.define(:version => 20120215124645) do
   create_table "sells_types", :force => true do |t|
     t.string   "name",       :limit => 20
     t.text     "calc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "st_icms", :force => true do |t|
+    t.string   "name",            :limit => 80
+    t.boolean  "taxed"
+    t.boolean  "base_reduction"
+    t.boolean  "tax_replacement"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

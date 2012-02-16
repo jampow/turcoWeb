@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  taxed: 
+  base_reduction: 
+  tax_replacement: 
+
+two:
+  name: MyString
+  taxed: 
+  base_reduction: 
+  tax_replacement: 

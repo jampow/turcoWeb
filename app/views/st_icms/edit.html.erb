@@ -1,0 +1,13 @@
+<% content_for :menu do -%>
+  <h1>Editando ICMS</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@st_icm) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field :name           , :label => "Nome"                   , :size => 40 %>
+  <%= f.check_box  :taxed          , :label => "Tributada"              , :size => 20 %>
+  <%= f.check_box  :base_reduction , :label => "Redução na base"        , :size => 20 %>
+  <%= f.check_box  :tax_replacement, :label => "Substituição tributária", :size => 20 %>
+<% end %>
