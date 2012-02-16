@@ -3,29 +3,28 @@
 <%= f.text_field :product_name       , :label => "Produto"           , :class => "autocomplete", :source => "product", :callback => "loadMeasureUnits()" %>
 <%= f.text_field :quantity           , :label => "Quantidade"        %>
 <%= f.select     :measure_unit_id, [], :label => "Unidade de medida" %>
-<%= f.text_field :unit_value         , :label => "Valor unitário"    %>
+<%= f.text_field :unit_value         , :label => "Valor unitário"    , :class => "mask-money"%>
 <%= f.text_field :total_value        , :label => "Valor total"       , :disabled => "deisabled" %>
 <%= f.text_field :delivery           , :label => "Data de entrega"   , :class => 'datepicker' %>
 
 <div class="clear"></div>
 <script type="text/javascript">
-
-  var calcFields =   '#purchase_order_order_items_attributes_0_quantity'
-  calcFields    += ', #purchase_order_order_items_attributes_0_unit_value'
+  var prefix = '#purchase_order_order_items_attributes_0_';
+  var calcFields =      prefix+'quantity';
+  calcFields    += ', '+prefix+'unit_value';
   $(calcFields).bind('change', function(){
-    var x = $('#purchase_order_order_items_attributes_0_quantity'  ).val();
-    var y = $('#purchase_order_order_items_attributes_0_unit_value').val();
-    
+    var x = $(prefix+'quantity'  ).val();
+    var y = $(prefix+'unit_value').val();
+
     x = x.replace(',', '.');
-    y = y.replace(',', '.');
-    var z = (x*y) + '';
-    z = z.replace('.', ',');
-    
-    $('#purchase_order_order_items_attributes_0_total_value').val(z);
+    y = format.money.toNumber(y);
+    var z = format.number.toMoney(x * y);
+
+    $(prefix+'total_value').val(z);
   });
   
   var loadMeasureUnits = function() {
-    var prod_id = $("#purchase_order_order_items_attributes_0_product_id").val();
+    var prod_id = $(prefix+"product_id").val();
     $.ajax({
       url: '/autocomplete/measure_units',
       data: 'prod_id=' + prod_id,
@@ -37,11 +36,11 @@
           var t = data[i];
           opts += '<option value="' + t.id + '">' + t.value + '</option>';
         };
-        $('#purchase_order_order_items_attributes_0_measure_unit_id').html(opts);
+        $(prefix+'measure_unit_id').html(opts);
       }
     });
   }
 
-  $("#purchase_order_order_items_attributes_0_product_id").bind('change', loadMeasureUnits);
+  $(prefix+"product_id").bind('change', loadMeasureUnits);
 </script>
 

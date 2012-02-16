@@ -208,7 +208,8 @@ $(function(){
     $('.mask-cnpj' ).mask("99.999.999/9999-99"    ,{placeholder:" "});
     $('.mask-code' ).mask("aaa.***.***.***"       ,{placeholder:" "});
     $('.mask-cep'  ).mask("99999-999"             ,{placeholder:" "});
-
+    $('.mask-money').priceFormat({prefix: '', centsSeparator: ',', thousandsSeparator: '.'});
+    
     //toggleables em show
     $('.toggleable').each(function(){
       toggle = $(this);
@@ -419,3 +420,16 @@ function findParent(ref, parentSelector) {
   return obj;
 }
 
+var format = {
+  money: {
+    toNumber: function(val) {
+      return val.replace(/\./g, '').replace(',', '.')*1;
+    }
+  },
+  number: {
+    toMoney: function(val) {
+      val = val + '';
+      return val.replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.");
+    }
+  }
+};
