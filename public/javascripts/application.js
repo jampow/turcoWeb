@@ -54,6 +54,12 @@ $(function(){
     //  CKEDITOR.instances[instance].updateElement();
     //}
 
+    //remove máscaras de decimais
+    $('.mask-decimal').each(function(){
+      var t = $(this);
+      t.val(format.decimal.toNumber(t.val()));
+    });
+
     //form = $(this).parents('form');
     form   = $('form');
     url    = form.attr('action');
@@ -167,18 +173,13 @@ $(function(){
     //Some com a explicação de erros
     $('#errorExplanation').slideUp('fast');
 
+    //mostra waiting
     $('#waiting').fadeTo('normal', 0.9);
-
-      //Antes de enviar intervalos
-      //if ($('form.edit_interval').length != 0 ) {
-      //  //console.log($('form.edit_interval').attr('action'));
-    //}
 
     //destroy all instances of CKEditor
     //for ( instance in CKEDITOR.instances ){
     //  CKEDITOR.instances[instance].destroy();
     //}
-
   });
 
   //Executar depois de todas as requisições ajax
@@ -188,6 +189,12 @@ $(function(){
 
     //fadeOut na div de processamento
     $('#waiting').fadeOut('normal');
+    
+    //Adiciona máscaras de decimais
+    $('.mask-decimal').each(function(){
+      var t = $(this);
+      t.val(format.number.toDecimal(t.val()));
+    });
 
     //prevent ajaxSuccess twice or more
     if ($('#ajaxSuccess').attr('value') == 'true') {
@@ -208,7 +215,20 @@ $(function(){
     $('.mask-cnpj' ).mask("99.999.999/9999-99"    ,{placeholder:" "});
     $('.mask-code' ).mask("aaa.***.***.***"       ,{placeholder:" "});
     $('.mask-cep'  ).mask("99999-999"             ,{placeholder:" "});
-    $('.mask-money').priceFormat({prefix: '', centsSeparator: ',', thousandsSeparator: '.'});
+    
+    $('.mask-decimal').each(function(){
+      var t = $(this);
+      var d = t.attr("decimal");
+      var conf = {prefix: '', centsSeparator: ',', thousandsSeparator: '.'};
+      if (d != undefined){
+        d = d.split(',');
+        if (d.length == 2) {
+          if (!isNaN(d[0])) conf.limit      = d[0]*1; 
+          if (!isNaN(d[1])) conf.centsLimit = d[1]*1;
+        }
+      }
+      t.priceFormat(conf);
+    });
     
     //toggleables em show
     $('.toggleable').each(function(){
@@ -276,6 +296,12 @@ $(function(){
 
     //fadeOut na div de processamento
     $('#waiting').fadeOut('normal');
+    
+    //Adiciona máscaras de decimais
+    $('.mask-decimal').each(function(){
+      var t = $(this);
+      t.val(format.number.toDecimal(t.val()));
+    });
   });
 
   $('#calendar').datepicker();
@@ -421,15 +447,15 @@ function findParent(ref, parentSelector) {
 }
 
 var format = {
-  money: {
+  decimal: {
     toNumber: function(val) {
       return val.replace(/\./g, '').replace(',', '.')*1;
     }
   },
   number: {
-    toMoney: function(val) {
+    toDecimal: function(val) {
       val = val + '';
-      return val.replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.");
+      return val.replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D))/g, "$&.");
     }
   }
 };
