@@ -236,11 +236,11 @@ $(function(){
         source   : "/autocomplete/"+src,
         minLength: 3,
         select   : function(event, ui){
-          var tid = t.attr('id').split('_');
-          tid.pop();
-          tid = tid.join('_');
-          t.val(ui.item.value);
-          $('#'+tid+'_id').val(ui.item.id);
+          var re = /^.+_0_/i;
+          var pref = re.exec(t.attr('id'))[0];
+          $.each(ui.item, function(key, val){
+            $('#'+pref+key).val(val);
+          });
           
           eval(cbk);
         }
