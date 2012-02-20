@@ -4,7 +4,7 @@
 <% end -%>
 
 <%= print_content "Número da NF"             , h(@invoice.invoice_number)         , :width => 10 %>
-<%= print_content "Operação"                 , l(@invoice.operation)              , :width => 20 %>
+<%= print_content "Operação"                 , date(@invoice.operation)           , :width => 20 %>
 <%= print_content "Representante"            , h((@invoice.seller.name rescue '')), :width => 40 %>
 <%= print_content "Comição"                  , h(@invoice.commission_rate)        , :width => 10 %>
 <%= print_content "Tipo"                     , h(@invoice.sell_id)                , :width => 20 %>
@@ -32,6 +32,7 @@
 <%= print_content "Total ICMS"               , number_to_currency(@invoice.icms)          , :width => 20 %>
 <%= print_content "PIS"                      , number_to_currency(@invoice.pis)           , :width => 20 %>
 <%= print_content "Cofins"                   , number_to_currency(@invoice.cofins)        , :width => 20 %>
+
 <%= print_content "Total produtos"           , number_to_currency(@invoice.products_value), :width => 20 %>
 <%= print_content "Total Geral"              , number_to_currency(@invoice.invoice_value) , :width => 20 %>
 <%# print_content "Ramo de tividade"         , h(@invoice.activity.id)                    , :width => 20 %>
