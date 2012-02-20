@@ -15,7 +15,7 @@
           <label class="inputselect w25" for="receivable_client_name">
             <span class="wrapper">
               <span class="title">Receber de</span>
-              <input type="text" size="30" name="client_name" id="receivable_client_name" class="autocomplete" source="client">
+              <input type="text" size="30" name="client_name" id="receivable_client_name" class="autocomplete" source="client" pref="receivable_">
             </span>
           </label>
           <%= f.text_field :historic, :label => "Histórico" %>
@@ -53,9 +53,9 @@
             <% f.fields_for :receivable_cost_divisions do |rcd| %>
               <label class="hide"><%= rcd.hidden_field :id %></label>
               <label class="hide"><%= rcd.hidden_field :account_plan_id %></label>
-              <%= rcd.text_field :account_plan_name, :label => 'Plano de Conta', :class => 'autocomplete', :source => 'account_plan' %>
+              <%= rcd.text_field :account_plan_name, :label => 'Plano de Conta', :class => 'autocomplete', :source => 'account_plan', :pref => "receivable_receivable_cost_divisions_attributes_0_" %>
               <label class="hide"><%= rcd.hidden_field :cost_center_id %></label>
-              <%= rcd.text_field :cost_center_name, :label => 'Centro de Custo', :class => 'autocomplete', :source => 'cost_center' %>
+              <%= rcd.text_field :cost_center_name, :label => 'Centro de Custo', :class => 'autocomplete', :source => 'cost_center', :prefix => "receivable_receivable_cost_divisions_attributes_0_" %>
               <%= rcd.text_field :observations, :label => 'Observação' %>
               <%= rcd.text_field :value, :label => 'Valor', :class => 'receivable_cost_division_value' %>
               <%= rcd.text_field :percent, :label => '% do Total', :class => 'receivable_cost_division_percent' %>

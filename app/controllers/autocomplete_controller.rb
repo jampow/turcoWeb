@@ -4,7 +4,7 @@ class AutocompleteController < ApplicationController
 
   def account_plan
     @list = AccountPlan.find(:all,
-                             :select => "id, name as label, name as value",
+                             :select => "id As account_plan_id, name as label, name as value",
                              :conditions => ["name like ?", "%#{params[:term]}%"],
                              :order => "name")
 
@@ -15,7 +15,7 @@ class AutocompleteController < ApplicationController
   
   def client
     @list = Client.find(:all,
-                        :select => "id, name as label, name as value",
+                        :select => "id As client_id, name as label, name as value",
                         :conditions => ["name like ? And active = 1", "%#{params[:term]}%"],
                         :order => "name")
 
@@ -26,7 +26,7 @@ class AutocompleteController < ApplicationController
 
   def cost_center
     @list = CostCenter.find(:all,
-                            :select => "id, name as label, name as value",
+                            :select => "id As cost_center_id, name as label, name as value",
                             :conditions => ["name like ?", "%#{params[:term]}%"],
                             :order => "name")
 
@@ -55,8 +55,9 @@ class AutocompleteController < ApplicationController
   end
 
   def provider
+    #client_id para o pedido de compras porque o model herda de order, e lá só tem client_id
     @list = Provider.find(:all,
-                          :select => "id, name as label, name as value",
+                          :select => "id As provider_id, id As client_id, name as label, name as value",
                           :conditions => ["name like ?", "%#{params[:term]}%"],
                           :order => "name")
 

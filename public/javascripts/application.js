@@ -249,15 +249,14 @@ $(function(){
 
     $('.datepicker').datepicker({'dateFormat': 'yy-mm-dd'});
     $('.autocomplete').each(function(){
-      var t   = $(this);
-      var src = t.attr('source');
-      var cbk = t.attr('callback');
+      var t    = $(this);
+      var src  = t.attr('source');
+      var cbk  = t.attr('callback');
+      var pref = t.attr('pref');
       t.autocomplete({
         source   : "/autocomplete/"+src,
         minLength: 3,
         select   : function(event, ui){
-          var re = /^.+_0_/i;
-          var pref = re.exec(t.attr('id'))[0];
           $.each(ui.item, function(key, val){
             $('#'+pref+key).val(val);
           });

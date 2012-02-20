@@ -15,7 +15,7 @@
     <%= f.text_field   :billed              , :label => "Faturado"             , :size => 10, :class => 'datepicker' %>
     <%= f.check_box    :closed              , :label => 'Fechado'              , :size => 10 %>
     <%= f.hidden_field :client_id %>
-    <%= f.text_field   :client_name         , :label => "Cliente"              , :size => 20, :class => 'autocomplete', :source => 'client' %>
+    <%= f.text_field   :client_name         , :label => "Cliente"              , :size => 20, :class => 'autocomplete', :source => 'client', :pref => "sales_order_" %>
     <%= f.text_field   :seller_id           , :label => "Vendedor"             , :size => 20 %>
     <%= f.text_field   :commission          , :label => "Comissão"             , :size => 10 %>
     <%= f.text_field   :contact_id          , :label => "Contato"              , :size => 20 %>
