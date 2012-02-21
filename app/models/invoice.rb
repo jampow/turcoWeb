@@ -12,6 +12,8 @@ class Invoice < ActiveRecord::Base
   
   attr_accessor :client_name
   
+  validates_presence_of :client_id
+  
   named_scope :grid, 
     :select => 'inv.id, cli.name, inv.operation',
     :joins  => 'inv Join clients cli On cli.id = inv.client_id', 
