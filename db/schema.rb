@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222125707) do
+ActiveRecord::Schema.define(:version => 20120222140458) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -180,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20120222125707) do
     t.decimal  "ipi_base",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
     t.decimal  "aliq_pis",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
     t.decimal  "aliq_cofins",                   :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "desc_manaus",                   :precision => 9, :scale => 3, :default => 0.0, :null => false
   end
 
   create_table "invoices", :force => true do |t|
