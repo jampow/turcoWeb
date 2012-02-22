@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217203541) do
+ActiveRecord::Schema.define(:version => 20120221154046) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -173,6 +173,12 @@ ActiveRecord::Schema.define(:version => 20120217203541) do
     t.decimal  "cofins",                        :precision => 9, :scale => 3
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "aliq_icm",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "icm_base",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "aliq_ipi",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "ipi_base",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "aliq_pis",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "aliq_cofins",                   :precision => 9, :scale => 3, :default => 0.0, :null => false
   end
 
   create_table "invoices", :force => true do |t|
@@ -283,6 +289,18 @@ ActiveRecord::Schema.define(:version => 20120217203541) do
     t.integer  "person_id"
     t.string   "number"
     t.boolean  "main"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "job_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
