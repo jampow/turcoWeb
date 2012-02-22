@@ -1,5 +1,5 @@
 class InvoiceItem < ActiveRecord::Base
-
+  belongs_to :product
 #Select ii.product_name,
 #       ii.quantity,
 #       mu.measure_unit,
