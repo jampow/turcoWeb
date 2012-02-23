@@ -32,75 +32,38 @@ class Invoice < ActiveRecord::Base
     self.cofins          = 0
     
     itens.each do |i|
-      i.ipi = 0
-      if i.aliq_ipi > 0
-        i.ipi = i.total_value * (i.aliq_ipi / 100)
-      end
+      i.calc_ipi
       
       case sell_id
         when 1 #para venda
-          i.icm_base =  i.total_value
-          i.icm_base += i.ipi if client.activity.name.downcase != "indústria"
-          i.aliq_icm =  client.billing_address.estate.aliq_icms
-          i.icm      =  i.icm_base * (i.aliq_icm / 100)
+          i.calc_icms true, client.activity.name, client.aliq_icms
         when 2 #para beneficiamento
           if client.estate.acronym == 'SP'
-            i.icm_base = 0
-            i.aliq_icm = 0
-            i.icm      = 0
+            i.zero_icms
           else
-            i.icm_base = i.total_value
-            i.aliq_icm = client.billing_address.estate.aliq_icm
-            i.icm      = i.icm_base * (i.aliq_icm / 100)
-            i.ipi_base = 0
-            i.aliq_ipi = 0
-            i.ipi      = 0
+            i.calc_icms false, client.activity.name, client.aliq_icms
+            i.zero_ipi
           end
         when 3 #para simples remessa
-          i.icm_base = 0
-          i.aliq_icm = 0
-          i.icm      = 0
-          i.ipi_base = 0
-          i.aliq_ipi = 0
-          i.ipi      = 0
+          i.zero_icms
+          i.zero_ipi
         when 4 #para aparas
-          i.ipi_base = 0
-          i.aliq_ipi = 0
-          i.ipi      = 0
-          i.icm_base = 0
-          i.aliq_icm = 0
-          i.icm      = 0
+          i.zero_icms
+          i.zero_ipi
           if client.estate.acronym != 'SP'
-            i.icm_base = i.total_value
-            i.aliq_icm = client.billing_address.estate.aliq_icm
-            i.icm      = i.icm_base * (i.aliq_icm / 100)
+            i.calc_icms false, client.activity.name, client.aliq_icms
           end
         when 5 #para venda em manaus
-          i.ipi_base    = 0
-          i.aliq_ipi    = 0
-          i.ipi         = 0
-          i.icm_base    = 0
-          i.aliq_icm    = 0
-          i.icm         = 0
+          i.zero_icms
+          i.zero_ipi
           i.desc_manaus = i.total_value * (i.total_value * 0.93) # 7% de desconto
         when 6 #para beneficiamento com ICMS
-          i.ipi_base = 0
-          i.aliq_ipi = 0
-          i.ipi      = 0
-          i.icm_base = i.total_value
-          i.aliq_icm = client.billing_address.estate.aliq_icm
-          i.icm      = i.icm_base * (i.aliq_icm / 100)
+          i.calc_icms false, client.activity.name, client.aliq_icms
+          i.zero_ipi
       end
       
-      #PIS
-      i.pis_base = i.total_value
-      i.aliq_pis = i.product.pis
-      i.pis      = i.pis_base * (i.aliq_pis / 100)
-      
-      #COFINS
-      i.cofins_base = i.total_value
-      i.aliq_cofins = i.product.cofins
-      i.cofins      = i.cofins_base * (i.aliq_cofins / 100)
+      i.calc_pis
+      i.calc_cofins
       
       #Adiciona totais
       self.manaus_discount += i.desc_manaus

@@ -46,5 +46,9 @@ class Client < ActiveRecord::Base
     :conditions => "Cli.active = 1 And (Pho.main is null or Pho.main = 1)"
   }
 
+  def aliq_icms
+    billing_address.estate.aliq_icms
+  end
+
 end
 
