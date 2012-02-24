@@ -47,6 +47,7 @@ module AddressHelper
   end
 
   def js_copy
+    flash[:btn_copy] = false
     html  = <<-JS
               $('a.copy').click(function(){
                 $('.copyied').removeClass('copyied');
@@ -63,6 +64,7 @@ module AddressHelper
   end
 
   def js_paste
+    flash[:btn_paste] = false
     html  = <<-JS
               $('a.paste').click(function(){
                 fieldsFrom = $('.copyied').parent();
@@ -95,6 +97,7 @@ module AddressHelper
   end
 
   def js_map_form
+    flash[:btn_map_form] = false
     html  = <<-JS
               $('.map').click(function(){
                 t = $(this);
@@ -114,6 +117,7 @@ module AddressHelper
   end
 
   def js_map_show
+    flash[:btn_map_show] = false
     html =  <<-JS
               $('.map').click(function(){
                 context = $(this).parent().parent();
@@ -143,6 +147,7 @@ module AddressHelper
   end
 
   def js_cep
+    flash[:btn_cep] = false
     html  = <<-JS
               $('.cep').click(function(){
                 t = $(this);
