@@ -29,7 +29,7 @@ class Product < ActiveRecord::Base
 #  Order By name
   
   named_scope :to_autocomplete, lambda { |term| {
-    :select => "pro.id As product_id, pro.name As label, pro.name As value, pro.cofins, icm.value As icm, pro.ipi, pro.pis, pro.price As unit_value",
+    :select => "pro.id As product_id, pro.name As label, pro.name As value, pro.cofins, icm.value As icm, pro.ipi As aliq_ipi, pro.pis, pro.price As unit_value",
     :conditions => ["name like ?", "%#{term}%"], 
     :order => "name",
     :joins => "pro Join csts cof On cof.id = pro.cst_cofins_id Join csts icm On icm.id = pro.cst_icm_id Join csts ipi On ipi.id = pro.cst_ipi_id Join csts pis On pis.id = pro.cst_pis_id"}}

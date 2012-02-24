@@ -53,7 +53,7 @@ module InvoicesHelper
               JS
     end
 
-    flash[:create_sales_table_item] = false
+    flash[:create_invoices_table_item] = false
     html
   end
 
@@ -65,7 +65,7 @@ module InvoicesHelper
                 return false;
               });
             JS
-    flash[:btn_sales_new_item] = false
+    flash[:btn_invoices_new_item] = false
     html
   end
 
@@ -74,11 +74,12 @@ module InvoicesHelper
               $('a.del-item').click(function(){
                 $('tr.ui-state-default input').appendTo('#trash');
                 $('input[id$=_name]', '#trash').val('');
-                var rowIdx = $('tr.ui-state-default').index('#sales_order_items tbody tr');
+                var rowIdx = $('tr.ui-state-default').index('#invoice_items tbody tr');
                 oTable.fnDeleteRow( rowIdx );
+                $('.form-toolbar ~ label input').val('');
               });
             JS
-    flash[:btn_sales_del_item] = false
+    flash[:btn_invoices_del_item] = false
     html
   end
 
@@ -94,15 +95,16 @@ module InvoicesHelper
                 var validateFields = ['name', 'quantity', 'unit_value'];
                 inpts.each(function(){
                   var t = $(this);
-                  var name  = t.attr('name').replace('0', nextRow);
-                  var id    = t.attr('id'  ).replace('0', nextRow);
-                  var value = t.val();
-                  var field = id.replace(/.+([0-9])+_/, '');
+                  var name    = t.attr('name' ).replace('0', nextRow);
+                  var id      = t.attr('id'   ).replace('0', nextRow);
+                  var klasses = t.attr('class');
+                  var value   = t.val();
+                  var field   = id.replace(/.+([0-9])+_/, '');
 
                   if (validateFields.indexOf(field) != -1 && value == '') empty = true;
 
                   values.push(value);
-                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" /><span>'+value+'</span>');
+                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" class="'+klasses+'"/><span>'+value+'</span>');
                 });
 
                 if (empty == true) {
@@ -112,7 +114,7 @@ module InvoicesHelper
 
                 if ($('tr.ui-state-default').length == 0) {
                   oTable.fnAddData(row);
-                  //$('#sales_order_items tbody tr').each(function(){
+                  //$('#invoice_items tbody tr').each(function(){
                   //  for (i = 0; i < invCols.length; i++) {
                   //    $('td:eq('+invCols[i]+')', $(this)).addClass('hide');
                   //  }
@@ -133,7 +135,7 @@ module InvoicesHelper
                 return false;
               });
             JS
-    flash[:btn_sales_save_item] = false
+    flash[:btn_invoices_save_item] = false
     html
   end
   

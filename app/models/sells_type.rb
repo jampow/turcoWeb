@@ -6,7 +6,7 @@ class SellsType < ActiveRecord::Base
     Struct.new(:id, :name)
     VALUES = [
       {:id => 1, :name => 'Venda'},
-      {:id => 2, :name => 'Compra'},
+      {:id => 2, :name => 'Beneficiamento'},
       {:id => 3, :name => 'Simples remessa'},
       {:id => 4, :name => 'Aparas'},
       {:id => 5, :name => 'Venda em Manaus'},

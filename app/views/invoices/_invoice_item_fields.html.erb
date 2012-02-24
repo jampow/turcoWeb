@@ -4,12 +4,13 @@
 <%= f.text_field :quantity           , :label => "Quantidade"        , :size => 20 %>
 <%= f.select     :measure_unit_id, [], :label => "Unidade de medida" , :size => 20 %>
 <%= f.text_field :parts              , :label => "Número de peças"   , :size => 20 %>
-<%= f.text_field :unit_value         , :label => "Valor unitário"    , :size => 20, :class => "mask-decimal" %>
-<%= f.text_field :total_value        , :label => "Valor total"       , :size => 20, :disabled => "deisabled" %>
-<%= f.text_field :icm                , :label => "ICM"               , :size => 20, :disabled => "deisabled" %>
-<%= f.text_field :ipi                , :label => "IPI"               , :size => 20, :disabled => "deisabled" %>
-<%= f.text_field :pis                , :label => "PIS"               , :size => 20, :disabled => "deisabled" %>
-<%= f.text_field :cofins             , :label => "COFINS"            , :size => 20, :disabled => "deisabled" %>
+<%= f.text_field :unit_value         , :label => "Valor unitário"    , :size => 20, :class => "mask-decimal", :decimal => "9,3" %>
+<%= f.text_field :total_value        , :label => "Valor total"       , :size => 20, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
+<%= f.text_field :icm                , :label => "ICM"               , :size => 20, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
+<%= f.text_field :ipi                , :label => "IPI"               , :size => 10, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
+<%= f.text_field :aliq_ipi           , :label => "Aliq. IPI"         , :size => 10, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
+<%= f.text_field :pis                , :label => "PIS"               , :size => 20, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
+<%= f.text_field :cofins             , :label => "COFINS"            , :size => 20, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
 
 <div class="clear"></div>
 <script type="text/javascript">

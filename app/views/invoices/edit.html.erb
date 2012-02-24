@@ -39,6 +39,7 @@
           <th>Valor Total      </th>
           <th>ICM              </th>
           <th>IPI              </th>
+          <th>Alíquota IPI     </th>
           <th>PIS              </th>
           <th>COFINS           </th>
         </tr>
@@ -46,18 +47,19 @@
       <tbody>
         <% f.fields_for :itens, @grid do |ti| %>
           <tr>
-            <td><%= ti.hidden_field :id              %><span></span></td>
-            <td><%= ti.hidden_field :product_id      %><span></span></td>
-            <td><%= ti.hidden_field :product_name    %><span></span></td>
-            <td><%= ti.hidden_field :quantity        %><span></span></td>
-            <td><%= ti.hidden_field :measure_unit_id %><span></span></td>
-            <td><%= ti.hidden_field :parts           %><span></span></td>
-            <td><%= ti.hidden_field :unit_value      %><span></span></td>
-            <td><%= ti.hidden_field :total_value     %><span></span></td>
-            <td><%= ti.hidden_field :icm             %><span></span></td>
-            <td><%= ti.hidden_field :ipi             %><span></span></td>
-            <td><%= ti.hidden_field :pis             %><span></span></td>
-            <td><%= ti.hidden_field :cofins          %><span></span></td>
+            <td><%= ti.hidden_field :id                                                           %><span></span></td>
+            <td><%= ti.hidden_field :product_id                                                   %><span></span></td>
+            <td><%= ti.hidden_field :product_name                                                 %><span></span></td>
+            <td><%= ti.hidden_field :quantity                                                     %><span></span></td>
+            <td><%= ti.hidden_field :measure_unit_id                                              %><span></span></td>
+            <td><%= ti.hidden_field :parts                                                        %><span></span></td>
+            <td><%= ti.hidden_field :unit_value     , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :total_value    , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :icm            , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :ipi            , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :aliq_ipi       , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :pis            , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :cofins         , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
           </tr>
         <% end -%>
       </tbody>

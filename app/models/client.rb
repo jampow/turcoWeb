@@ -10,7 +10,6 @@ class Client < ActiveRecord::Base
   belongs_to :delivery_address, :class_name => 'Address', :foreign_key => 'delivery_address_id' , :dependent => :destroy
   belongs_to :activity
 
-
   accepts_nested_attributes_for :contacts         , :reject_if => proc { |a| a[:name].blank? }
   accepts_nested_attributes_for :main_address
   accepts_nested_attributes_for :billing_address
@@ -47,7 +46,11 @@ class Client < ActiveRecord::Base
   }
 
   def aliq_icms
-    billing_address.estate.aliq_icms
+    billing_estate.aliq_icms
+  end
+
+  def billing_estate
+    billing_address.estate
   end
 
 end

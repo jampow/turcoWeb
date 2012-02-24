@@ -19,6 +19,7 @@ class Invoice < ActiveRecord::Base
     :joins  => 'inv Join clients cli On cli.id = inv.client_id', 
     :order  => "name"
     
+  before_save :mark_item_for_removal
   before_save :calc_tax
     
   def calc_tax
@@ -36,28 +37,36 @@ class Invoice < ActiveRecord::Base
       
       case sell_id
         when 1 #para venda
+          #logger.info "case 1"
           i.calc_icms true, client.activity.name, client.aliq_icms
         when 2 #para beneficiamento
-          if client.estate.acronym == 'SP'
+          if client.billing_estate.acronym == 'SP'
+            #logger.info "case 2 if"
             i.zero_icms
           else
+            #logger.info "case 2 else"
             i.calc_icms false, client.activity.name, client.aliq_icms
             i.zero_ipi
           end
         when 3 #para simples remessa
+          #logger.info "case 3"
           i.zero_icms
           i.zero_ipi
         when 4 #para aparas
+          #logger.info "case 4"
           i.zero_icms
           i.zero_ipi
-          if client.estate.acronym != 'SP'
+          if client.billing_estate.acronym != 'SP'
+            #logger.info "case 4 if"
             i.calc_icms false, client.activity.name, client.aliq_icms
           end
         when 5 #para venda em manaus
+          #logger.info "case 5"
           i.zero_icms
           i.zero_ipi
-          i.desc_manaus = i.total_value * (i.total_value * 0.93) # 7% de desconto
+          i.desc_manaus = i.total_value * 0.07
         when 6 #para beneficiamento com ICMS
+          #logger.info "case 6"
           i.calc_icms false, client.activity.name, client.aliq_icms
           i.zero_ipi
       end
@@ -74,6 +83,14 @@ class Invoice < ActiveRecord::Base
       self.icms_base       += i.icm_base
       self.pis             += i.pis
       self.cofins          += i.cofins
+    end
+  end
+  
+protected
+
+  def mark_item_for_removal
+    itens.each do |child|
+      child.mark_for_destruction if child.product_name.blank?
     end
   end
   
