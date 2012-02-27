@@ -1,6 +1,8 @@
 <% content_for :menu do -%>
   <h1>Título a receber</h1>
   <%= mount_menu %>
+  <%= link_to "Lançar Recebimento", new_receivable_billing_path(@receivable), {:class => "button", :icon => "plus"} %>
+  <%= link_to "Lançamentos", receivable_billings_path(@receivable), {:class => "button", :icon => "triangle-1-e"} %>
 <% end -%>
 
 <div class="form-wrapper">
@@ -58,7 +60,7 @@
                 <td><%= (div.cost_center || {})[:name] %></td>
                 <td><%= div.observations %></td>
                 <td><%= div.value %></td>
-                <td><%= div.value / @receivable.value * 100 %></td>
+                <td><%= div.value.to_f / @receivable.value.to_f * 100 %></td>
               </tr>
             <% end %>
           </tbody>

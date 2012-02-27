@@ -100,9 +100,11 @@ class Receivable < ActiveRecord::Base
   end
 
   belongs_to :invoice, :primary_key => "invoice_number", :foreign_key => "invoice_number"
-  has_many :receivable_cost_divisions
   belongs_to :client
   belongs_to :bank_account, :foreign_key => "account_id"
+
+  has_many :receivable_cost_divisions
+  has_many :billings, :class_name => 'ReceivableBilling'
 
   accepts_nested_attributes_for :receivable_cost_divisions, :allow_destroy => true, :reject_if => proc { |attributes| attributes['value'].blank? }
 end
