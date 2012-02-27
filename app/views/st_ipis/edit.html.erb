@@ -1,0 +1,14 @@
+<% content_for :menu do -%>
+  <h1>Editando IPI</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@st_ipi) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field :name     , :label => "Nome"            , :size => 70 %>
+  <%= f.text_field :sai_ent  , :label => "Saída ou entrada", :size => 10 %>
+  <%= f.check_box  :taxed    , :label => "Tributada"       , :size => 10 %>
+  <%= f.check_box  :zero_rate, :label => "Alíquota zero"   , :size => 10 %>
+<% end %>
+

@@ -15,12 +15,7 @@
     <%= f.text_field   :prevision           , :label => "Previsão de entrega"   , :class => 'datepicker' %>
     <%= f.text_field   :billed              , :label => "Faturado"              , :class => 'datepicker' %>
     <%= f.hidden_field :client_id %>
-    <label class="inputselect w25" for="purchase_order_client">
-      <span class="wrapper">
-        <span class="title">Fornecedor</span>
-        <input type="text" size="30" name="client_name" id="purchase_order_client_name" class="autocomplete" source="provider" value="<%= @purchase_order.client.name %>">
-      </span>
-    </label>
+    <%= f.text_field   :provider_name       , :label => "Fornevedor"            , :class => "autocomplete", :source => "provider", :pref => "purchase_order_" %>
     <%= f.text_field   :seller_id           , :label => "Vendedor"              %>
     <%= f.text_field   :commission          , :label => "Comissão"              %>
     <%= f.text_field   :contact_id          , :label => "Contato"               %>

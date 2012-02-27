@@ -1,0 +1,14 @@
+<% content_for :menu do -%>
+  <h1>Editando PIS</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@st_pi) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field :name             , :label => "Nome"                 , :size => 20 %>
+  <%= f.text_field :aliquot_pis      , :label => "Alíquota"             , :size => 20 %>
+  <%= f.check_box  :taxed            , :label => "Tributado"            , :size => 20 %>
+  <%= f.check_box  :differential_rate, :label => "Alíquota diferenciada", :size => 20 %>
+  <%= f.check_box  :zero_rate        , :label => "Alíquota zero"        , :size => 20 %>
+<% end %>

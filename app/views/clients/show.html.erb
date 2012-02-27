@@ -124,20 +124,18 @@
 <%= render :partial => "attachments/attachments_table" %>
 
 <script type="text/javascript">
-
     var conf = {"fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
-        var iTotal = 0;
-        //Soma das NF's visíveis
-        for ( var i=iStart ; i<iEnd ; i++ )
-        {
-          iVal = aaData[aiDisplay[i]][3].replace('R$ ', '').replace(/\./gi, '').replace(',', '.')*1;
-          iTotal += iVal;
-        }
-        $('.sum', this).text('R$ '+ toCurrency(iTotal.toFixed(2)));
+      var iTotal = 0;
+      //Soma das NF's visíveis
+      for ( var i=iStart ; i<iEnd ; i++ )
+      {
+        iVal = aaData[aiDisplay[i]][3].replace('R$ ', '').replace(/\./gi, '').replace(',', '.')*1;
+        iTotal += iVal;
       }
-    };
+      $('.sum', this).text('R$ '+ toCurrency(iTotal.toFixed(2)));
+    }};
 
-    var newConf = $.extend(dTableConfig, conf);
+    var newConf = $.extend({}, dTableConfig, conf);
 
     $('table.personal_list').dataTable(newConf);
 

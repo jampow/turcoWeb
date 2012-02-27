@@ -1,0 +1,10 @@
+<% content_for :menu do -%>
+  <h1>ICMS</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Nome"                   , h(@st_icm.name)                       , :width => 40 %>
+<%= print_content "Tributado"              , human_boolean(@st_icm.taxed)          , :width => 20 %>
+<%= print_content "Redução de base"        , human_boolean(@st_icm.base_reduction) , :width => 20 %>
+<%= print_content "Substituição tributária", human_boolean(@st_icm.tax_replacement), :width => 20 %>
+

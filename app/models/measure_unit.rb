@@ -10,7 +10,7 @@ private
   def validate_uniqueness_main
     if self.main
       mu = MeasureUnit.find_main(self.product_id)[0]
-      if mu.id != self.id
+      if !mu.nil? && mu.id != self.id
         mu.main = false
         mu.save!
       end

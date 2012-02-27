@@ -1,7 +1,7 @@
   <label class="hide"><%= app.hidden_field :id %></label>
   <label class="hide"><%= app.hidden_field :account_plan_id %></label>
   <label class="hide"><%= app.hidden_field :cost_center_id  %></label>
-  <%= app.text_field :cost_center_name, :label => "Centro de Custos", :class => "autocomplete", :source => "cost_center" %>
+  <%= app.text_field :cost_center_name, :label => "Centro de Custos", :class => "autocomplete", :source => "cost_center", :pref => "account_plan_apportionments_attributes_0_" %>
   <%= app.text_field :rate            , :label => "Porcentagem"      %>
 
   <div class="clear"></div>

@@ -1,0 +1,10 @@
+<% content_for :menu do -%>
+  <h1>IPI</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%=print_content "Nome"            , h(@st_ipi.name)                 , :width => 70 %>
+<%=print_content "Saída ou entrada", h(@st_ipi.sai_ent)              , :width => 10 %>
+<%=print_content "Tribuatada"      , human_boolean(@st_ipi.taxed)    , :width => 10 %>
+<%=print_content "Alíquota zero"   , human_boolean(@st_ipi.zero_rate), :width => 10 %>
+

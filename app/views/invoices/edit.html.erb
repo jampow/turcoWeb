@@ -5,15 +5,15 @@
 
 <% form_for(@invoice) do |f| %>
   <%= f.error_messages %>
-  <%= f.text_field   :invoice_number             , :label => "Número da Nota"         , :size => 10  %>
-  <%= f.text_field   :operation                  , :label => "Operação"               , :size => 20, :class => 'datepicker'   %>
-  <%= f.select       :seller_id        , @sellers, :label => "Vendedor"               , :size => 40  %>
-  <%= f.text_field   :commission_rate            , :label => "Comissão"               , :size => 10  %>
-  <%= f.text_field   :sell_id                    , :label => "Tipo"                   , :size => 20  %>
+  <%= f.text_field :invoice_number                , :label => "Número da Nota"         , :size => 10  %>
+  <%= f.text_field :operation                     , :label => "Operação"               , :size => 20, :class => 'datepicker'   %>
+  <%= f.select     :seller_id        , @sellers   , :label => "Vendedor"               , :size => 40  %>
+  <%= f.text_field :commission_rate               , :label => "Comissão"               , :size => 10  %>
+  <%= f.select     :sell_id          , @sells_type, :label => "Tipo"                   , :size => 20  %>
   
   <% field_set_tag "Cliente" do %>
     <%= f.hidden_field :client_id                  , :label => "Cliente"                , :size => 10  %>
-    <%= f.text_field   :client_name                , :label => "Cliente"                , :size => 40, :class => 'autocomplete', :source => 'client'  %>
+    <%= f.text_field   :client_name                , :label => "Cliente"                , :size => 40, :class => 'autocomplete', :source => 'client', :pref => "invoice_" %>
     <%# PRECISA DO CNPJ DESNORMALIZADO?!?!?!?!?!? %>
     <%= f.select       :term_id        , @terms    , :label => "Termo"                  , :size => 10  %>
   
@@ -30,7 +30,7 @@
       <thead>
         <tr>
           <th>Id do item       </th>
-          <th>Id do produto    </th>
+          <th>Código do produto</th>
           <th>Produto          </th>
           <th>Quantidade       </th>
           <th>Unidade de medida</th>
@@ -39,6 +39,7 @@
           <th>Valor Total      </th>
           <th>ICM              </th>
           <th>IPI              </th>
+          <th>Alíquota IPI     </th>
           <th>PIS              </th>
           <th>COFINS           </th>
         </tr>
@@ -46,18 +47,19 @@
       <tbody>
         <% f.fields_for :itens, @grid do |ti| %>
           <tr>
-            <td><%= ti.hidden_field :id              %><span></span></td>
-            <td><%= ti.hidden_field :product_id      %><span></span></td>
-            <td><%= ti.hidden_field :product_name    %><span></span></td>
-            <td><%= ti.hidden_field :quantity        %><span></span></td>
-            <td><%= ti.hidden_field :measure_unit_id %><span></span></td>
-            <td><%= ti.hidden_field :parts           %><span></span></td>
-            <td><%= ti.hidden_field :unit_value      %><span></span></td>
-            <td><%= ti.hidden_field :total_value     %><span></span></td>
-            <td><%= ti.hidden_field :icm             %><span></span></td>
-            <td><%= ti.hidden_field :ipi             %><span></span></td>
-            <td><%= ti.hidden_field :pis             %><span></span></td>
-            <td><%= ti.hidden_field :cofins          %><span></span></td>
+            <td><%= ti.hidden_field :id                                                           %><span></span></td>
+            <td><%= ti.hidden_field :product_id                                                   %><span></span></td>
+            <td><%= ti.hidden_field :product_name                                                 %><span></span></td>
+            <td><%= ti.hidden_field :quantity                                                     %><span></span></td>
+            <td><%= ti.hidden_field :measure_unit_id                                              %><span></span></td>
+            <td><%= ti.hidden_field :parts                                                        %><span></span></td>
+            <td><%= ti.hidden_field :unit_value     , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :total_value    , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :icm            , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :ipi            , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :aliq_ipi       , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :pis            , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
+            <td><%= ti.hidden_field :cofins         , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
           </tr>
         <% end -%>
       </tbody>

@@ -211,34 +211,36 @@ else
 end
 
 # ESTADOS
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE estates") if Estate.first.aliq_icms == 0
+
 if Estate.count == 0
-  Estate.create([{:ibge_cod => 12, :acronym => 'AC', :name => 'Acre'},
-                 {:ibge_cod => 27, :acronym => 'AL', :name => 'Alagoas'},
-                 {:ibge_cod => 13, :acronym => 'AM', :name => 'Amazonas'},
-                 {:ibge_cod => 16, :acronym => 'AP', :name => 'Amapá'},
-                 {:ibge_cod => 29, :acronym => 'BA', :name => 'Bahia'},
-                 {:ibge_cod => 23, :acronym => 'CE', :name => 'Ceará'},
-                 {:ibge_cod => 53, :acronym => 'DF', :name => 'Distrito Federal'},
-                 {:ibge_cod => 32, :acronym => 'ES', :name => 'Espírito Santo'},
-                 {:ibge_cod => 52, :acronym => 'GO', :name => 'Goiás'},
-                 {:ibge_cod => 21, :acronym => 'MA', :name => 'Maranhão'},
-                 {:ibge_cod => 31, :acronym => 'MG', :name => 'Minas Gerais'},
-                 {:ibge_cod => 50, :acronym => 'MS', :name => 'Mato Grosso do Sul'},
-                 {:ibge_cod => 51, :acronym => 'MT', :name => 'Mato Grosso'},
-                 {:ibge_cod => 15, :acronym => 'PA', :name => 'Pará'},
-                 {:ibge_cod => 25, :acronym => 'PB', :name => 'Paraíba'},
-                 {:ibge_cod => 26, :acronym => 'PE', :name => 'Pernambuco'},
-                 {:ibge_cod => 22, :acronym => 'PI', :name => 'Piauí'},
-                 {:ibge_cod => 41, :acronym => 'PR', :name => 'Paraná'},
-                 {:ibge_cod => 33, :acronym => 'RJ', :name => 'Rio de Janeiro'},
-                 {:ibge_cod => 24, :acronym => 'RN', :name => 'Rio Grande do Norte'},
-                 {:ibge_cod => 11, :acronym => 'RO', :name => 'Rondônia'},
-                 {:ibge_cod => 14, :acronym => 'RR', :name => 'Roraima'},
-                 {:ibge_cod => 43, :acronym => 'RS', :name => 'Rio Grande do Sul'},
-                 {:ibge_cod => 42, :acronym => 'SC', :name => 'Santa Catarina'},
-                 {:ibge_cod => 28, :acronym => 'SE', :name => 'Sergipe'},
-                 {:ibge_cod => 35, :acronym => 'SP', :name => 'São Paulo'},
-                 {:ibge_cod => 17, :acronym => 'TO', :name => 'Tocantis'}])
+  Estate.create([{:ibge_cod => 12, :aliq_icms =>  7, :acronym => 'AC', :name => 'Acre'},
+                 {:ibge_cod => 27, :aliq_icms =>  7, :acronym => 'AL', :name => 'Alagoas'},
+                 {:ibge_cod => 13, :aliq_icms =>  7, :acronym => 'AM', :name => 'Amazonas'},
+                 {:ibge_cod => 16, :aliq_icms =>  7, :acronym => 'AP', :name => 'Amapá'},
+                 {:ibge_cod => 29, :aliq_icms =>  7, :acronym => 'BA', :name => 'Bahia'},
+                 {:ibge_cod => 23, :aliq_icms =>  7, :acronym => 'CE', :name => 'Ceará'},
+                 {:ibge_cod => 53, :aliq_icms =>  7, :acronym => 'DF', :name => 'Distrito Federal'},
+                 {:ibge_cod => 32, :aliq_icms =>  7, :acronym => 'ES', :name => 'Espírito Santo'},
+                 {:ibge_cod => 52, :aliq_icms =>  7, :acronym => 'GO', :name => 'Goiás'},
+                 {:ibge_cod => 21, :aliq_icms =>  7, :acronym => 'MA', :name => 'Maranhão'},
+                 {:ibge_cod => 31, :aliq_icms => 12, :acronym => 'MG', :name => 'Minas Gerais'},
+                 {:ibge_cod => 50, :aliq_icms =>  7, :acronym => 'MS', :name => 'Mato Grosso do Sul'},
+                 {:ibge_cod => 51, :aliq_icms =>  7, :acronym => 'MT', :name => 'Mato Grosso'},
+                 {:ibge_cod => 15, :aliq_icms =>  7, :acronym => 'PA', :name => 'Pará'},
+                 {:ibge_cod => 25, :aliq_icms =>  7, :acronym => 'PB', :name => 'Paraíba'},
+                 {:ibge_cod => 26, :aliq_icms =>  7, :acronym => 'PE', :name => 'Pernambuco'},
+                 {:ibge_cod => 22, :aliq_icms =>  7, :acronym => 'PI', :name => 'Piauí'},
+                 {:ibge_cod => 41, :aliq_icms => 12, :acronym => 'PR', :name => 'Paraná'},
+                 {:ibge_cod => 33, :aliq_icms => 12, :acronym => 'RJ', :name => 'Rio de Janeiro'},
+                 {:ibge_cod => 24, :aliq_icms =>  7, :acronym => 'RN', :name => 'Rio Grande do Norte'},
+                 {:ibge_cod => 11, :aliq_icms =>  7, :acronym => 'RO', :name => 'Rondônia'},
+                 {:ibge_cod => 14, :aliq_icms =>  7, :acronym => 'RR', :name => 'Roraima'},
+                 {:ibge_cod => 43, :aliq_icms => 12, :acronym => 'RS', :name => 'Rio Grande do Sul'},
+                 {:ibge_cod => 42, :aliq_icms => 12, :acronym => 'SC', :name => 'Santa Catarina'},
+                 {:ibge_cod => 28, :aliq_icms =>  7, :acronym => 'SE', :name => 'Sergipe'},
+                 {:ibge_cod => 35, :aliq_icms =>  7, :acronym => 'SP', :name => 'São Paulo'},
+                 {:ibge_cod => 17, :aliq_icms =>  7, :acronym => 'TO', :name => 'Tocantis'}])
 
   puts "Tabela de estados semeada com " + Estate.count.to_s  + " registros"
 else

@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.integer  "account_plan_id"
     t.integer  "cost_center_id"
     t.string   "cost_center_name"
-    t.float    "rate"
+    t.decimal  "rate",             :precision => 10, :scale => 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -120,10 +120,10 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
   end
 
   create_table "csts", :force => true do |t|
-    t.string "code"
-    t.string "description"
-    t.string "type"
-    t.float  "value"
+    t.string  "code"
+    t.string  "description"
+    t.string  "type"
+    t.decimal "value",       :precision => 10, :scale => 4
   end
 
   create_table "departments", :force => true do |t|
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "ibge_cod"
+    t.decimal  "aliq_icms",  :precision => 9, :scale => 3, :default => 0.0, :null => false
   end
 
   create_table "functions", :force => true do |t|
@@ -173,6 +174,15 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.decimal  "cofins",                        :precision => 9, :scale => 3
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "aliq_icm",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "icm_base",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "aliq_ipi",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "ipi_base",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "aliq_pis",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "aliq_cofins",                   :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "desc_manaus",                   :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "pis_base",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "cofins_base",                   :precision => 9, :scale => 3, :default => 0.0, :null => false
   end
 
   create_table "invoices", :force => true do |t|
@@ -236,12 +246,12 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
   create_table "order_items", :force => true do |t|
     t.integer  "order_id"
     t.integer  "product_id"
-    t.float    "quantity"
-    t.float    "unit_value"
-    t.float    "total_value"
+    t.decimal  "quantity",        :precision => 10, :scale => 4
+    t.decimal  "total_value",     :precision => 10, :scale => 2
     t.date     "delivery"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "unit_value",      :precision => 10, :scale => 2
     t.integer  "measure_unit_id"
   end
 
@@ -254,11 +264,11 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.date     "billed"
     t.integer  "client_id"
     t.integer  "seller_id"
-    t.float    "commission"
+    t.decimal  "commission",           :precision => 10, :scale => 4
     t.integer  "contact_id"
     t.integer  "payment_condition_id"
     t.integer  "carrier_id"
-    t.float    "freight"
+    t.decimal  "freight",              :precision => 10, :scale => 4
     t.integer  "freight_type_id"
     t.integer  "attendant_id"
     t.text     "observation"
@@ -287,6 +297,18 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.datetime "updated_at"
   end
 
+  create_table "photos", :force => true do |t|
+    t.integer  "job_id"
+    t.string   "name"
+    t.text     "description"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "product_families", :force => true do |t|
     t.string   "name"
     t.text     "observation"
@@ -306,22 +328,22 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.string   "name"
     t.string   "kind"
     t.string   "unity"
-    t.float    "weight"
-    t.float    "ipi"
+    t.decimal  "weight",         :precision => 10, :scale => 3
+    t.decimal  "ipi",            :precision => 10, :scale => 4
     t.string   "fiscal_code"
     t.integer  "tributary_code"
     t.string   "ncm"
-    t.float    "price"
-    t.float    "cost"
-    t.float    "liquid_price"
+    t.decimal  "price",          :precision => 10, :scale => 2
+    t.decimal  "cost",           :precision => 10, :scale => 2
+    t.decimal  "liquid_price",   :precision => 10, :scale => 2
     t.integer  "family_id"
     t.integer  "type_id"
     t.integer  "cst_icm_id"
     t.integer  "cst_ipi_id"
     t.integer  "cst_pis_id"
     t.integer  "cst_cofins_id"
-    t.float    "pis"
-    t.float    "cofins"
+    t.decimal  "pis",            :precision => 10, :scale => 4
+    t.decimal  "cofins",         :precision => 10, :scale => 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -358,11 +380,11 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.datetime "competency"
     t.datetime "received_at"
     t.string   "bill_number",     :limit => 50
-    t.float    "value"
-    t.float    "fine"
-    t.float    "rate"
-    t.float    "discount"
-    t.float    "total"
+    t.decimal  "value",                          :precision => 10, :scale => 2
+    t.decimal  "fine",                           :precision => 10, :scale => 4
+    t.decimal  "rate",                           :precision => 10, :scale => 4
+    t.decimal  "discount",                       :precision => 10, :scale => 2
+    t.decimal  "total",                          :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "receivable_id"
@@ -372,7 +394,7 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.integer  "account_plan_id"
     t.integer  "cost_center_id"
     t.text     "observations"
-    t.float    "value"
+    t.decimal  "value",           :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "receivable_id"
@@ -382,13 +404,13 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.integer  "invoice_number"
     t.integer  "parcel"
     t.date     "due_date"
-    t.decimal  "value",                                   :precision => 9, :scale => 3
+    t.decimal  "value",                                   :precision => 9,  :scale => 3
     t.integer  "bank_id"
     t.string   "email"
     t.integer  "deposit_id"
     t.date     "payment_date"
     t.string   "collection_number"
-    t.decimal  "daily_penalty",                           :precision => 9, :scale => 3
+    t.decimal  "daily_penalty",                           :precision => 9,  :scale => 3
     t.text     "observations"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -405,8 +427,8 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.string   "carrier",                  :limit => 100
     t.string   "barcode",                  :limit => 40
     t.integer  "rate_type_id"
-    t.float    "rate"
-    t.float    "fine"
+    t.decimal  "rate",                                    :precision => 10, :scale => 4
+    t.decimal  "fine",                                    :precision => 10, :scale => 4
     t.integer  "rate_calculation_type_id"
   end
 
@@ -429,8 +451,8 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.integer  "seller_id"
     t.string   "name"
     t.string   "historic"
-    t.float    "credit"
-    t.float    "debit"
+    t.decimal  "credit",       :precision => 10, :scale => 2
+    t.decimal  "debit",        :precision => 10, :scale => 2
     t.date     "date"
     t.text     "observations"
     t.datetime "created_at"
@@ -458,6 +480,44 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
   create_table "sells_types", :force => true do |t|
     t.string   "name",       :limit => 20
     t.text     "calc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "st_cofins", :force => true do |t|
+    t.string   "name",              :limit => 100
+    t.decimal  "aliquot",                          :precision => 10, :scale => 4
+    t.boolean  "taxed"
+    t.boolean  "differential_rate"
+    t.boolean  "zero_rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "st_icms", :force => true do |t|
+    t.string   "name",            :limit => 80
+    t.boolean  "taxed"
+    t.boolean  "base_reduction"
+    t.boolean  "tax_replacement"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "st_ipis", :force => true do |t|
+    t.string   "name",       :limit => 100
+    t.string   "sai_ent",    :limit => 1
+    t.boolean  "taxed"
+    t.boolean  "zero_rate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "st_pis", :force => true do |t|
+    t.string   "name",              :limit => 100
+    t.decimal  "aliquot_pis",                      :precision => 10, :scale => 4
+    t.boolean  "taxed"
+    t.boolean  "differential_rate"
+    t.boolean  "zero_rate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

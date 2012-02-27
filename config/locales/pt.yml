@@ -208,9 +208,14 @@
       cst icm: "Subst. Tributária Icm"
       cst ipi: "Subst. Tributária Ipi"
       cst pis: "Subst. Tributária Pis"
+      invoice: "Nota Fiscal"
       product: "Produto"
       sales order: "Pedido de venda"
       sells type: "Tipos de NF"
+      st cofin: "Cofins"
+      st icm: "ICMS"
+      st ipi: "IPI"
+      st pi: "PIS"
 
     attributes:
       account_plan:
@@ -229,9 +234,64 @@
       cst:
         code: "Código"
         description: "Descrição"
+      invoice:
+        operation: "Operação"
+        invoice_number: "Número da Nota"
+        client_id: "Cliente"
+        provider_id: "Fornecedor"
+        seller_id: "Vendedor"
+        term_id: "Termo"
+        ipi: "IPI"
+        pis: "PIS"
+        cofins: "Cofins"
+        icms: "ICMS"
+        icms_base: "Base do ICMS"
+        products_value: "Valor dos produtos"
+        invoice_value: "Valor da Nota Fiscal"
+        commission_rate: "Comissão"
+        activity_id: "Ramo de atividade"
+        observations: "Observações"
+        sell_id: "Tipo de venda"
+        parcels: "Parcelas"
+        natop_id: "Natureza da operação"
+        delivery: "Entregue"
+        freight: "Frete"
+        insurance: "Seguro"
+        carrier_id: "Transporadora"
+        freight_type: "Tipo de frete"
+        nfe: "NF-e"
+        nfe_received_key: "Chave de recebimento da NF-e"
+        nfe_key: "Chave da NF-e"
+        nfe_protocol: "Protocolo da NF-e"
+        nfe_env: "Enviada"
+        manaus_discount: "Disconto Zona Franca"
+        canceled: "Cancelada"
       sales_order:
         client_id: "Cliente"
       sells_type:
         name: "Nome"
         calc: "Cálculo"
-
+      st_icm:
+        name: "Nome"
+        taxed: "Tributada"
+        base_reduction: "Redução na base"
+        tax_replacement: "Substituição Tributária"
+      st_pi:
+        name: "Nome"
+        aliquot_pis: "Alíquota"
+        taxed: "Tributada"
+        differential_rate: "Alíquota diferenciada"
+        zero_rate: "Alíquota zero"
+      st_ipi:
+        name: "Nome"
+        sai_ent: "Saída ou entrada"
+        taxed: "Tributada"
+        zero_rate: "Alíquota zero"
+      st_cofin:
+        name: "Nome"
+        aliquot: "Alíquota"
+        taxed: "Tributada"
+        differential_rate: "Alíquota diferenciada"
+        zero_rate: "Alíquota zero"
+        
+        

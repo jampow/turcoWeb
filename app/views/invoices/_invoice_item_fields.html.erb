@@ -1,15 +1,16 @@
 <label class="hide"><%= f.hidden_field :id %></label>
 <label class="hide"><%= f.hidden_field :product_id %></label>
-<%= f.text_field :product_name       , :label => "Produto"           , :size => 20, :class => "autocomplete", :source => "product", :callback => "loadMeasureUnits()" %>
+<%= f.text_field :product_name       , :label => "Produto"           , :size => 20, :class => "autocomplete", :source => "product", :callback => "loadMeasureUnits()", :pref => "invoice_itens_attributes_0_" %>
 <%= f.text_field :quantity           , :label => "Quantidade"        , :size => 20 %>
 <%= f.select     :measure_unit_id, [], :label => "Unidade de medida" , :size => 20 %>
 <%= f.text_field :parts              , :label => "Número de peças"   , :size => 20 %>
-<%= f.text_field :unit_value         , :label => "Valor unitário"    , :size => 20 %>
-<%= f.text_field :total_value        , :label => "Valor total"       , :size => 20, :disabled => "deisabled" %>
-<%= f.text_field :icm                , :label => "ICM"               , :size => 20 %>
-<%= f.text_field :ipi                , :label => "IPI"               , :size => 20 %>
-<%= f.text_field :pis                , :label => "PIS"               , :size => 20 %>
-<%= f.text_field :cofins             , :label => "COFINS"            , :size => 20 %>
+<%= f.text_field :unit_value         , :label => "Valor unitário"    , :size => 20, :class => "mask-decimal", :decimal => "9,3" %>
+<%= f.text_field :total_value        , :label => "Valor total"       , :size => 20, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
+<%= f.text_field :icm                , :label => "ICM"               , :size => 20, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
+<%= f.text_field :ipi                , :label => "IPI"               , :size => 10, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
+<%= f.text_field :aliq_ipi           , :label => "Aliq. IPI"         , :size => 10, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
+<%= f.text_field :pis                , :label => "PIS"               , :size => 20, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
+<%= f.text_field :cofins             , :label => "COFINS"            , :size => 20, :class => "mask-decimal", :decimal => "9,3", :disabled => "deisabled" %>
 
 <div class="clear"></div>
 <script type="text/javascript">
@@ -22,9 +23,8 @@
     var y = $(prefix+'unit_value').val();
 
     x = x.replace(',', '.');
-    y = y.replace(',', '.');
-    var z = (x*y) + '';
-    z = z.replace('.', ',');
+    y = format.decimal.toNumber(y);
+    var z = format.number.toDecimal(x * y);
 
     $(prefix+'total_value').val(z);
   });

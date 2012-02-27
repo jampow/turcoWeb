@@ -10,7 +10,6 @@ class Client < ActiveRecord::Base
   belongs_to :delivery_address, :class_name => 'Address', :foreign_key => 'delivery_address_id' , :dependent => :destroy
   belongs_to :activity
 
-
   accepts_nested_attributes_for :contacts         , :reject_if => proc { |a| a[:name].blank? }
   accepts_nested_attributes_for :main_address
   accepts_nested_attributes_for :billing_address
@@ -45,6 +44,14 @@ class Client < ActiveRecord::Base
     :joins      => "Cli Left Join people Peo On Peo.external_id = Cli.id Left Join phones Pho On Pho.person_id = Peo.id",
     :conditions => "Cli.active = 1 And (Pho.main is null or Pho.main = 1)"
   }
+
+  def aliq_icms
+    billing_estate.aliq_icms
+  end
+
+  def billing_estate
+    billing_address.estate
+  end
 
 end
 

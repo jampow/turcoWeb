@@ -33,6 +33,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :seller_credit_accounts
   map.resources :sells_types
   map.resources :stocks
+  map.resources :st_cofins
+  map.resources :st_icms
+  map.resources :st_ipis
+  map.resources :st_pis
   map.resources :terms
   map.resources :users
   map.resource  :user_session, :collection => {:timeout => :get}

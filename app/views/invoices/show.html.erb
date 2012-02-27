@@ -4,7 +4,7 @@
 <% end -%>
 
 <%= print_content "Número da NF"             , h(@invoice.invoice_number)         , :width => 10 %>
-<%= print_content "Operação"                 , l(@invoice.operation)              , :width => 20 %>
+<%= print_content "Operação"                 , date(@invoice.operation)           , :width => 20 %>
 <%= print_content "Representante"            , h((@invoice.seller.name rescue '')), :width => 40 %>
 <%= print_content "Comição"                  , h(@invoice.commission_rate)        , :width => 10 %>
 <%= print_content "Tipo"                     , h(@invoice.sell_id)                , :width => 20 %>
@@ -20,9 +20,11 @@
                        ['quantity'    , 'Quantidade'   , {:class => 'right'}],
                        ['measure_unit', 'Unid. Medida'                      ],
                        ['parts'       , 'Núm. de peças', {:class => 'right'}],
-                       ['unit_value'  , 'total_value'  , {:class => 'right'}],
+                       ['unit_value'  , 'Val. unitário', {:class => 'right'}],
+                       ['total_value' , 'Total'        , {:class => 'right'}],
                        ['icm'         , 'ICM'          , {:class => 'right'}],
                        ['ipi'         , 'IPI'          , {:class => 'right'}],
+                       ['aliq_ipi'    , 'Aliq. IPI'    , {:class => 'right'}],
                        ['pis'         , 'PIS'          , {:class => 'right'}],
                        ['cofins'      , 'COFINS'       , {:class => 'right'}] %>
 
@@ -32,6 +34,7 @@
 <%= print_content "Total ICMS"               , number_to_currency(@invoice.icms)          , :width => 20 %>
 <%= print_content "PIS"                      , number_to_currency(@invoice.pis)           , :width => 20 %>
 <%= print_content "Cofins"                   , number_to_currency(@invoice.cofins)        , :width => 20 %>
+
 <%= print_content "Total produtos"           , number_to_currency(@invoice.products_value), :width => 20 %>
 <%= print_content "Total Geral"              , number_to_currency(@invoice.invoice_value) , :width => 20 %>
 <%# print_content "Ramo de tividade"         , h(@invoice.activity.id)                    , :width => 20 %>
@@ -39,12 +42,12 @@
 <%= print_content "Nat da op. (string)"      , h(@invoice.natop_id)                       , :width => 20 %>
 
 <h2>Entrega</h2>
-<%= print_content "Data da Entrega"          , h(@invoice.delivery)                      , :width => 10 %>
+<%= print_content "Data da Entrega"          , date(@invoice.delivery)                   , :width => 10 %>
 <%= print_content "Frete"                    , h(@invoice.freight)                       , :width => 10 %>
 <%= print_content "Tipo de frete"            , h(@invoice.freight_type)                  , :width => 10 %>
 <%= print_content "Seguro"                   , h(@invoice.insurance)                     , :width => 10 %>
 <%= print_content "Transportadora"           , h(@invoice.carrier_id)                    , :width => 10 %>
 <%= print_content "Nfe"                      , h(@invoice.nfe)                           , :width => 10 %>
-<%= print_content "Disconto manaus"          , h(@invoice.manaus_discount)               , :width => 10 %>
-<%= print_content "Cancelada"                , h(@invoice.canceled)                      , :width => 10 %>
+<%= print_content "Desconto manaus"          , h(@invoice.manaus_discount)               , :width => 10 %>
+<%= print_content "Cancelada"                , human_boolean(@invoice.canceled)          , :width => 10 %>
 

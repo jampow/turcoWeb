@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  has_many :order_items
+  has_many :order_items, :dependent => :delete_all
 
   accepts_nested_attributes_for :order_items , :reject_if => proc { |a| a[:product_name].blank? }
 

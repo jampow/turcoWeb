@@ -227,7 +227,7 @@ module ApplicationHelper
   end
   
   def date(date)
-    date ? date : ""
+    date ? l(date) : ""
   end
 end
 

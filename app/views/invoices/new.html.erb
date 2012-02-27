@@ -5,15 +5,15 @@
 
 <% form_for(@invoice) do |f| %>
   <%= f.error_messages %>
-  <%= f.text_field   :invoice_number             , :label => "Número da Nota"         , :size => 10  %>
-  <%= f.text_field   :operation                  , :label => "Operação"               , :size => 20, :class => 'datepicker'   %>
-  <%= f.select       :seller_id        , @sellers, :label => "Vendedor"               , :size => 40  %>
-  <%= f.text_field   :commission_rate            , :label => "Comissão"               , :size => 10  %>
-  <%= f.text_field   :sell_id                    , :label => "Tipo"                   , :size => 20  %>
+  <%= f.text_field :invoice_number                , :label => "Número da Nota"         , :size => 10  %>
+  <%= f.text_field :operation                     , :label => "Operação"               , :size => 20, :class => 'datepicker'   %>
+  <%= f.select     :seller_id        , @sellers   , :label => "Vendedor"               , :size => 40  %>
+  <%= f.text_field :commission_rate               , :label => "Comissão"               , :size => 10  %>
+  <%= f.select     :sell_id          , @sells_type, :label => "Tipo"                   , :size => 20  %>
   
   <% field_set_tag "Cliente" do %>
     <%= f.hidden_field :client_id                  , :label => "Cliente"                , :size => 10  %>
-    <%= f.text_field   :client_name                , :label => "Cliente"                , :size => 40, :class => 'autocomplete', :source => 'client'  %>
+    <%= f.text_field   :client_name                , :label => "Cliente"                , :size => 40, :class => 'autocomplete', :source => 'client', :pref => "invoice_" %>
     <%# PRECISA DO CNPJ DESNORMALIZADO?!?!?!?!?!? %>
     <%= f.select       :term_id        , @terms    , :label => "Termo"                  , :size => 10  %>
   
@@ -39,6 +39,7 @@
           <th>Valor Total      </th>
           <th>ICM              </th>
           <th>IPI              </th>
+          <th>Alíquota IPI     </th>
           <th>PIS              </th>
           <th>COFINS           </th>
         </tr>
