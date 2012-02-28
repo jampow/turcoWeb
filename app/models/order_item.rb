@@ -2,6 +2,7 @@ class OrderItem < ActiveRecord::Base
   attr_accessor :product_name
   attr_accessor :measure_unit
   belongs_to :order
+  belongs_to :product
   
 # Select oi.*
 #      , pr.name

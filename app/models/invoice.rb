@@ -85,6 +85,8 @@ class Invoice < ActiveRecord::Base
       self.cofins          += i.cofins
     end
   end
+
+  named_scope :number, :select => "max(invoice_number) As last, max(invoice_number)+1 As next"
   
 protected
 
