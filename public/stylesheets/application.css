@@ -256,6 +256,7 @@ table#permissions>tbody tr td span.ui-icon {
 
 #menu_wrapper {
   padding: 10px;
+  border-bottom: 1px solid #dde;
   /*box-shadow: 0 0 4px 0 #888;
   z-index:999;*/
 }
