@@ -176,6 +176,7 @@ module AddressHelper
                         context.find( 'input[name$=street\\]]'      ).attr('value', result.logradouro);
                         context.find( 'input[name$=neighborhood\\]]').attr('value', result.bairro);
                         context.find( 'input[name$=city\\]]'        ).attr('value', result.cidade);
+                        context.find( 'input[name$=city_id\\]]'     ).attr('value', result.city_id);
                         context.find('select[name$=estate_id\\]]'   ).attr('value', result.estate_id);
                         context.find( 'input[name$=country\\]]'     ).attr('value', 'Brasil');
                         context.find( 'input[name$=number\\]]'      ).focus();

@@ -26,42 +26,45 @@
     <% field_set_tag "Endereço principal" do %>
       <%= address_toolbar %>
       <% f.fields_for :main_address do |ma| %>
-        <%= ma.text_field :cep                  , :label => "CEP"         , :class => 'mask-cep' %>
-        <%= ma.text_field :street               , :label => "Endereço"                           %>
-        <%= ma.text_field :number               , :label => "Número"                             %>
-        <%= ma.text_field :complement           , :label => "Complemento"                        %>
-        <%= ma.text_field :neighborhood         , :label => "Bairro"                             %>
-        <%= ma.text_field :city                 , :label => "Cidade"                             %>
-        <%= ma.select     :estate_id, @estate   , :label => "Estado"                             %>
-        <%= ma.text_field :country              , :label => "País"                               %>
+        <%= ma.text_field   :cep               , :label => "CEP"         , :class => 'mask-cep' %>
+        <%= ma.text_field   :street            , :label => "Endereço"                           %>
+        <%= ma.text_field   :number            , :label => "Número"                             %>
+        <%= ma.text_field   :complement        , :label => "Complemento"                        %>
+        <%= ma.text_field   :neighborhood      , :label => "Bairro"                             %>
+        <%= ma.select       :estate_id, @estate, :label => "Estado"                             %>
+        <%= ma.hidden_field :city_id           , :label => "Id da Cidade"                          %>
+        <%= ma.text_field   :city              , :label => "cidade"      , :class => "autocomplete", :source => "city", :pref => "client_main_address_attributes_" %>
+        <%= ma.text_field   :country           , :label => "País"                               %>
       <% end %>
     <% end %>
 
     <% field_set_tag "Endereço de cobrança" do %>
       <%= address_toolbar %>
       <% f.fields_for :billing_address do |ba| %>
-        <%= ba.text_field :cep                  , :label => "CEP"         , :class => 'mask-cep' %>
-        <%= ba.text_field :street               , :label => "Endereço"                           %>
-        <%= ba.text_field :number               , :label => "Número"                             %>
-        <%= ba.text_field :complement           , :label => "Complemento"                        %>
-        <%= ba.text_field :neighborhood         , :label => "Bairro"                             %>
-        <%= ba.text_field :city                 , :label => "Cidade"                             %>
-        <%= ba.select     :estate_id, @estate   , :label => "Estado"                             %>
-        <%= ba.text_field :country              , :label => "País"                               %>
+        <%= ba.text_field   :cep               , :label => "CEP"         , :class => 'mask-cep' %>
+        <%= ba.text_field   :street            , :label => "Endereço"                           %>
+        <%= ba.text_field   :number            , :label => "Número"                             %>
+        <%= ba.text_field   :complement        , :label => "Complemento"                        %>
+        <%= ba.text_field   :neighborhood      , :label => "Bairro"                             %>
+        <%= ba.select       :estate_id, @estate, :label => "Estado"                             %>
+        <%= ba.hidden_field :city_id           , :label => "Id da Cidade"                       %>
+        <%= ba.text_field   :city              , :label => "cidade"      , :class => "autocomplete", :source => "city", :pref => "client_billing_address_attributes_" %>
+        <%= ba.text_field   :country           , :label => "País"                               %>
       <% end %>
     <% end %>
 
     <% field_set_tag "Endereço de entrega" do %>
       <%= address_toolbar %>
       <% f.fields_for :delivery_address do |da| %>
-        <%= da.text_field :cep                  , :label => "CEP"         , :class => 'mask-cep' %>
-        <%= da.text_field :street               , :label => "Endereço"                           %>
-        <%= da.text_field :number               , :label => "Número"                             %>
-        <%= da.text_field :complement           , :label => "Complemento"                        %>
-        <%= da.text_field :neighborhood         , :label => "Bairro"                             %>
-        <%= da.text_field :city                 , :label => "Cidade"                             %>
-        <%= da.select     :estate_id, @estate   , :label => "Estado"                             %>
-        <%= da.text_field :country              , :label => "País"                               %>
+        <%= da.text_field   :cep               , :label => "CEP"         , :class => 'mask-cep' %>
+        <%= da.text_field   :street            , :label => "Endereço"                           %>
+        <%= da.text_field   :number            , :label => "Número"                             %>
+        <%= da.text_field   :complement        , :label => "Complemento"                        %>
+        <%= da.text_field   :neighborhood      , :label => "Bairro"                             %>
+        <%= da.select       :estate_id, @estate, :label => "Estado"                             %>
+        <%= da.hidden_field :city_id           , :label => "Id da Cidade"                       %>
+        <%= da.text_field   :city              , :label => "cidade"      , :class => "autocomplete", :source => "city", :pref => "client_delivery_address_attributes_" %>
+        <%= da.text_field   :country           , :label => "País"                               %>
       <% end %>
     <% end %>
 

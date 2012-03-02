@@ -29,13 +29,19 @@ class CepController < ApplicationController
       data[p[0]] = Iconv.conv('utf-8', 'ISO-8859-1', p[1]) if p[0]
     }
 
-    data['estate_id'] = findIdUf data['uf'] unless data['uf'].blank?
+    data['estate_id'] = findIdUf   data['uf'] unless data['uf'].blank?
+    data['city_id']   = findIdCity data['ibge_municipio_verificador'] unless data['ibge_municipio_verificador'].blank?
 
     return data
   end
 
   def findIdUf uf
     id = Estate.find_by_acronym(uf)
+    return id.id
+  end
+
+  def findIdCity ibge_cod
+    id = City.find_by_ibge_cod(ibge_cod)
     return id.id
   end
 

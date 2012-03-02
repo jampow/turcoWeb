@@ -201,6 +201,7 @@
     models:
       account plan: "Plano de contas"
       activity: "Ramo de atividade"
+      address: "Endereço"
       client: "Cliente"
       cost center: "Centro de Custos"
       cst: "Subst. Tributária"
@@ -222,6 +223,8 @@
         name: "Nome"
       activity:
         name: "Nome"
+      address:
+        city: "Cidade"
       client:
         name: "Razão Social"
         nickcname: "Fanfasia"

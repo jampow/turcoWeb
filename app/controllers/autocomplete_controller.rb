@@ -11,7 +11,18 @@ class AutocompleteController < ApplicationController
     respond_to do |format|
       format.js { render :action => "autocomplete" }
     end
-  end  
+  end
+
+  def city
+    @list = City.find(:all,
+                      :select => "id As city_id, concat(estate_acronym, ' - ', name) As label, name As value",
+                      :conditions => ["name like ?", "%#{params[:term]}%"],
+                      :order => "estate_acronym, name"  )
+
+    respond_to do |format|
+      format.js { render :action => "autocomplete" }
+    end
+  end
   
   def client
     @list = Client.find(:all,
