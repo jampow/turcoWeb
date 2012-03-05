@@ -3,6 +3,7 @@ class Address < ActiveRecord::Base
   has_many :bank_accounts
   has_many :clients
   has_many :providers
+  has_one  :client
 
   validate :cityInEstate
 

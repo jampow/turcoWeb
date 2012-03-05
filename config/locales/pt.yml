@@ -209,6 +209,7 @@
       cst icm: "Subst. Tributária Icm"
       cst ipi: "Subst. Tributária Ipi"
       cst pis: "Subst. Tributária Pis"
+      enterprise: "Empresa"
       invoice: "Nota Fiscal"
       product: "Produto"
       sales order: "Pedido de venda"
@@ -237,6 +238,12 @@
       cst:
         code: "Código"
         description: "Descrição"
+      enterprise:
+        name: "Razão Social"
+        cnpj: "CNPJ"
+        ie: "Insc. Estadual"
+        nickname: "Fantasia"
+        phone: "Telefone"
       invoice:
         operation: "Operação"
         invoice_number: "Número da Nota"

@@ -13,6 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :cst_pis
   map.resources :departments
   map.resources :dept_contacts
+  map.resources :enterprises
   map.resources :func_contacts
   map.resources :hollydays
   map.resources :invoices

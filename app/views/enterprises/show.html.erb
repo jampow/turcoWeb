@@ -1,0 +1,17 @@
+<% content_for :menu do -%>
+  <h1>Empresa</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Razão Social"  , h(@enterprise.name)    , :width => 50 %>
+<%= print_content "Fantasia"      , h(@enterprise.nickname), :width => 50 %>
+<%= print_content "CNPJ"          , h(@enterprise.cnpj)    , :width => 25 %>
+<%= print_content "Insc. Estadual", h(@enterprise.ie)      , :width => 25 %>
+<%= print_content "Telefone"      , h(@enterprise.phone)   , :width => 25 %>
+
+<%= address_container("Endereço", @enterprise.address) %>
+
+<h2>Configurações da NF'e</h2>
+
+<%= print_content "Orientação do Danfe", h(Enterprise::DanfeOrientation.find(@enterprise.danfe_orientation).name) %>
+<%= print_content "Ambiente de envio"  , h(Enterprise::NfeAmbient.find(      @enterprise.nfe_ambient      ).name) %>
