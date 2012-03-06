@@ -46,11 +46,15 @@ class Client < ActiveRecord::Base
   }
 
   def aliq_icms
-    billing_estate.aliq_icms
+    delivery_estate.aliq_icms
   end
 
   def billing_estate
     billing_address.estate
+  end
+
+  def delivery_estate
+    delivery_address.estate
   end
 
 end

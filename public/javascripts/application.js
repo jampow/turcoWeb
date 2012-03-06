@@ -1,25 +1,25 @@
 var dTableConfig = {
-    "bJQueryUI": true
-  , "sPaginationType": "full_numbers"
-  , "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]]
-  , "oLanguage": {
-      "sLengthMenu": "_MENU_ itens por página"
-    , "sZeroRecords": "Nenhum registro encontrado"
-    , "sInfo": "Registros de _START_ até _END_ de um total de _TOTAL_"
-    , "sInfoEmpty": "Registros de 0 até 0 de um total de 0"
-    , "sInfoFiltered": "(filtrado de um total de _MAX_ registros)"
-    , "sProcessing": "Processando..."
-    , "sInfoPostFix": ""
-    , "sSearch": "Busca"
-    , "sUrl": ""
-    , "oPaginate": {
-        "sFirst":    "Primeira"
-      , "sPrevious": "Anterior"
-      , "sNext":     "Próxima"
-      , "sLast":     "Última"
-      }
-  }
-  , "bRetrieve": true
+  "bJQueryUI": true,
+  "sPaginationType": "full_numbers",
+  "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tudo"]],
+  "oLanguage": {
+    "sLengthMenu": "_MENU_ itens por página",
+    "sZeroRecords": "Nenhum registro encontrado",
+    "sInfo": "Registros de _START_ até _END_ de um total de _TOTAL_",
+    "sInfoEmpty": "Registros de 0 até 0 de um total de 0",
+    "sInfoFiltered": "(filtrado de um total de _MAX_ registros)",
+    "sProcessing": "Processando...",
+    "sInfoPostFix": "",
+    "sSearch": "Busca",
+    "sUrl": "",
+    "oPaginate": {
+      "sFirst":    "Primeira",
+      "sPrevious": "Anterior",
+      "sNext":     "Próxima",
+      "sLast":     "Última"
+    }
+  },
+  "bRetrieve": true
 };
 
 $(function(){
@@ -100,7 +100,7 @@ $(function(){
   $('table.list tbody tr').live('click', function(){
     t = $(this);
     ctrl = $('#controller').val();
-    id = $(':first-child',t).html()
+    id = $(':first-child',t).html();
     
     if (!isNaN(id)) {
       klass = 'ui-state-default';
@@ -128,11 +128,11 @@ $(function(){
     url = t.attr('href');
     data = '';
     type = 'GET';
-    dataType = 'html'
+    dataType = 'html';
 
     if (url == '#') {return false;}
 
-    rgx_json = /json$/gi
+    rgx_json = /json$/gi;
     is_json = rgx_json.test(url);
 
     if (t.hasClass('delete') || t.hasClass('confirm')){
@@ -220,7 +220,7 @@ $(function(){
       var t = $(this);
       var d = t.attr("decimal");
       var conf = {prefix: '', centsSeparator: ',', thousandsSeparator: '.'};
-      if (d != undefined){
+      if (d !== undefined){
         d = d.split(',');
         if (d.length == 2) {
           if (!isNaN(d[0])) conf.limit      = d[0]*1; 
@@ -328,7 +328,7 @@ function message() {
   msg = $('.notice').text();
   $('.notice').remove();
 
-  if ( msg != "" ) {
+  if ( msg !== "" ) {
     $('#jGrowl').show();
     $.jGrowl(msg,{
       life: 5000,
@@ -354,10 +354,10 @@ function make_buttons() {
     params = {icons: {primary: ''}, text: true};
 
     icn = t.attr('icon'); //icone
-    if (icn != undefined && icn != '') params['icons']['primary'] = 'ui-icon-' + icn;
+    if (icn !== undefined && icn !== '') params.icons.primary = 'ui-icon-' + icn;
 
     txt = t.attr('caption'); //text boolean
-    if (txt != undefined && txt != '' && txt == 'false') params['text'] = false;
+    if (txt !== undefined && txt !== '' && txt == 'false') params.text = false;
     
     t.button(params);
   });
@@ -424,7 +424,7 @@ function showDialog(url){
     }],
     close: function(event, ui) {
       contnr.dialog('destroy');
-      $('#'+ifm).remove()
+      $('#'+ifm).remove();
     }
   });
   $("#"+ifm).attr("src", url);

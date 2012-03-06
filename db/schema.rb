@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120227021559) do
+ActiveRecord::Schema.define(:version => 20120306150208) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.integer  "addressable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "city_id"
   end
 
   create_table "apportionments", :force => true do |t|
@@ -87,6 +88,25 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.datetime "updated_at"
   end
 
+  create_table "carriers", :force => true do |t|
+    t.string   "name",       :limit => 70
+    t.string   "nickname",   :limit => 50
+    t.string   "cnpj",       :limit => 18
+    t.string   "ie",         :limit => 15
+    t.integer  "address_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cars", :force => true do |t|
+    t.integer  "carrier_id"
+    t.string   "license_plate", :limit => 8
+    t.integer  "estate_id"
+    t.string   "brand",         :limit => 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "cities", :force => true do |t|
     t.string  "estate_acronym", :limit => 2
     t.integer "ibge_cod"
@@ -129,6 +149,19 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "enterprises", :force => true do |t|
+    t.string   "name",              :limit => 70
+    t.string   "cnpj",              :limit => 18
+    t.string   "ie",                :limit => 15
+    t.string   "nickname",          :limit => 50
+    t.integer  "address_id"
+    t.string   "phone",             :limit => 30
+    t.integer  "danfe_orientation"
+    t.integer  "nfe_ambient"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -219,6 +252,7 @@ ActiveRecord::Schema.define(:version => 20120227021559) do
     t.boolean  "canceled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   create_table "measure_units", :force => true do |t|

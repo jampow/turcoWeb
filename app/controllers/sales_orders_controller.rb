@@ -27,6 +27,7 @@ class SalesOrdersController < ApplicationController
   def new
     @sales_order = SalesOrder.new
     @sales_order.order_items.build
+    default_data
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,6 +39,7 @@ class SalesOrdersController < ApplicationController
   def edit
     @sales_order = SalesOrder.find(params[:id])
     @sales_order.client_name = @sales_order.client.name
+    default_data
     
     if @sales_order.closed
       flash[:notice] = "Pedido de venda fechado."
@@ -60,6 +62,7 @@ class SalesOrdersController < ApplicationController
         format.html { redirect_to(@sales_order) }
         format.xml  { render :xml => @sales_order, :status => :created, :location => @sales_order }
       else
+        default_data
         format.html { render :action => "new" }
         format.xml  { render :xml => @sales_order.errors, :status => :unprocessable_entity }
       end
@@ -77,6 +80,7 @@ class SalesOrdersController < ApplicationController
         format.html { redirect_to(@sales_order) }
         format.xml  { head :ok }
       else
+        default_data
         format.html { render :action => "edit" }
         format.xml  { render :xml => @sales_order.errors, :status => :unprocessable_entity }
       end
@@ -112,5 +116,11 @@ class SalesOrdersController < ApplicationController
     end
   end
   
+protected
+
+  def default_data
+    @order_types = SalesOrder::OrderType.to_select
+    @sell_types  = SalesOrder::SellType.to_select
+  end
 end
 

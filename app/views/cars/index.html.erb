@@ -1,0 +1,8 @@
+<% content_for :menu do -%>
+  <h1>Carros (<%= @carrier.nickname %>)</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @cars, ["estate_name"   , "Estado"],
+                 ["brand"         , "Marca" ],
+                 ["license_plate" , "Placa" ] %>

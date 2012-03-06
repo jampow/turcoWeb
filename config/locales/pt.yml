@@ -201,6 +201,9 @@
     models:
       account plan: "Plano de contas"
       activity: "Ramo de atividade"
+      address: "Endereço"
+      car: "Carro"
+      carrier: "Transportadora"
       client: "Cliente"
       cost center: "Centro de Custos"
       cst: "Subst. Tributária"
@@ -208,6 +211,7 @@
       cst icm: "Subst. Tributária Icm"
       cst ipi: "Subst. Tributária Ipi"
       cst pis: "Subst. Tributária Pis"
+      enterprise: "Empresa"
       invoice: "Nota Fiscal"
       product: "Produto"
       sales order: "Pedido de venda"
@@ -222,6 +226,18 @@
         name: "Nome"
       activity:
         name: "Nome"
+      address:
+        city: "Cidade"
+      car:
+        carrier_id: "Transportadora"
+        license_plate: "Placa"
+        estate_id: "Estado"
+        brand: "Marca"
+      carrier:
+        name: "Razão Social"
+        nickcname: "Fanfasia"
+        cnpj: "CNPJ"
+        ie: "IE"
       client:
         name: "Razão Social"
         nickcname: "Fanfasia"
@@ -234,6 +250,12 @@
       cst:
         code: "Código"
         description: "Descrição"
+      enterprise:
+        name: "Razão Social"
+        cnpj: "CNPJ"
+        ie: "Insc. Estadual"
+        nickname: "Fantasia"
+        phone: "Telefone"
       invoice:
         operation: "Operação"
         invoice_number: "Número da Nota"

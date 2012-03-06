@@ -1,0 +1,12 @@
+<% content_for :menu do -%>
+  <h1>Transportadora</h1>
+  <%= mount_menu %w[default separator] %>
+  <%= link_to "Carros", cars_path+"?id=#{@carrier.id}", :class => "button", :icon => "cart" %>
+<% end -%>
+
+<%= print_content "Razão Social"  , h(@carrier.name)    , :width => 25 %>
+<%= print_content "Fantasia"      , h(@carrier.nickname), :width => 25 %>
+<%= print_content "CNPJ"          , h(@carrier.cnpj)    , :width => 25 %>
+<%= print_content "Insc. Estadual", h(@carrier.ie)      , :width => 25 %>
+
+<%= address_container("Endereço", @carrier.address) %>
