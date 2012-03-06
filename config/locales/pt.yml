@@ -202,6 +202,7 @@
       account plan: "Plano de contas"
       activity: "Ramo de atividade"
       address: "Endereço"
+      car: "Carro"
       carrier: "Transportadora"
       client: "Cliente"
       cost center: "Centro de Custos"
@@ -227,6 +228,11 @@
         name: "Nome"
       address:
         city: "Cidade"
+      car:
+        carrier_id: "Transportadora"
+        license_plate: "Placa"
+        estate_id: "Estado"
+        brand: "Marca"
       carrier:
         name: "Razão Social"
         nickcname: "Fanfasia"

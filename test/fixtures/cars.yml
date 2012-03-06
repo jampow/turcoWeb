@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  carrier_id: 1
+  license_plate: MyString
+  estate_id: 1
+  brand: MyString
+
+two:
+  carrier_id: 1
+  license_plate: MyString
+  estate_id: 1
+  brand: MyString
