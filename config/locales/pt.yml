@@ -202,6 +202,7 @@
       account plan: "Plano de contas"
       activity: "Ramo de atividade"
       address: "Endereço"
+      carrier: "Transportadora"
       client: "Cliente"
       cost center: "Centro de Custos"
       cst: "Subst. Tributária"
@@ -226,6 +227,11 @@
         name: "Nome"
       address:
         city: "Cidade"
+      carrier:
+        name: "Razão Social"
+        nickcname: "Fanfasia"
+        cnpj: "CNPJ"
+        ie: "IE"
       client:
         name: "Razão Social"
         nickcname: "Fanfasia"

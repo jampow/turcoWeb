@@ -1,0 +1,309 @@
+Lparameters tcNumNota
+
+Local lcSql, lcCodCli, loCampos, loErro, llOk, lcObsNota
+
+** Open Database D:\Scaff\BD\scaffbd.Dbc
+Try 
+	This.CarregaViews
+
+	Text To lcSql Noshow TextMerge Pretext 15
+	Select This.oUdf.CodLimpo(Cli.Cgc)                                              As Cnpj 
+	     , This.oUdf.CodLimpo(Cli.InscEst)                                          As InscEst 
+	     , This.oUdf.TiraAcento(Alltrim(Cli.NomEmp))                                As Nome 
+	     , This.oUdf.CodLimpo(Cli.Fone)                                             As Fone 
+	     , This.oUdf.TiraAcento(Alltrim(Cli.Logradouro)+' '+Alltrim(Cli.Endereco))  As Endereco 
+	     , Cast(Cli.Numero As V(20))                                                As NumEnd 
+	     , This.oUdf.TiraAcento(Alltrim(Cli.Complemento))                           As ComplEnd 
+	     , This.oUdf.TiraAcento(Evl(Alltrim(Cli.Bairro), 'NAO INFORMADO'))          As Bairro 
+	     , This.oUdf.TiraAcento(Alltrim(Cli.Cidade))                                As Cidade 
+	     , This.oUdf.CodLimpo(Cli.Cep)                                              As Cep
+	     , Cli.CodMunicipio                                                         As CodMuni 
+	     , Alltrim(Cli.Estado)                                                      As Uf 
+	     , Padl(Cast(Tuf.CodUf As I), 2, '0')                                       As CodUf 
+	     , Evl(This.oUdf.TiraAcento(Cli.Pais), 'BRASIL')                            As Pais 
+	     , Nvl(Pai.Codigo, '1058')                                                  As CodPais
+	     , This.oUdf.TiraAcento(Alltrim(Cli.LogradouroE)+' '+
+	         Alltrim(Cli.EnderecoE))                                                As EnderecoE
+	     , Cast(Cli.NumeroE As V(20))                                               As NumEndE 
+	     , This.oUdf.TiraAcento(Alltrim(Cli.ComplementoE))                          As ComplEndE 
+	     , This.oUdf.TiraAcento(Evl(Alltrim(Cli.BairroE), 'NAO INFORMADO'))         As BairroE 
+	     , This.oUdf.TiraAcento(Alltrim(Cli.CidadeE))                               As CidadeE 
+	     , This.oUdf.CodLimpo(Cli.CepE)                                             As CepE
+	     , Cli.CodMunicipioE                                                        As CodMuniE 
+	     , Alltrim(Cli.EstadoE)                                                     As UfE 
+	     , Padl(Cast(Uf2.CodUf As I), 2, '0')                                       As CodUfE 
+	     , Evl(This.oUdf.TiraAcento(Cli.Pais), 'BRASIL')                            As PaisE 
+	     , Nvl(Pai.Codigo, '1058')                                                  As CodPaisE
+	     , Alltrim(Cli.EMail)                                                       As Email
+	From CadCliRs     Cli Left Join 
+	     Dbo_Tab_Uf   Tuf On Upper(Alltrim(Tuf.Uf))        == Upper(Alltrim(Cli.Estado)) Left Join 
+	     Dbo_Tab_Muni Mun On Alltrim(Upper(Mun.Municipio)) == Alltrim(Upper(Cli.Cidade)) And 
+	                                        Int(Mun.CodUf) == Int(Tuf.CodUf)             Left Join 
+	     Dbo_Tab_Pais Pai On Upper(Alltrim(Pai.Pais))      == Upper(Alltrim(Cli.Pais))   Left Join
+	     Dbo_Tab_Uf   Uf2 On Upper(Alltrim(Uf2.Uf))        == Upper(Alltrim(Cli.EstadoE))
+	Where Cli.CodigoCl = '<<CadVenda.CodigoCl>>' 
+	Into Cursor Clix
+	EndText
+
+	Select 0
+	&lcSql
+	
+*!*		lcObsNota = Alltrim(This.oUdf.TiraAcento(Inf.Memo))+;
+*!*		            Iif(!Empty(Cnf.ObsVen), ' / ', '')     +;
+*!*				      Alltrim(This.oUdf.TiraAcento(Cnf.ObsVen))
+	
+
+	*** CAPA DA NOTA 
+	Text  To lcSql Noshow TextMerge Pretext 15
+	Select Cast(Tuf.CodUf As I)                                                     As B02_cUF
+	     , Padl(Cast(Cnf.NotaFis As I),8,"0")                                       As B03_cNF
+	     , This.oUdf.TiraAcento(Alltrim(Cnf.ViaTrans))                              As B04_natOp
+	     , Iif(!IsNull(Rec.NotaFis) And Rec.DataVenc <= Date()+1, '0', '1')         As B05_indPag
+	     , '55'                                                                     As B06_mod
+	     , '1'                                                                      As B07_Serie
+	     , Cast(Cnf.NotaFis As I)                                                   As B08_nNf
+	     , Cast(CadVenda.DataOp As D)                                               As B09_dEmi
+	     , Cast(CadVenda.DataOp As D)                                               As B10_dSaiEnt
+	     , '1'                                                                      As B11_tpNF
+	     , Emp.CodMuni                                                              As B12_cMunFG
+	     , Emp.TpDanfe                                                              As B21_tpImp
+	     , Emp.TpAmb                                                                As B24_tpAmb
+	     , '1'                                                                      As B25_finNFe
+	     , '0'                                                                      As B26_procEmi
+	     , '2.0'                                                                    As B27_verProc
+	     , 'CNPJ'                                                                   As TipoEmitente
+	     , This.oUdf.CodLimpo(Emp.CNPJ)                                             As C02_a_CNPJ
+	     , This.oUdf.TiraAcento(Alltrim(Emp.Empresa))                               As C03_xNome
+	     , This.oUdf.TiraAcento(Alltrim(Emp.Fantasia))                              As C04_xFant
+	     , This.oUdf.TiraAcento(Alltrim(Emp.Endereco))                              As C06_xLgr
+	     , Cast(Emp.NumEnd As V(10))                                                As C07_nro
+	     , This.oUdf.TiraAcento(Emp.Compl)                                          As C08_xCpl
+	     , This.oUdf.TiraAcento(Emp.Bairro)                                         As C09_xBairro
+	     , Emp.CodMuni                                                              As C10_cMun
+	     , This.oUdf.TiraAcento(Emp.Cidade)                                         As C11_xMun
+	     , Emp.Uf                                                                   As C12_UF
+	     , This.oUdf.CodLimpo(Emp.Cep)                                              As C13_CEP
+	     , Emp.CodPais                                                              As C14_cPais
+	     , 'BRASIL'                                                                 As C15_xPais
+	     , Right(This.oUdf.CodLimpo(Alltrim(Emp.DDD)+Alltrim(Emp.Telef)),14)        As C16_fone
+	     , This.oUdf.CodLimpo(Emp.Insc_Est)                                         As C17_IE
+	     , ''                                                                       As C18_IEST
+	     , ''                                                                       As C19_IM
+	     , ''                                                                       As C20_CNAE
+	     , '3'                                                                      As C21_CRT
+	     , 'CNPJ'                                                                   As TipoDestin
+        , Iif(Emp.TpAmb='2', '99999999000191', This.oUdf.CodLimpo(Clix.Cnpj) )     As E02_03_CnpjCpf
+	     , Iif(Emp.TpAmb='2' , 
+	           "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL" ,
+	           This.oUdf.TiraAcento(Alltrim(Clix.Nome)) )                           As E04_xNome
+	     , Clix.Endereco                                                            As E06_xLgr
+	     , Clix.NumEnd                                                              As E07_nro
+	     , Clix.ComplEnd                                                            As E08_xCpl
+	     , Clix.Bairro                                                              As E09_xBairro
+	     , Clix.CodMuni                                                             As E10_cMun
+	     , Clix.Cidade                                                              As E11_xMun
+	     , Clix.Uf                                                                  As E12_UF
+	     , Clix.Cep                                                                 As E13_CEP
+	     , Clix.CodPais                                                             As E14_cPais
+	     , Clix.Pais                                                                As E15_xPais
+	     , Clix.Fone                                                                As E16_Fone
+	     , Iif(Emp.TpAmb='2', Space(17), This.oUdf.CodLimpo(Clix.InscEst))          As E17_IE
+	     , ''                                                                       As E18_ISUF
+	     , Clix.EMail                                                               As E19_email
+	     , Cnf.BaseIcm                                                              As W03_vBC_ICMS
+	     , Cnf.TotalIcm                                                             As W04_vICMS
+	     , 0                                                                        As W05_vBCST_ICMS
+	     , 0                                                                        As W06_vST_ICMS
+	     , Cnf.TotalPro                                                             As W07_vProd
+	     , Cnf.Frete                                                                As W08_vFrete
+	     , Cnf.Seguro                                                               As W09_vSeg
+	     , Cnf.DescManaus                                                           As W10_vDesc
+	     , 0                                                                        As W11_vII
+	     , Cnf.TotalIpi                                                             As W12_vIPI
+	     , Cnf.TotPis                                                               As W13_vPIS
+	     , Cnf.TotCofins                                                            As W14_vCOFINS
+	     , 0                                                                        As W15_vOutro
+	     , Cnf.TotalNot                                                             As W16_vNF
+	     , Iif(Cnf.ModFrete = 1,'0','1')                                            As X02_modFrete
+	     , 'CNPJ'                                                                   As TpDocTrans
+	     , This.oUdf.CodLimpo(Cnf.CgcTrans)                                         As X04_CNPJ_CPF_Trans
+	     , This.oUdf.TiraAcento(Cnf.NomTrans)                                       As X06_xNome_Trans
+	     , This.oUdf.CodLimpo(Cnf.IEsTrans)                                         As X07_IE_Trans
+	     , This.oUdf.TiraAcento(
+	        Evl(Alltrim(Cnf.LogTrans)+' ', '') + Alltrim(Cnf.RuaTrans) + ' '  + 
+	        Alltrim(Cnf.NumTrans) + Evl(' '+Alltrim(Cnf.ComTrans), '') + ' - ' + 
+	        Alltrim(Cnf.BaiTrans)  )                                               As X08_xEnder_Trans
+	     , This.oUdf.TiraAcento(Cnf.MunTrans)                                      As X09_xMun_Trans
+	     , Iif(!Empty(Cnf.IEsTrans) And !Upper(Alltrim(Cnf.IEsTrans))=='ISENTO',
+	            This.oUdf.CodLimpo(Cnf.EstTrans) , '' )                            As X10_UF_Trans
+	     , This.oUdf.CodLimpo(Cnf.Placa)                                           As X19_placa_Veic
+	     , Iif(Empty(Cnf.EstTrans), 'SP', Cnf.EstTrans)                            As X20_UF_Veic
+	     , Cast(Cnf.Numero AS I)                                                   As X27_qVol
+		  , 'NE'                                                                    As X28_esp
+		  , This.oUdf.TiraAcento(Evl(Cnf.Marca, 'PROPRIA'))                         As X29_marca
+		  , '999999'                                                                As X30_nVol
+		  , Cnf.PesoBrut                                                            As X31_pesoL
+		  , Cnf.PesoBrut                                                            As X32_pesoB
+        , Cast('' As M)                                                           As Z03_infCpl
+        , Inf.Memo      As Termos
+        , Cnf.ObsVen    As ObsNota
+	From CadVenda   Cnf                                  Left Join
+	     Dbo_Tab_Uf Tuf On Tuf.Uf = 'SP'                 Left Join
+	     Par_NFe    Emp On 1 = 1                         Left Join
+	     CadFatRe   Rec On Rec.NotaFis   = Cnf.NotaFis   Left Join
+	     Tb_Termos  Inf On Inf.Cod_Termo = Cnf.Cod_Termo
+	Where Cnf.NotaFis = '<<CadVenda.NotaFis>>'
+	Into Cursor CapaXml ReadWrite
+	EndText
+
+	Select 0
+	&lcSql
+	
+	Select CapaXml
+	Replace Z03_infCpl With Alltrim(This.oUdf.TiraAcento(CapaXml.Termos))+;
+					            Iif(!Empty(CapaXml.ObsNota), ' / ', '')     +;
+							      Alltrim(This.oUdf.TiraAcento(CapaXml.ObsNota))
+
+
+*!*		     , Alltrim(This.oUdf.TiraAcento(Inf.Memo))+;
+*!*		       Iif(!Empty(Cnf.ObsVen), ' / ', '')     +;
+*!*		       Alltrim(This.oUdf.TiraAcento(Cnf.ObsVen))                               As Z03_infCpl
+	
+	** Itens da Nota
+
+	Text To lcSql Noshow TextMerge Pretext 15
+	Select Cast(0 As Int)                                                As Item
+	     , Iif(Empty(Inf.CodigoPr), 'CFOP9999', Inf.CodigoPr)            As I02_cProd
+	     , ''                                                            As I03_cEAN
+	     , This.oUdf.TiraAcento(Left(Prd.DescPr , 120))                  As I04_xProd
+	     , This.oUdf.CodLimpo(Prd.Ncm)                                   As I05_NCM
+	     , Left(This.oUdf.CodLimpo(Prd.Ncm),2)                           As Genero
+	     , ''                                                            As I06_EXTIPI
+	     , This.oUdf.CodLimpo(CadVenda.NatOper)                          As I08_CFOP
+	     , This.oUdf.TiraAcento(Prd.Unidade)                             As I09_uCom
+	     , Inf.QuantPro                                                  As I10_qCom
+	     , Inf.PrecoUni                                                  As I10a_vUnCom
+	     , Round(Inf.QuantPro * Inf.PrecoUni, 2)                         As I11_vProd
+	     , ''                                                            As I12_cEANTrib
+	     , This.oUdf.TiraAcento(Prd.Unidade)                             As I13_uTrib
+	     , Inf.QuantPro                                                  As I14_qTrib
+	     , Inf.PrecoUni                                                  As I14a_vUnTrib
+	     , 0000000.00                                                    As I15_vFrete
+	     , 0000000.00                                                    As I16_vSeg
+	     , 0000000.00                                                    As I17_vDesc
+	     , 0                                                             As I17a_vOutro
+	     , '1'                                                           As I17b_indTot
+	     , '0'                                                           As N11_Orig
+	     , Prd.CstIcm                                                    As N12_CST
+	     , '3'                                                           As N13_modBC
+	     , 0                                                             As N14_pRedBC
+	     , Inf.BaseIcm                                                   As N15_vBC
+	     , Inf.AliqIcm                                                   As N16_pICMS
+	     , Inf.IcmProd                                                   As N17_vICMS     
+	     , '4'                                                           As N18_modBCST
+	     , 0                                                             As N19_pMVAST
+	     , 0                                                             As N20_pRedBCST
+	     , 0                                                             As N21_vBCST
+	     , 0                                                             As N22_pICMSST     
+	     , 0                                                             As N23_vICMSST
+	     , 0                                                             As N29_pCredSN
+	     , 0                                                             As N30_vCredICMSSN
+	     , Iif(Inf.IpiProd > 0, '1', '0')                                As FlagIpi
+	     , ''                                                            As O04_cSelo_IPI
+	     , 0                                                             As O05_qSelo_IPI
+	     , '999'                                                         As O06_cEnq_IPI
+	     , Prd.CstIpi                                                    As O09_CSTIPI
+	     , Round(Inf.QuantPro * Inf.PrecoUni, 2)                         As O10_vBCIPI
+	     , Inf.AliqIPI                                                   As O13_pIPI
+	     , Inf.IpiProd                                                   As O14_vIPI  
+	     , '0'                                                           As FlagII
+	     , 0                                                             As P02_vBC
+	     , 0                                                             As P03_vDespAdu
+	     , 0                                                             As P04_vII
+	     , 0                                                             As P05_vIOF        
+	     , Prd.CstPis                                                    As Q06_CST_PIS
+	     , Inf.BasePis                                                   As Q07_vBC_PIS
+	     , Inf.AliqPis                                                   As Q08_pPIS
+	     , Inf.PisProd                                                   As Q09_vPIS
+	     , '0'                                                           As Flag_PIS_ST
+	     , 0                                                             As R02_vBC_PIS_ST
+	     , 0                                                             As R03_pPIS_ST
+	     , 0                                                             As R06_vPIS_ST
+	     , Prd.CstCofins                                                 As S06_CST_COFINS
+	     , Inf.BaseCofins                                                As S07_vBC_COFINS
+	     , Inf.AliqCofins                                                As S08_pCOFINS
+	     , Inf.CofinsProd                                                As S11_vCOFINS
+	     , '0'                                                           As Flag_COFINS_ST
+	     , 0                                                             As T02_vBC_COFINS_ST
+	     , 0                                                             As T03_pCOFINS_ST
+	     , 0                                                             As T06_vCOFINS_ST
+	From CadProVe Inf Join
+	     CadProRs Prd On Prd.CodigoPr = Inf.CodigoPr
+	Where Inf.NotaFis = '<<CadVenda.NotaFis>>'    
+	Into Cursor ItensXml ReadWrite
+	EndText
+
+	Select 0
+	&lcSql
+	Select ItensXml
+	Scan
+		lnFator = (I11_vProd)/(CapaXml.W07_vProd)
+
+		Replace Item       With Recno()                                  ,;
+		        I15_vFrete With Round( CapaXml.W08_vFrete * lnFator , 2) ,;
+		        I16_vSeg   With Round( CapaXml.W09_vSeg   * lnFator , 2) ,;
+		        I17_vDesc  With Round( CapaXml.W10_vDesc  * lnFator , 2)
+	EndScan 
+	Go top
+
+	*Dados da entrega se diferente do destinatário
+	Text To lcSql Noshow TextMerge Pretext 15
+		Select 'CNPJ'			As G02_CNPJ
+		     , Cnpj				As G02_02a_CnpjCpf
+		     , EnderecoE		As G03_xLgr
+		     , NumEndE 		As G04_nro
+		     , ComplEndE 		As G05_xCpl
+		     , BairroE 		As G06_xBairro
+		     , CodMuniE 		As G07_cMun
+		     , CidadeE 		As G08_xMun
+		     , UfE 				As G09_UF
+		From Clix
+		Where !Empty(EnderecoE) And
+		  (!EnderecoE == Endereco Or
+		   !NumEndE   == NumEnd   Or
+		   !ComplEndE == ComplEnd Or
+		   !BairroE   == Bairro   Or
+		   !CidadeE   == Cidade   Or
+		   !CepE      == Cep )
+		Into Cursor EntregaXml
+	EndText 
+	Select 0
+	&lcSql
+
+	*-- DADOS DE COBRANÇA
+	Text To lcSql Noshow Textmerge PreText 15
+		Select Parcela   NumFat
+		     , DataVenc  dVencFat
+		     , ValorFat  ValFat
+		From CadFatRe 
+		Where NotaFis = '<<CadVenda.NotaFis>>'
+		Order By Parcela
+		Into Cursor FaturasXml
+	EndText
+	Select 0
+	&lcSql
+	
+	** Scatter dos cursores	
+	Select CapaXml
+	Scatter Memo Name This.oViews.Item('Capa').Campos
+	
+	Select EntregaXml
+	Scatter Memo Name This.oViews.Item('Entrega').Campos
+	** --------------	
+
+	llOk = .T.
+Catch to loErro
+	llOk = .F.
+	MessageBox(loErro.Message, 16, 'Executar Views')
+EndTry 
+Return llOk

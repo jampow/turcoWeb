@@ -1,0 +1,29 @@
+<% content_for :menu do -%>
+  <h1>Nova transportadora</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@carrier) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field :name    , :label => "Razão Social"  , :size => 20 %>
+  <%= f.text_field :nickname, :label => "Apelido"       , :size => 20 %>
+  <%= f.text_field :cnpj    , :label => "CNPJ"          , :size => 20, :class => "mask-cnpj" %>
+  <%= f.text_field :ie      , :label => "Insc. Estadual", :size => 20 %>
+
+  <% field_set_tag "Endereço" do %>
+    <%= address_toolbar %>
+    <% f.fields_for :address do |a| %>
+      <%= a.text_field   :cep                , :label => "CEP"         , :class => 'mask-cep'    %>
+      <%= a.text_field   :street             , :label => "Endereço"                              %>
+      <%= a.text_field   :number             , :label => "Número"                                %>
+      <%= a.text_field   :complement         , :label => "Complemento"                           %>
+      <%= a.text_field   :neighborhood       , :label => "Bairro"                                %>
+      <%= a.select       :estate_id, @estates, :label => "Estado"                                %>
+      <%= a.hidden_field :city_id            , :label => "Id da Cidade"                          %>
+      <%= a.text_field   :city               , :label => "cidade"      , :class => "autocomplete", :source => "city", :pref => "carrier_address_attributes_" %>
+      <%= a.text_field   :country            , :label => "País"                                  %>
+    <% end %>
+  <% end %>
+
+<% end %>

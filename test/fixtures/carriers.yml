@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  nickname: MyString
+  cnpj: MyString
+  ie: MyString
+  address_id: 1
+
+two:
+  name: MyString
+  nickname: MyString
+  cnpj: MyString
+  ie: MyString
+  address_id: 1

@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :attachments
   map.resources :bank_accounts
   map.resources :bank_account_transactions
+  map.resources :carriers
   map.resources :clients
   map.resources :cost_centers
   map.resources :cst_cofins
