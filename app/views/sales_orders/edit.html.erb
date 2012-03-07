@@ -7,25 +7,26 @@
   <div class="form-wrapper">
     <%= f.error_messages %>
 
-    <%= f.text_field   :number                            , :label => "Número"               , :size => 10 %>
-    <%= f.select       :order_type_id       , @order_types, :label => "Tipo de pedido"       , :size => 20 %>
-    <%= f.select       :sale_type_id        , @sell_types , :label => "Tipo de venda"        , :size => 20 %>
-    <%= f.text_field   :date                              , :label => "Data do pedido"       , :size => 10, :class => 'datepicker' %>
-    <%= f.text_field   :prevision                         , :label => "Previsão de entrega"  , :size => 10, :class => 'datepicker' %>
-    <%= f.text_field   :billed                            , :label => "Faturado"             , :size => 10, :class => 'datepicker' %>
-    <%= f.check_box    :closed                            , :label => 'Fechado'              , :size => 10 %>
+    <%= f.text_field   :number                              , :label => "Número"               , :size => 10 %>
+    <%= f.select       :order_type_id       , @order_types  , :label => "Tipo de pedido"       , :size => 20 %>
+    <%= f.select       :sale_type_id        , @sell_types   , :label => "Tipo de venda"        , :size => 20 %>
+    <%= f.text_field   :date                                , :label => "Data do pedido"       , :size => 10, :class => 'datepicker' %>
+    <%= f.text_field   :prevision                           , :label => "Previsão de entrega"  , :size => 10, :class => 'datepicker' %>
+    <%= f.text_field   :billed                              , :label => "Faturado"             , :size => 10, :class => 'datepicker' %>
+    <%= f.check_box    :closed                              , :label => 'Fechado'              , :size => 10 %>
     <%= f.hidden_field :client_id %>
-    <%= f.text_field   :client_name                       , :label => "Cliente"              , :size => 20, :class => 'autocomplete', :source => 'client', :pref => "sales_order_" %>
-    <%= f.text_field   :seller_id                         , :label => "Vendedor"             , :size => 20 %>
-    <%= f.text_field   :commission                        , :label => "Comissão"             , :size => 10 %>
-    <%= f.text_field   :contact_id                        , :label => "Contato"              , :size => 20 %>
-    <%= f.text_field   :payment_condition_id              , :label => "Condição de pagamento", :size => 20 %>
-    <%= f.text_field   :carrier_id                        , :label => "Transportadora"       , :size => 20 %>
-    <%= f.text_field   :freight                           , :label => "Frete"                , :size => 20 %>
-    <%= f.text_field   :freight_type_id                   , :label => "Tipo de frete"        , :size => 20 %>
-    <%= f.text_field   :attendant_id                      , :label => "Atendente"            , :size => 20 %>
-    <%= f.text_area    :observation                       , :label => "Observações"          , :size => 100 %>
-
+    <%= f.text_field   :client_name                         , :label => "Cliente"              , :size => 20, :class => 'autocomplete', :source => 'client', :pref => "sales_order_" %>
+    <%= f.text_field   :seller_id                           , :label => "Vendedor"             , :size => 20 %>
+    <%= f.text_field   :commission                          , :label => "Comissão"             , :size => 10 %>
+    <%= f.text_field   :contact_id                          , :label => "Contato"              , :size => 20 %>
+    <%= f.select       :payment_condition_id, @payment_forms, :label => "Condição de pagamento", :size => 20 %>
+    <%= f.hidden_field :car_id                              , :label => "Id do carro"          , :size => 20 %>
+    <%= f.text_field   :car_name                            , :label => "Transportadora-carro" , :size => 20, :class => 'autocomplete', :source => 'car', :pref => 'sales_order_' %>
+    <%= f.text_field   :freight                             , :label => "Frete"                , :size => 20 %>
+    <%= f.text_field   :freight_type_id                     , :label => "Tipo de frete"        , :size => 20 %>
+    <%= f.text_field   :attendant_id                        , :label => "Atendente"            , :size => 20 %>
+    <%= f.text_area    :observation                         , :label => "Observações"          , :size => 100 %>
+    
     <% field_set_tag 'Itens' do -%>
       <%= new_sales_item_toolbar f %>
       <% f.fields_for :order_items, @item_form do |soi| %>

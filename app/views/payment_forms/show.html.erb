@@ -1,0 +1,19 @@
+<% content_for :menu do -%>
+  <h1>Forma de pagamento</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Nome"          , h(@payment_form.name)   , :width => 70 %>
+<%= print_content "N. de Parcelas", h(@payment_form.parcels), :width => 30 %>
+<%= print_content "01"            , h(@payment_form.p01)    , :width => 10 %>
+<%= print_content "02"            , h(@payment_form.p02)    , :width => 10 %>
+<%= print_content "03"            , h(@payment_form.p03)    , :width => 10 %>
+<%= print_content "04"            , h(@payment_form.p04)    , :width => 10 %>
+<%= print_content "05"            , h(@payment_form.p05)    , :width => 10 %>
+<%= print_content "06"            , h(@payment_form.p06)    , :width => 10 %>
+<%= print_content "07"            , h(@payment_form.p07)    , :width => 10 %>
+<%= print_content "08"            , h(@payment_form.p08)    , :width => 10 %>
+<%= print_content "09"            , h(@payment_form.p09)    , :width => 10 %>
+<%= print_content "10"            , h(@payment_form.p10)    , :width => 10 %>
+<%= print_content "11"            , h(@payment_form.p11)    , :width => 10 %>
+<%= print_content "12"            , h(@payment_form.p12)    , :width => 10 %>

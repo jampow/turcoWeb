@@ -1,0 +1,23 @@
+<% content_for :menu do -%>
+  <h1>Nova forma de pagamento</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@payment_form) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field :name   , :label => "Nome"          , :size => 70 %>
+  <%= f.text_field :parcels, :label => "N. de parcelas", :size => 30 %>
+  <%= f.text_field :p01    , :label => "01"            , :size => 10 %>
+  <%= f.text_field :p02    , :label => "02"            , :size => 10 %>
+  <%= f.text_field :p03    , :label => "03"            , :size => 10 %>
+  <%= f.text_field :p04    , :label => "04"            , :size => 10 %>
+  <%= f.text_field :p05    , :label => "05"            , :size => 10 %>
+  <%= f.text_field :p06    , :label => "06"            , :size => 10 %>
+  <%= f.text_field :p07    , :label => "07"            , :size => 10 %>
+  <%= f.text_field :p08    , :label => "08"            , :size => 10 %>
+  <%= f.text_field :p09    , :label => "09"            , :size => 10 %>
+  <%= f.text_field :p10    , :label => "10"            , :size => 10 %>
+  <%= f.text_field :p11    , :label => "11"            , :size => 10 %>
+  <%= f.text_field :p12    , :label => "12"            , :size => 10 %>
+<% end %>

@@ -22,6 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :measure_units
   map.resources :messages
   map.resources :ncms
+  map.resources :payment_forms
   map.resources :permissions
   map.resources :product_families
   map.resources :product_kinds
