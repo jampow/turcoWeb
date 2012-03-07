@@ -1,5 +1,6 @@
 class Car < ActiveRecord::Base
 	belongs_to :estate
+	has_many :orders
 
 	validates_presence_of :carrier_id, :message => "Acesse novamente a partir da transportadora, se o erro perssistir, contacte o suporte."
 # Select car.id

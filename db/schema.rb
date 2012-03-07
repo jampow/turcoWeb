@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120306150208) do
+ActiveRecord::Schema.define(:version => 20120306181550) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -301,7 +301,6 @@ ActiveRecord::Schema.define(:version => 20120306150208) do
     t.decimal  "commission",           :precision => 10, :scale => 4
     t.integer  "contact_id"
     t.integer  "payment_condition_id"
-    t.integer  "carrier_id"
     t.decimal  "freight",              :precision => 10, :scale => 4
     t.integer  "freight_type_id"
     t.integer  "attendant_id"
@@ -310,6 +309,7 @@ ActiveRecord::Schema.define(:version => 20120306150208) do
     t.datetime "updated_at"
     t.string   "type"
     t.boolean  "closed"
+    t.integer  "car_id"
   end
 
   create_table "people", :force => true do |t|

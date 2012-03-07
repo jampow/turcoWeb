@@ -69,23 +69,23 @@ Select uf.ibge_cod                             As B02_cUF
      , nf.invoice_value                        As W16_vNF
    , 'tipo de frete'                         As X02_modFrete
      , 'CNPJ'                                  As TpDocTrans
-   , 'cadastro de transportadora'            As X04_CNPJ_CPF_Trans
-   , 'cadastro de transportadora'            As X06_xNome_Trans
-   , 'cadastro de transportadora'            As X07_IE_Trans
-   , 'cadastro de transportadora'            As X08_xEnder_Trans
-   , 'cadastro de transportadora'            As X09_xMun_Trans
-   , 'cadastro de transportadora'            As X10_UF_Trans
-   , 'cadastro de transportadora'            As X19_placa_Veic
-   , 'cadastro de transportadora'            As X20_UF_Veic
+     , ce.cnpj                                 As X04_CNPJ_CPF_Trans
+     , ce.name                                 As X06_xNome_Trans
+     , ce.ie                                   As X07_IE_Trans
+     , cd.street                               As X08_xEnder_Trans
+     , dc.name                                 As X09_xMun_Trans
+     , dc.estate_acronym                       As X10_UF_Trans
+     , cr.license_plate                        As X19_placa_Veic
+     , uc.acronym                              As X20_UF_Veic
    , 'cadastro de transportadora'            As X27_qVol
      , 'NE'                                  As X28_esp
-   , 'cadastro de transportadora'            As X29_marca
+     , cr.brand                                As X29_marca
      , '999999'                              As X30_nVol
    , 'cadastro de transportadora'            As X31_pesoL
    , 'cadastro de transportadora'            As X32_pesoB
    , ''                                      As Z03_infCpl
-   , te.term                                 As Termos
-   , nf.observations                         As ObsNota
+     , te.term                                 As Termos
+     , nf.observations                         As ObsNota
 From orders      so                                            Left Join
      invoices    nf On nf.order_id    = so.id                  Left Join
      estates     uf On uf.acronym     = 'SP'                   Left Join
@@ -99,5 +99,10 @@ From orders      so                                            Left Join
      terms       te On te.id          = nf.term_id             Left Join
      enterprises en On en.id          = 1                      Left Join
      addresses   ea On ea.id          = en.address_id          Left Join
-     cities      ec On ec.id          = ea.city_id
+     cities      ec On ec.id          = ea.city_id             Left Join
+     cars        cr On cr.id          = so.car_id              Left Join
+     carriers    ce On ce.id          = cr.carrier_id          Left Join
+     addresses   cd On cd.id          = ce.address_id          Left Join
+     cities      dc On dc.id          = cd.city_id             Left Join
+     estates     uc On uc.id          = cr.estate_id
 where so.id = 3

@@ -20,7 +20,8 @@
     <%= f.text_field   :commission                        , :label => "Comissão"             , :size => 10 %>
     <%= f.text_field   :contact_id                        , :label => "Contato"              , :size => 20 %>
     <%= f.text_field   :payment_condition_id              , :label => "Condição de pagamento", :size => 20 %>
-    <%= f.text_field   :carrier_id                        , :label => "Transportadora"       , :size => 20 %>
+    <%= f.hidden_field :car_id                            , :label => "Id do carro"          , :size => 20 %>
+    <%= f.text_field   :car_name                          , :label => "Transportadora-carro" , :size => 20, :class => 'autocomplete', :source => 'car', :pref => 'sales_order_' %>
     <%= f.text_field   :freight                           , :label => "Frete"                , :size => 20 %>
     <%= f.text_field   :freight_type_id                   , :label => "Tipo de frete"        , :size => 20 %>
     <%= f.text_field   :attendant_id                      , :label => "Atendente"            , :size => 20 %>

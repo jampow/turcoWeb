@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
   has_many :order_items, :dependent => :delete_all
+  belongs_to :car
 
   accepts_nested_attributes_for :order_items , :reject_if => proc { |a| a[:product_name].blank? }
 
@@ -7,8 +8,9 @@ class Order < ActiveRecord::Base
   before_save :moviment_stock
   
   attr_accessor :client_name
+  attr_accessor :car_name
   attr_accessor :reverse #Estorno
-  
+
 protected
 
   def mark_item_for_removal
