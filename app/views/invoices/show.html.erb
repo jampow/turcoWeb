@@ -42,12 +42,12 @@
 <%= print_content "Nat da op. (string)"      , h(@invoice.natop_id)                       , :width => 20 %>
 
 <h2>Entrega</h2>
-<%= print_content "Data da Entrega"          , date(@invoice.delivery)                   , :width => 10 %>
-<%= print_content "Frete"                    , h(@invoice.freight)                       , :width => 10 %>
-<%= print_content "Tipo de frete"            , h(@invoice.freight_type)                  , :width => 10 %>
-<%= print_content "Seguro"                   , h(@invoice.insurance)                     , :width => 10 %>
-<%= print_content "Transportadora"           , h(@invoice.carrier_id)                    , :width => 10 %>
-<%= print_content "Nfe"                      , h(@invoice.nfe)                           , :width => 10 %>
-<%= print_content "Desconto manaus"          , h(@invoice.manaus_discount)               , :width => 10 %>
-<%= print_content "Cancelada"                , human_boolean(@invoice.canceled)          , :width => 10 %>
+<%= print_content "Data da Entrega"          , date(@invoice.delivery)                            , :width => 10 %>
+<%= print_content "Frete"                    , h(@invoice.freight)                                , :width => 10 %>
+<%= print_content "Tipo de frete"            , h(Invoice::FreightType.find(@invoice.freight_type)), :width => 10 %>
+<%= print_content "Seguro"                   , h(@invoice.insurance)                              , :width => 10 %>
+<%= print_content "Transportadora"           , h(@invoice.carrier_id)                             , :width => 10 %>
+<%= print_content "Nfe"                      , h(@invoice.nfe)                                    , :width => 10 %>
+<%= print_content "Desconto manaus"          , h(@invoice.manaus_discount)                        , :width => 10 %>
+<%= print_content "Cancelada"                , human_boolean(@invoice.canceled)                   , :width => 10 %>
 

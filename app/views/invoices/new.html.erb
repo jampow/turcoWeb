@@ -10,13 +10,13 @@
   <%= f.select     :seller_id        , @sellers   , :label => "Vendedor"               , :size => 40  %>
   <%= f.text_field :commission_rate               , :label => "Comissão"               , :size => 10  %>
   <%= f.select     :sell_id          , @sells_type, :label => "Tipo"                   , :size => 20  %>
-  
+
   <% field_set_tag "Cliente" do %>
     <%= f.hidden_field :client_id                  , :label => "Cliente"                , :size => 10  %>
     <%= f.text_field   :client_name                , :label => "Cliente"                , :size => 40, :class => 'autocomplete', :source => 'client', :pref => "invoice_" %>
     <%# PRECISA DO CNPJ DESNORMALIZADO?!?!?!?!?!? %>
     <%= f.select       :term_id        , @terms    , :label => "Termo"                  , :size => 10  %>
-  
+
     <%= f.text_area    :observations               , :label => "Observações"            , :size => 100 %>
   <% end -%>
 
@@ -50,7 +50,7 @@
 
     <div id="trash" class="hide"></div>
   <% end -%>
-  
+
   <% field_set_tag "Impostos" do -%>
 
     <%= f.text_field   :ipi                        , :label => "Total IPI"              , :size => 10  %>
@@ -58,19 +58,19 @@
     <%= f.text_field   :icms                       , :label => "Total ICMS"             , :size => 10  %>
     <%= f.text_field   :pis                        , :label => "PIS"                    , :size => 10  %>
     <%= f.text_field   :cofins                     , :label => "Cofins"                 , :size => 10  %>
-    
+
     <%= f.text_field   :products_value             , :label => "Total produtos"         , :size => 10  %>
     <%= f.text_field   :invoice_value              , :label => "Total geral"            , :size => 10  %>
     <%# f.text_field   :activity_id                , :label => "Ramo de atividade"      , :size => 10  %>
     <%= f.text_field   :parcels                    , :label => "Parcelas"               , :size => 10  %>
     <%= f.text_field   :natop_id                   , :label => "Nat da op. (String)"    , :size => 10  %>
   <% end -%>
-  
-  
+
+
   <% field_set_tag "Entrega" do -%>
     <%= f.check_box    :delivery                   , :label => "Entrega"                , :size => 10  %>
     <%= f.text_field   :freight                    , :label => "Frete"                  , :size => 10  %>
-    <%= f.text_field   :freight_type               , :label => "Tipo do frete"          , :size => 10  %>
+    <%= f.select       :freight_type   , @freights , :label => "Tipo do frete"          , :size => 10  %>
     <%= f.text_field   :insurance                  , :label => "Seguro"                 , :size => 10  %>
     <%= f.text_field   :carrier_id                 , :label => "Transportadora"         , :size => 10  %>
     <%= f.text_field   :manaus_discount            , :label => "Desconto Manaus"        , :size => 10  %>

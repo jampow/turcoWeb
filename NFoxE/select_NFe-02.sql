@@ -1,7 +1,7 @@
 Select uf.ibge_cod                             As B02_cUF
-   , 'WTF'                                   As B03_cNF
+     , nf.id                                   As B03_cNF
    , 'OMG!!'                                 As B04_natOp
-   , 'criar scaffold'                        As B05_indPag
+     , If(pf.parcels = 0, 0, 1)                As B05_indPag
      , '55'                                    As B06_mod
      , '1'                                     As B07_Serie
      , nf.invoice_number                       As B08_nNf
@@ -67,7 +67,7 @@ Select uf.ibge_cod                             As B02_cUF
      , nf.cofins                               As W14_vCOFINS
      , 0                                       As W15_vOutro
      , nf.invoice_value                        As W16_vNF
-   , 'tipo de frete'                         As X02_modFrete
+     , nf.freight_type                         As X02_modFrete
      , 'CNPJ'                                  As TpDocTrans
      , ce.cnpj                                 As X04_CNPJ_CPF_Trans
      , ce.name                                 As X06_xNome_Trans
@@ -78,31 +78,32 @@ Select uf.ibge_cod                             As B02_cUF
      , cr.license_plate                        As X19_placa_Veic
      , uc.acronym                              As X20_UF_Veic
    , 'cadastro de transportadora'            As X27_qVol
-     , 'NE'                                  As X28_esp
+     , 'NE'                                    As X28_esp
      , cr.brand                                As X29_marca
-     , '999999'                              As X30_nVol
+     , '999999'                                As X30_nVol
    , 'cadastro de transportadora'            As X31_pesoL
    , 'cadastro de transportadora'            As X32_pesoB
-   , ''                                      As Z03_infCpl
+     , ''                                      As Z03_infCpl
      , te.term                                 As Termos
      , nf.observations                         As ObsNota
-From orders      so                                            Left Join
-     invoices    nf On nf.order_id    = so.id                  Left Join
-     estates     uf On uf.acronym     = 'SP'                   Left Join
-     clients     cl On cl.id          = nf.client_id           Left Join
-     addresses   ca On ca.id          = cl.delivery_address_id Left Join
-     cities      cc On cc.id          = ca.city_id             Left join
-     people      pe On pe.external_id = cl.id 
-                   And pe.type        = 'Contact'              Left Join
-     phones      ph On ph.person_id   = pe.id 
-                   And ph.main        = 1                      Left Join
-     terms       te On te.id          = nf.term_id             Left Join
-     enterprises en On en.id          = 1                      Left Join
-     addresses   ea On ea.id          = en.address_id          Left Join
-     cities      ec On ec.id          = ea.city_id             Left Join
-     cars        cr On cr.id          = so.car_id              Left Join
-     carriers    ce On ce.id          = cr.carrier_id          Left Join
-     addresses   cd On cd.id          = ce.address_id          Left Join
-     cities      dc On dc.id          = cd.city_id             Left Join
-     estates     uc On uc.id          = cr.estate_id
+From orders        so                                             Left Join
+     payment_forms pf On pf.id          = so.payment_condition_id Left Join
+     invoices      nf On nf.order_id    = so.id                   Left Join
+     estates       uf On uf.acronym     = 'SP'                    Left Join
+     clients       cl On cl.id          = nf.client_id            Left Join
+     addresses     ca On ca.id          = cl.delivery_address_id  Left Join
+     cities        cc On cc.id          = ca.city_id              Left join
+     people        pe On pe.external_id = cl.id
+                     And pe.type        = 'Contact'               Left Join
+     phones        ph On ph.person_id   = pe.id
+                     And ph.main        = 1                       Left Join
+     terms         te On te.id          = nf.term_id              Left Join
+     enterprises   en On en.id          = 1                       Left Join
+     addresses     ea On ea.id          = en.address_id           Left Join
+     cities        ec On ec.id          = ea.city_id              Left Join
+     cars          cr On cr.id          = so.car_id               Left Join
+     carriers      ce On ce.id          = cr.carrier_id           Left Join
+     addresses     cd On cd.id          = ce.address_id           Left Join
+     cities        dc On dc.id          = cd.city_id              Left Join
+     estates       uc On uc.id          = cr.estate_id
 where so.id = 3
