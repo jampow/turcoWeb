@@ -1,0 +1,11 @@
+<% content_for :menu do -%>
+  <h1>Nova natureza de operação</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@cfop) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field :number, :label => "Número"   , :size => 20, :class => "mask-cfop" %>
+  <%= f.text_field :name  , :label => "Descrição", :size => 50 %>
+<% end %>

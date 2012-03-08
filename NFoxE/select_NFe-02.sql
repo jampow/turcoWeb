@@ -1,6 +1,6 @@
 Select uf.ibge_cod                             As B02_cUF
      , nf.id                                   As B03_cNF
-   , 'OMG!!'                                 As B04_natOp
+     , cf.number                               As B04_natOp
      , If(pf.parcels = 0, 0, 1)                As B05_indPag
      , '55'                                    As B06_mod
      , '1'                                     As B07_Serie
@@ -89,6 +89,7 @@ Select uf.ibge_cod                             As B02_cUF
 From orders        so                                             Left Join
      payment_forms pf On pf.id          = so.payment_condition_id Left Join
      invoices      nf On nf.order_id    = so.id                   Left Join
+     cfops         cf On cf.id          = nf.natop_id             Left Join
      estates       uf On uf.acronym     = 'SP'                    Left Join
      clients       cl On cl.id          = nf.client_id            Left Join
      addresses     ca On ca.id          = cl.delivery_address_id  Left Join

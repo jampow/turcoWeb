@@ -79,7 +79,7 @@
     <%= f.text_field   :invoice_value              , :label => "Total geral"            , :size => 10  %>
     <%# f.text_field   :activity_id                , :label => "Ramo de atividade"      , :size => 10  %>
     <%= f.text_field   :parcels                    , :label => "Parcelas"               , :size => 10  %>
-    <%= f.text_field   :natop_id                   , :label => "Nat da op. (String)"    , :size => 10  %>
+    <%= f.select       :natop_id       , @cfops    , :label => "Nat. de operação"       , :size => 10  %>
   <% end -%>
 
 
