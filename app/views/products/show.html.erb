@@ -7,7 +7,8 @@
 <%= print_content "Nome"             , h(@product.name)                  , :width => 40 %>
 <%= print_content "Espécie"          , h(@product.kind)                  , :width => 30 %>
 <%= print_content "Unidade"          , h(@product.unity)                 , :width => 10 %>
-<%= print_content "Peso (Kg's)"      , h(@product.weight)                , :width => 10 %>
+<%= print_content "Peso líquido (Kg)", h(@product.net_weight)            , :width => 10 %>
+<%= print_content "Peso bruto (Kg)"  , h(@product.gross_weight)          , :width => 10 %>
 
 <%= print_content "IPI"              , h(@product.ipi)                   , :width => 10 %>
 <%= print_content "Código Fiscal"    , h(@product.fiscal_code)           , :width => 10 %>

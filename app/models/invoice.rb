@@ -1,4 +1,5 @@
 class Invoice < ActiveRecord::Base
+  belongs_to :car
   belongs_to :client
   belongs_to :provider
   belongs_to :seller

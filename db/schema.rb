@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308140911) do
+ActiveRecord::Schema.define(:version => 20120308182828) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -203,26 +203,28 @@ ActiveRecord::Schema.define(:version => 20120308140911) do
     t.integer  "product_id"
     t.string   "product_cod",     :limit => 20
     t.string   "product_name",    :limit => 60
-    t.decimal  "quantity",                      :precision => 9, :scale => 3
+    t.decimal  "quantity",                      :precision => 9,  :scale => 3
     t.integer  "measure_unit_id"
     t.integer  "parts"
-    t.decimal  "unit_value",                    :precision => 9, :scale => 3
-    t.decimal  "total_value",                   :precision => 9, :scale => 3
-    t.decimal  "icm",                           :precision => 9, :scale => 3
-    t.decimal  "ipi",                           :precision => 9, :scale => 3
-    t.decimal  "pis",                           :precision => 9, :scale => 3
-    t.decimal  "cofins",                        :precision => 9, :scale => 3
+    t.decimal  "unit_value",                    :precision => 9,  :scale => 3
+    t.decimal  "total_value",                   :precision => 9,  :scale => 3
+    t.decimal  "icm",                           :precision => 9,  :scale => 3
+    t.decimal  "ipi",                           :precision => 9,  :scale => 3
+    t.decimal  "pis",                           :precision => 9,  :scale => 3
+    t.decimal  "cofins",                        :precision => 9,  :scale => 3
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "aliq_icm",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "icm_base",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "aliq_ipi",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "ipi_base",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "aliq_pis",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "aliq_cofins",                   :precision => 9, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "desc_manaus",                   :precision => 9, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "pis_base",                      :precision => 9, :scale => 3, :default => 0.0, :null => false
-    t.decimal  "cofins_base",                   :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "aliq_icm",                      :precision => 9,  :scale => 3, :default => 0.0, :null => false
+    t.decimal  "icm_base",                      :precision => 9,  :scale => 3, :default => 0.0, :null => false
+    t.decimal  "aliq_ipi",                      :precision => 9,  :scale => 3, :default => 0.0, :null => false
+    t.decimal  "ipi_base",                      :precision => 9,  :scale => 3, :default => 0.0, :null => false
+    t.decimal  "aliq_pis",                      :precision => 9,  :scale => 3, :default => 0.0, :null => false
+    t.decimal  "aliq_cofins",                   :precision => 9,  :scale => 3, :default => 0.0, :null => false
+    t.decimal  "desc_manaus",                   :precision => 9,  :scale => 3, :default => 0.0, :null => false
+    t.decimal  "pis_base",                      :precision => 9,  :scale => 3, :default => 0.0, :null => false
+    t.decimal  "cofins_base",                   :precision => 9,  :scale => 3, :default => 0.0, :null => false
+    t.decimal  "net_weight",                    :precision => 10, :scale => 4
+    t.decimal  "gross_weight",                  :precision => 10, :scale => 4
   end
 
   create_table "invoices", :force => true do |t|
@@ -248,7 +250,7 @@ ActiveRecord::Schema.define(:version => 20120308140911) do
     t.boolean  "delivery"
     t.decimal  "freight",          :precision => 9, :scale => 3
     t.decimal  "insurance",        :precision => 9, :scale => 3
-    t.integer  "carrier_id"
+    t.integer  "car_id"
     t.integer  "freight_type"
     t.boolean  "nfe"
     t.string   "nfe_received_key"
@@ -294,6 +296,8 @@ ActiveRecord::Schema.define(:version => 20120308140911) do
     t.datetime "updated_at"
     t.decimal  "unit_value",      :precision => 10, :scale => 2
     t.integer  "measure_unit_id"
+    t.decimal  "net_weight",      :precision => 10, :scale => 4
+    t.decimal  "gross_weight",    :precision => 10, :scale => 4
   end
 
   create_table "orders", :force => true do |t|
@@ -376,7 +380,6 @@ ActiveRecord::Schema.define(:version => 20120308140911) do
     t.string   "name"
     t.string   "kind"
     t.string   "unity"
-    t.decimal  "weight",         :precision => 10, :scale => 3
     t.decimal  "ipi",            :precision => 10, :scale => 4
     t.string   "fiscal_code"
     t.integer  "tributary_code"
@@ -394,6 +397,8 @@ ActiveRecord::Schema.define(:version => 20120308140911) do
     t.decimal  "cofins",         :precision => 10, :scale => 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "net_weight",     :precision => 10, :scale => 4
+    t.decimal  "gross_weight",   :precision => 10, :scale => 4
   end
 
   create_table "providers", :force => true do |t|

@@ -4,10 +4,11 @@ class SalesOrder < Order
   validates_presence_of :client_id
 
   before_save :create_invoice
-  
+
   def create_invoice
     if self.closed
       inv                 = Invoice.new
+      inv.order_id        = self.id
       inv.operation       = Date.today
       inv.invoice_number  = Invoice.number[0].next
       inv.client_id       = self.client_id
@@ -16,9 +17,9 @@ class SalesOrder < Order
       inv.activity_id     = self.client.activity_id
       inv.sell_id         = 1
       #inv.natop_id #verificar
-      inv.carrier_id      = self.carrier_id
+      inv.car_id          = self.car_id
       inv.freight         = self.freight
-      
+
       self.order_items.each do |item|
         logger.info item
         inv_i = inv.itens.build
@@ -30,12 +31,14 @@ class SalesOrder < Order
         inv_i.unit_value      = item.unit_value
         inv_i.total_value     = item.total_value
         inv_i.ipi             = item.product.ipi
+        inv_i.net_weight      = item.net_weight
+        inv_i.gross_weight    = item.gross_weight
       end
       inv.save
     end
   end
-  
-  class OrderType < 
+
+  class OrderType <
     Struct.new(:id, :name)
     VALUES = [
       {:id => 1, :name => 'Venda'},
@@ -55,8 +58,8 @@ class SalesOrder < Order
       self.new(h[:id], h[:name])
     end
   end
-  
-  class SellType < 
+
+  class SellType <
     Struct.new(:id, :name)
     VALUES = [
       {:id => 1, :name => 'Produtos'},
@@ -76,6 +79,6 @@ class SalesOrder < Order
       self.new(h[:id], h[:name])
     end
   end
-  
+
 end
 
