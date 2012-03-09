@@ -1,5 +1,5 @@
 Select 0                                        As Item
-     , 'OMG!!'                                  As I02_cProd
+     , IfNull(pr.code, 'CFOP9999')              As I02_cProd
      , ''                                       As I03_cEAN
      , ii.product_name                          As I04_xProd
      , pr.ncm                                   As I05_NCM
