@@ -7,7 +7,7 @@
   <div class="form-wrapper">
     <%= f.error_messages %>
 
-    <%= f.text_field   :number                              , :label => "Número"               , :size => 10 %>
+    <%= f.text_field   :number                              , :label => "Número"               , :size => 10, :disabled => "disabled" %>
     <%= f.select       :order_type_id       , @order_types  , :label => "Tipo de pedido"       , :size => 20 %>
     <%= f.select       :sale_type_id        , @sell_types   , :label => "Tipo de venda"        , :size => 20 %>
     <%= f.text_field   :date                                , :label => "Data do pedido"       , :size => 10, :class => 'datepicker' %>

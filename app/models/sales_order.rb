@@ -2,6 +2,16 @@ class SalesOrder < Order
   belongs_to :client
 
   validates_presence_of :client_id
+  validates_uniqueness_of :number
+
+  def initialize
+    super
+    self.number ||= SalesOrder.number.next
+  end
+
+  def self.number
+    self.find(:first, :select => "max(number) As last, max(number)+1 As next", :conditions => "type = 'SalesOrder'")
+  end
 
   before_save :create_invoice
 
