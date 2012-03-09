@@ -39,11 +39,11 @@
   <tbody>
   <% @items.each do |soi| %>
     <tr>
-      <td><%= soi.product_name %></td>
-      <td><%= soi.quantity     %></td>
-      <td><%= soi.unit_value   %></td>
-      <td><%= soi.total_value  %></td>
-      <td><%= soi.delivery     %></td>
+      <td><%= soi.product_name   %></td>
+      <td class="right" ><%= soi.quantity       %></td>
+      <td class="right" ><%= soi.unit_value     %></td>
+      <td class="right" ><%= soi.total_value    %></td>
+      <td class="center"><%= date(soi.delivery) %></td>
     </tr>
   <% end -%>
   </tbody>
