@@ -16,8 +16,8 @@
 <%= print_content "Vendedor"             , h(@sales_order.seller_id)           , :width => 20  %>
 <%= print_content "Comissão"             , h(@sales_order.commission)          , :width => 10  %>
 <%= print_content "Contato"              , h(@sales_order.contact_id)          , :width => 20  %>
-<%= print_content "Condição de pagamento", h(@sales_order.payment_condition_id), :width => 20  %>
-<%= print_content "Transportadora"       , h(@sales_order.carrier_id)          , :width => 20  %>
+<%= print_content "Condição de pagamento", h(@sales_order.payment_form.name)   , :width => 20  %>
+<%= print_content "Transportadora"       , h(@sales_order.carrier.name)        , :width => 20  %>
 <%= print_content "Frete"                , h(@sales_order.freight)             , :width => 20  %>
 <%= print_content "Tipo de frete"        , h(@sales_order.freight_type_id)     , :width => 20  %>
 <%= print_content "Atendente"            , h(@sales_order.attendant_id)        , :width => 20  %>

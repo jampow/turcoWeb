@@ -1,0 +1,7 @@
+<% content_for :menu do -%>
+  <h1>Natureza de operação</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Número"   , h(@cfop.number), :width => 20 %>
+<%= print_content "Descrição", h(@cfop.name)  , :width => 50 %>

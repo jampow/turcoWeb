@@ -1,5 +1,7 @@
 class Order < ActiveRecord::Base
   has_many :order_items, :dependent => :delete_all
+  belongs_to :car
+  belongs_to :payment_form, :foreign_key => "payment_condition_id"
 
   accepts_nested_attributes_for :order_items , :reject_if => proc { |a| a[:product_name].blank? }
 
@@ -7,8 +9,13 @@ class Order < ActiveRecord::Base
   before_save :moviment_stock
   
   attr_accessor :client_name
+  attr_accessor :car_name
   attr_accessor :reverse #Estorno
-  
+
+  def carrier
+    car.carrier
+  end
+
 protected
 
   def mark_item_for_removal

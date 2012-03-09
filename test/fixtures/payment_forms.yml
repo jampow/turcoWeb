@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  parcels: 1
+  p01: 1
+  p02: 1
+  p03: 1
+  p04: 1
+  p05: 1
+  p06: 1
+  p07: 1
+  p08: 1
+  p09: 1
+  p10: 1
+  p11: 1
+  p12: 1
+
+two:
+  name: MyString
+  parcels: 1
+  p01: 1
+  p02: 1
+  p03: 1
+  p04: 1
+  p05: 1
+  p06: 1
+  p07: 1
+  p08: 1
+  p09: 1
+  p10: 1
+  p11: 1
+  p12: 1

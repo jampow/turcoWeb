@@ -1,0 +1,6 @@
+<% content_for :menu do -%>
+  <h1>Formas de pagamento</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @payment_forms, ["name", "Nome"] %>

@@ -204,6 +204,7 @@
       address: "Endereço"
       car: "Carro"
       carrier: "Transportadora"
+      cfop: "Natureza da operação"
       client: "Cliente"
       cost center: "Centro de Custos"
       cst: "Subst. Tributária"
@@ -238,6 +239,9 @@
         nickcname: "Fanfasia"
         cnpj: "CNPJ"
         ie: "IE"
+      cfop:
+        number: "Número"
+        name: "Descrição"
       client:
         name: "Razão Social"
         nickcname: "Fanfasia"
@@ -315,5 +319,5 @@
         taxed: "Tributada"
         differential_rate: "Alíquota diferenciada"
         zero_rate: "Alíquota zero"
-        
-        
+
+

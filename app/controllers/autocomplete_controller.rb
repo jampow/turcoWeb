@@ -13,6 +13,30 @@ class AutocompleteController < ApplicationController
     end
   end
 
+  def car
+
+    # Select car.id As car_id
+    #      , concat(cre.name, ' - ', car.brand, ' - ', est.acronym, ' - ', car.license_plate) As label
+    #      , car.license_plate As value
+    # From cars     car Join
+    #      carriers cre On cre.id = car.carrier_id Join
+    #      estates  est On est.id = car.estate_id
+    # Where car.license_plate like '%1234%' 
+    #    Or car.brand         like '%1324%' 
+    #    Or cre.name          like '%1324%' 
+    #    Or est.name          like '%1324%'
+
+    @list = Car.find(:all,
+                     :select => "car.id As car_id, concat(cre.name, ' - ', car.brand, ' - ', est.acronym, ' - ', car.license_plate) As label, car.license_plate As value",
+                     :joins => "car Join carriers cre On cre.id = car.carrier_id Join estates est On est.id = car.estate_id",
+                     :conditions => ["car.license_plate like ? Or car.brand like ? Or cre.name like ? Or est.name like ?", "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%"],
+                     :order => "label")
+
+    respond_to do |format|
+      format.js { render :action => "autocomplete" }
+    end
+  end
+
   def city
     @list = City.find(:all,
                       :select => "id As city_id, concat(estate_acronym, ' - ', name) As label, name As value",

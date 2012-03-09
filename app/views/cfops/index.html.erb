@@ -1,0 +1,7 @@
+<% content_for :menu do -%>
+  <h1>Naturezas de operação</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @cfops, ["number", "Número"],
+                  ["name"  , "Nome"  ] %>

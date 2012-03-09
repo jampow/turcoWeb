@@ -1,27 +1,30 @@
 class Invoice < ActiveRecord::Base
+  belongs_to :car
   belongs_to :client
   belongs_to :provider
   belongs_to :seller
-  belongs_to :sell_type, :foreign_key => "sell_id"
+  belongs_to :sell_type  , :foreign_key => "sell_id"
   belongs_to :term
   belongs_to :receivables, :foreign_key => "invoice_number"
+  belongs_to :cfop       , :foreign_key => "natop_id"
   has_many   :receivables, :primary_key => "invoice_number", :foreign_key => "invoice_number"
   has_many   :itens, :class_name => "InvoiceItem"
-  
+
   accepts_nested_attributes_for :itens, :reject_if => proc { |a| a[:product_name].blank? || a[:product_id].blank? }
-  
+
   attr_accessor :client_name
-  
+
   validates_presence_of :client_id
-  
-  named_scope :grid, 
+
+  named_scope :number, :select => "max(invoice_number) As last, max(invoice_number)+1 As next"
+  named_scope :grid,
     :select => 'inv.id, cli.name, inv.operation',
-    :joins  => 'inv Join clients cli On cli.id = inv.client_id', 
+    :joins  => 'inv Join clients cli On cli.id = inv.client_id',
     :order  => "name"
-    
+
   before_save :mark_item_for_removal
   before_save :calc_tax
-    
+
   def calc_tax
     self.manaus_discount = 0
     self.products_value  = 0
@@ -31,10 +34,10 @@ class Invoice < ActiveRecord::Base
     self.icms_base       = 0
     self.pis             = 0
     self.cofins          = 0
-    
+
     itens.each do |i|
       i.calc_ipi
-      
+
       case sell_id
         when 1 #para venda
           #logger.info "case 1"
@@ -70,10 +73,10 @@ class Invoice < ActiveRecord::Base
           i.calc_icms false, client.activity.name, client.aliq_icms
           i.zero_ipi
       end
-      
+
       i.calc_pis
       i.calc_cofins
-      
+
       #Adiciona totais
       self.manaus_discount += i.desc_manaus
       self.products_value  += i.total_value
@@ -86,8 +89,29 @@ class Invoice < ActiveRecord::Base
     end
   end
 
-  named_scope :number, :select => "max(invoice_number) As last, max(invoice_number)+1 As next"
-  
+  class FreightType <
+    Struct.new(:id, :name)
+    VALUES = [
+      {:id => 0, :name => 'Por conta do emitente'},
+      {:id => 1, :name => 'Por conta do destinatário'},
+      {:id => 2, :name => 'Por conta de terceiros'},
+      {:id => 9, :name => 'Sem frete'}
+    ]
+    def self.all
+      VALUES.map { |v| self.new(v[:id], v[:name]) }
+    end
+
+    def self.to_select
+      VALUES.map { |v| [v[:name], v[:id]] }
+    end
+
+    def self.find(id)
+      h=VALUES.find { |v| v[:id] == id }
+      return nil if h.nil?
+      self.new(h[:id], h[:name])
+    end
+  end
+
 protected
 
   def mark_item_for_removal
@@ -95,6 +119,6 @@ protected
       child.mark_for_destruction if child.product_name.blank?
     end
   end
-  
+
 end
 

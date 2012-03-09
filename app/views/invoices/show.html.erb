@@ -39,15 +39,15 @@
 <%= print_content "Total Geral"              , number_to_currency(@invoice.invoice_value) , :width => 20 %>
 <%# print_content "Ramo de tividade"         , h(@invoice.activity.id)                    , :width => 20 %>
 <%= print_content "Núm. de  parcelas"        , h(@invoice.parcels)                        , :width => 20 %>
-<%= print_content "Nat da op. (string)"      , h(@invoice.natop_id)                       , :width => 20 %>
+<%= print_content "Nat. de operação"         , h(@invoice.cfop.number)                    , :width => 20 %>
 
 <h2>Entrega</h2>
-<%= print_content "Data da Entrega"          , date(@invoice.delivery)                   , :width => 10 %>
-<%= print_content "Frete"                    , h(@invoice.freight)                       , :width => 10 %>
-<%= print_content "Tipo de frete"            , h(@invoice.freight_type)                  , :width => 10 %>
-<%= print_content "Seguro"                   , h(@invoice.insurance)                     , :width => 10 %>
-<%= print_content "Transportadora"           , h(@invoice.carrier_id)                    , :width => 10 %>
-<%= print_content "Nfe"                      , h(@invoice.nfe)                           , :width => 10 %>
-<%= print_content "Desconto manaus"          , h(@invoice.manaus_discount)               , :width => 10 %>
-<%= print_content "Cancelada"                , human_boolean(@invoice.canceled)          , :width => 10 %>
+<%= print_content "Data da Entrega"          , date(@invoice.delivery)                                 , :width => 10 %>
+<%= print_content "Frete"                    , h(@invoice.freight)                                     , :width => 10 %>
+<%= print_content "Tipo de frete"            , h(Invoice::FreightType.find(@invoice.freight_type).name), :width => 10 %>
+<%= print_content "Seguro"                   , h(@invoice.insurance)                                   , :width => 10 %>
+<%= print_content "Transportadora"           , h(@invoice.car.license_plate)                           , :width => 10 %>
+<%= print_content "Nfe"                      , h(@invoice.nfe)                                         , :width => 10 %>
+<%= print_content "Desconto manaus"          , h(@invoice.manaus_discount)                             , :width => 10 %>
+<%= print_content "Cancelada"                , human_boolean(@invoice.canceled)                        , :width => 10 %>
 
