@@ -211,7 +211,7 @@ else
 end
 
 # ESTADOS
-ActiveRecord::Base.connection.execute("TRUNCATE TABLE estates") if Estate.first.aliq_icms == 0
+ActiveRecord::Base.connection.execute("TRUNCATE TABLE estates") if Estate.first.nil? || Estate.first.aliq_icms == 0
 
 if Estate.count == 0
   Estate.create([{:ibge_cod => 12, :aliq_icms =>  7, :acronym => 'AC', :name => 'Acre'},
