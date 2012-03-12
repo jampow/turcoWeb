@@ -31,7 +31,7 @@ class SalesOrder < Order
       inv.freight         = self.freight
 
       self.order_items.each do |item|
-        logger.info item
+        #logger.info item
         inv_i = inv.itens.build
         inv_i.product_id      = item.product_id
         inv_i.product_cod     = item.product.code

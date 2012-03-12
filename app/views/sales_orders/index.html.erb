@@ -4,7 +4,7 @@
 <% end -%>
 
 <%= table @sales_orders,
-          ["number"     , "Número"  ],
+          ["number"     , "Número"  , {:class => "right"}],
           ["date"       , "Data"    , {:format => "date", :class => "center"}],
           ["client.name", "Cliente" ],
           ["billed"     , "Faturado", {:format => "date", :class => "center"}] %>
