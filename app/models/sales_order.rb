@@ -4,8 +4,9 @@ class SalesOrder < Order
   validates_presence_of :client_id
   validates_uniqueness_of :number
 
-  def initialize
-    super
+  before_save :get_next_number
+
+  def get_next_number
     self.number ||= SalesOrder.number.next
   end
 
