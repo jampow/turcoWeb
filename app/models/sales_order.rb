@@ -10,7 +10,7 @@ class SalesOrder < Order
   end
 
   def self.number
-    self.find(:first, :select => "max(number) As last, max(number)+1 As next", :conditions => "type = 'SalesOrder'")
+    self.find(:first, :select => "IfNull(Max(number), 0) As last, IfNull(Max(number), 0)+1 As next", :conditions => "type = 'SalesOrder'")
   end
 
   before_save :create_invoice
