@@ -1,0 +1,6 @@
+strconexao="DRIVER={MySQL ODBC 5.1 Driver};SERVER=187.45.196.247;DATABASE=arsky31;USER=arsky31;PASSWORD=site1968Turco"
+con = SQLStringConnect(strconexao)
+MessageBox(con)
+status = SQLExec(con,'show tables;')
+MessageBox(status)
+Browse
