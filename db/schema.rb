@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308182828) do
+ActiveRecord::Schema.define(:version => 20120314202442) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
   end
 
   create_table "addresses", :force => true do |t|
-    t.string   "street"
-    t.string   "number"
-    t.string   "complement"
-    t.string   "neighborhood"
-    t.string   "city"
+    t.string   "street",           :limit => 100
+    t.string   "number",           :limit => 20
+    t.string   "complement",       :limit => 40
+    t.string   "neighborhood",     :limit => 50
+    t.string   "city",             :limit => 70
     t.integer  "estate_id"
-    t.string   "country"
+    t.string   "country",          :limit => 70
     t.string   "cep",              :limit => 9
     t.string   "addressable_type"
     t.integer  "addressable_id"
@@ -121,16 +121,16 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
   end
 
   create_table "clients", :force => true do |t|
-    t.string   "name"
-    t.string   "nickname"
-    t.string   "cnpj"
-    t.string   "ie"
-    t.string   "im"
-    t.string   "sci"
+    t.string   "name",                :limit => 150
+    t.string   "nickname",            :limit => 80
+    t.string   "cnpj",                :limit => 20
+    t.string   "ie",                  :limit => 20
+    t.string   "im",                  :limit => 20
+    t.string   "sci",                 :limit => 70
     t.integer  "activity_id"
     t.string   "ind_com",             :limit => 1
     t.boolean  "active"
-    t.string   "email_nfe"
+    t.string   "email_nfe",           :limit => 70
     t.text     "observations"
     t.integer  "main_address_id"
     t.integer  "billing_address_id"
@@ -147,10 +147,10 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
   end
 
   create_table "csts", :force => true do |t|
-    t.string  "code"
-    t.string  "description"
+    t.string  "code",        :limit => 20
+    t.string  "description", :limit => 50
     t.string  "type"
-    t.decimal "value",       :precision => 10, :scale => 4
+    t.decimal "value",                     :precision => 10, :scale => 4
   end
 
   create_table "departments", :force => true do |t|
@@ -174,12 +174,12 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
   end
 
   create_table "estates", :force => true do |t|
-    t.string   "acronym"
-    t.string   "name"
+    t.string   "acronym",    :limit => 2
+    t.string   "name",       :limit => 40
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "ibge_cod"
-    t.decimal  "aliq_icms",  :precision => 9, :scale => 3, :default => 0.0, :null => false
+    t.decimal  "aliq_icms",                :precision => 9, :scale => 3, :default => 0.0, :null => false
   end
 
   create_table "functions", :force => true do |t|
@@ -234,30 +234,30 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
     t.integer  "provider_id"
     t.integer  "seller_id"
     t.integer  "term_id"
-    t.decimal  "ipi",              :precision => 9, :scale => 3
-    t.decimal  "icms_base",        :precision => 9, :scale => 3
-    t.decimal  "icms",             :precision => 9, :scale => 3
-    t.decimal  "pis",              :precision => 9, :scale => 3
-    t.decimal  "cofins",           :precision => 9, :scale => 3
-    t.decimal  "products_value",   :precision => 9, :scale => 3
-    t.decimal  "invoice_value",    :precision => 9, :scale => 3
-    t.decimal  "commission_rate",  :precision => 9, :scale => 3
+    t.decimal  "ipi",                             :precision => 9, :scale => 3
+    t.decimal  "icms_base",                       :precision => 9, :scale => 3
+    t.decimal  "icms",                            :precision => 9, :scale => 3
+    t.decimal  "pis",                             :precision => 9, :scale => 3
+    t.decimal  "cofins",                          :precision => 9, :scale => 3
+    t.decimal  "products_value",                  :precision => 9, :scale => 3
+    t.decimal  "invoice_value",                   :precision => 9, :scale => 3
+    t.decimal  "commission_rate",                 :precision => 9, :scale => 3
     t.integer  "activity_id"
     t.text     "observations"
     t.integer  "sell_id"
     t.integer  "parcels"
     t.integer  "natop_id"
     t.boolean  "delivery"
-    t.decimal  "freight",          :precision => 9, :scale => 3
-    t.decimal  "insurance",        :precision => 9, :scale => 3
+    t.decimal  "freight",                         :precision => 9, :scale => 3
+    t.decimal  "insurance",                       :precision => 9, :scale => 3
     t.integer  "car_id"
     t.integer  "freight_type"
     t.boolean  "nfe"
-    t.string   "nfe_received_key"
-    t.string   "nfe_key"
-    t.string   "nfe_protocol"
+    t.string   "nfe_received_key", :limit => 254
+    t.string   "nfe_key",          :limit => 254
+    t.string   "nfe_protocol",     :limit => 254
     t.integer  "nfe_env"
-    t.decimal  "manaus_discount",  :precision => 9, :scale => 3
+    t.decimal  "manaus_discount",                 :precision => 9, :scale => 3
     t.boolean  "canceled"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -266,9 +266,9 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
 
   create_table "measure_units", :force => true do |t|
     t.integer "product_id"
-    t.string  "measure_unit"
+    t.string  "measure_unit", :limit => 40
     t.boolean "main"
-    t.decimal "ratio",        :precision => 15, :scale => 5
+    t.decimal "ratio",                      :precision => 15, :scale => 5
   end
 
   create_table "messages", :force => true do |t|
@@ -290,18 +290,18 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
     t.integer  "order_id"
     t.integer  "product_id"
     t.decimal  "quantity",        :precision => 10, :scale => 4
+    t.decimal  "unit_value",      :precision => 10, :scale => 2
     t.decimal  "total_value",     :precision => 10, :scale => 2
     t.date     "delivery"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "unit_value",      :precision => 10, :scale => 2
     t.integer  "measure_unit_id"
     t.decimal  "net_weight",      :precision => 10, :scale => 4
     t.decimal  "gross_weight",    :precision => 10, :scale => 4
   end
 
   create_table "orders", :force => true do |t|
-    t.string   "number"
+    t.string   "number",               :limit => 10
     t.integer  "order_type_id"
     t.integer  "sale_type_id"
     t.date     "date"
@@ -309,10 +309,10 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
     t.date     "billed"
     t.integer  "client_id"
     t.integer  "seller_id"
-    t.decimal  "commission",           :precision => 10, :scale => 4
+    t.decimal  "commission",                         :precision => 10, :scale => 4
     t.integer  "contact_id"
     t.integer  "payment_condition_id"
-    t.decimal  "freight",              :precision => 10, :scale => 4
+    t.decimal  "freight",                            :precision => 10, :scale => 4
     t.integer  "freight_type_id"
     t.integer  "attendant_id"
     t.text     "observation"
@@ -324,7 +324,7 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
   end
 
   create_table "payment_forms", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :limit => 50
     t.integer  "parcels"
     t.integer  "p01"
     t.integer  "p02"
@@ -343,11 +343,11 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
   end
 
   create_table "people", :force => true do |t|
-    t.string   "name"
+    t.string   "name",          :limit => 80
     t.integer  "external_id"
     t.string   "type"
     t.integer  "department_id"
-    t.string   "email"
+    t.string   "email",         :limit => 70
     t.integer  "function_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -355,7 +355,7 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
 
   create_table "phones", :force => true do |t|
     t.integer  "person_id"
-    t.string   "number"
+    t.string   "number",     :limit => 25
     t.boolean  "main"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -376,29 +376,29 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
   end
 
   create_table "products", :force => true do |t|
-    t.string   "code"
-    t.string   "name"
-    t.string   "kind"
+    t.string   "code",           :limit => 20
+    t.string   "name",           :limit => 70
+    t.string   "kind",           :limit => 50
     t.string   "unity"
-    t.decimal  "ipi",            :precision => 10, :scale => 4
-    t.string   "fiscal_code"
+    t.decimal  "ipi",                          :precision => 10, :scale => 4
+    t.string   "fiscal_code",    :limit => 50
     t.integer  "tributary_code"
-    t.string   "ncm"
-    t.decimal  "price",          :precision => 10, :scale => 2
-    t.decimal  "cost",           :precision => 10, :scale => 2
-    t.decimal  "liquid_price",   :precision => 10, :scale => 2
+    t.string   "ncm",            :limit => 20
+    t.decimal  "price",                        :precision => 10, :scale => 2
+    t.decimal  "cost",                         :precision => 10, :scale => 2
+    t.decimal  "liquid_price",                 :precision => 10, :scale => 2
     t.integer  "family_id"
     t.integer  "type_id"
     t.integer  "cst_icm_id"
     t.integer  "cst_ipi_id"
     t.integer  "cst_pis_id"
     t.integer  "cst_cofins_id"
-    t.decimal  "pis",            :precision => 10, :scale => 4
-    t.decimal  "cofins",         :precision => 10, :scale => 4
+    t.decimal  "pis",                          :precision => 10, :scale => 4
+    t.decimal  "cofins",                       :precision => 10, :scale => 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "net_weight",     :precision => 10, :scale => 4
-    t.decimal  "gross_weight",   :precision => 10, :scale => 4
+    t.decimal  "net_weight",                   :precision => 10, :scale => 4
+    t.decimal  "gross_weight",                 :precision => 10, :scale => 4
   end
 
   create_table "providers", :force => true do |t|
@@ -590,7 +590,7 @@ ActiveRecord::Schema.define(:version => 20120308182828) do
   end
 
   create_table "terms", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :limit => 50
     t.text     "term"
     t.datetime "created_at"
     t.datetime "updated_at"
