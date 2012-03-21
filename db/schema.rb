@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314202442) do
+ActiveRecord::Schema.define(:version => 20120321182300) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(:version => 20120314202442) do
   end
 
   create_table "csts", :force => true do |t|
-    t.string  "code",        :limit => 20
+    t.string  "code",        :limit => 2
     t.string  "description", :limit => 50
     t.string  "type"
     t.decimal "value",                     :precision => 10, :scale => 4

@@ -9,6 +9,7 @@ class Product < ActiveRecord::Base
   has_many   :measure_units
 
   validates_uniqueness_of :code
+  validate :length_of_ncm
 
   #named_scope :quantity, :select => "sum()" :conditions => { :field => condition }, :order => "field"
 
@@ -38,6 +39,13 @@ class Product < ActiveRecord::Base
 
   def quantity
     Stock.last :conditions => ["product_id = ?", self.id]
+  end
+
+  protected
+
+  def length_of_ncm
+    len = self.ncm.length
+    self.errors.add("ncm", " tem #{len} caracteres. Deve ter 2, 7 ou 8.") unless [2,7,8].include? len
   end
 end
 
