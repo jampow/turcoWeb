@@ -3,5 +3,5 @@
   <%= mount_menu %>
 <% end -%>
 
-<%= table @receivables, ['invoice_number', 'Número da NF'], ['due_date', 'Vencimento'], ['value', 'Valor'] %>
+<%= table @receivables, ['invoice_number', 'Número da NF'], ['due_date', 'Vencimento'], ['value', 'Valor'], ['settled', 'Quitado?'] %>
 

@@ -29,11 +29,32 @@
       <%= f.text_field :competency, :label => 'Competencia', :class => 'datepicker' %>
       <%= f.text_field :received_at, :label => 'Data do Recebimento', :class => 'datepicker' %>
       <%= f.text_field :bill_number, :label => 'Número' %>
-      <%= f.text_field :value, :label => 'Valor' %>
+      <%= f.text_field :value, :label => 'Valor', :value => @receivable_billing.value || @receivable_billing.receivable.value %>
       <%= f.text_field :fine, :label => 'Valor Multa' %>
       <%= f.text_field :rate, :label => 'Valor Juros' %>
       <%= f.text_field :discount, :label => 'Desconto' %>
       <%= f.text_field :total, :label => 'Valor Total' %>
+      <%= f.check_box :settle_receivable, :label => 'Quita o Ativo?' %>
     </fieldset>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  <!--
+  $(function(){
+      function update_total_value(){
+        var value = $('#receivable_billing_value').val();
+        var fine = $('#receivable_billing_fine').val();
+        var rate = $('#receivable_billing_rate').val();
+        var discount = $('#receivable_billing_discount').val();
+        var total = value - fine - rate - discount;
+        $('#receivable_billing_total').val(Math.round(total*100)/100);
+      }
+      $('#receivable_billing_value').change(update_total_value);
+      $('#receivable_billing_fine').change(update_total_value);
+      $('#receivable_billing_rate').change(update_total_value);
+      $('#receivable_billing_discount').change(update_total_value);
+      update_total_value();
+      });
+  -->
+</script>
