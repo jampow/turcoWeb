@@ -36,6 +36,7 @@ class ReceivablesController < ApplicationController
   # GET /receivables/1/edit
   def edit
     @receivable = Receivable.find(params[:id])
+    @receivable.receivable_cost_divisions.build
   end
 
   # POST /receivables
