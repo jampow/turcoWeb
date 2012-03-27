@@ -8,11 +8,13 @@ class Address < ActiveRecord::Base
   validate :cityInEstate
 
   def cityInEstate
-	if self.estate_id && self.estate_id != 0 && self.city_id != 0
-	    estate = Estate.find(self.estate_id)
-	    city   = City.find(self.city_id)
-	    self.errors.add("city", " não pertencente ao estado") unless estate.acronym == city.estate_acronym
-  	end
+    if self.has_attribute?(:city_id) && self.has_attribute?(:estate_id)
+    	unless self.estate_id == 0 || self.city_id == 0 || self.estate_id.nil? || self.city_id.nil?
+  	    estate = Estate.find(self.estate_id)
+  	    city   = City.find(self.city_id)
+  	    self.errors.add("city", " não pertencente ao estado") unless estate.acronym == city.estate_acronym
+    	end
+    end
   end
 end
 
