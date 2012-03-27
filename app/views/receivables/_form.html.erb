@@ -4,96 +4,91 @@
 <% end -%>
 
 <% form_for(@receivable) do |f| %>
-  <div class="form-wrapper">
-    <div id="tabs">
-      <div id="general">
-        <%= f.error_messages %>
 
-        <fieldset>
-          <legend>Origem</legend>
-          <%= f.hidden_field :client_id %>
-          <%= f.text_field :client_name, :label => "Receber de", :class => 'autocomplete', :source => 'client', :pref => 'receivable_' %>
-          <%= f.text_field :historic, :label => "Histórico" %>
-          <%= f.text_field :issue_date, :label => "Data de Emissão", :class => 'datepicker' %>
-          <%= f.select :document_kind_id, Receivable::DocumentKind.to_select, :label => 'Documento' %>
-          <%= f.text_field :invoice_number , :label => "Número da NF" %>
-        </fieldset>
-        <fieldset>
-          <legend>Recebimento</legend>
-          <%= f.select :account_id, BankAccount.to_select, :label => 'Conta' %>
-          <%= f.select :payment_method_id, Receivable::PaymentMethod.to_select, :label => 'Meio de Pagamento' %>
-          <%= f.text_field :due_date, :label => "Vencimento", :class => 'datepicker' %>
-          <%= f.select :frequency_id, Receivable::Frequency.to_select, :label => 'Frequencia' %>
-          <%= f.text_field :value, :label => "Valor" %>
+  <%= f.error_messages %>
 
-        </fieldset>
-        <fieldset>
-          <legend>Informações Adicionais</legend>
-          <div id="aditional-informations">
-            <%= f.text_field :competence, :label => 'Competência', :class => 'datepicker' %>
-            <%= f.text_field :serie_number, :label => 'Num. Doc. Série' %>
-            <%= f.text_field :carrier, :label => 'Portador' %>
-            <%= f.text_field :barcode, :label => 'Código de Barras do Doc.' %>
-            <%= f.select :rate_type_id, Receivable::RateType.to_select, :label => 'Lançar' %>
-            <%= f.text_field :fine, :label => 'Multa' %>
-            <%= f.text_field :rate, :label => 'Juros' %>
-            <%= f.select :rate_calculation_type_id, Receivable::RateCalculationType.to_select, :label => 'Calcular' %>
-            <%= f.text_area :observations %>
-            <div class="clear"></div>
-          </div>
-        </fieldset>
-        <div id="division_parts">
-          <% field_set_tag 'Divisão/Rateio do Valor' do -%>
-            <%= new_receivable_division_item_toolbar f %>
-            <% f.fields_for :receivable_cost_divisions, @division do |rcd| %>
-              <label class="hide"><%= rcd.hidden_field :id %></label>
-              <label class="hide"><%= rcd.hidden_field :account_plan_id %></label>
-              <%= rcd.text_field :account_plan_name, :label => 'Plano de Conta', :class => 'autocomplete', :source => 'account_plan', :pref => "receivable_receivable_cost_divisions_attributes_0_" %>
-              <label class="hide"><%= rcd.hidden_field :cost_center_id %></label>
-              <%= rcd.text_field :cost_center_name, :label => 'Centro de Custo', :class => 'autocomplete', :source => 'cost_center', :pref => "receivable_receivable_cost_divisions_attributes_0_" %>
-              <%= rcd.text_field :observations, :label => 'Observação' %>
-              <%= rcd.text_field :value, :label => 'Valor', :class => 'receivable_cost_division_value' %>
-              <%= rcd.text_field :percent, :label => '% do Total', :class => 'receivable_cost_division_percent' %>
-              <div class="clear"></div>
-            <% end -%>
+  <fieldset>
+    <legend>Origem</legend>
+    <%= f.hidden_field :client_id %>
+    <%= f.text_field :client_name, :label => "Receber de", :class => 'autocomplete', :source => 'client', :pref => 'receivable_' %>
+    <%= f.text_field :historic, :label => "Histórico" %>
+    <%= f.text_field :issue_date, :label => "Data de Emissão", :class => 'datepicker' %>
+    <%= f.select :document_kind_id, Receivable::DocumentKind.to_select, :label => 'Documento' %>
+    <%= f.text_field :invoice_number , :label => "Número da NF" %>
+  </fieldset>
+  <fieldset>
+    <legend>Recebimento</legend>
+    <%= f.select :account_id, BankAccount.to_select, :label => 'Conta' %>
+    <%= f.select :payment_method_id, Receivable::PaymentMethod.to_select, :label => 'Meio de Pagamento' %>
+    <%= f.text_field :due_date, :label => "Vencimento", :class => 'datepicker' %>
+    <%= f.select :frequency_id, Receivable::Frequency.to_select, :label => 'Frequencia' %>
+    <%= f.text_field :value, :label => "Valor" %>
 
-            <table id="receivable_division_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Id do Plano</th>
-                  <th style="width:">Plano de Conta</th>
-                  <th>Id do Centro</th>
-                  <th style="">Centro de Custos</th>
-                  <th style="">Observação</th>
-                  <th style="">Valor</th>
-                  <th style="">%</th>
-                </tr>
-              </thead>
-              <tbody>
-              <% f.fields_for :receivable_cost_divisions do |div| %>
-                <tr>
-                  <td><%= div.hidden_field :id %><span></span></td>
-                  <td><%= div.hidden_field :account_plan_id %><span></span></td>
-                  <td><%= div.hidden_field :account_plan %><span></span></td>
-                  <td><%= div.hidden_field :cost_center_id %><span></span></td>
-                  <td><%= div.hidden_field :cost_center %><span></span></td>
-                  <td><%= div.hidden_field :observations %><span></span></td>
-                  <td class="right"><%= div.hidden_field :value %><span></span></td>
-                  <td class="right"><%= div.hidden_field :percent %><span></span></td>
-                </tr>
-              <% end %>
-              </tbody>
-            </table>
-
-            <div id="trash" class="hide"></div>
-
-          <% end -%>
-        </div>
-        <div class="clear"></div>
-      </div>
+  </fieldset>
+  <fieldset>
+    <legend>Informações Adicionais</legend>
+    <div id="aditional-informations">
+      <%= f.text_field :competence, :label => 'Competência', :class => 'datepicker' %>
+      <%= f.text_field :serie_number, :label => 'Num. Doc. Série' %>
+      <%= f.text_field :carrier, :label => 'Portador' %>
+      <%= f.text_field :barcode, :label => 'Código de Barras do Doc.' %>
+      <%= f.select :rate_type_id, Receivable::RateType.to_select, :label => 'Lançar' %>
+      <%= f.text_field :fine, :label => 'Multa' %>
+      <%= f.text_field :rate, :label => 'Juros' %>
+      <%= f.select :rate_calculation_type_id, Receivable::RateCalculationType.to_select, :label => 'Calcular' %>
+      <%= f.text_area :observations %>
+      <div class="clear"></div>
     </div>
+  </fieldset>
+  <div id="division_parts">
+    <% field_set_tag 'Divisão/Rateio do Valor' do -%>
+      <%= new_receivable_division_item_toolbar f %>
+      <% f.fields_for :receivable_cost_divisions, @division do |rcd| %>
+        <label class="hide"><%= rcd.hidden_field :id %></label>
+        <label class="hide"><%= rcd.hidden_field :account_plan_id %></label>
+        <%= rcd.text_field :account_plan_name, :label => 'Plano de Conta', :class => 'autocomplete', :source => 'account_plan', :pref => "receivable_receivable_cost_divisions_attributes_0_" %>
+        <label class="hide"><%= rcd.hidden_field :cost_center_id %></label>
+        <%= rcd.text_field :cost_center_name, :label => 'Centro de Custo', :class => 'autocomplete', :source => 'cost_center', :pref => "receivable_receivable_cost_divisions_attributes_0_" %>
+        <%= rcd.text_field :observations, :label => 'Observação' %>
+        <%= rcd.text_field :value, :label => 'Valor', :class => 'receivable_cost_division_value' %>
+        <%= rcd.text_field :percent, :label => '% do Total', :class => 'receivable_cost_division_percent' %>
+        <div class="clear"></div>
+      <% end -%>
+
+      <table id="receivable_division_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Id do Plano</th>
+            <th style="width:">Plano de Conta</th>
+            <th>Id do Centro</th>
+            <th style="">Centro de Custos</th>
+            <th style="">Observação</th>
+            <th style="">Valor</th>
+            <th style="">%</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% f.fields_for :receivable_cost_divisions do |div| %>
+          <tr>
+            <td><%= div.hidden_field :id %><span></span></td>
+            <td><%= div.hidden_field :account_plan_id %><span></span></td>
+            <td><%= div.hidden_field :account_plan_name %><span></span></td>
+            <td><%= div.hidden_field :cost_center_id %><span></span></td>
+            <td><%= div.hidden_field :cost_center_name %><span></span></td>
+            <td><%= div.hidden_field :observations %><span></span></td>
+            <td class="right"><%= div.hidden_field :value %><span></span></td>
+            <td class="right"><%= div.hidden_field :percent %><span></span></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+      <div id="trash" class="hide"></div>
+
+    <% end -%>
   </div>
+  <div class="clear"></div>
 <% end %>
 
 <% content_for :script do %>

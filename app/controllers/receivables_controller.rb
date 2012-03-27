@@ -25,7 +25,7 @@ class ReceivablesController < ApplicationController
   # GET /receivables/new.xml
   def new
     @receivable = Receivable.new
-    @division   = @receivable.receivable_cost_divisions.build
+    @division   = ReceivableCostDivision.new
 
     respond_to do |format|
       format.html # new.html.erb

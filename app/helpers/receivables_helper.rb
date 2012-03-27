@@ -75,7 +75,7 @@ module ReceivablesHelper
     html =  <<-JS
               $('a.del-item').click(function(){
                 $('tr.ui-state-default input').appendTo('#trash');
-                $('input[id$=_name]', '#trash').val('');
+                $('input[id$=_value]', '#trash').val('');
                 var rowIdx = $('tr.ui-state-default').index('#receivable_division_order_items tbody tr');
                 oTable.fnDeleteRow( rowIdx );
               });
