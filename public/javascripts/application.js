@@ -258,7 +258,10 @@ $(function(){
         minLength: 3,
         select   : function(event, ui){
           $.each(ui.item, function(key, val){
-            $('#'+pref+key).val(val);
+            if (key !== 'value' && key !== 'label' && key !== '') {
+              console.log(pref+key+' -> '+val);
+              $('#'+pref+key).val(val);
+            }
           });
 
           eval(cbk);

@@ -25,7 +25,7 @@ class ReceivablesController < ApplicationController
   # GET /receivables/new.xml
   def new
     @receivable = Receivable.new
-    @receivable.receivable_cost_divisions.build
+    @division   = @receivable.receivable_cost_divisions.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,7 +36,7 @@ class ReceivablesController < ApplicationController
   # GET /receivables/1/edit
   def edit
     @receivable = Receivable.find(params[:id])
-    @receivable.receivable_cost_divisions.build
+    @division   = ReceivableCostDivision.new
   end
 
   # POST /receivables
@@ -46,7 +46,7 @@ class ReceivablesController < ApplicationController
 
     respond_to do |format|
       if @receivable.save
-        flash[:notice] = 'Receivable was successfully created.'
+        flash[:notice] = 'Título a receber criado.'
         format.html { redirect_to(@receivable) }
         format.xml  { render :xml => @receivable, :status => :created, :location => @receivable }
       else
@@ -63,7 +63,7 @@ class ReceivablesController < ApplicationController
 
     respond_to do |format|
       if @receivable.update_attributes(params[:receivable])
-        flash[:notice] = 'Receivable was successfully updated.'
+        flash[:notice] = 'Título a receber atualizado.'
         format.html { redirect_to(@receivable) }
         format.xml  { head :ok }
       else
