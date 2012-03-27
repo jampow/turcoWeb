@@ -4,6 +4,6 @@ class BankAccount < ActiveRecord::Base
   accepts_nested_attributes_for :address
   
   def self.to_select
-    self.all.map { |v| [ v[:name], v[:id] ] }
+    self.all.map { |v| [ v[:bank_name], v[:id] ] }
   end
 end

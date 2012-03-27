@@ -107,5 +107,11 @@ class Receivable < ActiveRecord::Base
   has_many :billings, :class_name => 'ReceivableBilling'
 
   accepts_nested_attributes_for :receivable_cost_divisions, :allow_destroy => true, :reject_if => proc { |attributes| attributes['value'].blank? }
+
+  attr_accessor :client_name
+
+  def after_initialize
+    self.client_name = Client.find(self.client_id, :select => 'name').name if self.client_id
+  end
 end
 

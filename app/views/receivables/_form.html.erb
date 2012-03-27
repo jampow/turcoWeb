@@ -12,12 +12,7 @@
         <fieldset>
           <legend>Origem</legend>
           <%= f.hidden_field :client_id %>
-          <label class="inputselect w25" for="receivable_client_name">
-            <span class="wrapper">
-              <span class="title">Receber de</span>
-              <input type="text" size="30" name="client_name" id="receivable_client_name" class="autocomplete" source="client" pref="receivable_">
-            </span>
-          </label>
+          <%= f.text_field :client_name, :label => "Receber de", :class => 'autocomplete', :source => 'client', :pref => 'receivable_' %>
           <%= f.text_field :historic, :label => "Histórico" %>
           <%= f.text_field :issue_date, :label => "Data de Emissão", :class => 'datepicker' %>
           <%= f.select :document_kind_id, Receivable::DocumentKind.to_select, :label => 'Documento' %>
