@@ -1,8 +1,8 @@
 class CreateFunctionFnCodlimpo < ActiveRecord::Migration
   def self.up
-    execute 'DROP FUNCTION IF EXISTS `fn_CodLimpo`;'
+    execute 'DROP FUNCTION IF EXISTS `turcoWeb_development`.`fn_CodLimpo`;'
     execute <<-SQL
-      CREATE FUNCTION `fn_CodLimpo` (s varchar(254)) RETURNS VarChar(254)
+      CREATE FUNCTION `turcoWeb_development`.`fn_CodLimpo` (s varchar(254)) RETURNS VarChar(254)
       BEGIN
 
         Set @res = s;
@@ -21,6 +21,6 @@ class CreateFunctionFnCodlimpo < ActiveRecord::Migration
   end
 
   def self.down
-    execute 'DROP FUNCTION IF EXISTS `fn_CodLimpo`'
+    execute 'DROP FUNCTION IF EXISTS `turcoWeb_development`.`fn_CodLimpo`'
   end
 end
