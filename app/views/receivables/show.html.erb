@@ -2,37 +2,37 @@
   <h1>Título a receber</h1>
   <%= mount_menu %>
   <%= link_to "Lançar Recebimento", new_receivable_billing_path(@receivable), {:class => "button", :icon => "plus"} %>
-  <%= link_to "Lançamentos", receivable_billings_path(@receivable), {:class => "button", :icon => "triangle-1-e"} %>
+  <%= link_to "Lançamentos"       , receivable_billings_path(@receivable)   , {:class => "button", :icon => "triangle-1-e"} %>
 <% end -%>
 
 <div class="form-wrapper">
   <div id="tabs">
     <div id="general">
       <h2>Origem</h2>
-      <%= print_content 'Receber de', h((@receivable.client || {})[:name]) %>
-      <%= print_content "Histórico", h(@receivable.historic) %>
-      <%= print_content "Data de Emissão", h(@receivable.issue_date) %>
-      <%= print_content 'Documento', (Receivable::DocumentKind.find(@receivable.document_kind_id) || {})[:kind] %>
-      <%= print_content "Número da NF", h(@receivable.invoice_number) %>
+      <%= print_content 'Receber de'     , h((@receivable.client || {})[:name]) %>
+      <%= print_content "Histórico"      , h(@receivable.historic) %>
+      <%= print_content "Data de Emissão", date(@receivable.issue_date) %>
+      <%= print_content 'Documento'      , (Receivable::DocumentKind.find(@receivable.document_kind_id) || {})[:kind] %>
+      <%= print_content "Número da NF"   , h(@receivable.invoice_number) %>
 
       <h2>Recebimento</h2>
-      <%= print_content 'Conta', (@receivable.bank_account || {})[:name] %>
+      <%= print_content 'Conta'            , (@receivable.bank_account || {})[:name] %>
       <%= print_content 'Meio de Pagamento', (Receivable::PaymentMethod.find(@receivable.payment_method_id) || {})[:name] %>
-      <%= print_content "Vencimento", h(@receivable.due_date) %>
-      <%= print_content 'Frequencia', (Receivable::Frequency.find(@receivable.frequency_id) || {})[:name]  %>
-      <%= print_content "Valor", h(@receivable.value) %>
+      <%= print_content "Vencimento"       , date(@receivable.due_date) %>
+      <%= print_content 'Frequencia'       , (Receivable::Frequency.find(@receivable.frequency_id) || {})[:name]  %>
+      <%= print_content "Valor"            , number_to_currency(@receivable.value) %>
 
       <h2>Informações Adicionais</h2>
       <div id="aditional-informations">
-        <%= print_content 'Competência', @receivable.competence %>
-        <%= print_content 'Num. Doc. Série', @receivable.serie_number %>
-        <%= print_content 'Portador', @receivable.carrier %>
-        <%= print_content 'Código de Barras do Doc.', @receivable.barcode %>
-        <%= print_content 'Lançar', (Receivable::RateType.find(@receivable.rate_type_id) || {})[:name] %>
-        <%= print_content 'Multa', @receivable.fine %>
-        <%= print_content 'Juros', @receivable.rate %>
-        <%= print_content 'Calcular', (Receivable::RateCalculationType.find(@receivable.rate_calculation_type_id)||{})[:name] %>
-        <%= print_content 'Observações', @receivable.observations %>
+        <%= print_content 'Competência'             , date(@receivable.competence) %>
+        <%= print_content 'Num. Doc. Série'         , h(@receivable.serie_number) %>
+        <%= print_content 'Portador'                , h(@receivable.carrier) %>
+        <%= print_content 'Código de Barras do Doc.', h(@receivable.barcode) %>
+        <%= print_content 'Lançar'                  , (Receivable::RateType.find(@receivable.rate_type_id) || {})[:name] %>
+        <%= print_content 'Multa'                   , h(@receivable.fine) %>
+        <%= print_content 'Juros'                   , h(@receivable.rate) %>
+        <%= print_content 'Calcular'                , (Receivable::RateCalculationType.find(@receivable.rate_calculation_type_id)||{})[:name] %>
+        <%= print_content 'Observações'             , h(@receivable.observations) %>
       </div>
       <div class="clear"></div>
       <div id="division_parts">
@@ -59,8 +59,8 @@
                 <td><%= div.cost_center_id %></td>
                 <td><%= (div.cost_center || {})[:name] %></td>
                 <td><%= div.observations %></td>
-                <td><%= div.value %></td>
-                <td><%= div.value.to_f / @receivable.value.to_f * 100 %></td>
+                <td class="right"><%= number_to_currency(div.value) %></td>
+                <td class="right"><%= div.value.to_f / @receivable.value.to_f * 100 %></td>
               </tr>
             <% end %>
           </tbody>
