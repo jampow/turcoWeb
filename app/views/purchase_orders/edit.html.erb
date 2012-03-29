@@ -9,18 +9,20 @@
 
     <%= f.text_area    :observation         , :label => "Observações"           %>
     <%= f.text_field   :number              , :label => "Número"                %>
+    <!--
     <%= f.text_field   :order_type_id       , :label => "Tipo de pedido"        %>
     <%= f.text_field   :sale_type_id        , :label => "Tipo de venda"         %>
+    -->
     <%= f.text_field   :date                , :label => "Data do pedido"        , :class => 'datepicker' %>
     <%= f.text_field   :prevision           , :label => "Previsão de entrega"   , :class => 'datepicker' %>
     <%= f.text_field   :billed              , :label => "Faturado"              , :class => 'datepicker' %>
     <%= f.hidden_field :client_id %>
-    <%= f.text_field   :provider_name       , :label => "Fornevedor"            , :class => "autocomplete", :source => "provider", :pref => "purchase_order_" %>
+    <%= f.text_field   :provider_name       , :label => "Fornecedor"            , :class => "autocomplete", :source => "provider", :pref => "purchase_order_" %>
     <%= f.text_field   :seller_id           , :label => "Vendedor"              %>
     <%= f.text_field   :commission          , :label => "Comissão"              %>
     <%= f.text_field   :contact_id          , :label => "Contato"               %>
     <%= f.text_field   :payment_condition_id, :label => "Condição de pagamento" %>
-    <%= f.text_field   :carrier_id          , :label => "Transportadora"        %>
+    <%= f.text_field   :car_id              , :label => "Carro"                 , :class => "autocomplete", :source => "car", :pref => "purchase_order_" %>
     <%= f.text_field   :freight             , :label => "Frete"                 %>
     <%= f.text_field   :freight_type_id     , :label => "Tipo de frete"         %>
     <%= f.text_field   :attendant_id        , :label => "Atendente"             %>
