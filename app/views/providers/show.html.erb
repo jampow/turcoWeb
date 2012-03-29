@@ -11,7 +11,7 @@
   <%= print_content "Fone"                , h(@provider.phone)                                %>
   <%= print_content "Fax"                 , h(@provider.fax)                                  %>
   <%= print_content "E-mail"              , h(@provider.email)                                %>
-  <%= print_content "Transportadora"      , h(@provider.carrier)                              %>
+  <%= print_content "Transportadora"      , human_boolean(@provider.carrier)                  %>
   <%= print_content "Banco"               , h(@provider.bank)                                 %>
   <%= print_content "Observações"         , h(@provider.observations)                        , :width => 100 %>
   <div class="clear"></div>

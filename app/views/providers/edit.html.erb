@@ -11,7 +11,7 @@
 
     <% field_set_tag "Dados do fornecedor" do %>
       <%= f.text_field :name                   , :label => "Raz. Social"          , :size => 50 , :required => true %>
-      <%= f.text_field :cnpj                   , :label => "CNPJ"                 , :class => "mask-cnpj"%>
+      <%= f.text_field :cnpj                   , :label => "CNPJ"                 , :class => "mask-cnpj", :required => true %>
       <%= f.select     :prod_cost   , @prodcost, :label => "Produtos ou despesas" %>
       <%= f.text_area  :observations           , :label => "Observações"          , :size => 50 %>
       <%= f.text_field :ie                     , :label => "Inscriçao Estadual"   %>
