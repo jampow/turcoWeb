@@ -10,16 +10,16 @@
     <%= f.error_messages %>
 
     <% field_set_tag "Dados do fornecedor" do %>
-      <%= f.text_field :name                                                , :label => "Raz. Social"          , :size => 50 , :required => true %>
-      <%= f.text_field :cnpj                                                , :label => "CNPJ"                 , :class => "mask-cnpj"%>
-      <%= f.select     :prod_cost  , [["Produtos", "P"], ["Despesas", "C"]] , :label => "Produtos ou despesas" %>
-      <%= f.text_area  :observations                                        , :label => "Observações"          , :size => 50 %>
-      <%= f.text_field :ie                                                  , :label => "Inscriçao Estadual"   %>
-      <%= f.text_field :phone                                               , :label => "Telefone"             %>
-      <%= f.text_field :fax                                                 , :label => "Fax"                  %>
-      <%= f.text_field :email                                               , :label => "E-mail"               %>
-      <%= f.text_field :bank                                                , :label => "Banco"                %>
-      <%= f.check_box  :carrier                                             , :label => "Transportadora"       %>
+      <%= f.text_field :name                   , :label => "Raz. Social"          , :size => 50 , :required => true %>
+      <%= f.text_field :cnpj                   , :label => "CNPJ"                 , :class => "mask-cnpj"%>
+      <%= f.select     :prod_cost   , @prodcost, :label => "Produtos ou despesas" %>
+      <%= f.text_area  :observations           , :label => "Observações"          , :size => 50 %>
+      <%= f.text_field :ie                     , :label => "Inscriçao Estadual"   %>
+      <%= f.text_field :phone                  , :label => "Telefone"             , :class => "mask-phone" %>
+      <%= f.text_field :fax                    , :label => "Fax"                  , :class => "mask-phone" %>
+      <%= f.text_field :email                  , :label => "E-mail"               %>
+      <%= f.text_field :bank                   , :label => "Banco"                %>
+      <%= f.check_box  :carrier                , :label => "Transportadora"       %>
     <% end %>
 
     <% field_set_tag "Endereço" do %>
@@ -31,7 +31,7 @@
         <%= ma.text_field :complement           , :label => "Complemento"                        %>
         <%= ma.text_field :neighborhood         , :label => "Bairro"                             %>
         <%= ma.text_field :city                 , :label => "Cidade"                             %>
-        <%= ma.select     :estate_id, @estate   , :label => "Estado"                             %>
+        <%= ma.select     :estate_id   , @estate, :label => "Estado"                             %>
         <%= ma.text_field :country              , :label => "País"                               %>
       <% end %>
     <% end %>
