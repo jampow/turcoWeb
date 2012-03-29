@@ -10,5 +10,27 @@ class Provider < ActiveRecord::Base
   accepts_nested_attributes_for :seller_contact  , :reject_if => proc { |a| a[:name].blank? }
   accepts_nested_attributes_for :invoicer_contact, :reject_if => proc { |a| a[:name].blank? }
   accepts_nested_attributes_for :address
+
+  class ProdCost <
+    Struct.new(:id, :name)
+    VALUES = [
+      {:id => 'P', :name => 'Produto'},
+      {:id => 'D', :name => 'Despesa'}
+    ]
+    def self.all
+      VALUES.map { |v| self.new(v[:id], v[:name]) }
+    end
+
+    def self.to_select
+      VALUES.map { |v| [v[:name], v[:id]] }
+    end
+
+    def self.find(id)
+      h=VALUES.find { |v| v[:id] == id }
+      return nil if h.nil?
+      self.new(h[:id], h[:name])
+    end
+  end
+
 end
 

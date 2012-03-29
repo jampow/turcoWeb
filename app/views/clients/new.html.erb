@@ -17,7 +17,7 @@
       <%= f.text_field :ie                                                  , :label => "Inscriçao Estadual"   %>
       <%= f.text_field :im                                                  , :label => "Inscriçao Municipal"  %>
       <%= f.text_field :sci                                                 , :label => "SCI"                  %>
-      <%= f.select     :activity_id, @activities                            , :label => "Ramo de atividade"    , :include_blank => true %>
+      <%= f.select     :activity_id, @activities                            , :label => "Ramo de atividade"    , :include_blank => true, :required => true %>
       <%= f.select     :ind_com    , [["Indústria", "I"], ["Comércio", "C"]], :label => "Indústria & Comércio" %>
       <%= f.text_field :email_nfe                                           , :label => "E-mail NFe"           %>
       <%= f.check_box  :active                                              , :label => "Ativo"                , :checked => true %>

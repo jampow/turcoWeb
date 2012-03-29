@@ -76,7 +76,7 @@ class ProvidersController < ApplicationController
 
     respond_to do |format|
       if @provider.save
-        flash[:notice] = 'Provider was successfully created.'
+        flash[:notice] = 'Fornecedor criado.'
         format.html { redirect_to(@provider) }
         format.xml  { render :xml => @provider, :status => :created, :location => @provider }
       else
@@ -93,7 +93,7 @@ class ProvidersController < ApplicationController
 
     respond_to do |format|
       if @provider.update_attributes(params[:provider])
-        flash[:notice] = 'Provider was successfully updated.'
+        flash[:notice] = 'Fornecedor atualizado.'
         format.html { redirect_to(@provider) }
         format.xml  { head :ok }
       else
@@ -119,6 +119,7 @@ protected
 
   def default_data
     @estate = Estate.all.collect { |e| [e.name, e.id] }
+    @prodcost = Provider::ProdCost.to_select
   end
 end
 
