@@ -4,7 +4,7 @@ class AutocompleteController < ApplicationController
 
   def account_plan
     @list = AccountPlan.find(:all,
-                             :select => "id As account_plan_id, name as label, name as value",
+                             :select => "id As account_plan_id, name as label, name as account_plan_name",
                              :conditions => ["name like ?", "%#{params[:term]}%"],
                              :order => "name")
 

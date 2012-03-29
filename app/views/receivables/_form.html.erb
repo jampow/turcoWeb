@@ -45,12 +45,12 @@
         <div id="division_parts">
           <% field_set_tag 'Divisão/Rateio do Valor' do -%>
             <%= new_receivable_division_item_toolbar f %>
-            <% f.fields_for :receivable_cost_divisions do |rcd| %>
+            <% f.fields_for :receivable_cost_divisions, @division do |rcd| %>
               <label class="hide"><%= rcd.hidden_field :id %></label>
               <label class="hide"><%= rcd.hidden_field :account_plan_id %></label>
               <%= rcd.text_field :account_plan_name, :label => 'Plano de Conta', :class => 'autocomplete', :source => 'account_plan', :pref => "receivable_receivable_cost_divisions_attributes_0_" %>
               <label class="hide"><%= rcd.hidden_field :cost_center_id %></label>
-              <%= rcd.text_field :cost_center_name, :label => 'Centro de Custo', :class => 'autocomplete', :source => 'cost_center', :prefix => "receivable_receivable_cost_divisions_attributes_0_" %>
+              <%= rcd.text_field :cost_center_name, :label => 'Centro de Custo', :class => 'autocomplete', :source => 'cost_center', :pref => "receivable_receivable_cost_divisions_attributes_0_" %>
               <%= rcd.text_field :observations, :label => 'Observação' %>
               <%= rcd.text_field :value, :label => 'Valor', :class => 'receivable_cost_division_value' %>
               <%= rcd.text_field :percent, :label => '% do Total', :class => 'receivable_cost_division_percent' %>
@@ -71,6 +71,18 @@
                 </tr>
               </thead>
               <tbody>
+              <% f.fields_for :receivable_cost_divisions do |div| %>
+                <tr>
+                  <td><%= div.hidden_field :id %><span></span></td>
+                  <td><%= div.hidden_field :account_plan_id %><span></span></td>
+                  <td><%= div.hidden_field :account_plan %><span></span></td>
+                  <td><%= div.hidden_field :cost_center_id %><span></span></td>
+                  <td><%= div.hidden_field :cost_center %><span></span></td>
+                  <td><%= div.hidden_field :observations %><span></span></td>
+                  <td class="right"><%= div.hidden_field :value %><span></span></td>
+                  <td class="right"><%= div.hidden_field :percent %><span></span></td>
+                </tr>
+              <% end %>
               </tbody>
             </table>
 
