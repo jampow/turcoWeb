@@ -56,7 +56,7 @@
 <div style="float:left;width:50%">
   <div style="padding:10px 5px 0 0;">
     <h2>NF's</h2>
-    <table class="list personal_list" cellpading="0" cellspacing="0" border="0" width="100%">
+    <table class="personal_list" cellpading="0" cellspacing="0" border="0" width="100%">
       <thead>
         <tr>
           <th>ID</th>
@@ -88,7 +88,7 @@
 <div style="float:left;width:50%">
   <div style="padding:10px 0 0 5px;">
     <h2>Cobranças</h2>
-    <table class="list personal_list" cellpading="0" cellspacing="0" border="0" width="100%">
+    <table class="personal_list" cellpading="0" cellspacing="0" border="0" width="100%">
       <thead>
         <tr>
           <th>ID</th>
@@ -121,3 +121,20 @@
 
 <%= render :partial => "attachments/attachments_table" %>
 
+<script type="text/javascript">
+    var conf = {"fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
+      var iTotal = 0;
+      //Soma das NF's visíveis
+      for ( var i=iStart ; i<iEnd ; i++ )
+      {
+        iVal = aaData[aiDisplay[i]][3].replace('R$ ', '').replace(/\./gi, '').replace(',', '.')*1;
+        iTotal += iVal;
+      }
+      $('.sum', this).text('R$ '+ toCurrency(iTotal.toFixed(2)));
+    }};
+
+    var newConf = $.extend({}, dTableConfig, conf);
+
+    $('table.personal_list').dataTable(newConf);
+
+</script>

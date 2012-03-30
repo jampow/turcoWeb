@@ -205,7 +205,7 @@ $(function(){
     //Lista organizável
     //$('#sortable').sortable({ axis: 'y', placeholder: 'ui-state-highlight' }).disableSelection();
 
-    $('table.list').dataTable(dTableConfig);
+    $('table.list, table.simple-list').dataTable(dTableConfig);
 
     $('.buttonset').buttonset();
 

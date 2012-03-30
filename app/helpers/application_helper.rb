@@ -140,34 +140,35 @@ module ApplicationHelper
   # 2 - head_name      => nome no cabeçalho da tabela
   # 3 - hash de opções => pode definir align e format {:class => "center", :format => "number_to_currency"}
   def table(obj, *fields)
-    if !obj[0]
       s = <<-TABLE
-            <table class="list" cellpading="0" cellspacing="0" border="0" width="100%">
+            <table class="#{table_class(obj)}" cellpading="0" cellspacing="0" border="0" width="100%">
               <thead>
                 <tr>
-                  #{table_header(false, fields)}
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          TABLE
-    else
-      s = <<-TABLE
-            <table class="list" cellpading="0" cellspacing="0" border="0" width="100%">
-              <thead>
-                <tr>
-                  #{table_header(!!obj[0].id, fields)}
+                  #{table_header(has_id?(obj), fields)}
                 </tr>
               </thead>
 
               <tbody>
-                #{table_body(obj, fields)}
+                #{table_body(obj, fields) if !obj.blank?}
               </tbody>
             </table>
           TABLE
-    end
     s
+  end
+
+  def has_id?(obj)
+    if !obj.blank?
+      r = obj[0].id ? true : false
+    else
+      r = false
+    end
+    r
+  end
+
+  def table_class(obj)
+    # logger.info 'obj[0].nil? = ' + obj[0].nil?.to_s
+    # logger.info '!obj[0].id = '  + (!obj[0].id).to_s
+    obj[0].nil? || !obj[0].id ? 'simple-list' : 'list'
   end
 
   def table_header(id, *fields)
