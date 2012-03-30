@@ -290,11 +290,11 @@ ActiveRecord::Schema.define(:version => 20120323123033) do
     t.integer  "order_id"
     t.integer  "product_id"
     t.decimal  "quantity",        :precision => 10, :scale => 4
-    t.decimal  "unit_value",      :precision => 10, :scale => 2
     t.decimal  "total_value",     :precision => 10, :scale => 2
     t.date     "delivery"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "unit_value",      :precision => 10, :scale => 2
     t.integer  "measure_unit_id"
     t.decimal  "net_weight",      :precision => 10, :scale => 4
     t.decimal  "gross_weight",    :precision => 10, :scale => 4
