@@ -16,7 +16,7 @@
 <%= print_content 'Observações', h(@seller.observation) %>
 <%# print_content 'Banco', h(@seller.bank.name) %>
 
-<%= address_container 'Endereço', @address     %>
+<%= address_container 'Endereço', @address if @address %>
 
 <div class="clear"></div>
 
