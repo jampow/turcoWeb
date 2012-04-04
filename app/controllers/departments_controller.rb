@@ -1,4 +1,5 @@
 class DepartmentsController < ApplicationController
+  
   access_control do
     allow :departments_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
     allow :departments_l, :to => [:index, :show]

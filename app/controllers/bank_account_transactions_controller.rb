@@ -1,4 +1,11 @@
 class BankAccountTransactionsController < ApplicationController
+
+  access_control do
+    allow :bank_account_transactions_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy]
+    allow :bank_account_transactions_l, :to => [:index, :show, :default_data]
+    allow :bank_account_transactions_s, :to => []
+  end
+
   # GET /bank_account_transactions
   # GET /bank_account_transactions.xml
   def index

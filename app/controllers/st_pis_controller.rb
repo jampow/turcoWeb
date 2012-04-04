@@ -1,4 +1,11 @@
 class StPisController < ApplicationController
+
+  access_control do
+    allow :st_pis_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :st_pis_l, :to => [:index, :show]
+    allow :st_pis_s, :to => []
+  end
+
   # GET /st_pis
   # GET /st_pis.xml
   def index

@@ -1,4 +1,11 @@
 class StocksController < ApplicationController
+
+  access_control do
+    allow :stocks_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :stocks_l, :to => [:index, :show]
+    allow :stocks_s, :to => []
+  end
+
   # GET /stocks
   # GET /stocks.xml
   def index

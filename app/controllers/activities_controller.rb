@@ -1,4 +1,11 @@
 class ActivitiesController < ApplicationController
+
+  access_control do
+    allow :activities_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :activities_l, :to => [:index, :show]
+    allow :activities_s, :to => []
+  end
+
   # GET /activities
   # GET /activities.xml
   def index

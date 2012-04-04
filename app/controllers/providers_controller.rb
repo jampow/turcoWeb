@@ -1,8 +1,8 @@
 class ProvidersController < ApplicationController
 
   access_control do
-    allow :providers_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
-    allow :providers_l, :to => [:index, :show]
+    allow :providers_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy]
+    allow :providers_l, :to => [:index, :show, :default_data]
     allow :providers_s, :to => []
   end
 

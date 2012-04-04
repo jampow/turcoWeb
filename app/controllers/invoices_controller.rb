@@ -1,4 +1,11 @@
 class InvoicesController < ApplicationController
+
+  access_control do
+    allow :invoices_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy]
+    allow :invoices_l, :to => [:index, :show, :default_data]
+    allow :invoices_s, :to => []
+  end
+
   # GET /invoices
   # GET /invoices.xml
   def index

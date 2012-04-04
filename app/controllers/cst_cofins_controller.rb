@@ -1,4 +1,11 @@
 class CstCofinsController < ApplicationController
+
+  access_control do
+    allow :cst_cofins_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :cst_cofins_l, :to => [:index, :show]
+    allow :cst_cofins_s, :to => []
+  end
+
   # GET /cst_cofins
   # GET /cst_cofins.xml
   def index

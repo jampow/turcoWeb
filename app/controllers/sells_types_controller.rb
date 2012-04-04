@@ -1,4 +1,11 @@
 class SellsTypesController < ApplicationController
+
+  access_control do
+    allow :sells_types_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :sells_types_l, :to => [:index, :show]
+    allow :sells_types_s, :to => []
+  end
+
   # GET /sells_types
   # GET /sells_types.xml
   def index

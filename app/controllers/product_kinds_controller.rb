@@ -1,4 +1,11 @@
 class ProductKindsController < ApplicationController
+
+  access_control do
+    allow :product_kinds_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :product_kinds_l, :to => [:index, :show]
+    allow :product_kinds_s, :to => []
+  end
+
   # GET /product_kinds
   # GET /product_kinds.xml
   def index

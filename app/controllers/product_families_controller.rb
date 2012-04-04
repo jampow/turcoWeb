@@ -1,4 +1,11 @@
 class ProductFamiliesController < ApplicationController
+
+  access_control do
+    allow :product_families_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :product_families_l, :to => [:index, :show]
+    allow :product_families_s, :to => []
+  end
+
   # GET /product_families
   # GET /product_families.xml
   def index

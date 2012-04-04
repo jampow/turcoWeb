@@ -1,4 +1,11 @@
 class SalesOrdersController < ApplicationController
+
+  access_control do
+    allow :sales_orders_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy]
+    allow :sales_orders_l, :to => [:index, :show, :default_data]
+    allow :sales_orders_s, :to => []
+  end
+
   # GET /sales_orders
   # GET /sales_orders.xml
   def index

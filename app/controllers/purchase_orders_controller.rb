@@ -1,4 +1,11 @@
 class PurchaseOrdersController < ApplicationController
+
+  access_control do
+    allow :purchase_orders_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :purchase_orders_l, :to => [:index, :show]
+    allow :purchase_orders_s, :to => []
+  end
+
   # GET /purchase_orders
   # GET /purchase_orders.xml
   def index

@@ -1,4 +1,11 @@
 class HollydaysController < ApplicationController
+
+  access_control do
+    allow :hollydays_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :hollydays_l, :to => [:index, :show]
+    allow :hollydays_s, :to => []
+  end
+
   # GET /hollydays
   # GET /hollydays.xml
   def index

@@ -1,4 +1,11 @@
 class SellersController < ApplicationController
+
+  access_control do
+    allow :sellers_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy]
+    allow :sellers_l, :to => [:index, :show, :default_data]
+    allow :sellers_s, :to => []
+  end
+
   # GET /sellers
   # GET /sellers.xml
   def index

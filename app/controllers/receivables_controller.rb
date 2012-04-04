@@ -1,4 +1,11 @@
 class ReceivablesController < ApplicationController
+
+  access_control do
+    allow :receivables_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :receivables_l, :to => [:index, :show]
+    allow :receivables_s, :to => []
+  end
+
   # GET /receivables
   # GET /receivables.xml
   def index

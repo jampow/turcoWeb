@@ -1,4 +1,11 @@
 class StCofinsController < ApplicationController
+
+  access_control do
+    allow :st_cofins_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :st_cofins_l, :to => [:index, :show]
+    allow :st_cofins_s, :to => []
+  end
+
   # GET /st_cofins
   # GET /st_cofins.xml
   def index

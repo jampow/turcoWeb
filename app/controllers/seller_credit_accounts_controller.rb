@@ -1,4 +1,11 @@
 class SellerCreditAccountsController < ApplicationController
+
+  access_control do
+    allow :seller_credit_accounts_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy]
+    allow :seller_credit_accounts_l, :to => [:index, :show, :default_data]
+    allow :seller_credit_accounts_s, :to => []
+  end
+
   # GET /seller_credit_accounts
   # GET /seller_credit_accounts.xml
   def index

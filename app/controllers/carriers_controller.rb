@@ -1,4 +1,11 @@
 class CarriersController < ApplicationController
+
+  access_control do
+    allow :carriers_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy]
+    allow :carriers_l, :to => [:index, :show, :default_data]
+    allow :carriers_s, :to => []
+  end
+
   # GET /carriers
   # GET /carriers.xml
   def index

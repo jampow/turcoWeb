@@ -1,4 +1,11 @@
 class AccountPlansController < ApplicationController
+
+  access_control do
+    allow :account_plans_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :account_plans_l, :to => [:index, :show]
+    allow :account_plans_s, :to => []
+  end
+
   # GET /account_plans
   # GET /account_plans.xml
   def index
