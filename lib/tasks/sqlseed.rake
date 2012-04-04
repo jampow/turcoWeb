@@ -1,7 +1,7 @@
 namespace :db do
 
   desc 'Seed database from db/seed.sql file instead of the traditional db/seed.rb'
-  namespace :sqlseed do
+  task :sqlseed do
     config = Rails::Configuration.new.database_configuration[RAILS_ENV]
     
     seed_sql = File.expand_path(File.dirname(__FILE__) + '/../../db/seed.sql')
@@ -14,7 +14,7 @@ namespace :db do
         database = config['database']
         username = config['username']
         password = config['password']
-        `mysql #{database} -u#{username} -p#{password} < #{seed_sql}`
+        `mysql #{database} -u#{username} -p#{password} --default-character-set=utf8 < #{seed_sql}`
       when 'sqlite3'
         database = config['database']
         `sqlite3 #{database} < #{seed_sql}`
@@ -22,6 +22,6 @@ namespace :db do
         puts "Wrong adapter. Only MySQL and Sqlite3 are supported."
       end
     end
-    
   end
+
 end
