@@ -50,8 +50,8 @@ module PermissionsHelper
 
     perm.each do |p|
       a = p[:name].split "_" #array
-      c = a[0]               #controller
-      l = a[1]               #level of access
+      l = a.pop              #level of access
+      c = a.join('_')        #controller
 
 
       s += "<tr>"
@@ -70,10 +70,10 @@ module PermissionsHelper
         <table id="permissions">
           <thead class="ui-widget-header">
             <tr>
-              <td>Área</td>
-              <td>Escrita</td>
-              <td>Leitura</td>
-              <td>Sem acesso</td>
+              <th>Área</th>
+              <th>Escrita</th>
+              <th>Leitura</th>
+              <th>Sem acesso</th>
             </tr>
           </thead>
           <tbody>#{perm_table_line(perm)}</tbody>

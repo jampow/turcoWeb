@@ -1,6 +1,7 @@
 <% content_for :menu do -%>
   <h1>Permissões de <%= @user.name %></h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[edit] %>
+  <%= link_to 'Voltar', user_path(@user.id), :class => "button", :icon => "triangle-1-w" %>
 <% end -%>
 
 <%= perm_table @perm %>
