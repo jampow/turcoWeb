@@ -8,8 +8,8 @@
     <%= f.error_messages %>
     <%= hidden_field :user, :id %>
 
-    <% @controllers.each do |cont, nick| %>
-      <%= perm_options(cont, nick, @user) %>
+    <% @controllers.each do |i| %>
+      <%= perm_options(i.keys[0].to_s, i.values[0], @user) %>
     <% end %>
   </div>
 <% end %>

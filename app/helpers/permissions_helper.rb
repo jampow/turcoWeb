@@ -15,11 +15,11 @@ module PermissionsHelper
 
   #Actions New and Edit
   def perm_options(controller, nick, user)
-    perm = {"e" => "Escrever", "l" => "Ler", "s" => "Sem acesso"}
+    perm = [{"e" => "Escrever"}, {"l" => "Ler"}, {"s" => "Sem acesso"}]
 
     radios = ""
 
-    perm.each { |n, full| radios += perm_radio(controller, n, user) + "<label for=\"permission_#{controller.to_s}_#{n}\">#{full}</label>" }
+    perm.each { |n| radios += perm_radio(controller, n.keys[0].to_s, user) + "<label for=\"permission_#{controller.to_s}_#{n.keys[0].to_s}\">#{n.values[0]}</label>" }
 
     s  = "<span class=\"perm_label\">#{nick}</span> #{radios}"
 
@@ -45,27 +45,27 @@ module PermissionsHelper
 
 
   #Action Show
-  def perm_table_line(perm)
+  def perm_table_line(user)
     s = ""
 
-    perm.each do |p|
-      a = p[:name].split "_" #array
-      l = a.pop              #level of access
-      c = a.join('_')        #controller
-
+    Role.order_by_values.each do |p|
+    # perm.each do |p|
+      # a = p[:name].split "_" #array
+      # l = a.pop              #level of access
+      # c = a.join('_')        #controller
 
       s += "<tr>"
-      s += "<td>#{Role.roles[c.to_sym]}</td>" #Imprime nome amigável do controller
+      s += "<td>#{p.values[0]}</td>" #Imprime nome amigável do controller
 
       ['e', 'l', 's'].each do |level|
-        s += level == l ? "<td><span class=\"ui-icon ui-icon-check\"></span></td>" : "<td></td>" #Imprime o acesso
+        s += user.has_role?(p.keys[0].to_s + '_' + level) ? "<td><span class=\"ui-icon ui-icon-check\"></span></td>" : "<td></td>" #Imprime o acesso
       end
       s += "</tr>"
     end
     s
   end
 
-  def perm_table(perm)
+  def perm_table(user)
     s = <<-TABLE
         <table id="permissions">
           <thead class="ui-widget-header">
@@ -76,7 +76,7 @@ module PermissionsHelper
               <th>Sem acesso</th>
             </tr>
           </thead>
-          <tbody>#{perm_table_line(perm)}</tbody>
+          <tbody>#{perm_table_line(user)}</tbody>
         </table>
         TABLE
     s
