@@ -1,3 +1,19 @@
+TODO: Permitir colocar CPF no cadastro de clientes
+
+TODO: Colocar campo código no cadastro do cliente e fornecedor e nas buscas deles.
+
+TODO: Opção de pedido de compra não movimentar o estoque
+
+TODO: Inibir deleção se existir dependências para o cadastro
+
+TODO: Adicionar total dos itens no grid do pedido de venda
+
+TODO: Possibilidade de alterar as quantidade pra NF (Romaneio)
+
+TODO: Observação por item do pedido de venda (?)
+
+
+=================================================================================
 JS para gerar outro campo para os models com has_many e accepts_nested_attributes
 http://jsbin.com/imefu3/edit
 

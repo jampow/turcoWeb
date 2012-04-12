@@ -1,4 +1,11 @@
 class MeasureUnitsController < ApplicationController
+
+  access_control do
+    allow :measure_units_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy]
+    allow :measure_units_l, :to => [:index, :show, :default_data]
+    allow :measure_units_s, :to => []
+  end
+
   # GET /measure_units
   # GET /measure_units.xml
   def index

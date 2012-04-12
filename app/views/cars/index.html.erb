@@ -1,6 +1,7 @@
 <% content_for :menu do -%>
   <h1>Carros (<%= @carrier.nickname %>)</h1>
   <%= mount_menu %>
+  <%= link_to "Voltar", "/carriers/#{session[:carrier_id]}", :class => 'button', :icon => 'triangle-1-w' %>
 <% end -%>
 
 <%= table @cars, ["estate_name"   , "Estado"],

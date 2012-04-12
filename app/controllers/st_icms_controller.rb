@@ -1,4 +1,11 @@
 class StIcmsController < ApplicationController
+
+  access_control do
+    allow :st_icms_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :st_icms_l, :to => [:index, :show]
+    allow :st_icms_s, :to => []
+  end
+
   # GET /st_icms
   # GET /st_icms.xml
   def index

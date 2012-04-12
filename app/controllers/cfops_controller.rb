@@ -1,4 +1,11 @@
 class CfopsController < ApplicationController
+
+  access_control do
+    allow :cfops_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :cfops_l, :to => [:index, :show]
+    allow :cfops_s, :to => []
+  end
+
   # GET /cfops
   # GET /cfops.xml
   def index

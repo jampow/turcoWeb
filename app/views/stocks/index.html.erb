@@ -1,6 +1,7 @@
 <% content_for :menu do -%>
   <h1>Movimentações de estoque (<%= @product.name %>)</h1>
   <%= mount_menu %w[new show]%>
+  <%= link_to "Voltar", "/products/#{session[:product]}", :class => 'button', :icon => 'triangle-1-w' %>
 <% end -%>
 
 <%= table @stocks, ["description"                    , "Descrição" ],

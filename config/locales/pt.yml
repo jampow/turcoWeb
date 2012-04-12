@@ -215,6 +215,7 @@
       enterprise: "Empresa"
       invoice: "Nota Fiscal"
       product: "Produto"
+      purchase order: "Pedido de compra"
       sales order: "Pedido de venda"
       sells type: "Tipos de NF"
       st cofin: "Cofins"
@@ -292,6 +293,8 @@
         nfe_env: "Enviada"
         manaus_discount: "Disconto Zona Franca"
         canceled: "Cancelada"
+      purchase_order:
+        client_id: "Fornecedor"
       sales_order:
         client_id: "Cliente"
       sells_type:

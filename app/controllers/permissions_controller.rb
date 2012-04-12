@@ -11,7 +11,7 @@ class PermissionsController < ApplicationController
   end
 
   def edit
-    @controllers = Role.roles
+    @controllers = Role.order_by_values
     @user        = User.find(params[:id])
   end
 
@@ -29,7 +29,7 @@ class PermissionsController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @perm = @user.role_objects
+    # @perm = @user.role_objects
   end
 
 end

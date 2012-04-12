@@ -1,6 +1,7 @@
 <% content_for :menu do -%>
   <h1>Lançamentos do representante <%= @seller.name %></h1>
   <%= mount_menu %>
+  <%= link_to "Voltar ao representante", "/sellers/#{session[:seller_id]}", :class => 'button', :icon => 'triangle-1-w' %>
 <% end -%>
 
 <%= table @seller_credit_accounts, ['name'    , 'Nome'     ],

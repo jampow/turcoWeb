@@ -1,6 +1,7 @@
 <% content_for :menu do -%>
   <h1>Unidades de medida (<%= @product.name %>)</h1>
   <%= mount_menu %>
+  <%= link_to "Voltar", "/products/#{session[:product]}", :class => 'button', :icon => 'triangle-1-w' %>
 <% end -%>
 
 <%= table @measure_units, ["measure_unit", "Unidade de medida"],

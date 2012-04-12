@@ -1,0 +1,27 @@
+<% content_for :head do -%>
+  <%= javascript_include_tag 'jquery/jquery-1.4.2.min.js', 'jquery/jquery-ui-1.8.12.custom.min.js' %>
+<% end -%>
+
+<% form_for @sales_order, :url => "/sales_orders/save_production/#{@sales_order.id}" do |f| %>
+
+  <table id="permissions">
+    <thead class="ui-widget-header">
+      <tr>
+        <th width="50%">Produto</th>
+        <th width="25%">Qtd. Solicitada</th>
+        <th width="25%">Qtd. Produzida</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% f.fields_for :order_items do |soi| %>
+      <tr>
+        <td><%= soi.object.product.name %></td>
+        <td class="right"><%= soi.object.quantity %></td>
+        <td><%= soi.text_field :quantity_produced, :label => "", :size => 100 %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+<% end %>

@@ -1,4 +1,11 @@
 class EnterprisesController < ApplicationController
+
+  access_control do
+    allow :enterprises_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy]
+    allow :enterprises_l, :to => [:index, :show, :default_data]
+    allow :enterprises_s, :to => []
+  end
+
   # GET /enterprises
   # GET /enterprises.xml
   def index

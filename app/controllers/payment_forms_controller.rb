@@ -1,4 +1,11 @@
 class PaymentFormsController < ApplicationController
+
+  access_control do
+    allow :payment_forms_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :payment_forms_l, :to => [:index, :show]
+    allow :payment_forms_s, :to => []
+  end
+
   # GET /payment_forms
   # GET /payment_forms.xml
   def index

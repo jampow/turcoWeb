@@ -1,4 +1,11 @@
 class ReceivableBillingsController < ApplicationController
+
+  access_control do
+    allow :receivable_billings_e, :to => [:index, :show, :load_receivable, :new, :edit, :create, :update, :destroy]
+    allow :receivable_billings_l, :to => [:index, :show, :load_receivable]
+    allow :receivable_billings_s, :to => []
+  end
+
   before_filter :load_receivable
   # GET /receivable_billings
   # GET /receivable_billings.xml

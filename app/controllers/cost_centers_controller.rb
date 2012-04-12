@@ -1,4 +1,11 @@
 class CostCentersController < ApplicationController
+
+  access_control do
+    allow :cost_centers_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :cost_centers_l, :to => [:index, :show]
+    allow :cost_centers_s, :to => []
+  end
+
   # GET /cost_centers
   # GET /cost_centers.xml
   def index

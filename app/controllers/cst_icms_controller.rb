@@ -1,4 +1,11 @@
 class CstIcmsController < ApplicationController
+
+  access_control do
+    allow :cst_icms_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :cst_icms_l, :to => [:index, :show]
+    allow :cst_icms_s, :to => []
+  end
+
   # GET /cst_icms
   # GET /cst_icms.xml
   def index

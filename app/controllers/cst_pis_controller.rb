@@ -1,4 +1,11 @@
 class CstPisController < ApplicationController
+
+  access_control do
+    allow :cst_pis_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :cst_pis_l, :to => [:index, :show]
+    allow :cst_pis_s, :to => []
+  end
+
   # GET /cst_pis
   # GET /cst_pis.xml
   def index

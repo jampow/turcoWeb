@@ -1,4 +1,11 @@
 class SalesOrdersController < ApplicationController
+
+  access_control do
+    allow :sales_orders_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :production, :save_production]
+    allow :sales_orders_l, :to => [:index, :show, :default_data]
+    allow :sales_orders_s, :to => []
+  end
+
   # GET /sales_orders
   # GET /sales_orders.xml
   def index
@@ -40,7 +47,7 @@ class SalesOrdersController < ApplicationController
     @sales_order = SalesOrder.find(params[:id])
     @sales_order.client_name = @sales_order.client.name
     default_data
-    
+
     if @sales_order.closed
       flash[:notice] = "Pedido de venda fechado."
       redirect_to @sales_order
@@ -98,12 +105,12 @@ class SalesOrdersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   def reverse
     @sales_order = SalesOrder.find(params[:id])
     @sales_order.reverse = true
     @sales_order.closed  = false
-    
+
     respond_to do |format|
       if @sales_order.save
         flash[:notice] = 'Pedido de venda estornado.'
@@ -115,7 +122,28 @@ class SalesOrdersController < ApplicationController
       end
     end
   end
-  
+
+  def production
+    @sales_order = SalesOrder.find(params[:id])
+    render :layout => 'simple_application'
+  end
+
+  def save_production
+    @sales_order = SalesOrder.find(params[:id])
+
+    respond_to do |format|
+      if @sales_order.update_attributes(params[:sales_order])
+        flash[:notice] = 'Pedido de venda atualizado.'
+        format.html { render :layout => 'simple_application' }
+        format.xml  { head :ok }
+      else
+        default_data
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @sales_order.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
 protected
 
   def default_data

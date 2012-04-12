@@ -4,6 +4,10 @@ module SalesOrdersHelper
     link_to "Estornar", "/sales_orders/reverse?id=#{id}", :class => "button confirm", :icon => "arrowreturn-1-w"
   end
 
+  def btn_production(id)
+    link_to "Produção", "/sales_orders/production?id=#{id}", :class => "button modal", :icon => "wrench", :ajax => 'false', :id => 'btn_production'
+  end
+
   def new_sales_item_toolbar f , btns = ['add', 'save', 'del']
     flash[:create_sales_table_item] = true
     s  = "<div class=\"form-toolbar\">"

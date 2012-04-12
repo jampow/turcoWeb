@@ -22,6 +22,16 @@ var dTableConfig = {
   "bRetrieve": true
 };
 
+/*
+
+ooooooooo                                                                        oooo
+ 888    88o   ooooooo     ooooooo       oo oooooo    ooooooooo8  ooooooo    ooooo888
+ 888    888 888     888 888     888      888    888 888oooooo8   ooooo888 888    888
+ 888    888 888     888 888        ooo   888        888        888    888 888    888
+o888ooo88     88ooo88     88ooo888 888  o888o         88oooo888 88ooo88 8o  88ooo888o
+
+*/
+
 $(function(){
 
   //constroi layout
@@ -181,6 +191,17 @@ $(function(){
     //}
   });
 
+/*
+
+     o      o88                           oooooooo8
+    888    oooo   ooooooo   oooo   oooo  888        oooo  oooo   ooooooo     ooooooo    ooooooooo8  oooooooo8  oooooooo8
+   8  88    888   ooooo888    888o888     888oooooo  888   888 888     888 888     888 888oooooo8  888ooooooo 888ooooooo
+  8oooo88   888 888    888    o88 88o            888 888   888 888         888         888                 888        888
+o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88ooo888    88oooo888 88oooooo88 88oooooo88
+           o88
+
+*/
+
   //Executar depois de todas as requisições ajax
   $('body').ajaxSuccess(function(){
     //SlideDown nos erros
@@ -205,7 +226,7 @@ $(function(){
     //Lista organizável
     //$('#sortable').sortable({ axis: 'y', placeholder: 'ui-state-highlight' }).disableSelection();
 
-    $('table.list').dataTable(dTableConfig);
+    $('table.list, table.simple-list').dataTable(dTableConfig);
 
     $('.buttonset').buttonset();
 
@@ -276,6 +297,15 @@ $(function(){
 
 //  var notifyError = true;
 
+  /*
+     o      o88                          ooooooooooo
+    888    oooo   ooooooo   oooo   oooo   888    88  oo oooooo  oo oooooo     ooooooo  oo oooooo
+   8  88    888   ooooo888    888o888     888ooo8     888    888 888    888 888     888 888    888
+  8oooo88   888 888    888    o88 88o     888    oo   888        888        888     888 888
+o88o  o888o 888  88ooo88 8o o88o   o88o  o888ooo8888 o888o      o888o         88ooo88  o888o
+           o88
+  */
+
   $('body').ajaxError(function(jqXHR, textStatus, errorThrown){
 
     thisDialog = $('<div />', {'title': 'Erro'}).appendTo('.ui-layout-center');
@@ -324,6 +354,14 @@ $(function(){
   });
 
 }); //close document.read
+
+/*
+ooooooooooo                                    o8   o88
+ 888    88 oooo  oooo  oo oooooo    ooooooo  o888oo oooo   ooooooo  oo oooooo    oooooooo8
+ 888ooo8    888   888   888   888 888     888 888    888 888     888 888   888  888ooooooo
+ 888        888   888   888   888 888         888    888 888     888 888   888          888
+o888o        888o88 8o o888o o888o  88ooo888   888o o888o  88ooo88  o888o o888o 88oooooo88
+*/
 
 $(window).bind('resize', limit_div_content);
 
@@ -399,6 +437,7 @@ function logout(){
   });
 }
 
+//TODO: Usar função genérica showModal dentro desta showDialog
 function showDialog(url){
   rdm = Math.floor(Math.random()*1001);
   ctr = 'ctr'+rdm;
@@ -407,7 +446,7 @@ function showDialog(url){
 
   $('.ui-layout-center').append('<div id="'+ctr+'" title="Upload de arquivo" />');
   contnr = $("#"+ctr);
-  contnr.html('<iframe id="'+ifm+'" name="'+ifm+'" width="100%" height="100%" marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto" />');
+  contnr.html('<iframe id="'+ifm+'" name="'+ifm+'" src="'+url+'" width="100%" height="100%" marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto" />');
   contnr.dialog({
     modal: true,
     show: 'fade',
@@ -419,18 +458,54 @@ function showDialog(url){
       click: function() {
         $('#waiting', frames[ifm].document).fadeTo('normal', 0.7);
         $('form'    , frames[ifm].document).submit();
-        if (contnr.dialog( "option", "height") != dlH ) {
-          contnr.dialog( "option", "height", dlH );
+        if (contnr.dialog("option", "height") != dlH ) {
+          contnr.dialog("option", "height", dlH );
         }
         //setTimeout("contnr.dialog('close');", 5000);
       }
     }],
     close: function(event, ui) {
       contnr.dialog('destroy');
-      $('#'+ifm).remove();
+      $('#'+ctr).remove();
     }
   });
-  $("#"+ifm).attr("src", url);
+  return false;
+}
+
+function showModal(params){
+  rdm = Math.floor(Math.random()*1001);
+  ctr = 'ctr'+rdm;
+  ifm = 'ifm'+rdm;
+  dlH = 280; //Dialog Height
+
+  var def = {
+    height: 280,
+    url: '/',
+    title: '',
+    height: 215,
+    width: 550,
+    close: function(event, ui) {
+      contnr.dialog('destroy');
+      $('#'+ctr).remove();
+    },
+    buttons: []
+  };
+
+  var pars = $.extend({}, def, params);
+
+  $('.ui-layout-center').append('<div id="'+ctr+'" title="'+pars.title+'" />');
+  contnr = $("#"+ctr);
+  contnr.html('<iframe id="'+ifm+'" name="'+ifm+'" src="'+pars.url+'" width="100%" height="100%" marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto" />');
+  contnr.dialog({
+    modal: true,
+    show: 'fade',
+    height: pars.height,
+    width: pars.width,
+    hide: 'fade',
+    buttons: pars.buttons,
+    close: pars.close
+  });
+
   return false;
 }
 

@@ -6,7 +6,6 @@ class ClientsController < ApplicationController
     allow :clients_s, :to => []
   end
 
-
   # GET /clients
   # GET /clients.xml
   def index

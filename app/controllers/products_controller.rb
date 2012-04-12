@@ -1,4 +1,11 @@
 class ProductsController < ApplicationController
+
+  access_control do
+    allow :products_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy]
+    allow :products_l, :to => [:index, :show, :default_data]
+    allow :products_s, :to => []
+  end
+
   # GET /products
   # GET /products.xml
   def index

@@ -1,6 +1,6 @@
 <% content_for :menu do -%>
   <h1>Editando permissões de <%= @user.name %> </h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[save show] %>
 <% end -%>
 
 <% form_for :permissions, :url => '/permissions/update' do |f| %>
@@ -8,8 +8,8 @@
     <%= f.error_messages %>
     <%= hidden_field :user, :id %>
 
-    <% @controllers.each do |cont, nick| %>
-      <%= perm_options(cont, nick, @user) %>
+    <% @controllers.each do |i| %>
+      <%= perm_options(i.keys[0].to_s, i.values[0], @user) %>
     <% end %>
   </div>
 <% end %>

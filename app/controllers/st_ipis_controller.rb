@@ -1,4 +1,11 @@
 class StIpisController < ApplicationController
+
+  access_control do
+    allow :st_ipis_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :st_ipis_l, :to => [:index, :show]
+    allow :st_ipis_s, :to => []
+  end
+
   # GET /st_ipis
   # GET /st_ipis.xml
   def index
