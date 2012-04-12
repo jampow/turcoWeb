@@ -437,6 +437,7 @@ function logout(){
   });
 }
 
+//TODO: Usar função genérica showModal dentro desta showDialog
 function showDialog(url){
   rdm = Math.floor(Math.random()*1001);
   ctr = 'ctr'+rdm;
@@ -445,7 +446,7 @@ function showDialog(url){
 
   $('.ui-layout-center').append('<div id="'+ctr+'" title="Upload de arquivo" />');
   contnr = $("#"+ctr);
-  contnr.html('<iframe id="'+ifm+'" name="'+ifm+'" width="100%" height="100%" marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto" />');
+  contnr.html('<iframe id="'+ifm+'" name="'+ifm+'" src="'+url+'" width="100%" height="100%" marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto" />');
   contnr.dialog({
     modal: true,
     show: 'fade',
@@ -457,18 +458,54 @@ function showDialog(url){
       click: function() {
         $('#waiting', frames[ifm].document).fadeTo('normal', 0.7);
         $('form'    , frames[ifm].document).submit();
-        if (contnr.dialog( "option", "height") != dlH ) {
-          contnr.dialog( "option", "height", dlH );
+        if (contnr.dialog("option", "height") != dlH ) {
+          contnr.dialog("option", "height", dlH );
         }
         //setTimeout("contnr.dialog('close');", 5000);
       }
     }],
     close: function(event, ui) {
       contnr.dialog('destroy');
-      $('#'+ifm).remove();
+      $('#'+ctr).remove();
     }
   });
-  $("#"+ifm).attr("src", url);
+  return false;
+}
+
+function showModal(params){
+  rdm = Math.floor(Math.random()*1001);
+  ctr = 'ctr'+rdm;
+  ifm = 'ifm'+rdm;
+  dlH = 280; //Dialog Height
+
+  var def = {
+    height: 280,
+    url: '/',
+    title: '',
+    height: 215,
+    width: 550,
+    close: function(event, ui) {
+      contnr.dialog('destroy');
+      $('#'+ctr).remove();
+    },
+    buttons: []
+  };
+
+  var pars = $.extend({}, def, params);
+
+  $('.ui-layout-center').append('<div id="'+ctr+'" title="'+pars.title+'" />');
+  contnr = $("#"+ctr);
+  contnr.html('<iframe id="'+ifm+'" name="'+ifm+'" src="'+pars.url+'" width="100%" height="100%" marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto" />');
+  contnr.dialog({
+    modal: true,
+    show: 'fade',
+    height: pars.height,
+    width: pars.width,
+    hide: 'fade',
+    buttons: pars.buttons,
+    close: pars.close
+  });
+
   return false;
 }
 

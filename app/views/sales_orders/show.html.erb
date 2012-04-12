@@ -1,8 +1,10 @@
 <% content_for :menu do -%>
   <h1>Pedido de venda</h1>
   <%= mount_menu %>
-  <%= mount_menu "separator" if @sales_order.closed %>
-  <%= btn_reverse(@sales_order.id.to_s) if @sales_order.closed %>
+  <%= mount_menu "separator" %>
+  <%= btn_production(@sales_order.id.to_s) unless @sales_order.closed %>
+  <%= btn_reverse(@sales_order.id.to_s)        if @sales_order.closed %>
+  <%= link_to 'Refresh', @sales_order, :class => 'hide', :id => "refresh" %>
 <% end -%>
 
 <%= print_content "Número"               , h(@sales_order.number)                                        , :width => 10  %>
@@ -29,21 +31,23 @@
 <table id="sales_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
   <thead>
     <tr>
-      <th>Produto        </th>
-      <th>Quantidade     </th>
-      <th>Valor Unitário </th>
-      <th>Valor Total    </th>
-      <th>Data de entrega</th>
+      <th>Produto             </th>
+      <th>Quantidade          </th>
+      <th>Quantidade Produzida</th>
+      <th>Valor Unitário      </th>
+      <th>Valor Total         </th>
+      <th>Data de entrega     </th>
     </tr>
   </thead>
   <tbody>
   <% @items.each do |soi| %>
     <tr>
       <td><%= soi.product_name   %></td>
-      <td class="right" ><%= soi.quantity       %></td>
-      <td class="right" ><%= soi.unit_value     %></td>
-      <td class="right" ><%= soi.total_value    %></td>
-      <td class="center"><%= date(soi.delivery) %></td>
+      <td class="right" ><%= soi.quantity          %></td>
+      <td class="right" ><%= soi.quantity_produced %></td>
+      <td class="right" ><%= soi.unit_value        %></td>
+      <td class="right" ><%= soi.total_value       %></td>
+      <td class="center"><%= date(soi.delivery)    %></td>
     </tr>
   <% end -%>
   </tbody>
@@ -51,5 +55,23 @@
 
 <script type="text/javascript">
   var oTable = $('#sales_order_items').dataTable(dTableConfig);
+  $('#btn_production').click(function(){
+    var t = $(this);
+    var url = t.attr('href');
+    showModal({
+      url: url,
+      width: 700,
+      height: 400,
+      title: 'Preencha as quantidade do que foi produzido.',
+      buttons: [{
+        text:'Salvar',
+        click: function(){
+          $('#waiting', frames[ifm].document).fadeTo('normal', 0.7);
+          $('form'    , frames[ifm].document).submit();
+        }
+      }]
+    });
+    return false;
+  });
 </script>
 
