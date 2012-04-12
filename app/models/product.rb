@@ -23,10 +23,10 @@ class Product < ActiveRecord::Base
 #       , pis.value        As pis
 #       , pro.net_weight   As net_weight
 #       , pro.gross_weight As gross_weight
-#  From Products pro Join
-#       csts     cof On cof.id = pro.cst_cofins_id Join
-#       csts     icm On icm.id = pro.cst_icm_id    Join
-#       csts     ipi On ipi.id = pro.cst_ipi_id    Join
+#  From Products pro Left Join
+#       csts     cof On cof.id = pro.cst_cofins_id Left Join
+#       csts     icm On icm.id = pro.cst_icm_id    Left Join
+#       csts     ipi On ipi.id = pro.cst_ipi_id    Left Join
 #       csts     pis On pis.id = pro.cst_pis_id
 #  Where name like '%term%'
 #  Order By name
@@ -35,7 +35,7 @@ class Product < ActiveRecord::Base
     :select => "pro.id As product_id, pro.name As label, pro.name As value, pro.cofins, icm.value As icm, pro.ipi As aliq_ipi, pro.pis, pro.price As unit_value, pro.net_weight As net_weight, pro.gross_weight As gross_weight",
     :conditions => ["name like ?", "%#{term}%"],
     :order => "name",
-    :joins => "pro Join csts cof On cof.id = pro.cst_cofins_id Join csts icm On icm.id = pro.cst_icm_id Join csts ipi On ipi.id = pro.cst_ipi_id Join csts pis On pis.id = pro.cst_pis_id"}}
+    :joins => "pro Left Join csts cof On cof.id = pro.cst_cofins_id Left Join csts icm On icm.id = pro.cst_icm_id Left Join csts ipi On ipi.id = pro.cst_ipi_id Left Join csts pis On pis.id = pro.cst_pis_id"}}
 
   def quantity
     Stock.last :conditions => ["product_id = ?", self.id]
