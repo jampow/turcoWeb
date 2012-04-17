@@ -1,3 +1,4 @@
+require 'ap'
 class SalesOrder < Order
   belongs_to :client
 
@@ -10,11 +11,45 @@ class SalesOrder < Order
     self.number ||= SalesOrder.number.next
   end
 
+# Select IfNull(       Max(number), 0)          As last
+#      , Concat(IfNull(Max(number), 0)+1, "-A") As next
+# From orders
+# Where type = 'SalesOrder'
+
   def self.number
-    self.find(:first, :select => "IfNull(Max(number), 0) As last, IfNull(Max(number), 0)+1 As next", :conditions => "type = 'SalesOrder'")
+    self.find(:first, :select => "IfNull(Max(number), 0) As last, Concat(IfNull(Max(number), 0)+1, '-A') As next", :conditions => "type = 'SalesOrder'")
   end
 
+  before_save :verify_pend
   before_save :create_invoice
+
+  def verify_pend
+    if self.closed
+      itens_pend = []
+      self.order_items.each do |item|
+        if item.quantity_produced < item.quantity && item.pend
+          new_item = item.attributes
+
+          new_item['quantity']         -= new_item['quantity_produced']
+          new_item['quantity_produced'] = 0
+          new_item['pend']              = false
+
+          item.total_value         = (item.quantity_produced * item.total_value) / item.quantity
+          new_item['total_value'] -= item.total_value
+
+          itens_pend << new_item
+        end
+      end
+
+      unless itens_pend.blank?
+        ped_pend = SalesOrder.new(self.attributes)
+        ped_pend.closed = false
+        ped_pend.number = self.number.next
+        ped_pend.order_items.build itens_pend
+        ped_pend.save
+      end
+    end
+  end
 
   def create_invoice
     if self.closed
@@ -37,7 +72,7 @@ class SalesOrder < Order
         inv_i.product_id      = item.product_id
         inv_i.product_cod     = item.product.code
         inv_i.product_name    = item.product.name
-        inv_i.quantity        = item.quantity
+        inv_i.quantity        = item.quantity_produced
         inv_i.measure_unit_id = item.measure_unit_id
         inv_i.unit_value      = item.unit_value
         inv_i.total_value     = item.total_value
