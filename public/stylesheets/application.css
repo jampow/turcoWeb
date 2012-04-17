@@ -115,11 +115,11 @@ table.list tbody tr {
 }
 
 
-.dataTables_wrapper table .center {
+table .center {
   text-align:center;
 }
 
-.dataTables_wrapper table .right {
+table .right {
   text-align:right;
 }
 

@@ -8,8 +8,9 @@
     <thead class="ui-widget-header">
       <tr>
         <th width="50%">Produto</th>
-        <th width="25%">Qtd. Solicitada</th>
+        <th width="15%">Qtd. Solicitada</th>
         <th width="25%">Qtd. Produzida</th>
+        <th width="10%">Pendência</th>
       </tr>
     </thead>
     <tbody>
@@ -18,10 +19,39 @@
         <td><%= soi.object.product.name %></td>
         <td class="right"><%= soi.object.quantity %></td>
         <td><%= soi.text_field :quantity_produced, :label => "", :size => 100 %></td>
+        <td><%= soi.check_box :pend, :label => "" %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
 
-
 <% end %>
+
+<% content_for :script do -%>
+  //Marca ou desmarca checkbox de pendência se a quantidade produzida foi menor do que a solicitada
+  $('input[type=text]').keyup(function(){
+    var t   = $(this);
+    var ttd = t.parent().parent().parent();
+    var qtd = ttd.prev().html()*1; //ordererd Quantity
+    var chk = $('input', ttd.next());
+
+    if (!chk.hasClass('clicked')) {
+      t.val()*1 < qtd ? chk.attr('checked', 'checked') : chk.attr('checked', '');
+    } else {
+      if (t.val()*1 > qtd) { chk.attr('checked', ''); }
+    }
+
+  });
+
+  //desativa o cálculo do Checkbox de pendência se ele receber um click
+  $('input[type=checkbox]').click(function(){
+    var t      = $(this);
+    var ttd    = t.parent().parent().parent();
+    var qtdOrd = ttd.prev().prev().html()*1; //ordererd Quantity
+    var qtdPro = $('input', ttd.prev()).val()*1;
+
+    $(this).addClass('clicked');
+
+    if (qtdPro > qtdOrd) { t.attr('checked', ''); }
+  });
+<% end -%>

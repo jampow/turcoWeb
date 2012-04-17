@@ -8,8 +8,6 @@ TODO: Inibir deleção se existir dependências para o cadastro
 
 TODO: Adicionar total dos itens no grid do pedido de venda
 
-TODO: Possibilidade de alterar as quantidade pra NF (Romaneio)
-
 TODO: Observação por item do pedido de venda (?)
 
 
