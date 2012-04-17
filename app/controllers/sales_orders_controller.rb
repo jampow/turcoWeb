@@ -1,7 +1,7 @@
 class SalesOrdersController < ApplicationController
 
   access_control do
-    allow :sales_orders_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :production, :save_production]
+    allow :sales_orders_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :production, :save_production, :reverse]
     allow :sales_orders_l, :to => [:index, :show, :default_data]
     allow :sales_orders_s, :to => []
   end

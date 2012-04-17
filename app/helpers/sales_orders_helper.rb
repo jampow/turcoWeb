@@ -1,7 +1,7 @@
 module SalesOrdersHelper
 
   def btn_reverse(id)
-    link_to "Estornar", "/sales_orders/reverse?id=#{id}", :class => "button confirm", :icon => "arrowreturn-1-w"
+    link_to "Estornar", "/sales_orders/reverse/#{id}", :class => "button confirm", :icon => "arrowreturn-1-w"
   end
 
   def btn_production(id)
