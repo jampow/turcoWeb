@@ -280,7 +280,6 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
         select   : function(event, ui){
           $.each(ui.item, function(key, val){
             if (key !== 'value' && key !== 'label' && key !== '') {
-              console.log(pref+key+' -> '+val);
               $('#'+pref+key).val(val);
             }
           });
