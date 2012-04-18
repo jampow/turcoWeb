@@ -1,4 +1,3 @@
-require 'ap'
 class SalesOrder < Order
   belongs_to :client
 
