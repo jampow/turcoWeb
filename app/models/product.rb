@@ -13,27 +13,27 @@ class Product < ActiveRecord::Base
 
   #named_scope :quantity, :select => "sum()" :conditions => { :field => condition }, :order => "field"
 
-#  Select pro.id
-#       , pro.name         As label
-#       , pro.name         As value
-#       , pro.code
-#       , cof.value        As cofins
-#       , icm.value        As icm
-#       , ipi.value        As ipi
-#       , pis.value        As pis
-#       , pro.net_weight   As net_weight
-#       , pro.gross_weight As gross_weight
-#  From Products pro Left Join
-#       csts     cof On cof.id = pro.cst_cofins_id Left Join
-#       csts     icm On icm.id = pro.cst_icm_id    Left Join
-#       csts     ipi On ipi.id = pro.cst_ipi_id    Left Join
-#       csts     pis On pis.id = pro.cst_pis_id
-#  Where name like '%term%'
-#  Order By name
+ # Select pro.id
+ #      , concat(pro.code, ' - ', pro.name) As label
+ #      , pro.name         As value
+ #      , pro.code
+ #      , cof.value        As cofins
+ #      , icm.value        As icm
+ #      , ipi.value        As ipi
+ #      , pis.value        As pis
+ #      , pro.net_weight   As net_weight
+ #      , pro.gross_weight As gross_weight
+ # From products pro Left Join
+ #      csts     cof On cof.id = pro.cst_cofins_id Left Join
+ #      csts     icm On icm.id = pro.cst_icm_id    Left Join
+ #      csts     ipi On ipi.id = pro.cst_ipi_id    Left Join
+ #      csts     pis On pis.id = pro.cst_pis_id
+ # Where pro.name like '%term%' Or pro.code like '%term%'
+ # Order By name
 
   named_scope :to_autocomplete, lambda { |term| {
-    :select => "pro.id As product_id, pro.name As label, pro.name As value, pro.cofins, icm.value As icm, pro.ipi As aliq_ipi, pro.pis, pro.price As unit_value, pro.net_weight As net_weight, pro.gross_weight As gross_weight",
-    :conditions => ["name like ?", "%#{term}%"],
+    :select => "pro.id As product_id, concat(pro.code, ' - ', pro.name) As label, pro.name As value, pro.cofins, icm.value As icm, pro.ipi As aliq_ipi, pro.pis, pro.price As unit_value, pro.net_weight As net_weight, pro.gross_weight As gross_weight",
+    :conditions => ["pro.name like ? Or pro.code like ?", "%#{term}%", "%#{term}%"],
     :order => "name",
     :joins => "pro Left Join csts cof On cof.id = pro.cst_cofins_id Left Join csts icm On icm.id = pro.cst_icm_id Left Join csts ipi On ipi.id = pro.cst_ipi_id Left Join csts pis On pis.id = pro.cst_pis_id"}}
 
