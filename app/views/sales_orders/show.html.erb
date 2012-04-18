@@ -28,33 +28,17 @@
 <div class="clear"></div>
 
 <h2>Items</h2>
-<table id="sales_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
-  <thead>
-    <tr>
-      <th>Produto             </th>
-      <th>Quantidade          </th>
-      <th>Quantidade Produzida</th>
-      <th>Valor Unitário      </th>
-      <th>Valor Total         </th>
-      <th>Data de entrega     </th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @items.each do |soi| %>
-    <tr>
-      <td><%= soi.product_name   %></td>
-      <td class="right" ><%= soi.quantity          %></td>
-      <td class="right" ><%= soi.quantity_produced %></td>
-      <td class="right" ><%= soi.unit_value        %></td>
-      <td class="right" ><%= soi.total_value       %></td>
-      <td class="center"><%= date(soi.delivery)    %></td>
-    </tr>
-  <% end -%>
-  </tbody>
-</table>
 
-<script type="text/javascript">
-  var oTable = $('#sales_order_items').dataTable(dTableConfig);
+<%= table @items, ['product_name'     , 'Produto'             ],
+                  ['quantity'         , 'Quantidade'          , {:class => "right"}],
+                  ['quantity_produced', 'Quantidade Produzida', {:class => "right"}],
+                  ['unit_value'       , 'Valor Unitário'      , {:class => "right"}],
+                  ['total_value'      , 'Valor Total'         , {:class => "right"}],
+                  ['delivery'         , 'Data de entrega'     , {:class => "center", :format => "date"}] %>
+
+
+<% content_for :script do -%>
+//<script type="text/javascript">
   $('#btn_production').click(function(){
     var t = $(this);
     var url = t.attr('href');
@@ -73,5 +57,6 @@
     });
     return false;
   });
-</script>
+//</script>
+<% end -%>
 
