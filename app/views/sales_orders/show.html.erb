@@ -29,12 +29,37 @@
 
 <h2>Items</h2>
 
-<%= table @items, ['product_name'     , 'Produto'             ],
-                  ['quantity'         , 'Quantidade'          , {:class => "right"}],
-                  ['quantity_produced', 'Quantidade Produzida', {:class => "right"}],
-                  ['unit_value'       , 'Valor Unitário'      , {:class => "right"}],
-                  ['total_value'      , 'Valor Total'         , {:class => "right"}],
-                  ['delivery'         , 'Data de entrega'     , {:class => "center", :format => "date"}] %>
+<table class="personal_list" cellpading="0" cellspacing="0" border="0" width="100%">
+  <thead>
+    <tr>
+      <th               >Produto</th>
+      <th class="right" >Quantidade</th>
+      <th class="right" >Quantidade produzida</th>
+      <th class="right" >Valor Unitário</th>
+      <th class="right" >Valor Total</th>
+      <th class="center">Data de entrega</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+    <tr>
+      <td               ><%= item.product_name %></td>
+      <td class="right" ><%= item.quantity %></td>
+      <td class="right" ><%= item.quantity_produced %></td>
+      <td class="right" ><%= number_to_currency(item.unit_value) %></td>
+      <td class="right" ><%= number_to_currency(item.total_value) %></td>
+      <td class="center"><%= date(item.delivery) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="4"> </th>
+      <th class="right sum"></th>
+      <th> </th>
+    </tr>
+  </tfoot>
+</table>
 
 
 <% content_for :script do -%>
@@ -57,6 +82,23 @@
     });
     return false;
   });
+
+
+  var conf = {"fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
+    var iTotal = 0;
+    //Soma das NF's visíveis
+    for ( var i=iStart ; i<iEnd ; i++ )
+    {
+      iVal = aaData[aiDisplay[i]][4].replace('R$ ', '').replace(/\./gi, '').replace(',', '.')*1;
+      iTotal += iVal;
+    }
+    $('.sum', this).text('R$ '+ toCurrency(iTotal.toFixed(2)));
+  }};
+
+  var newConf = $.extend({}, dTableConfig, conf);
+
+  $('table.personal_list').dataTable(newConf);
+
 //</script>
 <% end -%>
 
