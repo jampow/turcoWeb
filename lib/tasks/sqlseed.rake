@@ -14,7 +14,7 @@ namespace :db do
         database = config['database']
         username = config['username']
         password = config['password']
-        hostname = config['hostname']
+        hostname = config['host']
         `mysql -h#{hostname} -D#{database} -u#{username} -p#{password} --default-character-set=utf8 < #{seed_sql}`
       when 'sqlite3'
         database = config['database']
