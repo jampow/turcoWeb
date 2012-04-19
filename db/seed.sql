@@ -26,22 +26,22 @@ Insert Into product_families (name) Values ('SERVIÇOS DIVERSOS');
 
 -- CST's
   -- ICMS
-  Insert Into csts (code, type) Values (20, 'CstIcm');
-  Insert Into csts (code, type) Values (40, 'CstIcm');
-  Insert Into csts (code, type) Values (41, 'CstIcm');
+  Insert Into csts (code, type, description) Values (20, 'CstIcm', '');
+  Insert Into csts (code, type, description) Values (40, 'CstIcm', '');
+  Insert Into csts (code, type, description) Values (41, 'CstIcm', '');
 
   -- PIS
-  Insert Into csts (code, type) Values (01, 'CstPis');
-  Insert Into csts (code, type) Values (07, 'CstPis');
+  Insert Into csts (code, type, description) Values (01, 'CstPis', '');
+  Insert Into csts (code, type, description) Values (07, 'CstPis', '');
 
   -- COFINS
-  Insert Into csts (code, type) Values (01, 'CstCofins');
-  Insert Into csts (code, type) Values (07, 'CstCofins');
+  Insert Into csts (code, type, description) Values (01, 'CstCofins', '');
+  Insert Into csts (code, type, description) Values (07, 'CstCofins', '');
 
   -- IPI
-  Insert Into csts (code, type) Values (50, 'CstIpi');
-  Insert Into csts (code, type) Values (52, 'CstIpi');
-  Insert Into csts (code, type) Values (53, 'CstIpi');
+  Insert Into csts (code, type, description) Values (50, 'CstIpi', '');
+  Insert Into csts (code, type, description) Values (52, 'CstIpi', '');
+  Insert Into csts (code, type, description) Values (53, 'CstIpi', '');
 
 -- Inserindo os produtos, a unidade de medida e uma quantidade para a respectiva unidade de medida
 Insert Into products (code, name, type_id, family_id, kind, gross_weight, ipi, tributary_code, fiscal_code, cost, price, liquid_price, ncm, pis, cofins, cst_icm_id, cst_pis_id, cst_cofins_id, cst_ipi_id) Values ('ABF000000000000', 'APARAS BRANCA',  (select id from product_kinds where name = 'PA'), (select id from product_families where name = 'APARAS'), 'FARDOS', 1, 0, 1, 'M', 0.6, 0, 0, '39201099', 1.65, 7.6, NULL, NULL, NULL, NULL);
@@ -7909,3 +7909,6 @@ Set @p = last_insert_id();
 Insert Into measure_units (product_id, measure_unit, main, ratio) Values (last_insert_id(), 'kg', 1, 1);
 Set @u = last_insert_id();
 Insert Into stocks (product_id, description, quantity_in, measure_unit_id, total_before, total_before_measure_unit_id, total, total_measure_unit_id) Values (@p, 'Migração inicial', 1, @u, 0, @u, 1, @u);
+
+Update products Set code = concat_ws('.',left(code,3),mid(code,4,3),mid(code,7,3),mid(code,10,3),right(code,3)) Where length(code) > 14;
+Update products Set code = concat_ws('.',left(code,3),mid(code,4,3),mid(code,7,3),mid(code,10,3),right(code,2)) Where length(code) = 14;

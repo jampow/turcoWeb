@@ -80,6 +80,7 @@ class ProvidersController < ApplicationController
         format.html { redirect_to(@provider) }
         format.xml  { render :xml => @provider, :status => :created, :location => @provider }
       else
+        default_data
         format.html { render :action => "new" }
         format.xml  { render :xml => @provider.errors, :status => :unprocessable_entity }
       end
@@ -97,6 +98,7 @@ class ProvidersController < ApplicationController
         format.html { redirect_to(@provider) }
         format.xml  { head :ok }
       else
+        default_data
         format.html { render :action => "edit" }
         format.xml  { render :xml => @provider.errors, :status => :unprocessable_entity }
       end

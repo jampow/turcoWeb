@@ -215,6 +215,7 @@
       enterprise: "Empresa"
       invoice: "Nota Fiscal"
       product: "Produto"
+      provider: "Fornecedor"
       purchase order: "Pedido de compra"
       sales order: "Pedido de venda"
       sells type: "Tipos de NF"
@@ -244,8 +245,10 @@
         number: "Número"
         name: "Descrição"
       client:
+        code: "Código"
         name: "Razão Social"
         nickcname: "Fanfasia"
+        doc: "CNPJ / CPF"
         cnpj: "CNPJ"
         ie: "IE"
         active: "Ativo"
@@ -293,6 +296,10 @@
         nfe_env: "Enviada"
         manaus_discount: "Disconto Zona Franca"
         canceled: "Cancelada"
+      provider:
+        code: "Código"
+        name: "Nome"
+        cnpj: "CNPJ"
       purchase_order:
         client_id: "Fornecedor"
       sales_order:

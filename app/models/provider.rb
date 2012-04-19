@@ -11,6 +11,7 @@ class Provider < ActiveRecord::Base
   accepts_nested_attributes_for :invoicer_contact, :reject_if => proc { |a| a[:name].blank? }
   accepts_nested_attributes_for :address
 
+  validates_presence_of :code
   validates_presence_of :name
   validates_presence_of :cnpj
 

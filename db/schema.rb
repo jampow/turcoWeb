@@ -1,4 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file,
+# This file is auto-generated from the current state of the database. Instead of editing this file, 
 # please use the migrations feature of Active Record to incrementally modify your database, and
 # then regenerate this schema definition.
 #
@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413222851) do
+ActiveRecord::Schema.define(:version => 20120419193843) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -138,6 +138,8 @@ ActiveRecord::Schema.define(:version => 20120413222851) do
     t.integer  "old_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "code",                :limit => 20
+    t.string   "cpf",                 :limit => 20
   end
 
   create_table "cost_centers", :force => true do |t|
@@ -419,6 +421,7 @@ ActiveRecord::Schema.define(:version => 20120413222851) do
     t.integer  "invoicer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "code",         :limit => 20
   end
 
   create_table "receivable_billings", :force => true do |t|

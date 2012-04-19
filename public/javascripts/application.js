@@ -233,7 +233,8 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
     //masking some inputs
     $('.mask-phone').mask("(99) 9999-9999? r.9999",{placeholder:" "});
     $('.mask-cnpj' ).mask("99.999.999/9999-99"    ,{placeholder:" "});
-    $('.mask-code' ).mask("aaa.***.***.***"       ,{placeholder:" "});
+    $('.mask-cpf'  ).mask("999.999.999-99?999"    ,{placeholder:" "});
+    $('.mask-code' ).mask("***.***.***.***.***"   ,{placeholder:" "});
     $('.mask-cep'  ).mask("99999-999"             ,{placeholder:" "});
     $('.mask-cfop' ).mask("9999"                  ,{placeholder:" "});
 
@@ -535,3 +536,18 @@ var format = {
     }
   }
 };
+
+/* Yeah! Closure! Tks Nathan Whitehead!!
+** If you're reading this and wanna know more about closure
+** U can learn more here: http://nathansjslessons.appspot.com/
+*/
+
+var len = function(field){
+  var bef, aft, f;
+  f = function(){
+    bef = aft;
+    aft = $(field).val().replace(/[\/ \.-]/gi, '').length;
+    return {"bef": bef, "aft": aft};
+  }
+  return f;
+}

@@ -10,10 +10,11 @@
     <%= f.error_messages %>
 
     <% field_set_tag "Dados do cliente" do %>
+      <%= f.text_field :code                                                , :label => "Cógigo"               , :size => 20 , :required => true, :class => "mask-code" %>
       <%= f.text_field :name                                                , :label => "Raz. Social"          , :size => 50 , :required => true %>
-      <%= f.text_field :nickname                                            , :label => "Fantasia"             , :size => 50 %>
+      <%= f.text_field :nickname                                            , :label => "Fantasia"             , :size => 30 %>
       <%= f.text_area  :observations                                        , :label => "Observações"          , :size => 50 %>
-      <%= f.text_field :cnpj                                                , :label => "CNPJ"                 , :class => "mask-cnpj" %>
+      <%= f.text_field :doc                                                 , :label => "CNPJ / CPF"           , :class => "mask-cpf" %>
       <%= f.text_field :ie                                                  , :label => "Inscriçao Estadual"   %>
       <%= f.text_field :im                                                  , :label => "Inscriçao Municipal"  %>
       <%= f.text_field :sci                                                 , :label => "SCI"                  %>
@@ -88,3 +89,20 @@
 
 <%= render :partial => "js_new_edit" %>
 
+
+<% content_for :script do -%>
+
+  var watcher = len('#client_doc');
+
+  $('#client_doc').keyup(function(){
+    var t = $(this);
+    var w = watcher();
+    var ctt = t.val().replace(/[\/ \.-]/gi, '');
+
+    if (w.aft == 14) {
+      t.mask('99.999.999/9999-99', {placeholder:" "});
+    } else if (w.aft == 11) {
+      t.mask('999.999.999-99?999', {placeholder:" "});
+    }
+  });
+<% end -%>

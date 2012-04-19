@@ -1,12 +1,8 @@
 TODO: Permitir colocar CPF no cadastro de clientes
 
-TODO: Colocar campo código no cadastro do cliente e fornecedor e nas buscas deles.
-
 TODO: Opção de pedido de compra não movimentar o estoque
 
 TODO: Inibir deleção se existir dependências para o cadastro
-
-TODO: Adicionar total dos itens no grid do pedido de venda
 
 TODO: Observação por item do pedido de venda (?)
 
