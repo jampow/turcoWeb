@@ -4,5 +4,5 @@
   <a href="/clients.xls" class="button" icon="document" ajax="false">Excel</a>
 <% end %>
 
-<%= table @clients, ["name", "Nome"], ["nickname", "Fantasia"], ["cnpj", "CNPJ", {:class => "center"}], ["contact", "Contato"], ["number", "Telefone"] %>
+<%= table @clients, ["code", "Código"], ["name", "Nome"], ["nickname", "Fantasia"], ["cnpj", "CNPJ", {:class => "center"}], ["contact", "Contato"], ["number", "Telefone"] %>
 

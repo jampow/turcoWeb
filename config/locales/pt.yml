@@ -244,6 +244,7 @@
         number: "Número"
         name: "Descrição"
       client:
+        code: "Código"
         name: "Razão Social"
         nickcname: "Fanfasia"
         cnpj: "CNPJ"

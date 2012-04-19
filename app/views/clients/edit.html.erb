@@ -10,8 +10,9 @@
     <%= f.error_messages %>
 
     <% field_set_tag "Dados do cliente" do %>
+      <%= f.text_field :code                                                , :label => "Cógigo"               , :size => 20 , :required => true, :class => "mask-code" %>
       <%= f.text_field :name                                                , :label => "Raz. Social"          , :size => 50 , :required => true %>
-      <%= f.text_field :nickname                                            , :label => "Fantasia"             , :size => 50 %>
+      <%= f.text_field :nickname                                            , :label => "Fantasia"             , :size => 30 %>
       <%= f.text_area  :observations                                        , :label => "Observações"          , :size => 50 %>
       <%= f.text_field :cnpj                                                , :label => "CNPJ"                 , :class => "mask-cnpj"%>
       <%= f.text_field :ie                                                  , :label => "Inscriçao Estadual"   %>

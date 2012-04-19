@@ -15,6 +15,7 @@ class Client < ActiveRecord::Base
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :delivery_address
 
+  validates_presence_of :code
   validates_presence_of :name
   validates_presence_of :activity_id
 
@@ -40,7 +41,7 @@ class Client < ActiveRecord::Base
 #   Where Cli.active = 1 And (Pho.main is null or Pho.main = 1)
 
   named_scope :grid, {
-    :select     => "Cli.id, Cli.name, Cli.nickname, Cli.cnpj, Peo.name as contact, Pho.number",
+    :select     => "Cli.id, Cli.code, Cli.name, Cli.nickname, Cli.cnpj, Peo.name as contact, Pho.number",
     :joins      => "Cli Left Join people Peo On Peo.external_id = Cli.id Left Join phones Pho On Pho.person_id = Peo.id",
     :conditions => "Cli.active = 1 And (Pho.main is null or Pho.main = 1)"
   }

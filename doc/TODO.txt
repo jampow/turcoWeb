@@ -1,6 +1,6 @@
 TODO: Permitir colocar CPF no cadastro de clientes
 
-TODO: Colocar campo código no cadastro do cliente e fornecedor e nas buscas deles.
+TODO: Colocar campo código no cadastro do fornecedor e nas buscas deles.
 
 TODO: Opção de pedido de compra não movimentar o estoque
 
