@@ -3,7 +3,7 @@ namespace :db do
   desc 'Seed database from db/seed.sql file instead of the traditional db/seed.rb'
   task :sqlseed do
     config = Rails::Configuration.new.database_configuration[RAILS_ENV]
-    
+
     seed_sql = File.expand_path(File.dirname(__FILE__) + '/../../db/seed.sql')
 
     if !File.exists?(seed_sql)
@@ -14,7 +14,8 @@ namespace :db do
         database = config['database']
         username = config['username']
         password = config['password']
-        `mysql #{database} -u#{username} -p#{password} --default-character-set=utf8 < #{seed_sql}`
+        hostname = config['hostname']
+        `mysql -h#{hostname} -D#{database} -u#{username} -p#{password} --default-character-set=utf8 < #{seed_sql}`
       when 'sqlite3'
         database = config['database']
         `sqlite3 #{database} < #{seed_sql}`
