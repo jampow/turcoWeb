@@ -37,6 +37,9 @@ class Product < ActiveRecord::Base
     :order => "name",
     :joins => "pro Left Join csts cof On cof.id = pro.cst_cofins_id Left Join csts icm On icm.id = pro.cst_icm_id Left Join csts ipi On ipi.id = pro.cst_ipi_id Left Join csts pis On pis.id = pro.cst_pis_id"}}
 
+  named_scope :grid, :select => "pro.id, pro.code, pro.name, fam.name As family",
+                     :joins => "pro Left Join product_families fam On fam.id = pro.family_id"
+
   def quantity
     Stock.last :conditions => ["product_id = ?", self.id]
   end
