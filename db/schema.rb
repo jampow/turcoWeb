@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120419161352) do
+ActiveRecord::Schema.define(:version => 20120419162533) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -420,6 +420,7 @@ ActiveRecord::Schema.define(:version => 20120419161352) do
     t.integer  "invoicer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "code",         :limit => 20
   end
 
   create_table "receivable_billings", :force => true do |t|
