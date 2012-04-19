@@ -7,7 +7,7 @@
   <%= print_content "Código"              , h(@client.code)                         , :width => 20%>
   <%= print_content "Razão Social"        , h(@client.name)                         , :width => 50 %>
   <%= print_content "Fantasia"            , h(@client.nickname)                     , :width => 30 %>
-  <%= print_content "CNPJ"                , h(@client.cnpj)                         %>
+  <%= print_content "CNPJ / CPF"          , h(@client.doc)                          %>
   <%= print_content "Inscrição Estadual"  , h(@client.ie)                           %>
   <%= print_content "Inscrição Municipal" , h(@client.im)                           %>
   <%= print_content "SCI"                 , h(@client.sci)                          %>

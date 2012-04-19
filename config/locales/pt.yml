@@ -248,6 +248,7 @@
         code: "Código"
         name: "Razão Social"
         nickcname: "Fanfasia"
+        doc: "CNPJ / CPF"
         cnpj: "CNPJ"
         ie: "IE"
         active: "Ativo"

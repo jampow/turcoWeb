@@ -17,15 +17,53 @@ class Client < ActiveRecord::Base
 
   validates_presence_of :code
   validates_presence_of :name
+  validates_presence_of :doc
   validates_presence_of :activity_id
 
-  named_scope :actives, :conditions => { :active => true }, :order => "name"
+  attr_accessor  :doc
+  attr_accessor  :doc_mask
+  #usar_como_cnpj :cnpj
+  #usar_como_cpf  :cpf
 
   before_save :mark_contact_for_removal
+  validate :validate_cpf_or_cnpj
 
   def mark_contact_for_removal
     contacts.each do |child|
       child.mark_for_destruction if child.name.blank?
+    end
+  end
+
+  def doc=(value)
+    if value.length > 14
+      self.cnpj = value
+      self.cpf = nil
+    else
+      self.cpf = value
+      self.cnpj = nil
+    end
+  end
+
+  def doc
+    self.cnpj ? self.cnpj : self.cpf
+  end
+
+  def validate_cpf_or_cnpj
+    if self.doc.length > 14
+      valid = Cnpj.new(self.doc).valido?
+    else
+      valid = Cpf.new(self.doc).valido?
+    end
+    self.errors.add("doc", " inválido") unless valid
+  end
+
+  def after_initialize
+    if self.cnpj
+      self.doc = self.cnpj
+      self.doc_mask = "mask-cnpj"
+    elsif self.cpf
+      self.doc = self.cpf
+      self.doc_mask = "mask-cpf"
     end
   end
 
@@ -41,10 +79,12 @@ class Client < ActiveRecord::Base
 #   Where Cli.active = 1 And (Pho.main is null or Pho.main = 1)
 
   named_scope :grid, {
-    :select     => "Cli.id, Cli.code, Cli.name, Cli.nickname, Cli.cnpj, Peo.name as contact, Pho.number",
+    :select     => "Cli.id, Cli.code, Cli.name, Cli.nickname, IfNull(Cli.cnpj, Cli.cpf) As doc, Peo.name as contact, Pho.number",
     :joins      => "Cli Left Join people Peo On Peo.external_id = Cli.id Left Join phones Pho On Pho.person_id = Peo.id",
     :conditions => "Cli.active = 1 And (Pho.main is null or Pho.main = 1)"
   }
+
+  named_scope :actives, :conditions => { :active => true }, :order => "name"
 
   def aliq_icms
     delivery_estate.aliq_icms
