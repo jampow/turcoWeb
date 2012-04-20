@@ -58,28 +58,31 @@ class Client < ActiveRecord::Base
   end
 
   def after_initialize
-    if self.cnpj
-      self.doc = self.cnpj
-      self.doc_mask = "mask-cnpj"
-    elsif self.cpf
-      self.doc = self.cpf
-      self.doc_mask = "mask-cpf"
+    if self.respond_to?('cnpj') && self.respond_to?('cpf')
+      if self.cnpj
+        self.doc = self.cnpj
+        self.doc_mask = "mask-cnpj"
+      elsif self.cpf
+        self.doc = self.cpf
+        self.doc_mask = "mask-cpf"
+      end
     end
   end
 
-#  Select Cli.id
-#       , Cli.name
-#       , Cli.nickname
-#       , Cli.cnpj
-#       , Peo.name as contact
-#       , Pho.number
-#    From clients Cli Left Join
-#         people  Peo On Peo.external_id = Cli.id Left Join
-#         phones  Pho On Pho.person_id   = Peo.id
-#   Where Cli.active = 1 And (Pho.main is null or Pho.main = 1)
+ # Select Cli.id
+ #      , Cli.name
+ #      , Cli.nickname
+ #      , Cli.cnpj
+ #      , Cli.cpf
+ #      , Peo.name as contact
+ #      , Pho.number
+ #   From clients Cli Left Join
+ #        people  Peo On Peo.external_id = Cli.id Left Join
+ #        phones  Pho On Pho.person_id   = Peo.id
+ #  Where Cli.active = 1 And (Pho.main is null or Pho.main = 1)
 
   named_scope :grid, {
-    :select     => "Cli.id, Cli.code, Cli.name, Cli.nickname, IfNull(Cli.cnpj, Cli.cpf) As doc, Peo.name as contact, Pho.number",
+    :select     => "Cli.id, Cli.code, Cli.name, Cli.nickname, Cli.cnpj, Cli.cpf, Peo.name as contact, Pho.number",
     :joins      => "Cli Left Join people Peo On Peo.external_id = Cli.id Left Join phones Pho On Pho.person_id = Peo.id",
     :conditions => "Cli.active = 1 And (Pho.main is null or Pho.main = 1)"
   }
