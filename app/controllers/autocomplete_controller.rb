@@ -21,9 +21,9 @@ class AutocompleteController < ApplicationController
     # From cars     car Join
     #      carriers cre On cre.id = car.carrier_id Join
     #      estates  est On est.id = car.estate_id
-    # Where car.license_plate like '%1234%' 
-    #    Or car.brand         like '%1324%' 
-    #    Or cre.name          like '%1324%' 
+    # Where car.license_plate like '%1234%'
+    #    Or car.brand         like '%1324%'
+    #    Or cre.name          like '%1324%'
     #    Or est.name          like '%1324%'
 
     @list = Car.find(:all,
@@ -47,10 +47,10 @@ class AutocompleteController < ApplicationController
       format.js { render :action => "autocomplete" }
     end
   end
-  
+
   def client
     @list = Client.find(:all,
-                        :select => "id As client_id, name as label, name as value",
+                        :select => "id As client_id, name as label, name as value, cnpj, cpf",
                         :conditions => ["name like ? And active = 1", "%#{params[:term]}%"],
                         :order => "name")
 
@@ -69,7 +69,7 @@ class AutocompleteController < ApplicationController
       format.js { render :action => "autocomplete" }
     end
   end
-  
+
   def measure_units
     @list = MeasureUnit.find(:all,
                              :select => "id, measure_unit as label, measure_unit as value",
