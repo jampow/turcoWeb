@@ -221,6 +221,12 @@ form label textarea {
 	-ms-box-sizing: border-box; /* IE */
 }
 
+form label input.autocomplete {
+	background-color: #D0F7DA;
+	border: 1px solid #D0DAD4;
+	border-left: 3px solid #80B58E;
+}
+
 form label input[type=checkbox] {
   margin-top   : 6px;
   margin-bottom: 6px;
