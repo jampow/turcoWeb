@@ -2,12 +2,12 @@
 
 one:
   carrier_id: 1
-  license_plate: MyString
+  license_plate: XYZ-6789
   estate_id: 1
   brand: MyString
 
 two:
   carrier_id: 1
-  license_plate: MyString
+  license_plate: ABC-1234
   estate_id: 1
   brand: MyString

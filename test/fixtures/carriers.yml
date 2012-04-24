@@ -1,15 +1,15 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  nickname: MyString
-  cnpj: MyString
-  ie: MyString
+  name: Transportadora A
+  nickname: Trans. A
+  cnpj: 23.456.789/0001-00
+  ie: Isento
   address_id: 1
 
 two:
-  name: MyString
-  nickname: MyString
-  cnpj: MyString
-  ie: MyString
-  address_id: 1
+  name: Transportadora B
+  nickname: Trans. B
+  cnpj: 12.345.678/0001-09
+  ie: 123.456.789
+  address_id: 2
