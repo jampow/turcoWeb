@@ -10,17 +10,17 @@
     <%= f.error_messages %>
 
     <% field_set_tag "Dados do fornecedor" do %>
-      <%= f.text_field :code                   , :label => "Cógigo"               , :size => 20 , :required => true, :class => "mask-code" %>
+      <%= f.text_field :code                   , :label => "Cógigo"               , :size => 25 , :required => true, :class => "mask-code" %>
       <%= f.text_field :name                   , :label => "Raz. Social"          , :size => 50 , :required => true %>
-      <%= f.text_field :cnpj                   , :label => "CNPJ"                 , :class => "mask-cnpj", :required => true %>
       <%= f.select     :prod_cost   , @prodcost, :label => "Produtos ou despesas" %>
-      <%= f.text_area  :observations           , :label => "Observações"          , :size => 50 %>
+      <%= f.text_field :cnpj                   , :label => "CNPJ"                 , :size => 25 , :required => true, :class => "mask-cnpj" %>
       <%= f.text_field :ie                     , :label => "Inscriçao Estadual"   %>
+      <%= f.text_field :bank                   , :label => "Banco"                %>
+      <%= f.check_box  :carrier                , :label => "Transportadora"       %>
       <%= f.text_field :phone                  , :label => "Telefone"             , :class => "mask-phone" %>
       <%= f.text_field :fax                    , :label => "Fax"                  , :class => "mask-phone" %>
       <%= f.text_field :email                  , :label => "E-mail"               %>
-      <%= f.text_field :bank                   , :label => "Banco"                %>
-      <%= f.check_box  :carrier                , :label => "Transportadora"       %>
+      <%= f.text_area  :observations           , :label => "Observações"          , :size => 100 %>
     <% end %>
 
     <% field_set_tag "Endereço" do %>

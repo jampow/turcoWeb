@@ -4,16 +4,16 @@
 <% end %>
 
 <h2>Dados principais</h2>
-  <%= print_content "Código"              , h(@provider.code)                                , :width => 20 %>
+  <%= print_content "Código"              , h(@provider.code)                                , :width => 25 %>
   <%= print_content "Razão Social"        , h(@provider.name)                                , :width => 50 %>
-  <%= print_content "CNPJ"                , h(@provider.cnpj)                                , :width => 30 %>
   <%= print_content "Produtos ou Despesas", Provider::ProdCost.find(@provider.prod_cost).name %>
+  <%= print_content "CNPJ"                , h(@provider.cnpj)                                , :width => 25 %>
   <%= print_content "Inscrição Estadual"  , h(@provider.ie)                                   %>
+  <%= print_content "Banco"               , h(@provider.bank)                                 %>
+  <%= print_content "Transportadora"      , human_boolean(@provider.carrier)                  %>
   <%= print_content "Fone"                , h(@provider.phone)                                %>
   <%= print_content "Fax"                 , h(@provider.fax)                                  %>
   <%= print_content "E-mail"              , h(@provider.email)                                %>
-  <%= print_content "Transportadora"      , human_boolean(@provider.carrier)                  %>
-  <%= print_content "Banco"               , h(@provider.bank)                                 %>
   <%= print_content "Observações"         , h(@provider.observations)                        , :width => 100 %>
   <div class="clear"></div>
 
