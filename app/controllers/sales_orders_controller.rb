@@ -1,7 +1,8 @@
+require 'ap'
 class SalesOrdersController < ApplicationController
 
   access_control do
-    allow :sales_orders_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :production, :save_production, :reverse]
+    allow :sales_orders_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :production, :save_production, :close, :reverse]
     allow :sales_orders_l, :to => [:index, :show, :default_data]
     allow :sales_orders_s, :to => []
   end
@@ -103,6 +104,28 @@ class SalesOrdersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(sales_orders_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  def close
+    @sales_order = SalesOrder.find(params[:id])
+    @sales_order.closed  = true
+
+    respond_to do |format|
+      if !@sales_order.has_production?
+        flash[:notice] = 'Pedido de venda sem itens produzidos.'
+        format.html { redirect_to(@sales_order) }
+        format.xml  { head :ok }
+      else
+        if @sales_order.save
+          flash[:notice] = 'Pedido de venda fechado.'
+          format.html { redirect_to(@sales_order) }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @sales_order.errors, :status => :unprocessable_entity }
+        end
+      end
     end
   end
 

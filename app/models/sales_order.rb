@@ -83,6 +83,15 @@ class SalesOrder < Order
     end
   end
 
+  def has_production?
+    sum = 0
+    soi = OrderItem.find(:all, :select => 'quantity_produced, product_id , measure_unit_id' , :conditions => ['order_id = ?', self.id])
+    soi.each do |i|
+      sum += i.quantity_produced
+    end
+    return sum > 0 ? true : false
+  end
+
   class OrderType <
     Struct.new(:id, :name)
     VALUES = [
