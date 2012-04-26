@@ -101,6 +101,17 @@ class AutocompleteController < ApplicationController
     end
   end
 
+  def seller
+    @list = Seller.find(:all,
+                          :select => "id As seller_id, name as label, name as seller_name",
+                          :conditions => ["name like ?", "%#{params[:term]}%"],
+                          :order => "name")
+
+    respond_to do |format|
+      format.js { render :action => "autocomplete" }
+    end
+  end
+
   #renderiza
   def autocomplete
   end

@@ -1,14 +1,11 @@
 class SalesOrder < Order
   belongs_to :client
+  belongs_to :seller
 
   validates_presence_of :client_id
   validates_uniqueness_of :number
 
-  before_save :get_next_number
-
-  def get_next_number
-    self.number ||= SalesOrder.number.next
-  end
+  attr_accessor :seller_name
 
 # Select IfNull(       Max(number), 0)          As last
 #      , Concat(IfNull(Max(number), 0)+1, "-A") As next
@@ -19,8 +16,13 @@ class SalesOrder < Order
     self.find(:first, :select => "IfNull(Max(number), 0) As last, Concat(IfNull(Max(number), 0)+1, '-A') As next", :conditions => "type = 'SalesOrder'")
   end
 
+  before_save :get_next_number
   before_save :verify_pend
   before_save :create_invoice
+
+  def get_next_number
+    self.number ||= SalesOrder.number.next
+  end
 
   def verify_pend
     if self.closed
@@ -133,6 +135,42 @@ class SalesOrder < Order
       self.new(h[:id], h[:name])
     end
   end
+
+# Select orders.id
+#      , orders.number
+#      , orders.order_type_id
+#      , orders.sale_type_id
+#      , orders.date
+#      , orders.prevision
+#      , orders.billed
+#      , cli.name As cli
+#      , sel.name As sel
+#      , orders.commission
+#      , orders.contact
+#      , pac.name As payment
+#      , orders.freight
+#      , orders.freight_type_id
+#      , usr.name As attendant
+#      , orders.observation
+#      , orders.created_at
+#      , orders.updated_at
+#      , orders.closed
+#      , concat(crr.name, ' - ', car.license_plate) As car_plate
+# From orders
+# Left Join clients       cli On cli.id = orders.client_id
+# Left Join sellers       sel On sel.id = orders.seller_id
+# Left Join payment_forms pac On pac.id = orders.payment_condition_id
+# Left Join cars          car On car.id = orders.car_id
+# Left Join carriers      crr On crr.id = car.carrier_id
+# Left Join users         usr On usr.id = orders.attendant_id
+# Where type = 'SalesOrder'
+
+  named_scope :show, lambda { |id| {
+    :select     => "orders.id, orders.number, orders.order_type_id, orders.sale_type_id, orders.date, orders.prevision, orders.billed, cli.name As cli, sel.name As sel, orders.commission, orders.contact, pac.name As payment, orders.freight, orders.freight_type_id, usr.name As attendant, orders.observation, orders.created_at, orders.updated_at, orders.closed, concat(crr.name, ' - ', car.license_plate) As car_plate",
+    :joins      => "Left Join clients cli On cli.id = orders.client_id Left Join sellers sel On sel.id = orders.seller_id Left Join payment_forms pac On pac.id = orders.payment_condition_id Left Join cars car On car.id = orders.car_id Left Join carriers crr On crr.id = car.carrier_id Left Join users usr On usr.id = orders.attendant_id",
+    :conditions => ["orders.id = ?", id]
+    }
+  }
 
 end
 

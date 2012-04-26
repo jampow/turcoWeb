@@ -21,7 +21,7 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/1
   # GET /sales_orders/1.xml
   def show
-    @sales_order = SalesOrder.find(params[:id])
+    @sales_order = SalesOrder.show(params[:id])[0]
     @items       = @sales_order.order_items
 
     respond_to do |format|
@@ -46,7 +46,14 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/1/edit
   def edit
     @sales_order = SalesOrder.find(params[:id])
+
     @sales_order.client_name = @sales_order.client.name
+
+    car = @sales_order.car
+    @sales_order.car_name = car.carrier.name + ' - ' + car.license_plate
+
+    @sales_order.seller_name = @sales_order.seller.name
+
     default_data
 
     if @sales_order.closed
@@ -63,6 +70,7 @@ class SalesOrdersController < ApplicationController
   def create
     @sales_order = SalesOrder.new(params[:sales_order])
     @sales_order.order_items.build
+    @sales_order.attendant_id = current_user.id
 
     respond_to do |format|
       if @sales_order.save
