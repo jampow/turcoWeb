@@ -180,6 +180,7 @@ protected
   def default_data
     @order_types   = SalesOrder::OrderType.to_select
     @sell_types    = SalesOrder::SellType.to_select
+    @freight_types = SalesOrder::Freight.to_select
     @payment_forms = PaymentForm.all.collect { |p| [p.name, p.id] }
   end
 end

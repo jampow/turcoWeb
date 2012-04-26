@@ -5,7 +5,7 @@
   <%= btn_production(@sales_order.id.to_s) unless @sales_order.closed %>
   <%= btn_reverse(@sales_order.id.to_s)        if @sales_order.closed %>
   <%= btn_close(@sales_order.id.to_s)      unless @sales_order.closed %>
-  <%= link_to 'Refresh', @sales_order, :id => "refresh" %> <!-- , :class => 'hide'  -->
+  <%= link_to 'Refresh', @sales_order, :class => 'hide', :id => "refresh" %> <!-- , :class => 'hide'  -->
 <% end -%>
 
 <%= print_content "Número"               , h(@sales_order.number)                                        , :width => 10  %>
@@ -22,7 +22,7 @@
 <%= print_content "Fechado"              , human_boolean(@sales_order.closed)                            , :width => 10  %>
 <%= print_content "Transportadora"       , h(@sales_order.car_plate)                                     , :width => 20  %>
 <%= print_content "Frete"                , h(@sales_order.freight)                                       , :width => 20  %>
-<%= print_content "Tipo de frete"        , h(@sales_order.freight_type_id)                               , :width => 20  %>
+<%= print_content "Tipo de frete"        , h(SalesOrder::Freight.find(@sales_order.freight_type_id).name), :width => 20  %>
 <%= print_content "Atendente"            , h(@sales_order.attendant)                                     , :width => 20  %>
 <%= print_content "Observações"          , h(@sales_order.observation)                                   , :width => 100 %>
 
