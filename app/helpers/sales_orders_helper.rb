@@ -1,5 +1,9 @@
 module SalesOrdersHelper
 
+  def btn_close(id)
+    link_to "Fechar pedido", "/sales_orders/close/#{id}", :class => "button confirm", :icon => "script"
+  end
+
   def btn_reverse(id)
     link_to "Estornar", "/sales_orders/reverse/#{id}", :class => "button confirm", :icon => "arrowreturn-1-w"
   end

@@ -3,4 +3,5 @@ class Seller < ActiveRecord::Base
   accepts_nested_attributes_for :address
   has_many :seller_credit_accounts
   has_many :invoices
+  has_many :sales_orders
 end

@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
 
   before_save :mark_item_for_removal
   before_save :moviment_stock
-  
+
   attr_accessor :client_name
   attr_accessor :car_name
   attr_accessor :reverse #Estorno
@@ -23,7 +23,7 @@ protected
       child.mark_for_destruction if child.product_name.blank?
     end
   end
-  
+
   def moviment_stock
     if self.type == "SalesOrder"
       if self.closed
@@ -39,7 +39,7 @@ protected
       end
     end
   end
-  
+
   def close_sales_order
     order_items.each do |item|
       Stock.create :product_id      => item.product_id,
@@ -47,9 +47,9 @@ protected
                    :measure_unit_id => item.measure_unit_id,
                    :quantity_out    => item.quantity,
                    :quantity_in     => nil
-    end 
+    end
   end
-  
+
   def reverse_sales_order
     order_items.each do |item|
       Stock.create :product_id      => item.product_id,
@@ -57,7 +57,7 @@ protected
                    :measure_unit_id => item.measure_unit_id,
                    :quantity_out    => nil,
                    :quantity_in     => item.quantity
-    end 
+    end
   end
 
   def close_purchase_order
@@ -67,9 +67,9 @@ protected
                    :measure_unit_id => item.measure_unit_id,
                    :quantity_out    => nil,
                    :quantity_in     => item.quantity
-    end 
+    end
   end
-  
+
   def reverse_purchase_order
     order_items.each do |item|
       Stock.create :product_id      => item.product_id,
@@ -77,8 +77,8 @@ protected
                    :measure_unit_id => item.measure_unit_id,
                    :quantity_out    => item.quantity,
                    :quantity_in     => nil
-    end 
+    end
   end
-  
+
 end
 

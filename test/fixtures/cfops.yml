@@ -1,9 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  number: MyString
-  name: MyString
+  number: 60
+  name: Teste
 
 two:
-  number: MyString
-  name: MyString
+  number: 90
+  name: CFOP X

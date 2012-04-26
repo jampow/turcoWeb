@@ -1,7 +1,8 @@
+require 'ap'
 class SalesOrdersController < ApplicationController
 
   access_control do
-    allow :sales_orders_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :production, :save_production, :reverse]
+    allow :sales_orders_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :production, :save_production, :close, :reverse]
     allow :sales_orders_l, :to => [:index, :show, :default_data]
     allow :sales_orders_s, :to => []
   end
@@ -20,7 +21,7 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/1
   # GET /sales_orders/1.xml
   def show
-    @sales_order = SalesOrder.find(params[:id])
+    @sales_order = SalesOrder.show(params[:id])[0]
     @items       = @sales_order.order_items
 
     respond_to do |format|
@@ -45,7 +46,14 @@ class SalesOrdersController < ApplicationController
   # GET /sales_orders/1/edit
   def edit
     @sales_order = SalesOrder.find(params[:id])
+
     @sales_order.client_name = @sales_order.client.name
+
+    car = @sales_order.car
+    @sales_order.car_name = car.carrier.name + ' - ' + car.license_plate
+
+    @sales_order.seller_name = @sales_order.seller.name
+
     default_data
 
     if @sales_order.closed
@@ -62,6 +70,7 @@ class SalesOrdersController < ApplicationController
   def create
     @sales_order = SalesOrder.new(params[:sales_order])
     @sales_order.order_items.build
+    @sales_order.attendant_id = current_user.id
 
     respond_to do |format|
       if @sales_order.save
@@ -103,6 +112,28 @@ class SalesOrdersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(sales_orders_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  def close
+    @sales_order = SalesOrder.find(params[:id])
+    @sales_order.closed  = true
+
+    respond_to do |format|
+      if !@sales_order.has_production?
+        flash[:notice] = 'Pedido de venda sem itens produzidos.'
+        format.html { redirect_to(@sales_order) }
+        format.xml  { head :ok }
+      else
+        if @sales_order.save
+          flash[:notice] = 'Pedido de venda fechado.'
+          format.html { redirect_to(@sales_order) }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @sales_order.errors, :status => :unprocessable_entity }
+        end
+      end
     end
   end
 
@@ -149,6 +180,7 @@ protected
   def default_data
     @order_types   = SalesOrder::OrderType.to_select
     @sell_types    = SalesOrder::SellType.to_select
+    @freight_types = SalesOrder::Freight.to_select
     @payment_forms = PaymentForm.all.collect { |p| [p.name, p.id] }
   end
 end

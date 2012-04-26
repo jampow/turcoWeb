@@ -1,21 +1,21 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  street: MyString
-  number: MyString
-  complement: MyString
-  neighborhood: MyString
-  city: MyString
-  estate: MyString
-  country: MyString
-  cep: 1
+  street: Rua da transportadora
+  number: 1
+  complement:
+  neighborhood: Caminho nhão
+  city: São Paulo
+  estate: SP
+  country: Brasil
+  cep: 01518-010
 
 two:
-  street: MyString
-  number: MyString
-  complement: MyString
-  neighborhood: MyString
-  city: MyString
-  estate: MyString
-  country: MyString
-  cep: 1
+  street: Rua da transportadora
+  number: 2
+  complement:
+  neighborhood: Caminho nhão
+  city: São Paulo
+  estate: SP
+  country: Brasil
+  cep: 01536-000
