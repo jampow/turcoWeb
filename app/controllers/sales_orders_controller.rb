@@ -1,4 +1,3 @@
-require 'ap'
 class SalesOrdersController < ApplicationController
 
   access_control do
