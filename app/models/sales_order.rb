@@ -19,6 +19,7 @@ class SalesOrder < Order
   before_save :get_next_number
   before_save :verify_pend
   before_save :create_invoice
+  before_save :create_receivable
 
   def get_next_number
     self.number ||= SalesOrder.number.next
@@ -82,6 +83,28 @@ class SalesOrder < Order
         inv_i.gross_weight    = item.gross_weight
       end
       inv.save
+    end
+  end
+
+  #TODO: Passar esse método pro model Invoice, quando já estiver funcionando o envio
+  def create_receivable
+    if self.closed
+      parcels = self.payment_form.parcels
+      val = self.value / parcels.count
+      parcels.each do |parc|
+        rec = Receivable.create({
+          :client_id                => self.client_id,
+          #:document_number          => self.number,
+          :due_date                 => Time.new + parc.days,
+          :issue_date               => Time.new,
+          :value                    => val,
+          :document_kind_id         => 1,
+          :payment_method_id        => 1,
+          :frequency_id             => 1,
+          :rate_type_id             => 1,
+          :rate_calculation_type_id => 1
+        })
+      end
     end
   end
 

@@ -57,17 +57,17 @@ class Client < ActiveRecord::Base
     self.errors.add("doc", " inválido") unless valid
   end
 
-  def after_initialize
-    if self.respond_to?('cnpj') && self.respond_to?('cpf')
-      if self.cnpj
-        self.doc = self.cnpj
-        self.doc_mask = "mask-cnpj"
-      elsif self.cpf
-        self.doc = self.cpf
-        self.doc_mask = "mask-cpf"
-      end
-    end
-  end
+  # def after_initialize
+  #   if self.respond_to?('cnpj') && self.respond_to?('cpf')
+  #     if self.cnpj
+  #       self.doc = self.cnpj
+  #       self.doc_mask = "mask-cnpj"
+  #     elsif self.cpf
+  #       self.doc = self.cpf
+  #       self.doc_mask = "mask-cpf"
+  #     end
+  #   end
+  # end
 
  # Select Cli.id
  #      , Cli.name
