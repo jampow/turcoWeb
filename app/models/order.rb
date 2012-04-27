@@ -11,9 +11,18 @@ class Order < ActiveRecord::Base
   attr_accessor :client_name
   attr_accessor :car_name
   attr_accessor :reverse #Estorno
+  attr_accessor :total_value
 
   def carrier
     car.carrier
+  end
+
+  def value
+    self.total_value ||= 0
+    if self.total_value == 0
+      order_items.each { |item| self.total_value += item.total_value }
+    end
+    self.total_value
   end
 
 protected
