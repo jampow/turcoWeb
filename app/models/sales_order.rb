@@ -31,11 +31,11 @@ class SalesOrder < Order
         if item.quantity_produced < item.quantity && item.pend
           new_item = item.attributes
 
-          new_item['quantity']         -= new_item['quantity_produced']
+          new_item['quantity']         -= item.quantity_produced
           new_item['quantity_produced'] = 0
           new_item['pend']              = false
 
-          item.total_value         = (item.quantity_produced * item.total_value) / item.quantity
+          item.total_value         = item.quantity_produced * item.unit_value
           new_item['total_value'] -= item.total_value
 
           itens_pend << new_item
