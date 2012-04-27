@@ -36,7 +36,7 @@
   $('input[type=text]').keyup(function(){
     var t   = $(this);
     var ttd = t.parent().parent().parent();
-    var qtd = ttd.prev().html()*1; //ordererd Quantity
+    var qtd = ttd.prev().prev().html()*1; //ordererd Quantity
     var chk = $('input', ttd.next());
 
     if (!chk.hasClass('clicked')) {
@@ -51,12 +51,12 @@
   $('input[type=checkbox]').click(function(){
     var t      = $(this);
     var ttd    = t.parent().parent().parent();
-    var qtdOrd = ttd.prev().prev().html()*1; //ordererd Quantity
+    var qtdOrd = ttd.prev().prev().prev().html()*1; //ordererd Quantity
     var qtdPro = $('input', ttd.prev()).val()*1;
 
     $(this).addClass('clicked');
 
-    if (qtdPro > qtdOrd) { t.attr('checked', ''); }
+    if (qtdPro >= qtdOrd) { t.attr('checked', ''); }
   });
 //</script>
 <% end -%>
