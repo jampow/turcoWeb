@@ -110,8 +110,20 @@ class Receivable < ActiveRecord::Base
 
   attr_accessor :client_name
 
-  def after_initialize
-    self.client_name = Client.find(self.client_id, :select => 'name').name if self.client_id
-  end
+  # def after_initialize
+  #   self.client_name = Client.find(self.client_id, :select => 'name').name if self.client_id
+  # end
+
+# Select rec.id
+#      , cli.name as client
+#      , rec.invoice_number
+#      , rec.due_date
+#      , rec.value
+#      , rec.settled
+# From receivables rec
+# Join clients     cli On cli.id = rec.client_id
+
+  named_scope :grid, :select => "rec.id, cli.name as cli, rec.invoice_number, rec.due_date, rec.value, rec.settled",
+                     :joins  => "rec Join clients cli On cli.id = rec.client_id"
 end
 

@@ -9,7 +9,7 @@ class ReceivablesController < ApplicationController
   # GET /receivables
   # GET /receivables.xml
   def index
-    @receivables = Receivable.all
+    @receivables = Receivable.grid
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,6 +43,7 @@ class ReceivablesController < ApplicationController
   # GET /receivables/1/edit
   def edit
     @receivable = Receivable.find(params[:id])
+    @receivable.client_name = Client.find(@receivable.client_id, :select => 'name').name
     @division   = ReceivableCostDivision.new
   end
 
