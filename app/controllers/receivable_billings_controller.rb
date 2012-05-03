@@ -6,11 +6,11 @@ class ReceivableBillingsController < ApplicationController
     allow :receivable_billings_s, :to => []
   end
 
-  before_filter :load_receivable
   # GET /receivable_billings
   # GET /receivable_billings.xml
   def index
-    @receivable_billings = @receivable.billings
+    session[:rec_id] = params[:id] if params[:id]
+    @receivable_billings = ReceivableBilling.find(:all, :conditions => ['receivable_id = ?', session[:rec_id]])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,7 +20,7 @@ class ReceivableBillingsController < ApplicationController
   # GET /receivable_billings/1
   # GET /receivable_billings/1.xml
   def show
-    @receivable_billing = @receivable.billings.find(params[:id])
+    @receivable_billing = ReceivableBilling.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,7 +30,7 @@ class ReceivableBillingsController < ApplicationController
   # GET /receivable_billings/new
   # GET /receivable_billings/new.xml
   def new
-    @receivable_billing = @receivable.billings.build
+    @receivable_billing = ReceivableBilling.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,13 +39,13 @@ class ReceivableBillingsController < ApplicationController
 
   # GET /receivable_billings/1/edit
   def edit
-    @receivable_billing = @receivable.billings.find(params[:id])
+    @receivable_billing = ReceivableBilling.find(params[:id])
   end
 
   # POST /receivable_billings
   # POST /receivable_billings.xml
   def create
-    @receivable_billing = @receivable.billings.build(params[:receivable_billing])
+    @receivable_billing = ReceivableBilling.new(params[:receivable_billing])
 
     respond_to do |format|
       if @receivable_billing.save
@@ -60,7 +60,7 @@ class ReceivableBillingsController < ApplicationController
   # PUT /receivable_billings/1
   # PUT /receivable_billings/1.xml
   def update
-    @receivable_billing = @receivable.billings.find(params[:id])
+    @receivable_billing = ReceivableBilling.find(params[:id])
 
     respond_to do |format|
       if @receivable_billing.update_attributes(params[:receivable_billing])
@@ -84,9 +84,4 @@ class ReceivableBillingsController < ApplicationController
     end
   end
 
-  private
-
-  def load_receivable
-    @receivable = Receivable.find(params[:receivable_id])
-  end
 end

@@ -4,6 +4,10 @@ class ReceivableBilling < ActiveRecord::Base
 
   after_save :settle_receivable!
 
+  def client
+    receivable.client if client_id
+  end
+
   private
   def settle_receivable!
     if settle_receivable

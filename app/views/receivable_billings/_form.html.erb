@@ -1,40 +1,37 @@
 <% content_for :menu do -%>
-  <h1><%= @receivable_billing.new_record? ? 'Novo' : 'Editar' %> Lançamento de Recebimento</h1>
-  <%= link_to "Recebimento", receivable_path(@receivable), {:class => "button", :icon => "arrow-1"} %>
-  <%= link_to "Lançamentos", receivable_billings_path(@receivable), {:class => "button", :icon => "arrow-1"} %>
-  <%= link_to "Salvar", "#", {:class => "button save", :icon => "disk"} %>
+  <h1><%= @receivable_billing.new_record? ? 'Novo' : 'Editando' %> Recebimento</h1>
+  <%= mount_menu %>
 <% end %>
 
 
-<% form_for(@receivable_billing, :url => (@receivable_billing.new_record? ? receivable_billings_path(@receivable) : receivable_billing_path(@receivable, @receivable_billing) )) do |f| %>
+<% form_for(@receivable_billing) do |f| %>
   <%= f.error_messages %>
   <div id="values">
     <fieldset>
       <legend>Dados</legend>
-      <%= f.select :bank_account_id, BankAccount.to_select, :label => 'Conta' %>
-      <%= f.text_field :client_id, {:label => 'Receber de', :value => (@receivable.client.name rescue '')}.merge(@receivable.client ? {:disabled => 'disabled'} : {}) %>
-      <%= f.text_field :history, :label => 'Histórico' %>
-      <%= f.select :account_plan_id, AccountPlan.to_select, :label => 'Plano de Contas' %>
-      <%= f.select :cost_center_id, CostCenter.to_select, :label => 'Centro de Custos' %>
-      <%= f.text_field :document_number, :label => 'Num. Doc.' %>
-      <%= f.text_field :barcode, :label => 'Cod. Barra do Doc.' %>
-      <%= f.text_area :observations, :label => 'Observações' %>
+      <%= f.select     :bank_account_id, BankAccount.to_select, :label  => 'Conta'              , :size => 10 %>
+      <%= f.text_field :client_id                             , {:label => 'Receber de'         , :size => 20 , :value => (@receivable_billing.client.name rescue '')}.merge(@receivable_billing.client ? {:disabled => 'disabled'} : {}) %>
+      <%= f.select     :account_plan_id, AccountPlan.to_select, :label  => 'Plano de Contas'    , :size => 10 , :include_blank => true %>
+      <%= f.select     :cost_center_id , CostCenter.to_select , :label  => 'Centro de Custos'   , :size => 10 , :include_blank => true %>
+      <%= f.text_field :document_number                       , :label  => 'Num. Doc.'          , :size => 20 %>
+      <%= f.text_field :barcode                               , :label  => 'Cod. Barra do Doc.' , :size => 30 %>
+      <%= f.text_area  :observations                          , :label  => 'Observações'       , :size => 100 %>
     </fieldset>
   </div>
   <div id="values">
     <fieldset>
       <legend>Valores</legend>
-      <%= f.text_field :expire_at, :label => 'Vencimento', :class => 'datepicker' %>
-      <%= f.text_field :parcel, :label => 'Parcela' %>
-      <%= f.text_field :competency, :label => 'Competencia', :class => 'datepicker' %>
-      <%= f.text_field :received_at, :label => 'Data do Recebimento', :class => 'datepicker' %>
-      <%= f.text_field :bill_number, :label => 'Número' %>
-      <%= f.text_field :value, :label => 'Valor', :value => @receivable_billing.value || @receivable_billing.receivable.value %>
-      <%= f.text_field :fine, :label => 'Valor Multa' %>
-      <%= f.text_field :rate, :label => 'Valor Juros' %>
-      <%= f.text_field :discount, :label => 'Desconto' %>
-      <%= f.text_field :total, :label => 'Valor Total' %>
-      <%= f.check_box :settle_receivable, :label => 'Quita o Ativo?' %>
+      <%= f.text_field :expire_at        , :label => 'Vencimento'         , :class => 'datepicker'  , :size => 20 %>
+      <%= f.text_field :competency       , :label => 'Competencia'        , :class => 'datepicker'  , :size => 20 %>
+      <%= f.text_field :received_at      , :label => 'Data do Recebimento', :class => 'datepicker'  , :size => 20 %>
+      <%= f.text_field :bill_number      , :label => 'Número'                                       , :size => 20 %>
+      <%= f.text_field :parcel           , :label => 'Parcela'                                      , :size => 10 %>
+      <%= f.check_box  :settle_receivable, :label => 'Quita o Ativo?'                               , :size => 10 %>
+      <%= f.text_field :value            , :label => 'Valor'              , :class => 'mask-decimal', :size => 20, :decimal => "10,2", :value => @receivable_billing.value || @receivable_billing.receivable.value rescue '' %>
+      <%= f.text_field :fine             , :label => 'Valor Multa'        , :class => 'mask-decimal', :size => 20, :decimal => "10,2" %>
+      <%= f.text_field :rate             , :label => 'Valor Juros'        , :class => 'mask-decimal', :size => 20, :decimal => "10,2" %>
+      <%= f.text_field :discount         , :label => 'Desconto'           , :class => 'mask-decimal', :size => 20, :decimal => "10,2" %>
+      <%= f.text_field :total            , :label => 'Valor Total'        , :class => 'mask-decimal', :size => 20, :decimal => "10,2" %>
     </fieldset>
   </div>
 <% end %>
