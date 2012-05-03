@@ -213,7 +213,7 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
     //Adiciona máscaras de decimais
     $('.mask-decimal').each(function(){
       var t = $(this);
-      t.val(format.number.toDecimal(t.val()));
+      t.val(format.number.toDecimal(t.val(), t.attr('decimal')));
     });
 
     //prevent ajaxSuccess twice or more
@@ -332,7 +332,7 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o888ooo8888 o888o      o888o         88
     //Adiciona máscaras de decimais
     $('.mask-decimal').each(function(){
       var t = $(this);
-      t.val(format.number.toDecimal(t.val()));
+      t.val(format.number.toDecimal(t.val(), t.attr('decimal')));
     });
   });
 
@@ -530,8 +530,13 @@ var format = {
     }
   },
   number: {
-    toDecimal: function(val) {
-      val = val + '';
+    toDecimal: function(val, dec) {
+      if (dec == undefined) {
+        val = val+'';
+      } else {
+        var d = dec.split(',');
+        val = (val*1).toFixed(d[1]) + '';
+      }
       return val.replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D))/g, "$&.");
     }
   }
