@@ -38,6 +38,18 @@ class Receivable < ActiveRecord::Base
   named_scope :grid, :select => "rec.id, cli.name as cli, rec.invoice_number, rec.due_date, rec.value, rec.settled",
                      :joins  => "rec Join clients cli On cli.id = rec.client_id"
 
+  def reached_limit?
+    total_from_billings >= value ? true : false
+  end
+
+  def total_from_billings
+    sum = 0
+    billings.each do |bill|
+      sum += bill.total
+    end
+    sum
+  end
+
   class DocumentKind <
     Struct.new(:id, :kind)
     VALUES = [

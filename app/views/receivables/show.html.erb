@@ -1,7 +1,7 @@
 <% content_for :menu do -%>
   <h1>Título a receber</h1>
   <%= mount_menu %w[default separator] %>
-  <%= link_to "Lançar Recebimento", new_receivable_billing_path(@receivable), {:class => "button", :icon => "plus"} %>
+  <%# link_to "Lançar Recebimento", new_receivable_billing_path(@receivable), {:class => "button", :icon => "plus"} %>
   <%= link_to "Recebimentos"      , receivable_billings_path+"?id=#{@receivable.id}", {:class => "button", :icon => "arrowreturnthick-1-s"} %>
 
 <% end -%>
@@ -11,10 +11,11 @@
     <div id="general">
       <h2>Origem</h2>
       <%= print_content 'Receber de'     , h((@receivable.client || {})[:name])                                      , :width => 30 %>
-      <%= print_content "Histórico"      , h(@receivable.historic)                                                                  %>
+      <%= print_content "Histórico"      , h(@receivable.historic)                                                   , :width => 30 %>
       <%= print_content "Data de Emissão", date(@receivable.issue_date)                                              , :width => 10 %>
-      <%= print_content 'Documento'      , (Receivable::DocumentKind.find(@receivable.document_kind_id) || {})[:kind]               %>
+      <%= print_content 'Documento'      , (Receivable::DocumentKind.find(@receivable.document_kind_id) || {})[:kind], :width => 10 %>
       <%= print_content "Número da NF"   , h(@receivable.invoice_number)                                             , :width => 10 %>
+      <%= print_content "Quitado"        , human_boolean(@receivable.settled)                                        , :width => 10 %>
 
       <h2>Recebimento</h2>
       <%= print_content 'Conta'            , (@receivable.bank_account || {})[:name]                                     , :width => 20 %>

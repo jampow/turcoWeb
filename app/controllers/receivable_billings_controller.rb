@@ -30,11 +30,17 @@ class ReceivableBillingsController < ApplicationController
   # GET /receivable_billings/new
   # GET /receivable_billings/new.xml
   def new
-    @receivable_billing = ReceivableBilling.new
-
-    respond_to do |format|
-      format.html # new.html.erb
+    if Receivable.find(session[:rec_id]).settled
+      flash[:notice] = "Cobrança já está quitada"
+      redirect_to "/receivable_billings/?id=#{session[:rec_id]}"
     end
+    @receivable_billing = ReceivableBilling.new
+    @receivable_billing.receivable_id = session[:rec_id]
+    @receivable_billing.client_id     = Receivable.find(session[:rec_id]).client_id
+
+    # respond_to do |format|
+    #   format.html # new.html.erb
+    # end
   end
 
   # GET /receivable_billings/1/edit
@@ -49,8 +55,8 @@ class ReceivableBillingsController < ApplicationController
 
     respond_to do |format|
       if @receivable_billing.save
-        flash[:notice] = 'ReceivableBilling was successfully created.'
-        format.html { redirect_to receivable_billings_path(@receivable_billing) }
+        flash[:notice] = 'Recebimento criado.'
+        format.html { redirect_to(@receivable_billing) }
       else
         format.html { render :action => "new" }
       end
@@ -64,8 +70,8 @@ class ReceivableBillingsController < ApplicationController
 
     respond_to do |format|
       if @receivable_billing.update_attributes(params[:receivable_billing])
-        flash[:notice] = 'ReceivableBilling was successfully updated.'
-        format.html { redirect_to receivable_billing_path(@receivable, @receivable_billing) }
+        flash[:notice] = 'Recebimento atualizado.'
+        format.html { redirect_to(@receivable_billing) }
       else
         format.html { render :action => "edit" }
       end
@@ -75,7 +81,7 @@ class ReceivableBillingsController < ApplicationController
   # DELETE /receivable_billings/1
   # DELETE /receivable_billings/1.xml
   def destroy
-    @receivable_billing = @receivable.billings.find(params[:id])
+    @receivable_billing = ReceivableBilling.find(params[:id])
     @receivable_billing.destroy
 
     respond_to do |format|

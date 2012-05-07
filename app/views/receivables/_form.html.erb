@@ -11,10 +11,11 @@
     <legend>Origem</legend>
     <%= f.hidden_field :client_id %>
     <%= f.text_field :client_name                                       , :label => "Receber de"      , :size => 30, :class => 'autocomplete', :source => 'client', :pref => 'receivable_' %>
-    <%= f.text_field :historic                                          , :label => "Histórico"       %>
+    <%= f.text_field :historic                                          , :label => "Histórico"       , :size => 30 %>
     <%= f.text_field :issue_date                                        , :label => "Data de Emissão" , :size => 10, :class => 'datepicker' %>
-    <%= f.select :document_kind_id  , Receivable::DocumentKind.to_select, :label => 'Documento'       %>
+    <%= f.select :document_kind_id  , Receivable::DocumentKind.to_select, :label => 'Documento'       , :size => 10 %>
     <%= f.text_field :invoice_number                                    , :label => "Número da NF"    , :size => 10 %>
+    <%= f.check_box  :settled                                           , :label => "Quitado"         , :size => 10 %>
   </fieldset>
   <fieldset>
     <legend>Recebimento</legend>

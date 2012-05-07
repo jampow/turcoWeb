@@ -9,13 +9,14 @@
   <div id="values">
     <fieldset>
       <legend>Dados</legend>
-      <%= f.select     :bank_account_id, BankAccount.to_select, :label  => 'Conta'              , :size => 10 %>
-      <%= f.text_field :client_id                             , {:label => 'Receber de'         , :size => 20 , :value => (@receivable_billing.client.name rescue '')}.merge(@receivable_billing.client ? {:disabled => 'disabled'} : {}) %>
-      <%= f.select     :account_plan_id, AccountPlan.to_select, :label  => 'Plano de Contas'    , :size => 10 , :include_blank => true %>
-      <%= f.select     :cost_center_id , CostCenter.to_select , :label  => 'Centro de Custos'   , :size => 10 , :include_blank => true %>
-      <%= f.text_field :document_number                       , :label  => 'Num. Doc.'          , :size => 20 %>
-      <%= f.text_field :barcode                               , :label  => 'Cod. Barra do Doc.' , :size => 30 %>
-      <%= f.text_area  :observations                          , :label  => 'Observações'       , :size => 100 %>
+      <%= f.hidden_field :receivable_id                         , :label  => 'Receber de'         , :size => 20 %>
+      <%= f.select       :bank_account_id, BankAccount.to_select, :label  => 'Conta'              , :size => 10 %>
+      <%= f.text_field   :client_id                             , {:label => 'Receber de'         , :size => 20 , :value => (@receivable_billing.client.name rescue '')}.merge(@receivable_billing.client ? {:disabled => 'disabled'} : {}) %>
+      <%= f.select       :account_plan_id, AccountPlan.to_select, :label  => 'Plano de Contas'    , :size => 10 , :include_blank => true %>
+      <%= f.select       :cost_center_id , CostCenter.to_select , :label  => 'Centro de Custos'   , :size => 10 , :include_blank => true %>
+      <%= f.text_field   :document_number                       , :label  => 'Num. Doc.'          , :size => 20 %>
+      <%= f.text_field   :barcode                               , :label  => 'Cod. Barra do Doc.' , :size => 30 %>
+      <%= f.text_area    :observations                          , :label  => 'Observações'       , :size => 100 %>
     </fieldset>
   </div>
   <div id="values">
@@ -37,21 +38,31 @@
 <% end %>
 
 <script type="text/javascript">
-  <!--
-  $(function(){
-      function update_total_value(){
-        var value = $('#receivable_billing_value').val();
-        var fine = $('#receivable_billing_fine').val();
-        var rate = $('#receivable_billing_rate').val();
-        var discount = $('#receivable_billing_discount').val();
-        var total = value - fine - rate - discount;
-        $('#receivable_billing_total').val(Math.round(total*100)/100);
-      }
-      $('#receivable_billing_value').change(update_total_value);
-      $('#receivable_billing_fine').change(update_total_value);
-      $('#receivable_billing_rate').change(update_total_value);
-      $('#receivable_billing_discount').change(update_total_value);
-      update_total_value();
-      });
-  -->
+$(function(){
+  function update_total_value(){
+    var value    = format.decimal.toNumber($('#receivable_billing_value').val());
+    var fine     = format.decimal.toNumber($('#receivable_billing_fine').val());
+    var rate     = format.decimal.toNumber($('#receivable_billing_rate').val());
+    var discount = format.decimal.toNumber($('#receivable_billing_discount').val());
+    var total    = value + fine + rate - discount;
+
+    $('#receivable_billing_total').val(format.number.toDecimal(total, "10,2"));
+  }
+
+  function initial_update_total_value(){
+    var value    = $('#receivable_billing_value').val()*1;
+    var fine     = $('#receivable_billing_fine').val()*1;
+    var rate     = $('#receivable_billing_rate').val()*1;
+    var discount = $('#receivable_billing_discount').val()*1;
+    var total    = value + fine + rate - discount;
+
+    $('#receivable_billing_total').val(total);
+  }
+
+  $('#receivable_billing_value').blur(update_total_value);
+  $('#receivable_billing_fine').blur(update_total_value);
+  $('#receivable_billing_rate').blur(update_total_value);
+  $('#receivable_billing_discount').blur(update_total_value);
+  initial_update_total_value();
+});
 </script>

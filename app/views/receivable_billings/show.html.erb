@@ -3,21 +3,24 @@
   <%= mount_menu %>
 <% end -%>
 
-<%=print_content "Conta"              , h(@receivable_billing.bank_account_id), :width => 25 %>
-<%=print_content "Cliente"            , h(@receivable_billing.client_id)      , :width => 25 %>
-<%=print_content "Histórico"          , h(@receivable_billing.history)        , :width => 25 %>
-<%=print_content "Plano de contas"    , h(@receivable_billing.account_plan_id), :width => 25 %>
-<%=print_content "Centro de custo"    , h(@receivable_billing.cost_center_id) , :width => 25 %>
-<%=print_content "Número do documento", h(@receivable_billing.document_number), :width => 25 %>
-<%=print_content "Código de barras"   , h(@receivable_billing.barcode)        , :width => 25 %>
-<%=print_content "Observações"        , h(@receivable_billing.observations)   , :width => 25 %>
-<%=print_content "Vencimento"         , h(@receivable_billing.expire_at)      , :width => 25 %>
-<%=print_content "Parcela"            , h(@receivable_billing.parcel)         , :width => 25 %>
-<%=print_content "Competência"        , h(@receivable_billing.competency)     , :width => 25 %>
-<%=print_content "Recebimento"        , h(@receivable_billing.received_at)    , :width => 25 %>
-<%=print_content "Número"             , h(@receivable_billing.bill_number)    , :width => 25 %>
-<%=print_content "Valor"              , h(@receivable_billing.value)          , :width => 25 %>
-<%=print_content "Valor da multa"     , h(@receivable_billing.fine)           , :width => 25 %>
-<%=print_content "Valor do juros"     , h(@receivable_billing.rate)           , :width => 25 %>
-<%=print_content "Desconto"           , h(@receivable_billing.discount)       , :width => 25 %>
-<%=print_content "Valor total"        , h(@receivable_billing.total)          , :width => 25 %>
+<%=print_content "Conta"              , h(@receivable_billing.bank_account_id), :width => 10 %>
+<%=print_content "Cliente"            , h(@receivable_billing.client_id)      , :width => 20 %>
+<%#print_content "Histórico"          , h(@receivable_billing.history)        , :width => 25 %>
+<%=print_content "Plano de contas"    , h(@receivable_billing.account_plan_id), :width => 10 %>
+<%=print_content "Centro de custo"    , h(@receivable_billing.cost_center_id) , :width => 10 %>
+<%=print_content "Número do documento", h(@receivable_billing.document_number), :width => 20 %>
+<%=print_content "Código de barras"   , h(@receivable_billing.barcode)        , :width => 30 %>
+
+<%=print_content "Observações"        , h(@receivable_billing.observations)   , :width => 100%>
+
+<%=print_content "Vencimento"         , date(@receivable_billing.expire_at)   , :width => 20 %>
+<%=print_content "Competência"        , h(@receivable_billing.competency)     , :width => 20 %>
+<%=print_content "Recebimento"        , h(@receivable_billing.received_at)    , :width => 20 %>
+<%=print_content "Número"             , h(@receivable_billing.bill_number)    , :width => 20 %>
+<%=print_content "Parcela"            , h(@receivable_billing.parcel)         , :width => 20 %>
+
+<%=print_content "Valor"              , h(@receivable_billing.value)          , :width => 20 %>
+<%=print_content "Valor da multa"     , h(@receivable_billing.fine)           , :width => 20 %>
+<%=print_content "Valor do juros"     , h(@receivable_billing.rate)           , :width => 20 %>
+<%=print_content "Desconto"           , h(@receivable_billing.discount)       , :width => 20 %>
+<%=print_content "Valor total"        , h(@receivable_billing.total)          , :width => 20 %>
