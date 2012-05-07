@@ -1,4 +1,3 @@
-require 'ap'
 class ReceivableBilling < ActiveRecord::Base
   belongs_to :receivable
   attr_accessor :settle_receivable
