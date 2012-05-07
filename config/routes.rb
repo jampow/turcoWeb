@@ -30,9 +30,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :products
   map.resources :providers
   map.resources :purchase_orders, :collection => { :reverse => :get }
-  map.resources :receivables do |r|
-    r.resources :billings, :controller => 'receivable_billings'
-  end
+  map.resources :receivables
+  map.resources :receivable_billings
   map.resources :sales_orders   , :collection => { :close => :get, :reverse => :get, :production => :get, :save_production => :put }
   map.resources :sellers
   map.resources :seller_credit_accounts

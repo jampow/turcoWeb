@@ -1,26 +1,28 @@
 <% content_for :menu do -%>
   <h1>Título a receber</h1>
-  <%= mount_menu %>
-  <%= link_to "Lançar Recebimento", new_receivable_billing_path(@receivable), {:class => "button", :icon => "plus"} %>
-  <%= link_to "Lançamentos"       , receivable_billings_path(@receivable)   , {:class => "button", :icon => "triangle-1-e"} %>
+  <%= mount_menu %w[default separator] %>
+  <%# link_to "Lançar Recebimento", new_receivable_billing_path(@receivable), {:class => "button", :icon => "plus"} %>
+  <%= link_to "Recebimentos"      , receivable_billings_path+"?id=#{@receivable.id}", {:class => "button", :icon => "arrowreturnthick-1-s"} %>
+
 <% end -%>
 
 <div class="form-wrapper">
   <div id="tabs">
     <div id="general">
       <h2>Origem</h2>
-      <%= print_content 'Receber de'     , h((@receivable.client || {})[:name]) %>
-      <%= print_content "Histórico"      , h(@receivable.historic) %>
-      <%= print_content "Data de Emissão", date(@receivable.issue_date) %>
-      <%= print_content 'Documento'      , (Receivable::DocumentKind.find(@receivable.document_kind_id) || {})[:kind] %>
-      <%= print_content "Número da NF"   , h(@receivable.invoice_number) %>
+      <%= print_content 'Receber de'     , h((@receivable.client || {})[:name])                                      , :width => 30 %>
+      <%= print_content "Histórico"      , h(@receivable.historic)                                                   , :width => 30 %>
+      <%= print_content "Data de Emissão", date(@receivable.issue_date)                                              , :width => 10 %>
+      <%= print_content 'Documento'      , (Receivable::DocumentKind.find(@receivable.document_kind_id) || {})[:kind], :width => 10 %>
+      <%= print_content "Número da NF"   , h(@receivable.invoice_number)                                             , :width => 10 %>
+      <%= print_content "Quitado"        , human_boolean(@receivable.settled)                                        , :width => 10 %>
 
       <h2>Recebimento</h2>
-      <%= print_content 'Conta'            , (@receivable.bank_account || {})[:name] %>
-      <%= print_content 'Meio de Pagamento', (Receivable::PaymentMethod.find(@receivable.payment_method_id) || {})[:name] %>
-      <%= print_content "Vencimento"       , date(@receivable.due_date) %>
-      <%= print_content 'Frequencia'       , (Receivable::Frequency.find(@receivable.frequency_id) || {})[:name]  %>
-      <%= print_content "Valor"            , number_to_currency(@receivable.value) %>
+      <%= print_content 'Conta'            , (@receivable.bank_account || {})[:name]                                     , :width => 20 %>
+      <%= print_content 'Meio de Pagamento', (Receivable::PaymentMethod.find(@receivable.payment_method_id) || {})[:name], :width => 20 %>
+      <%= print_content "Vencimento"       , date(@receivable.due_date)                                                  , :width => 20 %>
+      <%= print_content 'Frequencia'       , (Receivable::Frequency.find(@receivable.frequency_id) || {})[:name]         , :width => 20 %>
+      <%= print_content "Valor"            , number_to_currency(@receivable.value)                                       , :width => 20 %>
 
       <h2>Informações Adicionais</h2>
       <div id="aditional-informations">
@@ -32,40 +34,62 @@
         <%= print_content 'Multa'                   , h(@receivable.fine) %>
         <%= print_content 'Juros'                   , h(@receivable.rate) %>
         <%= print_content 'Calcular'                , (Receivable::RateCalculationType.find(@receivable.rate_calculation_type_id)||{})[:name] %>
-        <%= print_content 'Observações'             , h(@receivable.observations) %>
+        <%= print_content 'Observações'             , h(@receivable.observations), :width => 100 %>
       </div>
       <div class="clear"></div>
-      <div id="division_parts">
-        <h2>Divisão/Rateio de Valor</h2>
-        <table id="receivable_division_order_items" cellpading="0" cellspacing="0" border="0" width="100%" class="list" >
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Id do Plano</th>
-              <th>Plano de Conta</th>
-              <th>Id do Centro</th>
-              <th>Centro de Custos</th>
-              <th>Observação</th>
-              <th>Valor</th>
-              <th>%</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @receivable.receivable_cost_divisions.each do |div| %>
+
+      <div style="float:left;width:50%">
+        <div style="padding:10px 5px 0 0;">
+          <h2>Recebimentos</h2>
+          <table id="receivable_bllings" cellpading="0" cellspacing="0" border="0" width="100%" class="list" >
+            <thead>
               <tr>
-                <td><%= div.id %></td>
-                <td><%= div.account_plan_id %></td>
-                <td><%= (div.account_plan || {})[:name] %></td>
-                <td><%= div.cost_center_id %></td>
-                <td><%= (div.cost_center || {})[:name] %></td>
-                <td><%= div.observations %></td>
-                <td class="right"><%= number_to_currency(div.value) %></td>
-                <td class="right"><%= div.value.to_f / @receivable.value.to_f * 100 %></td>
+                <th>Vencimento</th>
+                <th>Parcela</th>
+                <th>Recebido em</th>
+                <th>Valor</th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <% @receivable.billings.each do |rec| %>
+                <tr>
+                  <td class="center"><%= date(rec.expire_at) %></td>
+                  <td><%= rec.parcel %></td>
+                  <td class="center"><%= date(rec.received_at) %></td>
+                  <td class="right"><%= number_to_currency(rec.value) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      <div style="float:left;width:50%">
+        <div style="padding:10px 0 0 5px;">
+          <h2>Divisão/Rateio de Valor</h2>
+          <table id="receivable_division_order_items" cellpading="0" cellspacing="0" border="0" width="100%" class="list" >
+            <thead>
+              <tr>
+                <th>Plano de Conta</th>
+                <th>Centro de Custos</th>
+                <th>Valor</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @receivable.receivable_cost_divisions.each do |div| %>
+                <tr>
+                  <td><%= (div.account_plan || {})[:name] %></td>
+                  <td><%= (div.cost_center || {})[:name] %></td>
+                  <td class="right"><%= number_to_currency(div.value) %></td>
+                  <td class="right"><%= div.value.to_f / @receivable.value.to_f * 100 %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

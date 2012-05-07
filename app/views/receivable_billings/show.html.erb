@@ -1,93 +1,26 @@
-<p>
-  <b>Bank account:</b>
-  <%=h @receivable_billing.bank_account_id %>
-</p>
+<% content_for :menu do -%>
+  <h1>Recebimento</h1>
+  <%= mount_menu %>
+<% end -%>
 
-<p>
-  <b>Client:</b>
-  <%=h @receivable_billing.client_id %>
-</p>
+<%=print_content "Conta"              , h(@receivable_billing.bank_account_id), :width => 10 %>
+<%=print_content "Cliente"            , h(@receivable_billing.client_id)      , :width => 20 %>
+<%#print_content "Histórico"          , h(@receivable_billing.history)        , :width => 25 %>
+<%=print_content "Plano de contas"    , h(@receivable_billing.account_plan_id), :width => 10 %>
+<%=print_content "Centro de custo"    , h(@receivable_billing.cost_center_id) , :width => 10 %>
+<%=print_content "Número do documento", h(@receivable_billing.document_number), :width => 20 %>
+<%=print_content "Código de barras"   , h(@receivable_billing.barcode)        , :width => 30 %>
 
-<p>
-  <b>History:</b>
-  <%=h @receivable_billing.history %>
-</p>
+<%=print_content "Observações"        , h(@receivable_billing.observations)   , :width => 100%>
 
-<p>
-  <b>Account plan:</b>
-  <%=h @receivable_billing.account_plan_id %>
-</p>
+<%=print_content "Vencimento"         , date(@receivable_billing.expire_at)   , :width => 20 %>
+<%=print_content "Competência"        , h(@receivable_billing.competency)     , :width => 20 %>
+<%=print_content "Recebimento"        , h(@receivable_billing.received_at)    , :width => 20 %>
+<%=print_content "Número"             , h(@receivable_billing.bill_number)    , :width => 20 %>
+<%=print_content "Parcela"            , h(@receivable_billing.parcel)         , :width => 20 %>
 
-<p>
-  <b>Cost center:</b>
-  <%=h @receivable_billing.cost_center_id %>
-</p>
-
-<p>
-  <b>Document number:</b>
-  <%=h @receivable_billing.document_number %>
-</p>
-
-<p>
-  <b>Barcode:</b>
-  <%=h @receivable_billing.barcode %>
-</p>
-
-<p>
-  <b>Observations:</b>
-  <%=h @receivable_billing.observations %>
-</p>
-
-<p>
-  <b>Expire at:</b>
-  <%=h @receivable_billing.expire_at %>
-</p>
-
-<p>
-  <b>Parcel:</b>
-  <%=h @receivable_billing.parcel %>
-</p>
-
-<p>
-  <b>Competency:</b>
-  <%=h @receivable_billing.competency %>
-</p>
-
-<p>
-  <b>Received at:</b>
-  <%=h @receivable_billing.received_at %>
-</p>
-
-<p>
-  <b>Bill number:</b>
-  <%=h @receivable_billing.bill_number %>
-</p>
-
-<p>
-  <b>Value:</b>
-  <%=h @receivable_billing.value %>
-</p>
-
-<p>
-  <b>Fine:</b>
-  <%=h @receivable_billing.fine %>
-</p>
-
-<p>
-  <b>Rate:</b>
-  <%=h @receivable_billing.rate %>
-</p>
-
-<p>
-  <b>Discount:</b>
-  <%=h @receivable_billing.discount %>
-</p>
-
-<p>
-  <b>Total:</b>
-  <%=h @receivable_billing.total %>
-</p>
-
-
-<%= link_to 'Edit', edit_receivable_billing_path(@receivable_billing) %> |
-<%= link_to 'Back', receivable_billings_path %>
+<%=print_content "Valor"              , h(@receivable_billing.value)          , :width => 20 %>
+<%=print_content "Valor da multa"     , h(@receivable_billing.fine)           , :width => 20 %>
+<%=print_content "Valor do juros"     , h(@receivable_billing.rate)           , :width => 20 %>
+<%=print_content "Desconto"           , h(@receivable_billing.discount)       , :width => 20 %>
+<%=print_content "Valor total"        , h(@receivable_billing.total)          , :width => 20 %>

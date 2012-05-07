@@ -226,9 +226,20 @@ module ApplicationHelper
   def human_boolean(bool)
     bool ? "Sim" : "Não"
   end
-  
+
   def date(date)
-    date ? l(date) : ""
+    if !date.nil?
+      if date.class == Date
+        l(date)
+      elsif date.class == ActiveSupport::TimeWithZone
+        l(date, :format => :date)
+      else
+        date
+      end
+    else
+      ""
+    end
   end
+
 end
 

@@ -23,6 +23,7 @@
       default: "%A, %d de %B de %Y, %H:%M h"
       short: "%d/%m, %H:%M h"
       long: "%A, %d de %B de %Y, %H:%M h"
+      date: "%d/%m/%Y"
     am: ''
     pm: ''
 
@@ -217,6 +218,7 @@
       product: "Produto"
       provider: "Fornecedor"
       purchase order: "Pedido de compra"
+      receivable: "Conta a receber"
       sales order: "Pedido de venda"
       sells type: "Tipos de NF"
       st cofin: "Cofins"
@@ -302,6 +304,11 @@
         cnpj: "CNPJ"
       purchase_order:
         client_id: "Fornecedor"
+      receivable:
+        client_id: "Cliente"
+        issue_date: "Data de emissão"
+        due_date: "Vencimento"
+        value: "Valor"
       sales_order:
         client_id: "Cliente"
       sells_type:
