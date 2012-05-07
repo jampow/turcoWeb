@@ -482,7 +482,6 @@ function showModal(params){
     height: 280,
     url: '/',
     title: '',
-    height: 215,
     width: 550,
     close: function(event, ui) {
       contnr.dialog('destroy');
@@ -531,7 +530,7 @@ var format = {
   },
   number: {
     toDecimal: function(val, dec) {
-      if (dec == undefined) {
+      if (dec === undefined) {
         val = val+'';
       } else {
         var d = dec.split(',');
@@ -553,6 +552,6 @@ var len = function(field){
     bef = aft;
     aft = $(field).val().replace(/[\/ \.-]/gi, '').length;
     return {"bef": bef, "aft": aft};
-  }
+  };
   return f;
-}
+};
