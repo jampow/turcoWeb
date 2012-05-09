@@ -1,0 +1,21 @@
+<% content_for :menu do -%>
+  <h1>Editando locação</h1>
+  <%= mount_menu %w[default separator edit] %>
+<% end -%>
+
+<% form_for(@location) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.text_field   :number                                      , :label => "Número"                , :size => 10  %>
+  <%= f.text_field   :contact                                     , :label => "Contato"               , :size => 20  %>
+  <%= f.hidden_field :client_id                                   , :label => "Id do Cliente"         , :size => 20  %>
+  <%= f.text_field   :client_name                                 , :label => "Cliente"               , :size => 30 , :class => "autocomplete", :source => "client", :prefix => "location_" %>
+  <%= f.hidden_field :seller_id                                   , :label => "Id do Representante"   , :size => 20  %>
+  <%= f.text_field   :seller_name                                 , :label => "Representante"         , :size => 30 , :class => "autocomplete", :source => "seller", :prefix => "location_" %>
+  <%= f.check_box    :quotation                                   , :label => "Cotação?"              , :size => 10  %>
+  <%= f.text_field   :comission                                   , :label => "Comissão"              , :size => 20  %>
+  <%= f.select       :payment_condition_id, (@payment_conds || []), :label => "Condições de pagamento", :size => 20  %>
+  <%= f.text_field   :starts_at                                   , :label => "Início da locação"     , :size => 20 , :class => "datepicker" %>
+  <%= f.text_field   :ends_at                                     , :label => "Término da locação"    , :size => 20 , :class => "datepicker" %>
+  <%= f.text_area    :observation                                 , :label => "Observações"           , :size => 100 %>
+<% end %>

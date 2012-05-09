@@ -1,0 +1,53 @@
+<p>
+  <b>Number:</b>
+  <%=h @location.number %>
+</p>
+
+<p>
+  <b>Quotation:</b>
+  <%=h @location.quotation %>
+</p>
+
+<p>
+  <b>Contact:</b>
+  <%=h @location.contact %>
+</p>
+
+<p>
+  <b>Client:</b>
+  <%=h @location.client_id %>
+</p>
+
+<p>
+  <b>Seller:</b>
+  <%=h @location.seller_id %>
+</p>
+
+<p>
+  <b>Comission:</b>
+  <%=h @location.comission %>
+</p>
+
+<p>
+  <b>Payment condition:</b>
+  <%=h @location.payment_condition_id %>
+</p>
+
+<p>
+  <b>Starts at:</b>
+  <%=h @location.starts_at %>
+</p>
+
+<p>
+  <b>Ends at:</b>
+  <%=h @location.ends_at %>
+</p>
+
+<p>
+  <b>Observation:</b>
+  <%=h @location.observation %>
+</p>
+
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

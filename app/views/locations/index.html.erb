@@ -1,0 +1,9 @@
+<% content_for :menu do -%>
+  <h1>Locações</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @locations, ["number"   , "Número" ],
+                      ["cli"      , "Cliente"],
+                      ["starts_at", "Início" ],
+                      ["ends_at"  , "Término"] %>
