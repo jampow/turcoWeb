@@ -3,7 +3,7 @@
   <%= mount_menu %>
 <% end -%>
 
-<%= table @locations, ["number"   , "Número" ],
+<%= table @locations, ["number"   , "Número" , {:class => "right"}],
                       ["cli"      , "Cliente"],
-                      ["starts_at", "Início" ],
-                      ["ends_at"  , "Término"] %>
+                      ["starts_at", "Início" , {:format => "date", :class => "center"}],
+                      ["ends_at"  , "Término", {:format => "date", :class => "center"}] %>

@@ -18,4 +18,40 @@
   <%= f.text_field   :starts_at                                   , :label => "Início da locação"     , :size => 20 , :class => "datepicker" %>
   <%= f.text_field   :ends_at                                     , :label => "Término da locação"    , :size => 20 , :class => "datepicker" %>
   <%= f.text_area    :observation                                 , :label => "Observações"           , :size => 100 %>
+
+  <% field_set_tag 'Itens' do -%>
+    <%= new_location_item_toolbar f %>
+    <% f.fields_for :location_items, @item_form do |soi| %>
+      <%= render :partial => "location_item_fields", :locals => {:f => soi} %>
+    <% end -%>
+
+    <table id="location_items" cellpading="0" cellspacing="0" border="0" width="100%">
+      <thead>
+        <tr>
+          <th>Id do item       </th>
+          <th>Id Produto       </th>
+          <th>Produto          </th>
+          <th>Quantidade       </th>
+          <th>Unidade de Medida</th>
+          <th>Valor Unitário   </th>
+          <th>Valor Total      </th>
+        </tr>
+      </thead>
+      <tbody>
+      <% f.fields_for :location_items, @grid do |soi| %>
+        <tr>
+          <td><%= soi.hidden_field :id              %><span></span></td>
+          <td><%= soi.hidden_field :product_id      %><span></span></td>
+          <td><%= soi.hidden_field :product_name    %><span></span></td>
+          <td><%= soi.hidden_field :quantity        %><span></span></td>
+          <td><%= soi.hidden_field :measure_unit_id %><span></span></td>
+          <td><%= soi.hidden_field :unit_value      %><span></span></td>
+          <td><%= soi.hidden_field :total_value     %><span></span></td>
+        </tr>
+      <% end -%>
+      </tbody>
+    </table>
+  <% end -%>
+  <div id="trash" class="hide"></div>
+
 <% end %>

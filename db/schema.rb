@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120509173535) do
+ActiveRecord::Schema.define(:version => 20120510162602) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -264,6 +264,17 @@ ActiveRecord::Schema.define(:version => 20120509173535) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "order_id"
+  end
+
+  create_table "location_items", :force => true do |t|
+    t.integer  "location_id"
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.integer  "measure_unit_id"
+    t.integer  "unit_value",      :limit => 10, :precision => 10, :scale => 0
+    t.integer  "total_value",     :limit => 10, :precision => 10, :scale => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "locations", :force => true do |t|
