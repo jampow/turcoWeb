@@ -3,11 +3,11 @@
   <%= mount_menu %>
 <% end -%>
 
-<%= print_content "Número"                , h(@location.number)                , :width => 20  %>
-<%= print_content "Cotação?"              , human_boolean(@location.quotation) , :width => 20  %>
+<%= print_content "Número"                , h(@location.number)                , :width => 10  %>
 <%= print_content "Contato"               , h(@location.contact)               , :width => 20  %>
-<%= print_content "Cliente"               , h(@location.client.name)           , :width => 20  %>
-<%= print_content "Representante"         , h(@location.seller.name)           , :width => 20  %>
+<%= print_content "Cliente"               , h(@location.client.name)           , :width => 30  %>
+<%= print_content "Representante"         , h(@location.seller.name)           , :width => 30  %>
+<%= print_content "Cotação?"              , human_boolean(@location.quotation) , :width => 10  %>
 <%= print_content "Comissão"              , h(@location.comission)             , :width => 20  %>
 <%= print_content "Condição de pagamento" , h(@location.payment_form.name)     , :width => 20  %>
 <%= print_content "Início"                , date(@location.starts_at)          , :width => 20  %>
@@ -21,10 +21,10 @@
 <table class="personal_list" cellpading="0" cellspacing="0" border="0" width="100%">
   <thead>
     <tr>
-      <th               >Produto</th>
-      <th class="right" >Quantidade</th>
-      <th class="right" >Valor Unitário</th>
-      <th class="right" >Valor Total</th>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Valor Unitário</th>
+      <th>Valor Total</th>
     </tr>
   </thead>
   <tbody>

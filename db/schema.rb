@@ -271,8 +271,8 @@ ActiveRecord::Schema.define(:version => 20120510162602) do
     t.integer  "product_id"
     t.integer  "quantity"
     t.integer  "measure_unit_id"
-    t.integer  "unit_value",      :limit => 10, :precision => 10, :scale => 0
-    t.integer  "total_value",     :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "unit_value",      :precision => 10, :scale => 2
+    t.decimal  "total_value",     :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

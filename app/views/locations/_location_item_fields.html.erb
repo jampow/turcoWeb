@@ -4,7 +4,7 @@
 <%= f.text_field   :quantity           , :label => "Quantidade"        , :size => 20 %>
 <%= f.select       :measure_unit_id, [], :label => "Unidade de medida" , :size => 20 %>
 <%= f.text_field   :unit_value         , :label => "Valor unitário"    , :size => 20, :class => "mask-decimal", :decimal => "10,2" %>
-<%= f.text_field   :total_value        , :label => "Valor total"       , :size => 10, :disabled => "deisabled" %>
+<%= f.text_field   :total_value        , :label => "Valor total"       , :size => 10, :class => "mask-decimal", :decimal => "10,2", :disabled => "deisabled" %>
 
 <div class="clear"></div>
 <script type="text/javascript">

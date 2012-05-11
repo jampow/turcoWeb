@@ -5,8 +5,8 @@ class CreateLocationItems < ActiveRecord::Migration
       t.integer :product_id
       t.integer :quantity
       t.integer :measure_unit_id
-      t.decimal :unit_value , :precision => 10, :scala => 2
-      t.decimal :total_value, :precision => 10, :scala => 2
+      t.decimal :unit_value , :precision => 10, :scale => 2
+      t.decimal :total_value, :precision => 10, :scale => 2
 
       t.timestamps
     end

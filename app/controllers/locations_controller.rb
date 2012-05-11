@@ -33,7 +33,7 @@ class LocationsController < ApplicationController
   # GET /locations/new.xml
   def new
     @location = Location.new
-    @location.location_items.build
+    @item_form = LocationItem.new
     default_data
 
     respond_to do |format|
@@ -64,6 +64,9 @@ class LocationsController < ApplicationController
         format.html { redirect_to(@location) }
         format.xml  { render :xml => @location, :status => :created, :location => @location }
       else
+        default_data
+        @item_form = LocationItem.new
+
         format.html { render :action => "new" }
         format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
       end
@@ -81,6 +84,9 @@ class LocationsController < ApplicationController
         format.html { redirect_to(@location) }
         format.xml  { head :ok }
       else
+        default_data
+        @item_form = LocationItem.new
+
         format.html { render :action => "edit" }
         format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
       end
