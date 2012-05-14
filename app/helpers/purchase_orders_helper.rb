@@ -3,7 +3,7 @@ module PurchaseOrdersHelper
   def btn_reverse(id)
     link_to "Estornar", "/purchase_orders/reverse?id=#{id}", :class => "button confirm", :icon => "arrowreturn-1-w"
   end
-  
+
   def new_purchase_item_toolbar f , btns = ['add', 'save', 'del']
     flash[:create_purchase_table_item] = true
     s  = "<div class=\"form-toolbar\">"
@@ -115,7 +115,7 @@ module PurchaseOrdersHelper
                 });
 
                 if (empty == true) {
-                  alert("Há campos vazios, não pode inserir");
+                  alert("Há campo(s) vazio(s)", "Não pode inserir");
                   return false;
                 }
 

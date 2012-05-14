@@ -555,3 +555,17 @@ var len = function(field){
   };
   return f;
 };
+
+//Sobrescrevendo o alert
+function alert(msg, title){
+  var t = $('#alert');
+  (title === undefined) ? t.attr('title', '') : t.attr('title', title)
+  t.html(msg).dialog({
+    modal: true,
+    buttons: {
+      Ok: function() {
+        $(this).dialog("destroy");
+      }
+    }
+  });
+}

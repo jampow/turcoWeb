@@ -1,5 +1,5 @@
 module AccountPlansHelper
-  
+
   def apportionments_toolbar f , btns = ['add', 'save', 'del']
     flash[:create_apportionments_table] = true
     s  = "<div class=\"form-toolbar\">"
@@ -8,28 +8,28 @@ module AccountPlansHelper
     s += btn_apportionments_save if btns.include? 'save'
     s += "</div>"
   end
-  
+
   def btn_apportionments_add
     flash[:btn_apportionments_add] = true
-    html = link_to "Adicionar", "#", :class   => "button new-apportionment", 
+    html = link_to "Adicionar", "#", :class   => "button new-apportionment",
                                      :caption => "false",
                                      :icon    => "plus"
   end
-  
+
   def btn_apportionments_del
     flash[:btn_apportionments_del] = true
-    html = link_to "Remover", "#", :class   => "button del-apportionment", 
+    html = link_to "Remover", "#", :class   => "button del-apportionment",
                                    :caption => "false",
                                    :icon    => "minus"
   end
-  
+
   def btn_apportionments_save
     flash[:btn_apportionments_save] = true
-    html = link_to "Salvar", "#", :class   => "button save-apportionment", 
+    html = link_to "Salvar", "#", :class   => "button save-apportionment",
                                   :caption => "false",
                                   :icon    => "check"
   end
-  
+
 
 
 
@@ -117,7 +117,7 @@ module AccountPlansHelper
                 });
 
                 if (empty == true) {
-                  alert("Há campo(s) vazio(s), não pode inserir");
+                  alert("Há campo(s) vazio(s)", "Não pode inserir");
                   return false;
                 }
 
@@ -148,5 +148,5 @@ module AccountPlansHelper
     html
   end
 
-  
+
 end
