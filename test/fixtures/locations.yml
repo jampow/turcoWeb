@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  number: MyString
+  quotation: false
+  contact: MyString
+  client_id: 1
+  seller_id: 1
+  comission: 9.99
+  payment_condition_id: 1
+  starts_at: 2012-05-09
+  ends_at: 2012-05-09
+  observation: MyText
+
+two:
+  number: MyString
+  quotation: false
+  contact: MyString
+  client_id: 1
+  seller_id: 1
+  comission: 9.99
+  payment_condition_id: 1
+  starts_at: 2012-05-09
+  ends_at: 2012-05-09
+  observation: MyText

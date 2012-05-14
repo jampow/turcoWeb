@@ -161,7 +161,7 @@ module AddressHelper
 
                 if (cep == "" || cep.length < 9)
                 {
-                  alert('CEP inválido');
+                  alert('CEP inválido', 'Inválido');
                 }
                 else
                 {
@@ -181,7 +181,7 @@ module AddressHelper
                         context.find( 'input[name$=country\\]]'     ).attr('value', 'Brasil');
                         context.find( 'input[name$=number\\]]'      ).focus();
                       } else {
-                        alert(result.resultado_txt);
+                        alert(result.resultado_txt, "Mensagem");
                       }
                     }
                   });

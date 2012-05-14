@@ -24,16 +24,22 @@
   <%= js_invoice_new_item          if flash[:btn_invoice_new_item]      %>
   <%= js_invoice_del_item          if flash[:btn_invoice_del_item]      %>
   <%= js_invoice_save_item         if flash[:btn_invoice_save_item]     %>
-  
+
   <%= js_purchase_create_table_item if flash[:create_purchase_table_item] %>
   <%= js_purchase_new_item          if flash[:btn_purchase_new_item]      %>
   <%= js_purchase_del_item          if flash[:btn_purchase_del_item]      %>
   <%= js_purchase_save_item         if flash[:btn_purchase_save_item]     %>
-  
+
   <%= js_apportionments_create_table if flash[:create_apportionments_table] %>
   <%= js_apportionments_add          if flash[:btn_apportionments_add]      %>
   <%= js_apportionments_del          if flash[:btn_apportionments_del]      %>
   <%= js_apportionments_save         if flash[:btn_apportionments_save]     %>
+
+  <%= js_location_create_table_item if flash[:create_location_table_item] %>
+  <%= js_location_new_item          if flash[:btn_location_new_item]      %>
+  <%= js_location_del_item          if flash[:btn_location_del_item]      %>
+  <%= js_location_save_item         if flash[:btn_location_save_item]     %>
+
   <%= yield :script  %>
 </script>
 

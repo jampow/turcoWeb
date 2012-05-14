@@ -215,6 +215,7 @@
       cst pis: "Subst. Tributária Pis"
       enterprise: "Empresa"
       invoice: "Nota Fiscal"
+      location: "Locação"
       product: "Produto"
       provider: "Fornecedor"
       purchase order: "Pedido de compra"
@@ -298,6 +299,11 @@
         nfe_env: "Enviada"
         manaus_discount: "Disconto Zona Franca"
         canceled: "Cancelada"
+      location:
+        client_id: "Cliente"
+        client_name: "Cliente"
+        starts_at: "Início da locação"
+        ends_at: "Término da locação"
       provider:
         code: "Código"
         name: "Nome"

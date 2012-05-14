@@ -108,7 +108,7 @@ module ReceivablesHelper
                 });
 
                 if (empty == true) {
-                  alert("Há campos vazios, não pode inserir");
+                  alert("Há campo(s) vazio(s)", "Não pode inserir");
                   return false;
                 }
 

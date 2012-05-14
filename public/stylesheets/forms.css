@@ -260,6 +260,11 @@ form label.mandatory textarea {
 	border-left: 8px solid #809db5;
 }
 
+form label.mandatory input.autocomplete {
+	border: 1px solid #80B58E;
+	border-left: 8px solid #80B58E;
+}
+
 form label.mandatory .fieldWithErrors input,
 form label.mandatory .fieldWithErrors select,
 form label.mandatory .fieldWithErrors textarea {

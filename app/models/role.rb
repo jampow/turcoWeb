@@ -22,6 +22,7 @@ class Role < ActiveRecord::Base
           :func_contacts             => 'Funções dos contatos'           ,
           :hollydays                 => 'Feriados'                       ,
           :invoices                  => 'Notas Fiscais'                  ,
+          :locations                 => 'Locações'                       ,
           :measure_units             => 'Unidades de medida'             ,
           :messages                  => 'Mensagens'                      ,
           :ncms                      => 'NCM\'s'                         ,
@@ -44,7 +45,7 @@ class Role < ActiveRecord::Base
           :st_pis                    => 'ST PIS'                         ,
           :stocks                    => 'Almoxarifado'                   ,
           :terms                     => 'Termos'                         ,
-          :users                     => 'Usuários'                       
+          :users                     => 'Usuários'
           }
 
   def self.roles

@@ -1,0 +1,69 @@
+<% content_for :menu do -%>
+  <h1>Locação</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= print_content "Número"                , h(@location.number)                , :width => 10  %>
+<%= print_content "Contato"               , h(@location.contact)               , :width => 20  %>
+<%= print_content "Cliente"               , h(@location.client.name)           , :width => 30  %>
+<%= print_content "Representante"         , h(@location.seller.name)           , :width => 30  %>
+<%= print_content "Cotação?"              , human_boolean(@location.quotation) , :width => 10  %>
+<%= print_content "Comissão"              , h(@location.comission)             , :width => 20  %>
+<%= print_content "Condição de pagamento" , h(@location.payment_form.name)     , :width => 20  %>
+<%= print_content "Início"                , date(@location.starts_at)          , :width => 20  %>
+<%= print_content "Término"               , date(@location.ends_at)            , :width => 20  %>
+<%= print_content "Observações"           , h(@location.observation)           , :width => 100 %>
+
+<div class="clear"></div>
+
+<h2>Itens</h2>
+
+<table class="personal_list" cellpading="0" cellspacing="0" border="0" width="100%">
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Valor Unitário</th>
+      <th>Valor Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+    <tr>
+      <td               ><%= item.product.name %></td>
+      <td class="right" ><%= item.quantity %></td>
+      <td class="right" ><%= number_to_currency(item.unit_value) %></td>
+      <td class="right" ><%= number_to_currency(item.total_value) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="3"> </th>
+      <th class="right sum"></th>
+    </tr>
+  </tfoot>
+</table>
+
+
+<% content_for :script do -%>
+//<script type="text/javascript">
+
+  var conf = {"fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
+    var iTotal = 0;
+    //Soma das NF's visíveis
+    for ( var i=iStart ; i<iEnd ; i++ )
+    {
+      iVal = aaData[aiDisplay[i]][3].replace('R$ ', '').replace(/\./gi, '').replace(',', '.')*1;
+      iTotal += iVal;
+    }
+    $('.sum', this).text('R$ '+ toCurrency(iTotal.toFixed(2)));
+  }};
+
+  var newConf = $.extend({}, dTableConfig, conf);
+
+  $('table.personal_list').dataTable(newConf);
+
+//</script>
+<% end -%>
+
