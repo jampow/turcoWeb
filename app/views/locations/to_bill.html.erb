@@ -4,9 +4,14 @@
 
 <% form_for @location, :url => "/locations/generate_bill/#{@location.id}" do |f| %>
 
-  <%= f.hidden_field :location_id, :label => "Id da locação", :size => 10 %>
+  <%= f.error_messages %>
 
-  <%= f.text_field :start       , :label => "Ínicio"    , :size => 50, :class => "datepicker", :disabled => "disabled" %>
+  <%= f.hidden_field :location_id, :label => "Id da locação"           , :size => 10 %>
+  <%= f.hidden_field :start      , :label => "Início"                  , :size => 10 %>
+  <%= f.hidden_field :end        , :label => "Término"                 , :size => 10 %>
+  <%= f.hidden_field :month_value, :label => "Valor mensal (Mês cheio)", :size => 10 %>
+
+  <%= f.text_field :start       , :label => "Início"    , :size => 50, :class => "datepicker", :disabled => "disabled" %>
   <%= f.text_field :end         , :label => "Término"   , :size => 50, :class => "datepicker", :disabled => "disabled" %>
 
   <%= f.text_field :total_value  , :label => "Total (Proporcional)"    , :size => 50, :class => "mask-decimal", :decimal => "10,2" %>

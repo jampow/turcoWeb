@@ -120,7 +120,7 @@ class LocationsController < ApplicationController
         format.html { render :layout => 'simple_application' }
         format.xml  { render :xml => @location, :status => :created, :location => @location }
       else
-        format.html { render :action => "to_bill" }
+        format.html { render :layout => 'simple_application', :action => "to_bill" }
         format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
       end
     end

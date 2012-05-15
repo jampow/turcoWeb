@@ -1,5 +1,6 @@
 class LocationReceipt < ActiveRecord::Base
   belongs_to :location
+  validate :cross_dates?
 
   def calculateFields(location_id)
     self.location_id = location_id
@@ -7,6 +8,23 @@ class LocationReceipt < ActiveRecord::Base
 
     calc_start_and_end(loc)
     calc_value(loc)
+  end
+
+# Select *
+# From location_receipts
+# Where location_id = 9
+# And (`start` <= '2012-05-11'
+# And  `end`   >= '2012-05-11')
+# Or  (`start` <= '2012-06-18'
+# And  `end`   >= '2012-06-18');
+
+  named_scope :between, lambda { |loc_id, starts, ends| {
+    :conditions => ["location_id = ? And (`start` <= ? And `end` >= ?) Or (`start` <= ? And `end` >= ?)", loc_id, starts, starts, ends, ends]
+  } }
+
+  def cross_dates?
+    loc = LocationReceipt.between self.location_id, self.start, self.end
+    self.errors.add_to_base("Este período já possui cobrança") unless loc.blank?
   end
 
   protected
