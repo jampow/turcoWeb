@@ -12,6 +12,12 @@ class Location < ActiveRecord::Base
   validates_presence_of :starts_at
   validate :ends_after_start
 
+  def total
+    total = 0
+    self.location_items.each { |li| total += li.total_value }
+    total
+  end
+
   def presence_of_client
     self.errors.add('client_name', 'não pode ficar em branco') if self.client_id.blank? || self.client_name.blank?
   end

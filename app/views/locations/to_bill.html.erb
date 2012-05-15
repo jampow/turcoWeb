@@ -1,0 +1,72 @@
+<% content_for :head do -%>
+  <%= javascript_include_tag 'jquery/jquery-1.4.2.min.js', 'jquery/jquery-ui-1.8.12.custom.min.js', 'jquery/jquery.price_format.min.js' %>
+<% end -%>
+
+<% form_for @location, :url => "/locations/generate_bill/#{@location.id}" do |f| %>
+
+  <%= f.text_field :start       , :label => "Ínicio"    , :size => 50, :class => "datepicker", :disabled => "disabled" %>
+  <%= f.text_field :end         , :label => "Término"   , :size => 50, :class => "datepicker", :disabled => "disabled" %>
+
+  <%= f.text_field :total_value  , :label => "Total (Proporcional)"    , :size => 50, :class => "mask-decimal", :decimal => "10,2" %>
+  <%= f.text_field :month_value  , :label => "Valor mensal (Mês cheio)", :size => 50, :class => "mask-decimal", :decimal => "10,2", :disabled => "disabled" %>
+
+  <%= f.text_field :discount    , :label => "Desconto"  , :size => 20, :class => "mask-decimal" %>
+  <%= f.text_field :discount_obs, :label => "Observação", :size => 80 %>
+
+  <%= f.text_field :higher      , :label => "Acréscimo" , :size => 20, :class => "mask-decimal" %>
+  <%= f.text_field :higher_obs  , :label => "Observação", :size => 80 %>
+
+  <%= f.text_field :liquid_value, :label => "Valor líquido", :size => 20 %>
+
+<% end -%>
+
+<% content_for :script do -%>
+// <script type="text/javascript">
+  // $('.datepicker').datepicker();
+
+  $('.mask-decimal').each(function(){
+    var t = $(this);
+    var d = t.attr("decimal");
+    var conf = {prefix: '', centsSeparator: ',', thousandsSeparator: '.'};
+    if (d !== undefined){
+      d = d.split(',');
+      if (d.length == 2) {
+        if (!isNaN(d[0])) conf.limit      = d[0]*1;
+        if (!isNaN(d[1])) conf.centsLimit = d[1]*1;
+      }
+    }
+    t.priceFormat(conf);
+  });
+
+  var format = {
+    decimal: {
+      toNumber: function(val) {
+        return val.replace(/\./g, '').replace(',', '.')*1;
+      }
+    },
+    number: {
+      toDecimal: function(val, dec) {
+        if (dec === undefined) {
+          val = val+'';
+        } else {
+          var d = dec.split(',');
+          val = (val*1).toFixed(d[1]) + '';
+        }
+        return val.replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D))/g, "$&.");
+      }
+    }
+  };
+
+  var calcLiquidTotal = function(){
+    var total    = format.decimal.toNumber($('#location_bill_total_value').val());
+    var discount = format.decimal.toNumber($('#location_bill_discount'   ).val());
+    var higher   = format.decimal.toNumber($('#location_bill_higher'     ).val());
+
+    $('#location_bill_liquid_value').val(format.number.toDecimal(total - discount + higher));
+  }
+
+  $('.mask-decimal').keyup(calcLiquidTotal);
+  calcLiquidTotal();
+
+// </script>
+<% end -%>

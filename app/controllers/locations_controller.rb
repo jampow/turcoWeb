@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 
   access_control do
-    allow :locations_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy]
+    allow :locations_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :to_bill, :generate_bill]
     allow :locations_l, :to => [:index, :show, :default_data]
     allow :locations_s, :to => []
   end
@@ -103,6 +103,16 @@ class LocationsController < ApplicationController
       format.html { redirect_to(locations_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def to_bill
+    @location = LocationBill.new params[:id]
+    render :layout => 'simple_application'
+  end
+
+  def generate_bill
+    @location = LocationBill.new params[:id]
+    render :layout => 'simple_application'
   end
 
   private

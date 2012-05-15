@@ -1,6 +1,7 @@
 <% content_for :menu do -%>
   <h1>Locação</h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[default separator show] %>
+  <%= btn_to_bill(@location.id) %>
 <% end -%>
 
 <%= print_content "Número"                , h(@location.number)                , :width => 10  %>
@@ -48,6 +49,24 @@
 
 <% content_for :script do -%>
 //<script type="text/javascript">
+  $('#btn_to_bill').click(function(){
+    var t = $(this);
+    var url = t.attr('href');
+    showModal({
+      url: url,
+      width: 700,
+      height: 350,
+      title: 'Defina os dados pra recibo e cobrança.',
+      buttons: [{
+        text:'Salvar',
+        click: function(){
+          $('#waiting', frames[ifm].document).fadeTo('normal', 0.7);
+          $('form'    , frames[ifm].document).submit();
+        }
+      }]
+    });
+    return false;
+  });
 
   var conf = {"fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
     var iTotal = 0;
