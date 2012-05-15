@@ -476,7 +476,6 @@ function showModal(params){
   rdm = Math.floor(Math.random()*1001);
   ctr = 'ctr'+rdm;
   ifm = 'ifm'+rdm;
-  dlH = 280; //Dialog Height
 
   var def = {
     height: 280,
