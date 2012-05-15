@@ -4,6 +4,8 @@
 
 <% form_for @location, :url => "/locations/generate_bill/#{@location.id}" do |f| %>
 
+  <%= f.hidden_field :location_id, :label => "Id da locação", :size => 10 %>
+
   <%= f.text_field :start       , :label => "Ínicio"    , :size => 50, :class => "datepicker", :disabled => "disabled" %>
   <%= f.text_field :end         , :label => "Término"   , :size => 50, :class => "datepicker", :disabled => "disabled" %>
 
@@ -58,11 +60,11 @@
   };
 
   var calcLiquidTotal = function(){
-    var total    = format.decimal.toNumber($('#location_bill_total_value').val());
-    var discount = format.decimal.toNumber($('#location_bill_discount'   ).val());
-    var higher   = format.decimal.toNumber($('#location_bill_higher'     ).val());
+    var total    = format.decimal.toNumber($('#location_receipt_total_value').val());
+    var discount = format.decimal.toNumber($('#location_receipt_discount'   ).val());
+    var higher   = format.decimal.toNumber($('#location_receipt_higher'     ).val());
 
-    $('#location_bill_liquid_value').val(format.number.toDecimal(total - discount + higher));
+    $('#location_receipt_liquid_value').val(format.number.toDecimal(total - discount + higher));
   }
 
   $('.mask-decimal').keyup(calcLiquidTotal);

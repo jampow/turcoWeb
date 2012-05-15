@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120510162602) do
+ActiveRecord::Schema.define(:version => 20120515211838) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -273,6 +273,21 @@ ActiveRecord::Schema.define(:version => 20120510162602) do
     t.integer  "measure_unit_id"
     t.decimal  "unit_value",      :precision => 10, :scale => 2
     t.decimal  "total_value",     :precision => 10, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "location_receipts", :force => true do |t|
+    t.integer  "location_id"
+    t.date     "start"
+    t.date     "end"
+    t.integer  "discount",     :limit => 10, :precision => 10, :scale => 0
+    t.string   "discount_obs"
+    t.integer  "higher",       :limit => 10, :precision => 10, :scale => 0
+    t.string   "higher_obs"
+    t.decimal  "month_value",                :precision => 10, :scale => 2
+    t.decimal  "total_value",                :precision => 10, :scale => 2
+    t.decimal  "liquid_value",               :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end

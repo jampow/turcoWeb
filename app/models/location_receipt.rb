@@ -1,20 +1,9 @@
-class LocationBill
+class LocationReceipt < ActiveRecord::Base
+  belongs_to :location
 
-  attr_accessor :start
-  attr_accessor :end
-
-  attr_accessor :discount
-  attr_accessor :discount_obs
-
-  attr_accessor :higher
-  attr_accessor :higher_obs
-
-  attr_accessor :month_value
-  attr_accessor :total_value
-  attr_accessor :liquid_value
-
-  def initialize(location_id)
-    loc = Location.find(location_id)
+  def calculateFields(location_id)
+    self.location_id = location_id
+    loc = Location.find(self.location_id)
 
     calc_start_and_end(loc)
     calc_value(loc)

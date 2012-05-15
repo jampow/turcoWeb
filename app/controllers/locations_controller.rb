@@ -106,13 +106,24 @@ class LocationsController < ApplicationController
   end
 
   def to_bill
-    @location = LocationBill.new params[:id]
+    @location = LocationReceipt.new
+    @location.calculateFields params[:id]
     render :layout => 'simple_application'
   end
 
   def generate_bill
-    @location = LocationBill.new params[:id]
-    render :layout => 'simple_application'
+    @location = LocationReceipt.new params[:location_receipt]
+
+    respond_to do |format|
+      if @location.save
+        flash[:notice] = 'Recibo criado'
+        format.html { render :layout => 'simple_application' }
+        format.xml  { render :xml => @location, :status => :created, :location => @location }
+      else
+        format.html { render :action => "to_bill" }
+        format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 
   private
