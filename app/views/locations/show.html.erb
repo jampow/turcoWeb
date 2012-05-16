@@ -99,6 +99,10 @@
       buttons: [{
         text:'Salvar',
         click: function(){
+          $('.mask-decimal', frames[ifm].document).each(function(){
+            var t = $(this);
+            t.val(format.decimal.toNumber(t.val()));
+          });
           $('#waiting', frames[ifm].document).fadeTo('normal', 0.7);
           $('form'    , frames[ifm].document).submit();
         }
