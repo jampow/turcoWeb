@@ -23,28 +23,12 @@
   <%= f.text_field :higher      , :label => "Acréscimo" , :size => 20, :class => "mask-decimal" %>
   <%= f.text_field :higher_obs  , :label => "Observação", :size => 80 %>
 
-  <%= f.text_field :liquid_value, :label => "Valor líquido", :size => 20 %>
+  <%= f.text_field :liquid_value, :label => "Valor líquido", :size => 20, :class => "mask-decimal" %>
 
 <% end -%>
 
 <% content_for :script do -%>
 // <script type="text/javascript">
-  // $('.datepicker').datepicker();
-
-  $('.mask-decimal').each(function(){
-    var t = $(this);
-    var d = t.attr("decimal");
-    var conf = {prefix: '', centsSeparator: ',', thousandsSeparator: '.'};
-    if (d !== undefined){
-      d = d.split(',');
-      if (d.length == 2) {
-        if (!isNaN(d[0])) conf.limit      = d[0]*1;
-        if (!isNaN(d[1])) conf.centsLimit = d[1]*1;
-      }
-    }
-    t.priceFormat(conf);
-  });
-
   var format = {
     decimal: {
       toNumber: function(val) {
@@ -72,8 +56,25 @@
     $('#location_receipt_liquid_value').val(format.number.toDecimal(total - discount + higher));
   }
 
-  $('.mask-decimal').keyup(calcLiquidTotal);
+  $('.mask-decimal').each(function(){
+    var t = $(this);
+    var dec = t.attr("decimal");
+    var conf = {prefix: '', centsSeparator: ',', thousandsSeparator: '.'};
+
+    if (dec !== undefined){
+      var d = dec.split(',');
+      if (d.length == 2) {
+        if (!isNaN(d[0])) conf.limit      = d[0]*1;
+        if (!isNaN(d[1])) conf.centsLimit = d[1]*1;
+        if (t.val !== '') t.val(format.number.toDecimal(t.val()*1, dec));
+      }
+    }
+    t.priceFormat(conf);
+  });
+
   calcLiquidTotal();
+
+  $('.mask-decimal').keyup(calcLiquidTotal);
 
 // </script>
 <% end -%>
