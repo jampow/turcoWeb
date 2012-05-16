@@ -49,9 +49,9 @@ class SalesOrdersController < ApplicationController
     @sales_order.client_name = @sales_order.client.name
 
     car = @sales_order.car
-    @sales_order.car_name = car.carrier.name + ' - ' + car.license_plate
+    @sales_order.car_name = car.carrier.name + ' - ' + car.license_plate if car
 
-    @sales_order.seller_name = @sales_order.seller.name
+    @sales_order.seller_name = @sales_order.seller.name if @sales_order.seller
 
     default_data
 
