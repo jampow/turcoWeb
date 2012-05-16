@@ -35,20 +35,20 @@ class LocationReceipt < ActiveRecord::Base
     self.end   = Date.today.at_end_of_month
 
     self.start = location.starts_at if self.start < location.starts_at
-    self.end   = location.ends_at   if self.end   > location.ends_at
+    # self.end   = location.ends_at   if self.end   > location.ends_at
   end
 
   # Recebe um objeto Location
   def calc_value(location)
-    mon_beg = Date.today.at_beginning_of_month
-    mon_end = Date.today.at_end_of_month
-
-    days_month = mon_end  - mon_beg
     days_bill  = self.end - self.start
 
     self.month_value = location.total
 
-    self.total_value = (BigDecimal.new(days_bill.to_s) * self.month_value) / BigDecimal.new(days_month.to_s)
+    if days_bill < self.end.day
+      self.total_value = (BigDecimal.new(days_bill.to_s) * self.month_value) / BigDecimal.new(30.to_s)
+    else
+      self.total_value = self.month_value
+    end
   end
 
 end
