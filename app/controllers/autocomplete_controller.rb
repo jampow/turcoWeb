@@ -89,6 +89,14 @@ class AutocompleteController < ApplicationController
     end
   end
 
+  def product_location
+    @list = Product.to_autocomplete_location params[:term]
+
+    respond_to do |format|
+      format.js { render :action => "autocomplete" }
+    end
+  end
+
   def provider
     #client_id para o pedido de compras porque o model herda de order, e lá só tem client_id
     @list = Provider.find(:all,
