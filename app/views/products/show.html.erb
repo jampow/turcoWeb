@@ -17,8 +17,8 @@
 <%= print_content "Preço"            , h(@product.price)                 , :width => 10 %>
 <%= print_content "Custo"            , h(@product.cost)                  , :width => 10 %>
 <%= print_content "Preço líquido"    , h(@product.liquid_price)          , :width => 10 %>
-<%= print_content "Família"          , h(@product.product_family.name)   , :width => 10 %>
-<%= print_content "Tipo"             , h(@product.product_kind.name)     , :width => 10 %>
+<%= print_content "Família"          , h(@product.family.name)           , :width => 10 %>
+<%= print_content "Tipo"             , h(@product.kind.name)             , :width => 10 %>
 
 <h2>Impostos</h2>
 <%= print_content "CST IPI"          , (h(@product.cst_ipi.code)    if @product.cst_ipi)   , :width => 20 %>
