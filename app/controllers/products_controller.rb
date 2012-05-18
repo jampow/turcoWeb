@@ -98,7 +98,7 @@ class ProductsController < ApplicationController
 protected
 
   def default_data
-    @product_kinds    = ProductKind.all.collect   { |a| [a.name, a.id] }
+    @product_kinds    = Product::Type.to_select
     @product_families = ProductFamily.all.collect { |a| [a.name, a.id] }
     @cst_cofins       = CstCofins.all.collect     { |a| [a.code + ' - ' + a.description, a.id] }
     @cst_icm          = CstIcm.all.collect        { |a| [a.code + ' - ' + a.description, a.id] }

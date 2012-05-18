@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
-  belongs_to :kind  , :class_name => 'product_kind'  , :foreign_key => "type_id"
-  belongs_to :family, :class_name => 'product_family', :foreign_key => "family_id"
+  # belongs_to :kind  , :class_name => 'ProductKind'  , :foreign_key => "type_id"
+  belongs_to :family, :class_name => 'ProductFamily', :foreign_key => "family_id"
   belongs_to :cst_cofins
   belongs_to :cst_icm
   belongs_to :cst_ipi
@@ -42,6 +42,31 @@ class Product < ActiveRecord::Base
 
   def quantity
     Stock.last :conditions => ["product_id = ?", self.id]
+  end
+
+  class Type <
+    Struct.new(:id, :name)
+    VALUES = [
+      {:id => 1, :name => 'Venda'},
+      {:id => 2, :name => 'Locação'}
+    ]
+    def self.all
+      VALUES.map { |v| self.new(v[:id], v[:name]) }
+    end
+
+    def self.to_select
+      VALUES.map { |v| [v[:name], v[:id]] }
+    end
+
+    def self.find(id)
+      h=VALUES.find { |v| v[:id] == id }
+      return nil if h.nil?
+      self.new(h[:id], h[:name])
+    end
+
+    def to_s
+      self.name
+    end
   end
 
   protected
