@@ -1,7 +1,9 @@
 <% content_for :menu do -%>
   <h1>Locação</h1>
-  <%= mount_menu %w[default separator] %>
-  <%= btn_to_bill(@location.id) %>
+  <%= mount_menu %>
+  <%= mount_menu %w[separator]  unless @location.quotation %>
+  <%= btn_to_bill(@location.id) unless @location.quotation %>
+  <%= btn_to_receipts %>
   <%= link_to "F5", location_path(@location), :id => "refresh", :class => "hide" %> <!-- , :class => "hide" -->
 <% end -%>
 
@@ -54,7 +56,7 @@
 
 <div style="float:left;width:50%">
   <div style="padding:10px 0 0 5px;">
-    <h2>Cobranças</h2>
+    <h2>Recibos</h2>
     <table class="personal_list" cellpading="0" cellspacing="0" border="0" width="100%">
       <thead>
         <tr>

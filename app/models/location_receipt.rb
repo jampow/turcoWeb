@@ -2,6 +2,8 @@ class LocationReceipt < ActiveRecord::Base
   belongs_to :location
   validate :cross_dates?
 
+  before_create :create_receivable
+
   def calculateFields(location_id)
     self.location_id = location_id
     loc = Location.find(self.location_id)
@@ -49,6 +51,24 @@ class LocationReceipt < ActiveRecord::Base
     else
       self.total_value = self.month_value
     end
+
+  end
+
+  #TODO: Passar esse método pro model Invoice, quando já estiver funcionando o envio
+  def create_receivable
+    rec = Receivable.create({
+      :client_id                => self.location.client_id,
+      #:document_number          => self.number,
+      :due_date                 => Time.new + 15.days,
+      :issue_date               => Time.new,
+      :value                    => self.total_value,
+      :document_kind_id         => 1,
+      :payment_method_id        => 1,
+      :frequency_id             => 1,
+      :rate_type_id             => 1,
+      :rate_calculation_type_id => 1
+    })
+
   end
 
 end

@@ -21,6 +21,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :hollydays
   map.resources :invoices
   map.resources :locations
+  map.resources :location_receipts
   map.resources :measure_units
   map.resources :messages
   map.resources :ncms

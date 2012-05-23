@@ -1,46 +1,29 @@
 <label class="hide"><%= f.hidden_field :id %></label>
 <label class="hide"><%= f.hidden_field :product_id %></label>
-<%= f.text_field   :product_name       , :label => "Produto"           , :size => 20, :class => "autocomplete", :source => "product", :callback => "loadMeasureUnits()", :pref => "location_location_items_attributes_0_" %>
-<%= f.text_field   :quantity           , :label => "Quantidade"        , :size => 20 %>
-<%= f.select       :measure_unit_id, [], :label => "Unidade de medida" , :size => 20 %>
-<%= f.text_field   :unit_value         , :label => "Valor unitário"    , :size => 20, :class => "mask-decimal", :decimal => "10,2" %>
-<%= f.text_field   :total_value        , :label => "Valor total"       , :size => 10, :class => "mask-decimal", :decimal => "10,2", :disabled => "deisabled" %>
+<%= f.text_field   :product_name   , :label => "Produto"           , :size => 20, :class => "autocomplete", :source => "product_location", :callback => "calcTotal()", :pref => "location_location_items_attributes_0_" %>
+<%= f.text_field   :quantity       , :label => "Quantidade"        , :size => 20, :value => "1" %>
+<%= f.text_field   :unit_value     , :label => "Valor unitário"    , :size => 20, :class => "mask-decimal", :decimal => "10,2" %>
+<%= f.text_field   :total_value    , :label => "Valor total"       , :size => 10, :class => "mask-decimal", :decimal => "10,2", :disabled => "deisabled" %>
 
 <div class="clear"></div>
 <script type="text/javascript">
-
   var prefix = '#location_location_items_attributes_0_';
-  var calcFields =      prefix+'quantity';
-  calcFields    += ', '+prefix+'unit_value';
-  $(calcFields).bind('change', function(){
+  var flds   =      prefix+'quantity';
+  flds      += ', '+prefix+'unit_value';
+
+  $(prefix+"product_id, "+flds).bind('blur', function(){calcTotal();});
+
+  var calcTotal = function(){
     var x = $(prefix+'quantity'  ).val();
     var y = $(prefix+'unit_value').val();
 
-    x = x.replace(',', '.');
+    x = format.decimal.toNumber(x);x //.replace(',', '.');
     y = format.decimal.toNumber(y);
-    var z = format.number.toDecimal(x * y);
+    var z = format.number.toDecimal(x * y, '10,2');
 
     $(prefix+'total_value').val(z);
-  });
+  };
 
-  var loadMeasureUnits = function() {
-    var prod_id = $(prefix+"product_id").val();
-    $.ajax({
-      url: '/autocomplete/measure_units',
-      data: 'prod_id=' + prod_id,
-      type: 'GET',
-      dataType: 'json',
-      success: function(data){
-        var opts = '';
-        for (i = 0; i < data.length - 1; i++){
-          var t = data[i];
-          opts += '<option value="' + t.id + '">' + t.value + '</option>';
-        };
-        $(prefix+'measure_unit_id').html(opts);
-      }
-    });
-  }
-
-  $(prefix+"product_id").bind('change', loadMeasureUnits);
+  calcTotal();
 </script>
 

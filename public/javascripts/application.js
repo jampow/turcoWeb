@@ -281,7 +281,11 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
         select   : function(event, ui){
           $.each(ui.item, function(key, val){
             if (key !== 'value' && key !== 'label' && key !== '') {
-              $('#'+pref+key).val(val);
+              var target = $('#'+pref+key);
+              if (target.attr('decimal') !== undefined)
+                target.val(format.number.toDecimal(val, target.attr('decimal')));
+              else
+                target.val(val);
             }
           });
 
