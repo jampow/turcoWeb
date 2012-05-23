@@ -3,6 +3,7 @@
   <%= mount_menu %>
   <%= mount_menu %w[separator]  unless @location.quotation %>
   <%= btn_to_bill(@location.id) unless @location.quotation %>
+  <%= btn_to_receipts %>
   <%= link_to "F5", location_path(@location), :id => "refresh", :class => "hide" %> <!-- , :class => "hide" -->
 <% end -%>
 

@@ -1,0 +1,20 @@
+<% content_for :menu do -%>
+  <h1>Editando Recibo</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@location_receipt) do |f| %>
+  <%= f.error_messages %>
+
+  <%# f.text_field :location_id , :label => ""                                                                       %>
+  <%= f.text_field :start       , :label => "Início"                  , :size => 20, :class => "datepicker"                       %>
+  <%= f.text_field :end         , :label => "Término"                 , :size => 20, :class => "datepicker"                       %>
+  <%= f.text_field :month_value , :label => "Valor mensal"            , :size => 20, :class => "mask-decimal", :decimal => "10,2" %>
+  <%= f.text_field :total_value , :label => "Valor Total"             , :size => 20, :class => "mask-decimal", :decimal => "10,2" %>
+  <%= f.text_field :liquid_value, :label => "Total Líquido"           , :size => 20, :class => "mask-decimal", :decimal => "10,2" %>
+  <%= f.text_field :discount    , :label => "Desconto"                , :size => 10, :class => "mask-decimal", :decimal => "10,2" %>
+  <%= f.text_field :discount_obs, :label => "Observações do desconto" , :size => 90                                               %>
+  <%= f.text_field :higher      , :label => "Acréscimo"               , :size => 10, :class => "mask-decimal", :decimal => "10,2" %>
+  <%= f.text_field :higher_obs  , :label => "Observações do acréscimo", :size => 90                                               %>
+
+<% end %>

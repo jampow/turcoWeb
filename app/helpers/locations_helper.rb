@@ -4,6 +4,10 @@
     link_to "Gerar cobrança", "/locations/to_bill/#{id}", :class => "button", :icon => "script", :id => "btn_to_bill"
   end
 
+  def btn_to_receipts
+    link_to "Recibos", "/location_receipts/", :class => "button", :icon => "document-b"
+  end
+
   def new_location_item_toolbar f , btns = ['add', 'save', 'del']
     flash[:create_location_table_item] = true
     s  = '<div class="form-toolbar">'

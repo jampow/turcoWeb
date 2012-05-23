@@ -1,0 +1,8 @@
+<% content_for :menu do -%>
+  <h1>Recibos</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @location_receipts, ["start"       , "Início" , {:format => "date"}],
+                              ["end"         , "Término", {:format => "date"}],
+                              ["liquid_value", "Total"  , {:format => "number_to_currency"}]%>

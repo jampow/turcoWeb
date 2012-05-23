@@ -1,0 +1,98 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
+
+  <title>Report</title>
+  <meta name="description" content="">
+
+  <!-- <meta name="viewport" content="width=device-width"> -->
+
+  <link rel="stylesheet" media="all" href="/stylesheets/print.css">
+
+</head>
+<body>
+  <div id="limiter">
+
+    <%= yield %>
+
+  </div>
+
+  <script type="text/javascript" src="/javascripts/jquery/jquery-1.4.2.min.js" ></script>
+  <script type="text/javascript">
+    $(function(){
+
+      // Itera sobre os itens selecionados buscando a maior altura para setar em todos os itens.
+      var setBiggestHeight = function(selector){
+        var els    = $(selector);
+        var bigger = 0;
+
+        els.each(function(){
+          var h = $(this).outerHeight();
+
+          if (h > bigger)
+            bigger = h;
+        });
+
+        els.css('height', bigger+'px');
+      }
+
+      // Itera sobre os itens selecionados buscando a maior largura para setar em todos os itens.
+      var setBiggestWidth = function(selector){
+        var els = $(selector);
+        var bigger = 0;
+
+        els.each(function(){
+          var w = $(this).outerWidth();
+
+          if (w > bigger)
+            bigger = w;
+        });
+
+        console.log(bigger);
+        els.css({'width': bigger+'px', 'display': 'inline-block'});
+      }
+
+      //Ajusta as larguras pra que os campos pegos pelo seletor ocupem uma mesma linha sem estourar nem faltar
+      var ajustHorizontal = function(selector){
+        var maxWidth  = $('#limiter').innerWidth();
+        var totWidth  = 0;
+        var totMargin = 0;
+        var els = $(selector);
+
+        els.each(function(){
+          var t = $(this);
+          totWidth  += t.outerWidth();
+          totMargin += parseInt(t.css('margin-left' ));
+          totMargin += parseInt(t.css('margin-right'));
+        });
+
+        if (maxWidth > totWidth) {
+          var margin = ((maxWidth - totWidth) / els.length) / 2;
+          els.css({'margin-right': margin+'px', 'margin-left': margin+'px'});
+        } else {
+          var remove = ((totWidth + totMargin) - maxWidth) / els.length;
+          els.each(function(){
+            // console.log('(('+totWidth+' + '+totMargin+') - '+maxWidth+') / '+els.length);
+            $(this).css('width', function(i, v){
+              return parseInt(v) - remove;
+            });
+          });
+        }
+      }
+
+      <%= yield :script %>
+
+    });
+  </script>
+
+</body>
+</html>
+
+
