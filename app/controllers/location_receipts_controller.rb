@@ -2,7 +2,9 @@ class LocationReceiptsController < ApplicationController
   # GET /location_receipts
   # GET /location_receipts.xml
   def index
-    @location_receipts = LocationReceipt.all
+    session[:location_id] = params[:id] if params[:id]
+    @location_receipts = LocationReceipt.find(:all, :conditions => "location_id = #{session[:location_id]}")
+    @location = Location.find session[:location_id]
 
     respond_to do |format|
       format.html # index.html.erb
