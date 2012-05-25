@@ -102,3 +102,14 @@ hr {
   border-top: 1px dashed #000;
   float: left;
 }
+
+ol {
+  list-style-type: decimal;
+  /*overflow: auto;*/
+}
+ol.roman { list-style-type: lower-roman; }
+li {
+  text-align: justify;
+  margin: 7px 0 7px 0;
+}
+

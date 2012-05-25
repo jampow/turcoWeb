@@ -8,6 +8,10 @@
     link_to "Recibos", "/location_receipts?id=#{id}", :class => "button", :icon => "document-b"
   end
 
+  def btn_contract(id)
+    link_to "Contrato", "/locations/contract/#{id}", :class => "button", :icon => "folder-collapsed", :target => "_blank", :ajax => "false"
+  end
+
   def new_location_item_toolbar f , btns = ['add', 'save', 'del']
     flash[:create_location_table_item] = true
     s  = '<div class="form-toolbar">'

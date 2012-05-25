@@ -1,7 +1,7 @@
 <% content_for :menu do -%>
   <h1>Locação</h1>
-  <%= mount_menu %>
-  <%= mount_menu %w[separator]      unless @location.quotation %>
+  <%= mount_menu %w[default separator] %>
+  <%= btn_contract(@location.id) %>
   <%= btn_to_bill(@location.id)     unless @location.quotation %>
   <%= btn_to_receipts(@location.id) unless @location.receipts.blank? %>
   <%= link_to "F5", location_path(@location), :id => "refresh", :class => "hide" %> <!-- , :class => "hide" -->

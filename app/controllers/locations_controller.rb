@@ -1,8 +1,8 @@
 class LocationsController < ApplicationController
 
   access_control do
-    allow :locations_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :to_bill, :generate_bill]
-    allow :locations_l, :to => [:index, :show, :default_data]
+    allow :locations_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :to_bill, :generate_bill, :contract]
+    allow :locations_l, :to => [:index, :show, :default_data, :contract]
     allow :locations_s, :to => []
   end
 
@@ -124,6 +124,14 @@ class LocationsController < ApplicationController
         format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def contract
+    @loc = Location.find params[:id]
+    @ent = Enterprise.first
+    @cli = @loc.client
+
+    render :layout => 'report'
   end
 
   private
