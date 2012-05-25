@@ -86,8 +86,10 @@ class LocationReceiptsController < ApplicationController
   end
 
   def print
-    @location_receipt = LocationReceipt.find params[:id]
-    @location = @location_receipt.location
+    @receipt = LocationReceipt.find params[:id]
+    # @location = @location_receipt.location
+    # @client = @location.client
+    # @enterprise = Enterprise.first
     render :layout => 'report'
   end
 end

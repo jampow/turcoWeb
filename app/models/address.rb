@@ -16,5 +16,10 @@ class Address < ActiveRecord::Base
     	end
     end
   end
+
+  def to_s
+    # R. Cipriano Barata, 2412 - Ipiranga, São Paulo - São Paulo, 04205-002
+    return "#{self.street}, #{self.number} #{self.complement} - #{self.neighborhood}, #{self.city} - #{self.estate.name}, #{self.cep}"
+  end
 end
 

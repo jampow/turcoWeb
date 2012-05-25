@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  location_receipt_id: 1
+  product: MyString
+  quantity: 9.99
+  unity_value: 9.99
+  total_value: 9.99
+
+two:
+  location_receipt_id: 1
+  product: MyString
+  quantity: 9.99
+  unity_value: 9.99
+  total_value: 9.99
