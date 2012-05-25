@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515211838) do
+ActiveRecord::Schema.define(:version => 20120524151203) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -281,13 +281,13 @@ ActiveRecord::Schema.define(:version => 20120515211838) do
     t.integer  "location_id"
     t.date     "start"
     t.date     "end"
-    t.integer  "discount",     :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "discount",     :precision => 10, :scale => 2
     t.string   "discount_obs"
-    t.integer  "higher",       :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "higher",       :precision => 10, :scale => 2
     t.string   "higher_obs"
-    t.decimal  "month_value",                :precision => 10, :scale => 2
-    t.decimal  "total_value",                :precision => 10, :scale => 2
-    t.decimal  "liquid_value",               :precision => 10, :scale => 2
+    t.decimal  "month_value",  :precision => 10, :scale => 2
+    t.decimal  "total_value",  :precision => 10, :scale => 2
+    t.decimal  "liquid_value", :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
