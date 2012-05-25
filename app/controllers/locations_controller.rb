@@ -46,7 +46,7 @@ class LocationsController < ApplicationController
   def edit
     @location = Location.find(params[:id])
     @location.client_name = @location.client.name
-    @location.seller_name = @location.seller.name
+    @location.seller_name = @location.seller.name unless @location.seller.blank?
     default_data
 
     @item_form = @location.location_items.build
@@ -129,6 +129,6 @@ class LocationsController < ApplicationController
   private
 
   def default_data
-    @payment_conds = PaymentForm.all.collect { |p| [p.name, p.id] }
+    @banks = BankAccount.all.collect { |p| ["#{p.bank_name} - #{p.agency_number} - #{p.account_number}", p.id] }
   end
 end

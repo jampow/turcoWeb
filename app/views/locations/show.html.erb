@@ -1,22 +1,22 @@
 <% content_for :menu do -%>
   <h1>Locação</h1>
   <%= mount_menu %>
-  <%= mount_menu %w[separator]  unless @location.quotation %>
-  <%= btn_to_bill(@location.id) unless @location.quotation %>
-  <%= btn_to_receipts(@location.id) %>
+  <%= mount_menu %w[separator]      unless @location.quotation %>
+  <%= btn_to_bill(@location.id)     unless @location.quotation %>
+  <%= btn_to_receipts(@location.id) unless @location.receipts.blank? %>
   <%= link_to "F5", location_path(@location), :id => "refresh", :class => "hide" %> <!-- , :class => "hide" -->
 <% end -%>
 
-<%= print_content "Número"                , h(@location.number)                , :width => 10  %>
-<%= print_content "Contato"               , h(@location.contact)               , :width => 20  %>
-<%= print_content "Cliente"               , h(@location.client.name)           , :width => 30  %>
-<%= print_content "Representante"         , h(@location.seller.name)           , :width => 30  %>
-<%= print_content "Cotação?"              , human_boolean(@location.quotation) , :width => 10  %>
-<%= print_content "Comissão"              , h(@location.comission)             , :width => 20  %>
-<%= print_content "Condição de pagamento" , h(@location.payment_form.name)     , :width => 20  %>
-<%= print_content "Início"                , date(@location.starts_at)          , :width => 20  %>
-<%= print_content "Término"               , date(@location.ends_at)            , :width => 20  %>
-<%= print_content "Observações"           , h(@location.observation)           , :width => 100 %>
+<%= print_content "Número"        , h(@location.number)                 , :width => 10  %>
+<%= print_content "Contato"       , h(@location.contact)                , :width => 20  %>
+<%= print_content "Cliente"       , h(@location.client.name)            , :width => 30  %>
+<%= print_content "Representante" , h((@location.seller.name rescue '')), :width => 30  %>
+<%= print_content "Cotação?"      , human_boolean(@location.quotation)  , :width => 10  %>
+<%= print_content "Comissão"      , h(@location.comission)              , :width => 20  %>
+<%= print_content "Conta bancária", h(@location.bank_account.bank_name+' - '+@location.bank_account.agency_number+' - '+@location.bank_account.account_number) , :width => 20  %>
+<%= print_content "Início"        , date(@location.starts_at)           , :width => 20  %>
+<%= print_content "Término"       , date(@location.ends_at)             , :width => 20  %>
+<%= print_content "Observações"   , h(@location.observation)            , :width => 100 %>
 
 <div class="clear"></div>
 

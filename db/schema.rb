@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120524151203) do
+ActiveRecord::Schema.define(:version => 20120524222918) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -277,19 +277,47 @@ ActiveRecord::Schema.define(:version => 20120524151203) do
     t.datetime "updated_at"
   end
 
+  create_table "location_receipt_items", :force => true do |t|
+    t.integer  "location_receipt_id"
+    t.string   "product"
+    t.decimal  "quantity",            :precision => 10, :scale => 2
+    t.decimal  "unit_value",          :precision => 10, :scale => 2
+    t.decimal  "total_value",         :precision => 10, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "location_receipts", :force => true do |t|
     t.integer  "location_id"
     t.date     "start"
     t.date     "end"
-    t.decimal  "discount",     :precision => 10, :scale => 2
+    t.decimal  "discount",           :precision => 10, :scale => 2
     t.string   "discount_obs"
-    t.decimal  "higher",       :precision => 10, :scale => 2
+    t.decimal  "higher",             :precision => 10, :scale => 2
     t.string   "higher_obs"
-    t.decimal  "month_value",  :precision => 10, :scale => 2
-    t.decimal  "total_value",  :precision => 10, :scale => 2
-    t.decimal  "liquid_value", :precision => 10, :scale => 2
+    t.decimal  "month_value",        :precision => 10, :scale => 2
+    t.decimal  "total_value",        :precision => 10, :scale => 2
+    t.decimal  "liquid_value",       :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "location_number"
+    t.string   "enterp_name"
+    t.string   "enterp_doc"
+    t.string   "enterp_ie"
+    t.string   "enterp_im"
+    t.string   "enterp_address"
+    t.string   "client_name"
+    t.string   "client_doc"
+    t.string   "client_ie"
+    t.string   "client_im"
+    t.string   "client_address"
+    t.date     "location_starts_at"
+    t.date     "location_ends_at"
+    t.string   "period"
+    t.text     "location_obs"
+    t.string   "bank_name"
+    t.string   "bank_ag"
+    t.string   "bank_cc"
   end
 
   create_table "locations", :force => true do |t|
@@ -305,6 +333,7 @@ ActiveRecord::Schema.define(:version => 20120524151203) do
     t.text     "observation"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "bank_account_id"
   end
 
   create_table "measure_units", :force => true do |t|

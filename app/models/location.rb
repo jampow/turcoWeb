@@ -4,6 +4,7 @@ class Location < ActiveRecord::Base
   belongs_to :client
   belongs_to :seller
   belongs_to :payment_form, :foreign_key => "payment_condition_id"
+  belongs_to :bank_account
 
   attr_accessor :client_name
   attr_accessor :seller_name

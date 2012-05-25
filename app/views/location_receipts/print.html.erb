@@ -1,25 +1,25 @@
     <div id="top1" class="group w100">
       <div class="data w25"><img id="logo1" src="/images/logo_p.jpg" alt="logo"></div>
-      <h1 id="title1" class="data w75 center">Recibo de locação - Nº 123456</h1>
+      <h1 id="title1" class="data w75 center">Recibo de locação - Nº <%= @receipt.location_number %></h1>
       <div class="data w75 right">1ª Via</div>
     </div>
 
     <h3>LOCADOR</h3>
     <div id="enterprise1" class="group w100 border">
-      <div class="data w100"><span class="label">Empresa</span>Star Box Ltda</div>
-      <div class="data w40"><span  class="label">CNPJ</span>12.345.678/0001-01</div>
-      <div class="data w30"><span  class="label">IE</span>Isento</div>
-      <div class="data w30"><span  class="label">CCM</span>123.132.231</div>
-      <div class="data w100"><span class="label">Endereço</span>Rua Serra de Bocaína, 287 - Cep:03174-000 - São Paulo / SP - Brasil</div>
+      <div class="data w100"><span class="label">Empresa</span><%= @receipt.enterp_name %></div>
+      <div class="data w40"><span  class="label">CNPJ</span><%= @receipt.enterp_doc %></div>
+      <div class="data w30"><span  class="label">IE</span><%= @receipt.enterp_ie %></div>
+      <!-- <div class="data w30"><span  class="label">IM</span></div> -->
+      <div class="data w100"><span class="label">Endereço</span><%= @receipt.enterp_address %></div>
     </div>
 
     <h3>LOCATÁRIO</h3>
     <div id="client1" class="group w100 border">
-      <div class="data w100"><span class="label">Empresa</span>Maria Augusta de Souza Fiho</div>
-      <div class="data w40"><span  class="label">CNPJ/CPF</span>399.311.881-20</div>
-      <div class="data w30"><span  class="label">IE/RG</span>32.654.987-55</div>
-      <div class="data w30"><span  class="label">CCM</span>654.456.546</div>
-      <div class="data w100"><span class="label">Endereço</span>Al. Campinas, 23 - Jardim Pedreira - CEP: 01530-411 - Sumaré-MA</div>
+      <div class="data w100"><span class="label">Empresa</span><%= @receipt.client_name %></div>
+      <div class="data w40"><span  class="label">CNPJ/CPF</span><%= @receipt.client_doc %></div>
+      <div class="data w30"><span  class="label">IE/RG</span><%= @receipt.client_ie %></div>
+      <div class="data w30"><span  class="label">IM</span><%= @receipt.client_im %></div>
+      <div class="data w100"><span class="label">Endereço</span><%= @receipt.client_address %></div>
     </div>
 
     <h3>ITENS</h3>
@@ -34,12 +34,14 @@
           </tr>
         </thead>
         <tbody>
+          <% @receipt.items.each do |item| %>
           <tr>
-            <td>2</td>
-            <td>BOX GALPÃO 1 PISO TERREO RUA 01 - 52 M2</td>
-            <td class="right">R$ 11,00</td>
-            <td class="right">R$ 22,00</td>
+            <td><%= item.quantity %></td>
+            <td><%= item.product %></td>
+            <td class="right"><%= number_to_currency(item.unit_value) %></td>
+            <td class="right"><%= number_to_currency(item.total_value) %></td>
           </tr>
+          <% end %>
         </tbody>
         <tfoot>
           <tr>
@@ -52,47 +54,47 @@
     <div id="bank1" class="group w30 border">
       <div class="data w100 center"><span class="title">Dados Bancários</span></div>
       <div class="data w100">&nbsp;</div>
-      <div class="data w100"><span class="label">Banco</span>Banco do Brasil</div>
-      <div class="data w100"><span class="label">Agência</span>012-3</div>
-      <div class="data w100"><span class="label">C/C</span>01234-5</div>
+      <div class="data w100"><span class="label">Banco</span><%= @receipt.bank_name %></div>
+      <div class="data w100"><span class="label">Agência</span><%= @receipt.bank_ag %></div>
+      <div class="data w100"><span class="label">C/C</span><%= @receipt.bank_cc %></div>
     </div>
 
     <div id="long_value1" class="group w35 border">
-      <div class="data w100 center"><span class="title">****** Vinte e dois reais ******</span></div>
+      <div class="data w100 center"><span class="title">****** <%= @receipt.liquid_value.to_extenso %> ******</span></div>
     </div>
 
     <div id="summary1" class="group w30 border">
-      <div class="data w100"><span class="label">Período</span>Dez/2011</div>
-      <div class="data w100"><span class="label">Contrato</span>123456</div>
-      <div class="data w100"><span class="label">Vencimento</span>20/01/2012</div>
+      <div class="data w100"><span class="label">Período</span><%= @receipt.period %></div>
+      <!-- <div class="data w100"><span class="label">Contrato</span></div> -->
+      <div class="data w100"><span class="label">Vencimento</span></div>
       <div class="data w100">&nbsp;</div>
-      <div class="data w100 bigger"><span class="label">Total</span>R$ 22,00</div>
+      <div class="data w100 bigger"><span class="label">Total</span><%= @receipt.liquid_value.real_formatado %></div>
     </div>
 
 <hr />
 
     <div id="top2" class="group w100">
       <div class="data w25"><img id="logo2" src="/images/logo_p.jpg" alt="logo"></div>
-      <h1 id="title2" class="data w75 center">Recibo de locação - Nº 123456</h1>
+      <h1 id="title2" class="data w75 center">Recibo de locação - Nº <%= @receipt.location_number %></h1>
       <div class="data w75 right">2ª Via</div>
     </div>
 
     <h3>LOCADOR</h3>
     <div id="enterprise2" class="group w100 border">
-      <div class="data w100"><span class="label">Empresa</span>Star Box Ltda</div>
-      <div class="data w40"><span  class="label">CNPJ</span>12.345.678/0001-01</div>
-      <div class="data w30"><span  class="label">IE</span>Isento</div>
-      <div class="data w30"><span  class="label">CCM</span>123.132.231</div>
-      <div class="data w100"><span class="label">Endereço</span>Rua Serra de Bocaína, 287 - Cep:03174-000 - São Paulo / SP - Brasil</div>
+      <div class="data w100"><span class="label">Empresa</span><%= @receipt.enterp_name %></div>
+      <div class="data w40"><span  class="label">CNPJ</span><%= @receipt.enterp_doc %></div>
+      <div class="data w30"><span  class="label">IE</span><%= @receipt.enterp_ie %></div>
+      <!-- <div class="data w30"><span  class="label">IM</span></div> -->
+      <div class="data w100"><span class="label">Endereço</span><%= @receipt.enterp_address %></div>
     </div>
 
     <h3>LOCATÁRIO</h3>
     <div id="client2" class="group w100 border">
-      <div class="data w100"><span class="label">Empresa</span>Maria Augusta de Souza Fiho</div>
-      <div class="data w40"><span  class="label">CNPJ/CPF</span>399.311.881-20</div>
-      <div class="data w30"><span  class="label">IE/RG</span>32.654.987-55</div>
-      <div class="data w30"><span  class="label">CCM</span>654.456.546</div>
-      <div class="data w100"><span class="label">Endereço</span>Al. Campinas, 23 - Jardim Pedreira - CEP: 01530-411 - Sumaré-MA</div>
+      <div class="data w100"><span class="label">Empresa</span><%= @receipt.client_name %></div>
+      <div class="data w40"><span  class="label">CNPJ/CPF</span><%= @receipt.client_doc %></div>
+      <div class="data w30"><span  class="label">IE/RG</span><%= @receipt.client_ie %></div>
+      <div class="data w30"><span  class="label">IM</span><%= @receipt.client_im %></div>
+      <div class="data w100"><span class="label">Endereço</span><%= @receipt.client_address %></div>
     </div>
 
     <h3>ITENS</h3>
@@ -107,12 +109,14 @@
           </tr>
         </thead>
         <tbody>
+          <% @receipt.items.each do |item| %>
           <tr>
-            <td>2</td>
-            <td>BOX GALPÃO 1 PISO TERREO RUA 01 - 52 M2</td>
-            <td class="right">R$ 11,00</td>
-            <td class="right">R$ 22,00</td>
+            <td><%= item.quantity %></td>
+            <td><%= item.product %></td>
+            <td class="right"><%= number_to_currency(item.unit_value) %></td>
+            <td class="right"><%= number_to_currency(item.total_value) %></td>
           </tr>
+          <% end %>
         </tbody>
         <tfoot>
           <tr>
@@ -125,21 +129,21 @@
     <div id="bank2" class="group w30 border">
       <div class="data w100 center"><span class="title">Dados Bancários</span></div>
       <div class="data w100">&nbsp;</div>
-      <div class="data w100"><span class="label">Banco</span>Banco do Brasil</div>
-      <div class="data w100"><span class="label">Agência</span>012-3</div>
-      <div class="data w100"><span class="label">C/C</span>01234-5</div>
+      <div class="data w100"><span class="label">Banco</span><%= @receipt.bank_name %></div>
+      <div class="data w100"><span class="label">Agência</span><%= @receipt.bank_ag %></div>
+      <div class="data w100"><span class="label">C/C</span><%= @receipt.bank_cc %></div>
     </div>
 
     <div id="long_value2" class="group w35 border">
-      <div class="data w100 center"><span class="title">****** Vinte e dois reais ******</span></div>
+      <div class="data w100 center"><span class="title">****** <%= @receipt.liquid_value.to_extenso %> ******</span></div>
     </div>
 
     <div id="summary2" class="group w30 border">
-      <div class="data w100"><span class="label">Período</span>Dez/2011</div>
-      <div class="data w100"><span class="label">Contrato</span>123456</div>
-      <div class="data w100"><span class="label">Vencimento</span>20/01/2012</div>
+      <div class="data w100"><span class="label">Período</span><%= @receipt.period %></div>
+      <!-- <div class="data w100"><span class="label">Contrato</span></div> -->
+      <div class="data w100"><span class="label">Vencimento</span></div>
       <div class="data w100">&nbsp;</div>
-      <div class="data w100 bigger"><span class="label">Total</span>R$ 22,00</div>
+      <div class="data w100 bigger"><span class="label">Total</span><%= @receipt.liquid_value.real_formatado %></div>
     </div>
 
 <% content_for :script do -%>
