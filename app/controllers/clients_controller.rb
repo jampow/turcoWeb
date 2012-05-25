@@ -46,7 +46,7 @@ class ClientsController < ApplicationController
     @client.main_address     = Address.new
     @client.billing_address  = Address.new
     @client.delivery_address = Address.new
-    5.times {
+    2.times {
       contact = @client.contacts.build
       2.times { contact.phones.build }
     }
@@ -63,13 +63,18 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
 
     #Adiciona dois novos telefones pros contatos existentes
-    @client.contacts.each { |contact| 2.times { contact.phones.build } }
+    contacts = @client.contacts
+    contacts.each { |contact| 2.times { contact.phones.build } }
 
-    #Adiciona dois novos contatos com dois telefones cada um
-    2.times {
+    if contacts.length == 0
+      2.times {
+        contact = @client.contacts.build
+        2.times { contact.phones.build }
+      }
+    elsif contacts.length == 1
       contact = @client.contacts.build
       2.times { contact.phones.build }
-    }
+    end
 
     default_data
   end
