@@ -4,7 +4,7 @@ body {
   font-size: 12px;
 }
 
-#logo1, #logo2 {
+img {
   margin: 0;
 }
 
@@ -22,8 +22,7 @@ body {
   margin-bottom: 3px;
 }
 
-#title1,
-#title2 {
+h1 {
   height:100%;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -41,11 +40,6 @@ body {
 
 .data {
   float: left;
-/*  background-color: #ddd;
-}
-
-.data:nth-child(2n+1) {
-  background-color: #555;*/
 }
 
 .bigger { font-size: 1.5em;}
@@ -77,57 +71,28 @@ body {
 .w95  {width: 94%;}
 .w100 {width: 99%;}
 
-/*
-.w05  {width: 3%; }
-.w10  {width: 8%; }
-.w15  {width: 13%;}
-.w20  {width: 18%;}
-.w25  {width: 23%;}
-.w30  {width: 28%;}
-.w35  {width: 33%;}
-.w40  {width: 38%;}
-.w45  {width: 43%;}
-.w50  {width: 48%;}
-.w55  {width: 53%;}
-.w60  {width: 58%;}
-.w65  {width: 63%;}
-.w70  {width: 68%;}
-.w75  {width: 73%;}
-.w80  {width: 78%;}
-.w85  {width: 83%;}
-.w90  {width: 88%;}
-.w95  {width: 93%;}
-.w100 {width: 98%;}
-*/
-
 .center {text-align: center;}
 .right  {text-align: right; }
 
-#items1 thead th, #items1 tfoot th,
-#items2 thead th, #items2 tfoot th {
+table thead th, table tfoot th {
   border-top:    2px solid #000;
   border-bottom: 2px solid #000;
 }
 
-#items1 tfoot th,
-#items2 tfoot th {
+table tfoot th {
   border-bottom: none;
 }
 
-#items1 thead th, #items1 tbody td,
-#items2 thead th, #items2 tbody td {
+table thead th, table tbody td {
   border-left: 1px dotted #000;
 }
 
-#items1 thead th:nth-last-child(1),
-#items1 tbody td:nth-last-child(1),
-#items2 thead th:nth-last-child(1),
-#items2 tbody td:nth-last-child(1) {
+table thead th:nth-last-child(1),
+table tbody td:nth-last-child(1) {
   border-right: 1px dotted #000;
 }
 
-#items1 th, #items1 td,
-#items2 th, #items2 td {
+table th, table td {
   padding: 3px;
 }
 
