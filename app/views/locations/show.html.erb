@@ -13,7 +13,7 @@
 <%= print_content "Representante" , h((@location.seller.name rescue '')), :width => 30  %>
 <%= print_content "Cotação?"      , human_boolean(@location.quotation)  , :width => 10  %>
 <%= print_content "Comissão"      , h(@location.comission)              , :width => 20  %>
-<%= print_content "Conta bancária", h(@location.bank_account.bank_name+' - '+@location.bank_account.agency_number+' - '+@location.bank_account.account_number) , :width => 20  %>
+<%= print_content "Conta bancária", h((@location.bank_account.bank_name+' - '+@location.bank_account.agency_number+' - '+@location.bank_account.account_number rescue '')) , :width => 20  %>
 <%= print_content "Início"        , date(@location.starts_at)           , :width => 20  %>
 <%= print_content "Término"       , date(@location.ends_at)             , :width => 20  %>
 <%= print_content "Observações"   , h(@location.observation)            , :width => 100 %>
