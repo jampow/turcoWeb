@@ -1,6 +1,8 @@
 <% content_for :menu do %>
   <h1>Cliente</h1>
   <%= mount_menu %w[default separator upload] %>
+  <%= btn_upload_photos @client.id %>
+  <%= link_to 'Refresh', @client, :class => 'hide', :id => "refresh" %>
 <% end %>
 
 <h2>Dados principais</h2>
@@ -126,6 +128,28 @@
 
 <% content_for :script do -%>
 //<script type="text/javascript">
+
+
+  $('#send_photos').click(function(){
+    var t = $(this);
+    var url = t.attr('href');
+    showModal({
+      url: url,
+      width: 700,
+      height: 350,
+      title: 'Envie as photos para os crachás.',
+      buttons: [{
+        text:'Enviar',
+        click: function(){
+          $('#waiting', frames[ifm].document).fadeTo('normal', 0.7);
+          $('form'    , frames[ifm].document).submit();
+        }
+      }]
+    });
+    return false;
+  });
+
+
     var conf = {"fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
       var iTotal = 0;
       //Soma das NF's visíveis
@@ -141,6 +165,5 @@
 
     $('table.personal_list').dataTable(newConf);
 
-//</script>
 <% end -%>
 

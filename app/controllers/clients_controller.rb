@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 
   access_control do
-    allow :clients_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :clients_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :people_photo]
     allow :clients_l, :to => [:index, :show]
     allow :clients_s, :to => []
   end
@@ -104,9 +104,14 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
-        flash[:notice] = 'Cliente atualizado.'
-        format.html { redirect_to(@client) }
-        format.xml  { head :ok }
+        if params[:up_photo] == 'true'
+          flash[:notice] = 'Foto atualizada.'
+          format.html { render :action => "close_modal", :layout => "attachments" }
+        else
+          flash[:notice] = 'Cliente atualizado.'
+          format.html { redirect_to(@client) }
+          format.xml  { head :ok }
+        end
       else
         default_data
         format.html { render :action => "edit" }
@@ -125,6 +130,11 @@ class ClientsController < ApplicationController
       format.html { redirect_to(clients_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def people_photo
+    @client         = Client.find(params[:id])
+    render :layout => "attachments"
   end
 
 protected
