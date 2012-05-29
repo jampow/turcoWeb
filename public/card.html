@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Font Test</title>
+  <link rel="stylesheet" href="/stylesheets/fonts/c39/stylesheet.css">
+  <style type="text/css">
+
+    body { font-family: arial; }
+
+    #card {
+      border: solid 1px #000;
+      width: 350px;
+      height: 216px;
+    }
+
+    #sup * { float: left; }
+    #sup p {
+      width: 70%;
+      text-align: center;
+    }
+    #sup { overflow: auto;}
+
+    #name {
+      margin: 50px 0 0 0;
+      font-size: 23px;
+    }
+
+    #corp {
+      margin: 5px 0 0 0;
+      font-style: italic;
+      color: #333;
+    }
+
+    img {
+      padding: 10px;
+      text-align: left ;
+    }
+
+    .codebar {
+      font-family: 'c39';
+      font-size: 50px;
+      padding: 10px;
+      padding-top: 40px;
+      text-transform: uppercase;
+      text-align:center;
+    }
+    .codebar:after  { content:"*"; }
+    .codebar:before { content:"*"; }
+
+  </style>
+</head>
+<body>
+  <div id="card">
+    <div id="sup">
+      <img src="/system/photos/1/thumb/IMG_0759.JPG" alt="foto">
+      <p id="name">Gianpaulo M Soares</p>
+      <p id="corp">Shark-soft</p>
+    </div>
+
+    <div class="codebar">00000008</div>
+  </div>
+</body>
+</html>
