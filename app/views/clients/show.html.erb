@@ -1,7 +1,7 @@
 <% content_for :menu do %>
   <h1>Cliente</h1>
   <%= mount_menu %w[default separator upload] %>
-  <%= btn_upload_photos @client.id %>
+  <%= btn_upload_photos @client.id  unless @client.contacts.blank? %>
   <%= link_to 'Refresh', @client, :class => 'hide', :id => "refresh" %>
 <% end %>
 
