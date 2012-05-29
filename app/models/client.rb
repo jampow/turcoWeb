@@ -101,5 +101,13 @@ class Client < ActiveRecord::Base
     delivery_address.estate
   end
 
+  def phone index
+    ""
+  end
+
+  def email
+    ""
+  end
+
 end
 

@@ -1,0 +1,13 @@
+<% form_for @client, :html => { :multipart => true } do |f| %>
+
+  <%= hidden_field_tag :up_photo, "true" %>
+
+  <% f.fields_for :contacts do |c| %>
+    <label class="inputselect w20 center">
+      <%= image_tag c.object.photo.url(:thumb) %>
+    </label>
+    <%= c.file_field :photo, :label => "Foto para #{c.object.name}", :size => 60 %>
+    <div class="clear"></div>
+  <% end -%>
+
+<% end -%>

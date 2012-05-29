@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 
   access_control do
-    allow :clients_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :clients_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :people_photo, :print_access_card]
     allow :clients_l, :to => [:index, :show]
     allow :clients_s, :to => []
   end
@@ -29,6 +29,7 @@ class ClientsController < ApplicationController
     @main_contact     = @client.contacts.main[0]
     @other_contacts   = @client.contacts.others
 
+    #TODO: substituir tabela de notas (invoices) por recibos (receipts)
     @invoices         = @client.invoices
     @receivables      = @client.receivables
     @attachments      = @client.attachments.from_client
@@ -46,7 +47,7 @@ class ClientsController < ApplicationController
     @client.main_address     = Address.new
     @client.billing_address  = Address.new
     @client.delivery_address = Address.new
-    5.times {
+    2.times {
       contact = @client.contacts.build
       2.times { contact.phones.build }
     }
@@ -63,13 +64,18 @@ class ClientsController < ApplicationController
     @client = Client.find(params[:id])
 
     #Adiciona dois novos telefones pros contatos existentes
-    @client.contacts.each { |contact| 2.times { contact.phones.build } }
+    contacts = @client.contacts
+    contacts.each { |contact| 2.times { contact.phones.build } }
 
-    #Adiciona dois novos contatos com dois telefones cada um
-    2.times {
+    if contacts.length == 0
+      2.times {
+        contact = @client.contacts.build
+        2.times { contact.phones.build }
+      }
+    elsif contacts.length == 1
       contact = @client.contacts.build
       2.times { contact.phones.build }
-    }
+    end
 
     default_data
   end
@@ -99,9 +105,14 @@ class ClientsController < ApplicationController
 
     respond_to do |format|
       if @client.update_attributes(params[:client])
-        flash[:notice] = 'Cliente atualizado.'
-        format.html { redirect_to(@client) }
-        format.xml  { head :ok }
+        if params[:up_photo] == 'true'
+          flash[:notice] = 'Foto atualizada.'
+          format.html { render :action => "close_modal", :layout => "attachments" }
+        else
+          flash[:notice] = 'Cliente atualizado.'
+          format.html { redirect_to(@client) }
+          format.xml  { head :ok }
+        end
       else
         default_data
         format.html { render :action => "edit" }
@@ -120,6 +131,16 @@ class ClientsController < ApplicationController
       format.html { redirect_to(clients_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def people_photo
+    @client         = Client.find(params[:id])
+    render :layout => "attachments"
+  end
+
+  def print_access_card
+    @contact = Person.find params[:id]
+    render :layout => "report"
   end
 
 protected
