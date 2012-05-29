@@ -1,0 +1,62 @@
+<% content_for :header do -%>
+<link rel="stylesheet" href="/stylesheets/fonts/c39/stylesheet.css">
+
+<style type="text/css">
+    body { font-family: arial; }
+
+    #card {
+      border: solid 1px #000;
+      width: 350px;
+      height: 216px;
+    }
+
+    #sup * { float: left; }
+    #sup p {
+      width: 70%;
+      text-align: center;
+    }
+    #sup { overflow: auto;}
+
+    #name {
+      margin: 50px 0 0 0;
+      font-size: 23px;
+    }
+
+    #corp {
+      margin: 5px 0 0 0;
+      font-style: italic;
+      color: #333;
+    }
+
+    img {
+      padding: 10px;
+      text-align: left ;
+    }
+
+    .codebar {
+      font-family: 'c39';
+      font-size: 50px;
+      padding: 10px;
+      padding-top: 40px;
+      text-transform: uppercase;
+      text-align:center;
+    }
+    .codebar:after  { content:"*"; }
+    .codebar:before { content:"*"; }
+</style>
+
+<% end -%>
+
+</head>
+<body>
+  <div id="card">
+    <div id="sup">
+      <%= image_tag @contact.photo.url(:thumb) %>
+      <p id="name"><%= @contact.name %></p>
+      <p id="corp"><%= @contact.client.name %></p>
+    </div>
+
+    <div class="codebar"><%= "%08d" % @contact.id %></div>
+  </div>
+</body>
+</html>

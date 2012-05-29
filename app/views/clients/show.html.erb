@@ -1,6 +1,8 @@
 <% content_for :menu do %>
   <h1>Cliente</h1>
   <%= mount_menu %w[default separator upload] %>
+  <%= btn_upload_photos @client.id  unless @client.contacts.blank? %>
+  <%= link_to 'Refresh', @client, :class => 'hide', :id => "refresh" %>
 <% end %>
 
 <h2>Dados principais</h2>
@@ -17,13 +19,14 @@
 <div class="clear"></div>
 
 <% unless @main_contact.blank? %>
+    <% link = link_to "Carteirinha", "/clients/print_access_card/#{@main_contact.id}", :target => "_blank", :ajax => "false" %>
   <h2>Contato Principal</h2>
-    <%= print_content "Nome"   , h(@main_contact.name)            %>
-    <%= print_content "Setor"  , h(@main_contact.department.name) %>
-    <%= print_content "Função" , h(@main_contact.function.name)   %>
-    <%= print_content "E-mail" , h(@main_contact.email)           , :email => true %>
+    <%= print_content "Nome #{link}", h(@main_contact.name)            %>
+    <%= print_content "Setor"       , h(@main_contact.department.name) %>
+    <%= print_content "Função"      , h(@main_contact.function.name)   %>
+    <%= print_content "E-mail"      , h(@main_contact.email)           , :email => true %>
     <% @main_contact.phones.each do |phone| -%>
-      <%= print_content "Telefone" , h(phone.number) %>
+      <%= print_content "Telefone"  , h(phone.number) %>
     <% end -%>
     <div class="clear"></div>
 <% end -%>
@@ -40,13 +43,15 @@
 <div class="toggleable">
   <% @other_contacts.each do |c| %>
 
-    <%= print_content "Nome"  , h(c.name)            %>
-    <%= print_content "E-mail", h(c.email)           , :email => true %>
-    <%= print_content "Setor" , h(c.department.name) %>
-    <%= print_content "Função", h(c.function.name)   %>
+    <% link = link_to "Carteirinha", "/clients/print_access_card/#{c.id}", :target => "_blank", :ajax => "false" %>
+
+    <%= print_content "Nome #{link}", h(c.name)            %>
+    <%= print_content "E-mail"      , h(c.email)           , :email => true %>
+    <%= print_content "Setor"       , h(c.department.name) %>
+    <%= print_content "Função"      , h(c.function.name)   %>
 
     <% c.phones.each do |phone| -%>
-      <%= print_content "Telefone", h(phone.number)  %>
+      <%= print_content "Telefone"  , h(phone.number)  %>
     <% end -%>
 
     <div class="clear" style="height: 10px"> </div>
@@ -126,6 +131,28 @@
 
 <% content_for :script do -%>
 //<script type="text/javascript">
+
+
+  $('#send_photos').click(function(){
+    var t = $(this);
+    var url = t.attr('href');
+    showModal({
+      url: url,
+      width: 700,
+      height: 350,
+      title: 'Envie as photos para os crachás.',
+      buttons: [{
+        text:'Enviar',
+        click: function(){
+          $('#waiting', frames[ifm].document).fadeTo('normal', 0.7);
+          $('form'    , frames[ifm].document).submit();
+        }
+      }]
+    });
+    return false;
+  });
+
+
     var conf = {"fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
       var iTotal = 0;
       //Soma das NF's visíveis
@@ -141,6 +168,5 @@
 
     $('table.personal_list').dataTable(newConf);
 
-//</script>
 <% end -%>
 
