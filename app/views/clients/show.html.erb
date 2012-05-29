@@ -19,13 +19,14 @@
 <div class="clear"></div>
 
 <% unless @main_contact.blank? %>
+    <% link = link_to "Carteirinha", "/clients/print_access_card/#{@main_contact.id}", :target => "_blank", :ajax => "false" %>
   <h2>Contato Principal</h2>
-    <%= print_content "Nome"   , h(@main_contact.name)            %>
-    <%= print_content "Setor"  , h(@main_contact.department.name) %>
-    <%= print_content "Função" , h(@main_contact.function.name)   %>
-    <%= print_content "E-mail" , h(@main_contact.email)           , :email => true %>
+    <%= print_content "Nome #{link}", h(@main_contact.name)            %>
+    <%= print_content "Setor"       , h(@main_contact.department.name) %>
+    <%= print_content "Função"      , h(@main_contact.function.name)   %>
+    <%= print_content "E-mail"      , h(@main_contact.email)           , :email => true %>
     <% @main_contact.phones.each do |phone| -%>
-      <%= print_content "Telefone" , h(phone.number) %>
+      <%= print_content "Telefone"  , h(phone.number) %>
     <% end -%>
     <div class="clear"></div>
 <% end -%>
@@ -42,13 +43,15 @@
 <div class="toggleable">
   <% @other_contacts.each do |c| %>
 
-    <%= print_content "Nome"  , h(c.name)            %>
-    <%= print_content "E-mail", h(c.email)           , :email => true %>
-    <%= print_content "Setor" , h(c.department.name) %>
-    <%= print_content "Função", h(c.function.name)   %>
+    <% link = link_to "Carteirinha", "/clients/print_access_card/#{c.id}", :target => "_blank", :ajax => "false" %>
+
+    <%= print_content "Nome #{link}", h(c.name)            %>
+    <%= print_content "E-mail"      , h(c.email)           , :email => true %>
+    <%= print_content "Setor"       , h(c.department.name) %>
+    <%= print_content "Função"      , h(c.function.name)   %>
 
     <% c.phones.each do |phone| -%>
-      <%= print_content "Telefone", h(phone.number)  %>
+      <%= print_content "Telefone"  , h(phone.number)  %>
     <% end -%>
 
     <div class="clear" style="height: 10px"> </div>

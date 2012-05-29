@@ -1,11 +1,7 @@
-<!DOCTYPE HTML>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Font Test</title>
-  <link rel="stylesheet" href="/stylesheets/fonts/c39/stylesheet.css">
-  <style type="text/css">
+<% content_for :header do -%>
+<link rel="stylesheet" href="/stylesheets/fonts/c39/stylesheet.css">
 
+<style type="text/css">
     body { font-family: arial; }
 
     #card {
@@ -47,18 +43,20 @@
     }
     .codebar:after  { content:"*"; }
     .codebar:before { content:"*"; }
+</style>
 
-  </style>
+<% end -%>
+
 </head>
 <body>
   <div id="card">
     <div id="sup">
-      <img src="/system/photos/1/thumb/IMG_0759.JPG" alt="foto">
-      <p id="name">Gianpaulo M Soares</p>
-      <p id="corp">Shark-soft</p>
+      <%= image_tag @contact.photo.url(:thumb) %>
+      <p id="name"><%= @contact.name %></p>
+      <p id="corp"><%= @contact.client.name %></p>
     </div>
 
-    <div class="codebar">00000008</div>
+    <div class="codebar"><%= "%08d" % @contact.id %></div>
   </div>
 </body>
 </html>

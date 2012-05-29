@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 
   access_control do
-    allow :clients_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :people_photo]
+    allow :clients_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :people_photo, :print_access_card]
     allow :clients_l, :to => [:index, :show]
     allow :clients_s, :to => []
   end
@@ -136,6 +136,11 @@ class ClientsController < ApplicationController
   def people_photo
     @client         = Client.find(params[:id])
     render :layout => "attachments"
+  end
+
+  def print_access_card
+    @contact = Person.find params[:id]
+    render :layout => "report"
   end
 
 protected
