@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
   has_many   :measure_units
 
   validates_uniqueness_of :code
-  validate :length_of_ncm
+  #validate :length_of_ncm
 
   #named_scope :quantity, :select => "sum()" :conditions => { :field => condition }, :order => "field"
 
