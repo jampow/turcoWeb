@@ -427,3 +427,21 @@ ul.file-list li a:hover {
   font-family: Verdana, Helvetica, Arial;
   font-size: 12px;
 }
+
+#browsers ul {
+  style-list: none;
+  padding: 0 10px;
+}
+/*#browsers li { padding: 2px 0; }
+#browsers ul a {
+  text-decoration: none;
+  display: block;
+}
+#browsers ul a span { padding: 5px 0; }*/
+#browsers li {
+  display:block;
+  padding: 15px 5px 15px 40px;
+}
+#browsers a { text-decoration: none; }
+#browsers #chr { background: url(/images/logo_chrome.png) no-repeat 0 50%; }
+#browsers #moz { background: url(/images/logo_firefox.jpg) no-repeat 0 50%; }
