@@ -50,10 +50,10 @@ $(function(){
     east__minSize: 237
   });
 
-  // var ua = $.browser;
-  // if (ua.webkit || ua.mozilla) {
-  //   $('#browsers').hide();
-  // }
+  var ua = $.browser;
+  if (ua.webkit || ua.mozilla) {
+    $('#browsers').hide();
+  }
 
   //constroi menu
   $('#menu').accordion({fillSpace: true});
