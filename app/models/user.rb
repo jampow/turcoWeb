@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   acts_as_authentic do |c|
-    c.logged_in_timeout = 5.minute
+    c.logged_in_timeout = 20.minutes
   end
 
   acts_as_authorization_subject

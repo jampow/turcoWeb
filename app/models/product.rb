@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
   belongs_to :cst_ipi
   belongs_to :cst_pis
   has_many   :attachments, :foreign_key => 'external_id', :dependent => :destroy
-  has_many   :measure_units
+  has_many   :measure_units                             , :dependent => :destroy
 
   validates_uniqueness_of :code
   #validate :length_of_ncm
