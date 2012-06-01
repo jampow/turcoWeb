@@ -184,9 +184,6 @@ $(function(){
 
   //Executar antes de todas as requisições ajax
   $('body').ajaxStart(function(){
-    //Some com a explicação de erros
-    $('#errorExplanation').slideUp('fast');
-
     //mostra waiting
     $('#waiting').fadeTo('normal', 0.9);
 
@@ -209,9 +206,6 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
 
   //Executar depois de todas as requisições ajax
   $('body').ajaxSuccess(function(){
-    //SlideDown nos erros
-    $('#errorExplanation').hide().slideDown('slow');
-
     //fadeOut na div de processamento
     $('#waiting').fadeOut('normal');
 
