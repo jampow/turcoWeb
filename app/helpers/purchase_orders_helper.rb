@@ -46,21 +46,26 @@ module PurchaseOrdersHelper
                   var th = $(this);
                   var id = th.attr('id');
                   var newId = id.replace(/_([0-9])+_/, '_0_');
-                  $('#'+newId).val( th.val() );
+                  // if (th.hasClass('mask-decimal')){
+                  //   var dec = th.attr('decimal');
+                  //   $('#'+newId).val( format.decimal.toNumber(th.val()));
+                  // } else {
+                    $('#'+newId).val( th.val() );
+                  // }
                 });
                 $('#purchase_order_order_items_attributes_0_product_id').trigger('change');
               });
-            JS
-
-    if editing?
-      html += <<-JS
               $('#purchase_order_items tbody td input').each(function(){
-                var t   = $(this);
-                var val = t.val();
+                var t = $(this);
+                var inputId = t.attr('id').replace(/_([0-9])+_/, '_0_');
+                if ($('#'+inputId).hasClass('mask-decimal')){
+                  var val = format.number.toDecimal(t.val(), t.attr('decimal'));
+                } else {
+                  var val = t.val();
+                }
                 t.next().append(val);
               });
-              JS
-    end
+            JS
 
     flash[:create_purchase_table_item] = false
     html
@@ -85,6 +90,10 @@ module PurchaseOrdersHelper
                 $('input[id$=_name]', '#trash').val('');
                 var rowIdx = $('tr.ui-state-default').index('#purchase_order_items tbody tr');
                 oTable.fnDeleteRow( rowIdx );
+
+                //Limpa form
+                $('.form-toolbar ~ label input').val('');
+                $('tr.ui-state-default').removeClass('ui-state-default');
               });
             JS
     flash[:btn_purchase_del_item] = false
@@ -96,6 +105,7 @@ module PurchaseOrdersHelper
               $('a.save-item').click(function(){
                 var row            = [];
                 var values         = [];
+                var labels         = [];
                 var nextRow        = new Date().getTime();
                 var scope          = findParent($(this),'fieldset');
                 var inpts          = $('label input, label select', scope);
@@ -106,11 +116,15 @@ module PurchaseOrdersHelper
                   var name  = t.attr('name').replace('0', nextRow);
                   var id    = t.attr('id'  ).replace('0', nextRow);
                   var value = t.val();
+                  var label = value;
                   var field = id.replace(/.+([0-9])+_/, '');
 
                   if (validateFields.indexOf(field) != -1 && value == '') empty = true;
 
+                  // if (t.hasClass('mask-decimal')) value = format.decimal.toNumber(value, t.attr('decimal'));
+
                   values.push(value);
+                  labels.push(label);
                   row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" /><span>'+value+'</span>');
                 });
 
@@ -131,7 +145,7 @@ module PurchaseOrdersHelper
                     var t     = $(this);
                     var idx   = $('tr.ui-state-default td').index(t);
                     var to    = $('input', t).attr('id');
-                    var from  = to.replace(/_([0-9])+_/, '_0_');
+                    var label = labels[idx];
                     var value = values[idx];
                     $('#'+to).val(value);
                     $('span', t).text(value);

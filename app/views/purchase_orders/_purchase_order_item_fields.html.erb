@@ -1,11 +1,11 @@
 <label class="hide"><%= f.hidden_field :id %></label>
 <label class="hide"><%= f.hidden_field :product_id %></label>
-<%= f.text_field :product_name       , :label => "Produto"           , :class => "autocomplete", :source => "product", :callback => "loadMeasureUnits()", :pref => "purchase_order_order_items_attributes_0_" %>
-<%= f.text_field :quantity           , :label => "Quantidade"        %>
-<%= f.select     :measure_unit_id, [], :label => "Unidade de medida" %>
-<%= f.text_field :unit_value         , :label => "Valor unitário"    , :class => "mask-decimal"%>
-<%= f.text_field :total_value        , :label => "Valor total"       , :disabled => "deisabled" %>
-<%= f.text_field :delivery           , :label => "Data de entrega"   , :class => 'datepicker' %>
+<%= f.text_field :product_name       , :label => "Produto"           , :size => 30, :class => "autocomplete", :source => "product", :callback => "loadMeasureUnits()", :pref => "purchase_order_order_items_attributes_0_" %>
+<%= f.text_field :quantity           , :label => "Quantidade"        , :size => 10, :class => "mask-decimal", :decimal => "10,4" %>
+<%= f.select     :measure_unit_id, [], :label => "Unidade de medida" , :size => 10 %>
+<%= f.text_field :unit_value         , :label => "Valor unitário"    , :size => 20, :class => "mask-decimal", :decimal => "10,2" %>
+<%= f.text_field :total_value        , :label => "Valor total"       , :size => 20, :class => "mask-decimal", :decimal => "10,2", :disabled => "deisabled" %>
+<%= f.text_field :delivery           , :label => "Data de entrega"   , :size => 10, :class => 'datepicker' %>
 
 <div class="clear"></div>
 <script type="text/javascript">
@@ -22,7 +22,7 @@
 
     $(prefix+'total_value').val(z);
   });
-  
+
   var loadMeasureUnits = function() {
     var prod_id = $(prefix+"product_id").val();
     $.ajax({
