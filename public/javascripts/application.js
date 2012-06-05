@@ -430,7 +430,7 @@ function reset_timer() {
 }
 
 function set_timeout() {
-  timer=setInterval("logout()",5*60000); // 5 min
+  timer=setInterval("logout()",20*60000); // 20 min
 }
 
 function logout(){
