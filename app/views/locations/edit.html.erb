@@ -43,8 +43,8 @@
           <td><%= soi.hidden_field :product_id                                                                     %><span></span></td>
           <td><%= soi.hidden_field :product_name, :value => (soi.object.prod_name rescue soi.object.product_name ) %><span></span></td>
           <td><%= soi.hidden_field :quantity                                                                       %><span></span></td>
-          <td><%= soi.hidden_field :unit_value                                                                     %><span></span></td>
-          <td><%= soi.hidden_field :total_value                                                                    %><span></span></td>
+          <td><%= soi.hidden_field :unit_value  , :class => "mask-decimal", :decimal => "10,2"                     %><span></span></td>
+          <td><%= soi.hidden_field :total_value , :class => "mask-decimal", :decimal => "10,2"                     %><span></span></td>
         </tr>
       <% end -%>
       </tbody>

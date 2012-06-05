@@ -212,7 +212,8 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
     //Adiciona máscaras de decimais
     $('.mask-decimal').each(function(){
       var t = $(this);
-      t.val(format.number.toDecimal(t.val(), t.attr('decimal')));
+      if (t.val().match(',') === null)
+        t.val(format.number.toDecimal(t.val(), t.attr('decimal')));
     });
 
     //prevent ajaxSuccess twice or more

@@ -54,12 +54,12 @@
                   var th = $(this);
                   var id = th.attr('id');
                   var newId = id.replace(/_([0-9])+_/, '_0_');
-                  if (th.hasClass('mask-decimal')){
-                    var dec = th.attr('decimal');
-                    $('#'+newId).val( format.decimal.toNumber(th.val()));
-                  } else {
+                  //if (th.hasClass('mask-decimal')){
+                  //  var dec = th.attr('decimal');
+                  //  $('#'+newId).val( format.decimal.toNumber(th.val()));
+                  //} else {
                     $('#'+newId).val( th.val() );
-                  }
+                  //}
                 });
                 $('#location_location_items_attributes_0_product_id').trigger('change');
               });
@@ -129,7 +129,7 @@
 
                   if (validateFields.indexOf(field) != -1 && value == '') empty = true;
 
-                  if (t.hasClass('mask-decimal')) value = format.decimal.toNumber(value, t.attr('decimal'));
+                  //if (t.hasClass('mask-decimal')) value = format.decimal.toNumber(value, t.attr('decimal'));
 
                   values.push(value);
                   labels.push(label);
