@@ -1,7 +1,7 @@
 class PurchaseOrdersController < ApplicationController
 
   access_control do
-    allow :purchase_orders_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :purchase_orders_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :close, :reverse]
     allow :purchase_orders_l, :to => [:index, :show]
     allow :purchase_orders_s, :to => []
   end
@@ -118,6 +118,23 @@ class PurchaseOrdersController < ApplicationController
     respond_to do |format|
       if @purchase_order.save
         flash[:notice] = 'Pedido de venda estornado.'
+        format.html { redirect_to(@purchase_order) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @purchase_order.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def close
+    @purchase_order = PurchaseOrder.find(params[:id])
+    @purchase_order.reverse = false
+    @purchase_order.closed  = true
+
+    respond_to do |format|
+      if @purchase_order.save
+        flash[:notice] = 'Pedido de venda fechado.'
         format.html { redirect_to(@purchase_order) }
         format.xml  { head :ok }
       else

@@ -1,6 +1,8 @@
 <% content_for :menu do -%>
   <h1>Pedido de compra</h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[default separator] %>
+  <%= btn_purchase_close @purchase_order.id   unless @purchase_order.closed %>
+  <%= btn_purchase_reverse @purchase_order.id if     @purchase_order.closed %>
 <% end -%>
 
 <%= print_content "Número"               , h(@purchase_order.number)                   %>

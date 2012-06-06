@@ -1,7 +1,11 @@
 module PurchaseOrdersHelper
 
-  def btn_reverse(id)
-    link_to "Estornar", "/purchase_orders/reverse?id=#{id}", :class => "button confirm", :icon => "arrowreturn-1-w"
+  def btn_purchase_reverse(id)
+    link_to "Estornar", "/purchase_orders/reverse/#{id}", :class => "button confirm", :icon => "arrowreturn-1-w"
+  end
+
+  def btn_purchase_close(id)
+    link_to "Receber pedido", "/purchase_orders/close/#{id}", :class => "button confirm", :icon => "script"
   end
 
   def new_purchase_item_toolbar f , btns = ['add', 'save', 'del']
