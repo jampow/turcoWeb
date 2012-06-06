@@ -50,12 +50,7 @@ module PurchaseOrdersHelper
                   var th = $(this);
                   var id = th.attr('id');
                   var newId = id.replace(/_([0-9])+_/, '_0_');
-                  // if (th.hasClass('mask-decimal')){
-                  //   var dec = th.attr('decimal');
-                  //   $('#'+newId).val( format.decimal.toNumber(th.val()));
-                  // } else {
-                    $('#'+newId).val( th.val() );
-                  // }
+                  $('#'+newId).val( th.val() );
                 });
                 $('#purchase_order_order_items_attributes_0_product_id').trigger('change');
               });
@@ -125,8 +120,6 @@ module PurchaseOrdersHelper
 
                   if (validateFields.indexOf(field) != -1 && value == '') empty = true;
 
-                  // if (t.hasClass('mask-decimal')) value = format.decimal.toNumber(value, t.attr('decimal'));
-
                   values.push(value);
                   labels.push(label);
                   row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" /><span>'+value+'</span>');
@@ -139,11 +132,6 @@ module PurchaseOrdersHelper
 
                 if ($('tr.ui-state-default').length == 0) {
                   oTable.fnAddData(row);
-                  //$('#purchase_order_items tbody tr').each(function(){
-                  //  for (i = 0; i < invCols.length; i++) {
-                  //    $('td:eq('+invCols[i]+')', $(this)).addClass('hide');
-                  //  }
-                  //});
                 } else {
                   $('tr.ui-state-default td').each(function(){
                     var t     = $(this);
