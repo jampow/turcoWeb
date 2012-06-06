@@ -8,19 +8,20 @@
 <%= print_content "Tipo de pedido"       , h(@purchase_order.order_type_id)            %>
 <%= print_content "Tipo de venda"        , h(@purchase_order.sale_type_id)             %>
 -->
-<%= print_content "Data"                 , h(@purchase_order.date)                     %>
-<%= print_content "Previsão"             , h(@purchase_order.prevision)                %>
-<%= print_content "Faturado"             , h(@purchase_order.billed)                   %>
+<%= print_content "Data"                 , date(@purchase_order.date)                  %>
+<%= print_content "Previsão"             , date(@purchase_order.prevision)             %>
+<%= print_content "Fechado"              , human_boolean(@purchase_order.closed)       %>
+<%= print_content "Faturado"             , date(@purchase_order.billed)                %>
 <%= print_content "Fornecedor"           , h(@purchase_order.provider.name)            %>
-<%= print_content "Vendedor"             , h(@purchase_order.seller_id)                %>
-<%= print_content "Comissão"             , h(@purchase_order.commission)               %>
+<%#= print_content "Vendedor"             , h(@purchase_order.seller_id)                %>
+<%#= print_content "Comissão"             , h(@purchase_order.commission)               %>
 <%= print_content "Contato"              , h(@purchase_order.contact)                  %>
 <%= print_content "Condição de pagamento", h(@purchase_order.payment_condition_id)     %>
 <%= print_content "Carro"                , h((@purchase_order.carrier.name rescue '')) %>
 <%= print_content "Frete"                , h(@purchase_order.freight)                  %>
 <%= print_content "Tipo de frete"        , h(@purchase_order.freight_type_id)          %>
 <%= print_content "Atendente"            , h(@purchase_order.attendant_id)             %>
-<%= print_content "Observações"          , h(@purchase_order.observation)              %>
+<%= print_content "Observações"          , h(@purchase_order.observation)             , :width => 100 %>
 
 <div class="clear"></div>
 
