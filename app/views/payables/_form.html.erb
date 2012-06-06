@@ -1,0 +1,102 @@
+<% content_for :menu do -%>
+  <h1>Título a pagar</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@payable) do |f| %>
+
+  <%= f.error_messages %>
+
+  <fieldset>
+    <legend>Origem</legend>
+    <%= f.hidden_field :client_id %>
+    <%= f.text_field :client_name                                       , :label => "Receber de"      , :size => 30, :class => 'autocomplete', :source => 'client', :pref => 'payable_' %>
+    <%= f.text_field :historic                                          , :label => "Histórico"       , :size => 30 %>
+    <%= f.text_field :issue_date                                        , :label => "Data de Emissão" , :size => 10, :class => 'datepicker' %>
+    <%= f.select :document_kind_id  , Payable::DocumentKind.to_select, :label => 'Documento'       , :size => 10 %>
+    <%= f.text_field :invoice_number                                    , :label => "Número da NF"    , :size => 10 %>
+    <%= f.check_box  :settled                                           , :label => "Quitado"         , :size => 10 %>
+  </fieldset>
+  <fieldset>
+    <legend>Conta</legend>
+    <%= f.select :account_id       , BankAccount.to_select              , :label => 'Conta'            ,:size => 20 %>
+    <%= f.select :payment_method_id, Payable::PaymentMethod.to_select, :label => 'Meio de Pagamento',:size => 20 %>
+    <%= f.text_field :due_date                                          , :label => "Vencimento"       ,:size => 20, :class => 'datepicker' %>
+    <%= f.select :frequency_id     , Payable::Frequency.to_select    , :label => 'Frequencia'       ,:size => 20 %>
+    <%= f.text_field :value                                             , :label => "Valor"            ,:size => 20 %>
+
+  </fieldset>
+  <fieldset>
+    <legend>Informações Adicionais</legend>
+    <div id="aditional-informations">
+      <%= f.text_field :competence                                                         , :label => 'Competência'             , :class => 'datepicker' %>
+      <%= f.text_field :serie_number                                                       , :label => 'Num. Doc. Série'                                  %>
+      <%= f.text_field :carrier                                                            , :label => 'Portador'                                         %>
+      <%= f.text_field :barcode                                                            , :label => 'Código de Barras do Doc.'                         %>
+      <%= f.select     :rate_type_id            , Payable::RateType.to_select           , :label => 'Lançar'                                           %>
+      <%= f.text_field :fine                                                               , :label => 'Multa'                                            %>
+      <%= f.text_field :rate                                                               , :label => 'Juros'                                            %>
+      <%= f.select     :rate_calculation_type_id, Payable::RateCalculationType.to_select, :label => 'Calcular'                                         %>
+      <%= f.text_area  :observations                                                       , :label => 'Observações'             ,  :size => 100          %>
+      <div class="clear"></div>
+    </div>
+  </fieldset>
+  <div id="division_parts">
+    <% field_set_tag 'Divisão/Rateio do Valor' do -%>
+      <%= new_payable_division_item_toolbar f %>
+      <% f.fields_for :payable_cost_divisions, @division do |pcd| %>
+        <label class="hide"><%= pcd.hidden_field :id %></label>
+        <label class="hide"><%= pcd.hidden_field :account_plan_id %></label>
+        <label class="hide"><%= pcd.hidden_field :cost_center_id %></label>
+        <%= pcd.text_field :account_plan_name, :label => 'Plano de Conta' , :size => 20, :class => 'autocomplete', :source => 'account_plan', :pref => "payable_payable_cost_divisions_attributes_0_" %>
+        <%= pcd.text_field :cost_center_name , :label => 'Centro de Custo', :size => 20, :class => 'autocomplete', :source => 'cost_center' , :pref => "payable_payable_cost_divisions_attributes_0_" %>
+        <%= pcd.text_field :observations     , :label => 'Observação'     , :size => 20 %>
+        <%= pcd.text_field :value            , :label => 'Valor'          , :size => 20, :class => 'payable_cost_division_value'   %>
+        <%= pcd.text_field :percent          , :label => '% do Total'     , :size => 20, :class => 'payable_cost_division_percent' %>
+        <div class="clear"></div>
+      <% end -%>
+
+      <table id="payable_division_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Id do Plano</th>
+            <th>Plano de Conta</th>
+            <th>Id do Centro</th>
+            <th>Centro de Custos</th>
+            <th>Observação</th>
+            <th>Valor</th>
+            <th>%</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% f.fields_for :payable_cost_divisions do |div| %>
+          <tr>
+            <td><%= div.hidden_field :id %><span></span></td>
+            <td><%= div.hidden_field :account_plan_id %><span></span></td>
+            <td><%= div.hidden_field :account_plan_name %><span></span></td>
+            <td><%= div.hidden_field :cost_center_id %><span></span></td>
+            <td><%= div.hidden_field :cost_center_name %><span></span></td>
+            <td><%= div.hidden_field :observations %><span></span></td>
+            <td class="right"><%= div.hidden_field :value %><span></span></td>
+            <td class="right"><%= div.hidden_field :percent %><span></span></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+      <div id="trash" class="hide"></div>
+
+    <% end -%>
+  </div>
+  <div class="clear"></div>
+<% end %>
+
+<% content_for :script do %>
+  <%= js_payable_division_create_table_item %>
+  <%= js_payable_division_new_item %>
+  <%= js_payable_division_save_item %>
+  <%= js_payable_division_del_item %>
+<% end %>
+
+<%= render :partial => "js_new_edit" %>

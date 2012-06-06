@@ -1,0 +1,96 @@
+<% content_for :menu do -%>
+  <h1>Título a pagar</h1>
+  <%= mount_menu %w[default separator] %>
+  <%# link_to "Lançar Recebimento", new_payable_billing_path(@payable), {:class => "button", :icon => "plus"} %>
+  <%= link_to "Recebimentos"      , payable_billings_path+"?id=#{@payable.id}", {:class => "button", :icon => "arrowreturnthick-1-s"} %>
+
+<% end -%>
+
+<div class="form-wrapper">
+  <div id="tabs">
+    <div id="general">
+      <h2>Origem</h2>
+      <%= print_content 'Receber de'     , h((@payable.client || {})[:name])                                      , :width => 30 %>
+      <%= print_content "Histórico"      , h(@payable.historic)                                                   , :width => 30 %>
+      <%= print_content "Data de Emissão", date(@payable.issue_date)                                              , :width => 10 %>
+      <%= print_content 'Documento'      , (Payable::DocumentKind.find(@payable.document_kind_id) || {})[:kind], :width => 10 %>
+      <%= print_content "Número da NF"   , h(@payable.invoice_number)                                             , :width => 10 %>
+      <%= print_content "Quitado"        , human_boolean(@payable.settled)                                        , :width => 10 %>
+
+      <h2>Conta</h2>
+      <%= print_content 'Conta'            , (@payable.bank_account || {})[:name]                                     , :width => 20 %>
+      <%= print_content 'Meio de Pagamento', (Payable::PaymentMethod.find(@payable.payment_method_id) || {})[:name], :width => 20 %>
+      <%= print_content "Vencimento"       , date(@payable.due_date)                                                  , :width => 20 %>
+      <%= print_content 'Frequencia'       , (Payable::Frequency.find(@payable.frequency_id) || {})[:name]         , :width => 20 %>
+      <%= print_content "Valor"            , number_to_currency(@payable.value)                                       , :width => 20 %>
+
+      <h2>Informações Adicionais</h2>
+      <div id="aditional-informations">
+        <%= print_content 'Competência'             , date(@payable.competence) %>
+        <%= print_content 'Num. Doc. Série'         , h(@payable.serie_number) %>
+        <%= print_content 'Portador'                , h(@payable.carrier) %>
+        <%= print_content 'Código de Barras do Doc.', h(@payable.barcode) %>
+        <%= print_content 'Lançar'                  , (Payable::RateType.find(@payable.rate_type_id) || {})[:name] %>
+        <%= print_content 'Multa'                   , h(@payable.fine) %>
+        <%= print_content 'Juros'                   , h(@payable.rate) %>
+        <%= print_content 'Calcular'                , (Payable::RateCalculationType.find(@payable.rate_calculation_type_id)||{})[:name] %>
+        <%= print_content 'Observações'             , h(@payable.observations), :width => 100 %>
+      </div>
+      <div class="clear"></div>
+
+      <div style="float:left;width:50%">
+        <div style="padding:10px 5px 0 0;">
+          <h2>Pagamentos</h2>
+          <table id="payable_bllings" cellpading="0" cellspacing="0" border="0" width="100%" class="list" >
+            <thead>
+              <tr>
+                <th>Vencimento</th>
+                <th>Parcela</th>
+                <th>Recebido em</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @payable.billings.each do |pay| %>
+                <tr>
+                  <td class="center"><%= date(pay.expire_at) %></td>
+                  <td><%= pay.parcel %></td>
+                  <td class="center"><%= date(pay.received_at) %></td>
+                  <td class="right"><%= number_to_currency(pay.value) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="float:left;width:50%">
+        <div style="padding:10px 0 0 5px;">
+          <h2>Divisão/Rateio de Valor</h2>
+          <table id="payable_division_order_items" cellpading="0" cellspacing="0" border="0" width="100%" class="list" >
+            <thead>
+              <tr>
+                <th>Plano de Conta</th>
+                <th>Centro de Custos</th>
+                <th>Valor</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @payable.payable_cost_divisions.each do |div| %>
+                <tr>
+                  <td><%= (div.account_plan || {})[:name] %></td>
+                  <td><%= (div.cost_center || {})[:name] %></td>
+                  <td class="right"><%= number_to_currency(div.value) %></td>
+                  <td class="right"><%= div.value.to_f / @payable.value.to_f * 100 %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

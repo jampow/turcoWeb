@@ -1,0 +1,11 @@
+<% content_for :menu do -%>
+  <h1>Títulos a pagar</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @payables, ['invoice_number', 'Número da NF', {:class  => "right"}],
+                     ['cli'           , 'Fornecedor'  ],
+                     ['due_date'      , 'Vencimento'  , {:format => 'date'              , :class => 'center'}],
+                     ['value'         , 'Valor'       , {:format => 'number_to_currency', :class => 'right' }],
+                     ['settled'       , 'Quitado?'    , {:format => 'human_boolean'     , :class => 'center'}] %>
+

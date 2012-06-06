@@ -1,0 +1,12 @@
+<% content_for :menu do -%>
+  <h1>Pagamentos</h1>
+  <%= mount_menu %w[default separator] %>
+  <%= link_to "Voltar à Conta a pagar", payable_path(session[:pay_id]), :class => "button", :icon => "triangle-1-w" %>
+<% end -%>
+
+<%= table @payable_billings, ['expire_at'  , 'Vencimento', {:format => "date"              , :class => "center"}],
+                             ['parcel'     , 'Parcela'   ],
+                             ['received_at', 'Pago em'   , {:format => "date"              , :class => "center"}],
+                             ['value'      , 'Valor'     , {:format => "number_to_currency", :class => "right" }],
+                             ['total'      , 'Total'     , {:format => "number_to_currency", :class => "right" }] %>
+

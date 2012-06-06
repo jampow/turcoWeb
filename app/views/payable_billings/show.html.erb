@@ -1,0 +1,26 @@
+<% content_for :menu do -%>
+  <h1>Pagamento</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%=print_content "Conta"              , h(@payable_billing.bank_account_id), :width => 10 %>
+<%=print_content "Cliente"            , h(@payable_billing.client_id)      , :width => 20 %>
+<%#print_content "Histórico"          , h(@payable_billing.history)        , :width => 25 %>
+<%=print_content "Plano de contas"    , h(@payable_billing.account_plan_id), :width => 10 %>
+<%=print_content "Centro de custo"    , h(@payable_billing.cost_center_id) , :width => 10 %>
+<%=print_content "Número do documento", h(@payable_billing.document_number), :width => 20 %>
+<%=print_content "Código de barras"   , h(@payable_billing.barcode)        , :width => 30 %>
+
+<%=print_content "Observações"        , h(@payable_billing.observations)   , :width => 100%>
+
+<%=print_content "Vencimento"         , date(@payable_billing.expire_at)   , :width => 20 %>
+<%=print_content "Competência"        , h(@payable_billing.competency)     , :width => 20 %>
+<%=print_content "Recebimento"        , h(@payable_billing.received_at)    , :width => 20 %>
+<%=print_content "Número"             , h(@payable_billing.bill_number)    , :width => 20 %>
+<%=print_content "Parcela"            , h(@payable_billing.parcel)         , :width => 20 %>
+
+<%=print_content "Valor"              , h(@payable_billing.value)          , :width => 20 %>
+<%=print_content "Valor da multa"     , h(@payable_billing.fine)           , :width => 20 %>
+<%=print_content "Valor do juros"     , h(@payable_billing.rate)           , :width => 20 %>
+<%=print_content "Desconto"           , h(@payable_billing.discount)       , :width => 20 %>
+<%=print_content "Valor total"        , h(@payable_billing.total)          , :width => 20 %>
