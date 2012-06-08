@@ -7,27 +7,27 @@
   <div class="form-wrapper">
     <%= f.error_messages %>
 
-    <%= f.text_field   :number              , :label => "Número"                , :disabled => 'disabled' %>
+    <%= f.text_field   :number                              , :label => "Número"                , :disabled => 'disabled' %>
     <!--
-    <%= f.text_field   :order_type_id       , :label => "Tipo de pedido"        %>
-    <%= f.text_field   :sale_type_id        , :label => "Tipo de venda"         %>
+    <%= f.text_field   :order_type_id                       , :label => "Tipo de pedido"        %>
+    <%= f.text_field   :sale_type_id                        , :label => "Tipo de venda"         %>
     -->
-    <%= f.text_field   :date                , :label => "Data do pedido"        , :class => 'datepicker' %>
-    <%= f.text_field   :prevision           , :label => "Previsão de entrega"   , :class => 'datepicker' %>
-    <%= f.check_box    :closed              , :label => 'Fechado'               %>
-    <%= f.text_field   :billed              , :label => "Faturado"              , :class => 'datepicker' %>
+    <%= f.text_field   :date                                , :label => "Data do pedido"        , :class => 'datepicker' %>
+    <%= f.text_field   :prevision                           , :label => "Previsão de entrega"   , :class => 'datepicker' %>
+    <%= f.check_box    :closed                              , :label => 'Fechado'               %>
+    <%= f.text_field   :billed                              , :label => "Faturado"              , :class => 'datepicker' %>
     <%= f.hidden_field :client_id %>
-    <%= f.text_field   :provider_name       , :label => "Fornecedor"            , :class => "autocomplete", :source => "provider", :pref => "purchase_order_", :required => true %>
-    <%#= f.text_field   :seller_id           , :label => "Vendedor"              %>
-    <%#= f.text_field   :commission          , :label => "Comissão"              %>
-    <%= f.text_field   :contact             , :label => "Contato"               %>
-    <%= f.text_field   :payment_condition_id, :label => "Condição de pagamento" %>
-    <%= f.hidden_field :car_id              , :label => "Carro"                 %>
-    <%= f.text_field   :car_name            , :label => "Carro"                 , :class => "autocomplete", :source => "car", :pref => "purchase_order_" %>
-    <%= f.text_field   :freight             , :label => "Frete"                 %>
-    <%= f.text_field   :freight_type_id     , :label => "Tipo de frete"         %>
-    <%= f.text_field   :attendant_id        , :label => "Atendente"             %>
-    <%= f.text_area    :observation         , :label => "Observações"           , :size => 100 %>
+    <%= f.text_field   :provider_name                       , :label => "Fornecedor"            , :class => "autocomplete", :source => "provider", :pref => "purchase_order_", :required => true %>
+    <%#= f.text_field   :seller_id                           , :label => "Vendedor"              %>
+    <%#= f.text_field   :commission                          , :label => "Comissão"              %>
+    <%= f.text_field   :contact                             , :label => "Contato"               %>
+    <%= f.select       :payment_condition_id, @payment_forms, :label => "Condição de pagamento", :size => 20, :required => "true" %>
+    <%= f.hidden_field :car_id                              , :label => "Carro"                 %>
+    <%= f.text_field   :car_name                            , :label => "Carro"                 , :class => "autocomplete", :source => "car", :pref => "purchase_order_" %>
+    <%= f.text_field   :freight                             , :label => "Frete"                 %>
+    <%= f.text_field   :freight_type_id                     , :label => "Tipo de frete"         %>
+    <%= f.text_field   :attendant_id                        , :label => "Atendente"             %>
+    <%= f.text_area    :observation                         , :label => "Observações"           , :size => 100 %>
 
     <% field_set_tag 'Itens' do -%>
       <%= new_purchase_item_toolbar f %>

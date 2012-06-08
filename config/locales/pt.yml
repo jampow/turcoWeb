@@ -310,6 +310,7 @@
         cnpj: "CNPJ"
       purchase_order:
         client_id: "Fornecedor"
+        payment_condition_id: "Forma de pagamento"
       receivable:
         client_id: "Cliente"
         issue_date: "Data de emissão"

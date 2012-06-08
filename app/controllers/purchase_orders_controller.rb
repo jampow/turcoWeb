@@ -147,6 +147,6 @@ class PurchaseOrdersController < ApplicationController
 protected
 
   def default_data
-
+    @payment_forms = PaymentForm.all.collect { |p| [p.name, p.id] }
   end
 end
