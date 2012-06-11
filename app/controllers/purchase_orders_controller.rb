@@ -65,7 +65,7 @@ class PurchaseOrdersController < ApplicationController
   def create
     @purchase_order = PurchaseOrder.new(params[:purchase_order])
     @purchase_order.order_items.build
-    @sales_order.attendant_id = current_user.id
+    @purchase_order.attendant_id = current_user.id
 
     respond_to do |format|
       if @purchase_order.save
@@ -114,6 +114,7 @@ class PurchaseOrdersController < ApplicationController
     @purchase_order = PurchaseOrder.find(params[:id])
     @purchase_order.reverse = true
     @purchase_order.closed  = false
+    @purchase_order.billed  = nil
 
     respond_to do |format|
       if @purchase_order.save
@@ -131,6 +132,7 @@ class PurchaseOrdersController < ApplicationController
     @purchase_order = PurchaseOrder.find(params[:id])
     @purchase_order.reverse = false
     @purchase_order.closed  = true
+    @purchase_order.billed  = Date.today
 
     respond_to do |format|
       if @purchase_order.save

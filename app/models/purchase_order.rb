@@ -1,6 +1,7 @@
 class PurchaseOrder < Order
   belongs_to :provider    , :foreign_key => "client_id"
   belongs_to :payment_form, :foreign_key => "payment_condition_id"
+  belongs_to :attendant   , :class_name  => "User"
 
   validates_presence_of :client_id
   validates_presence_of :payment_condition_id
@@ -23,7 +24,7 @@ class PurchaseOrder < Order
       parcels = self.payment_form.parcels
       val = self.value / parcels.count
       parcels.each do |parc|
-        rec = Receivable.create({
+        rec = Payable.create({
           :client_id                => self.client_id,
           #:document_number          => self.number,
           :due_date                 => Time.new + parc.days,

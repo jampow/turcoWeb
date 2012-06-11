@@ -117,12 +117,18 @@ module PurchaseOrdersHelper
                   var value = t.val();
                   var label = value;
                   var field = id.replace(/.+([0-9])+_/, '');
+                  var decim = t.attr('decimal') || '';
+                  var klass = '';
 
                   if (validateFields.indexOf(field) != -1 && value == '') empty = true;
+                  if (decim !== '') {
+                    decim = 'decimal="'+t.attr('decimal')+'"';
+                    klass += ' mask-decimal';
+                  }
 
                   values.push(value);
                   labels.push(label);
-                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" /><span>'+value+'</span>');
+                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" '+decim+' class="'+klass+'" /><span>'+value+'</span>');
                 });
 
                 if (empty == true) {
