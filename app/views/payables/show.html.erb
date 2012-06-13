@@ -2,7 +2,7 @@
   <h1>Título a pagar</h1>
   <%= mount_menu %w[default separator] %>
   <%# link_to "Lançar Recebimento", new_payable_billing_path(@payable), {:class => "button", :icon => "plus"} %>
-  <%= link_to "Recebimentos"      , payable_billings_path+"?id=#{@payable.id}", {:class => "button", :icon => "arrowreturnthick-1-s"} %>
+  <%= link_to "Pagamentos"        , payable_billings_path+"?id=#{@payable.id}", {:class => "button", :icon => "arrowreturnthick-1-n"} %>
 
 <% end -%>
 
@@ -10,19 +10,19 @@
   <div id="tabs">
     <div id="general">
       <h2>Origem</h2>
-      <%= print_content 'Receber de'     , h((@payable.client || {})[:name])                                      , :width => 30 %>
-      <%= print_content "Histórico"      , h(@payable.historic)                                                   , :width => 30 %>
-      <%= print_content "Data de Emissão", date(@payable.issue_date)                                              , :width => 10 %>
+      <%= print_content 'Receber de'     , h((@payable.client || {})[:name])                                   , :width => 30 %>
+      <%= print_content "Histórico"      , h(@payable.historic)                                                , :width => 30 %>
+      <%= print_content "Data de Emissão", date(@payable.issue_date)                                           , :width => 10 %>
       <%= print_content 'Documento'      , (Payable::DocumentKind.find(@payable.document_kind_id) || {})[:kind], :width => 10 %>
-      <%= print_content "Número da NF"   , h(@payable.invoice_number)                                             , :width => 10 %>
-      <%= print_content "Quitado"        , human_boolean(@payable.settled)                                        , :width => 10 %>
+      <%= print_content "Número da NF"   , h(@payable.invoice_number)                                          , :width => 10 %>
+      <%= print_content "Quitado"        , human_boolean(@payable.settled)                                     , :width => 10 %>
 
       <h2>Conta</h2>
-      <%= print_content 'Conta'            , (@payable.bank_account || {})[:name]                                     , :width => 20 %>
+      <%= print_content 'Conta'            , (@payable.bank_account || {})[:name]                                  , :width => 20 %>
       <%= print_content 'Meio de Pagamento', (Payable::PaymentMethod.find(@payable.payment_method_id) || {})[:name], :width => 20 %>
-      <%= print_content "Vencimento"       , date(@payable.due_date)                                                  , :width => 20 %>
+      <%= print_content "Vencimento"       , date(@payable.due_date)                                               , :width => 20 %>
       <%= print_content 'Frequencia'       , (Payable::Frequency.find(@payable.frequency_id) || {})[:name]         , :width => 20 %>
-      <%= print_content "Valor"            , number_to_currency(@payable.value)                                       , :width => 20 %>
+      <%= print_content "Valor"            , number_to_currency(@payable.value)                                    , :width => 20 %>
 
       <h2>Informações Adicionais</h2>
       <div id="aditional-informations">

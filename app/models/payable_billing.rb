@@ -12,7 +12,8 @@ class PayableBilling < ActiveRecord::Base
   # quita recebimento
   def settle_payable!
     if settle_payable == "1" || self.payable.reached_limit?
-      r = Receivable.find(payable_id)
+      logger.info "entrou"
+      r = Payable.find(payable_id)
       r.settled = true
       r.save
     end

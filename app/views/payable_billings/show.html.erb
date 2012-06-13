@@ -14,13 +14,13 @@
 <%=print_content "Observações"        , h(@payable_billing.observations)   , :width => 100%>
 
 <%=print_content "Vencimento"         , date(@payable_billing.expire_at)   , :width => 20 %>
-<%=print_content "Competência"        , h(@payable_billing.competency)     , :width => 20 %>
-<%=print_content "Recebimento"        , h(@payable_billing.received_at)    , :width => 20 %>
+<%=print_content "Competência"        , date(@payable_billing.competency)     , :width => 20 %>
+<%=print_content "Recebimento"        , date(@payable_billing.received_at)    , :width => 20 %>
 <%=print_content "Número"             , h(@payable_billing.bill_number)    , :width => 20 %>
 <%=print_content "Parcela"            , h(@payable_billing.parcel)         , :width => 20 %>
 
-<%=print_content "Valor"              , h(@payable_billing.value)          , :width => 20 %>
-<%=print_content "Valor da multa"     , h(@payable_billing.fine)           , :width => 20 %>
-<%=print_content "Valor do juros"     , h(@payable_billing.rate)           , :width => 20 %>
-<%=print_content "Desconto"           , h(@payable_billing.discount)       , :width => 20 %>
-<%=print_content "Valor total"        , h(@payable_billing.total)          , :width => 20 %>
+<%=print_content "Valor"              , number_to_currency(@payable_billing.value)          , :width => 20 %>
+<%=print_content "Valor da multa"     , number_to_currency(@payable_billing.fine)           , :width => 20 %>
+<%=print_content "Valor do juros"     , number_to_currency(@payable_billing.rate)           , :width => 20 %>
+<%=print_content "Desconto"           , number_to_currency(@payable_billing.discount)       , :width => 20 %>
+<%=print_content "Valor total"        , number_to_currency(@payable_billing.total)          , :width => 20 %>
