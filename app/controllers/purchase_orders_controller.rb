@@ -1,7 +1,7 @@
 class PurchaseOrdersController < ApplicationController
 
   access_control do
-    allow :purchase_orders_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :purchase_orders_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :close, :reverse]
     allow :purchase_orders_l, :to => [:index, :show]
     allow :purchase_orders_s, :to => []
   end
@@ -34,6 +34,7 @@ class PurchaseOrdersController < ApplicationController
   def new
     @purchase_order = PurchaseOrder.new
     @purchase_order.order_items.build
+    default_data
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +45,12 @@ class PurchaseOrdersController < ApplicationController
   # GET /purchase_orders/1/edit
   def edit
     @purchase_order = PurchaseOrder.find(params[:id])
-    
+
+    @purchase_order.provider_name = @purchase_order.provider.name
+
+
+    default_data
+
     if @purchase_order.closed
       flash[:notice] = "Pedido de compra fechado."
       redirect_to @purchase_order
@@ -59,6 +65,7 @@ class PurchaseOrdersController < ApplicationController
   def create
     @purchase_order = PurchaseOrder.new(params[:purchase_order])
     @purchase_order.order_items.build
+    @purchase_order.attendant_id = current_user.id
 
     respond_to do |format|
       if @purchase_order.save
@@ -66,6 +73,7 @@ class PurchaseOrdersController < ApplicationController
         format.html { redirect_to(@purchase_order) }
         format.xml  { render :xml => @purchase_order, :status => :created, :location => @purchase_order }
       else
+        default_data
         format.html { render :action => "new" }
         format.xml  { render :xml => @purchase_order.errors, :status => :unprocessable_entity }
       end
@@ -83,6 +91,7 @@ class PurchaseOrdersController < ApplicationController
         format.html { redirect_to(@purchase_order) }
         format.xml  { head :ok }
       else
+        default_data
         format.html { render :action => "edit" }
         format.xml  { render :xml => @purchase_order.errors, :status => :unprocessable_entity }
       end
@@ -100,12 +109,13 @@ class PurchaseOrdersController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   def reverse
     @purchase_order = PurchaseOrder.find(params[:id])
     @purchase_order.reverse = true
     @purchase_order.closed  = false
-    
+    @purchase_order.billed  = nil
+
     respond_to do |format|
       if @purchase_order.save
         flash[:notice] = 'Pedido de venda estornado.'
@@ -116,5 +126,29 @@ class PurchaseOrdersController < ApplicationController
         format.xml  { render :xml => @purchase_order.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def close
+    @purchase_order = PurchaseOrder.find(params[:id])
+    @purchase_order.reverse = false
+    @purchase_order.closed  = true
+    @purchase_order.billed  = Date.today
+
+    respond_to do |format|
+      if @purchase_order.save
+        flash[:notice] = 'Pedido de venda fechado.'
+        format.html { redirect_to(@purchase_order) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @purchase_order.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+protected
+
+  def default_data
+    @payment_forms = PaymentForm.all.collect { |p| [p.name, p.id] }
   end
 end

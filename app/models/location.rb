@@ -13,11 +13,16 @@ class Location < ActiveRecord::Base
   validate :presence_of_seller
   validates_presence_of :starts_at
   validate :ends_after_start
+  validate :presence_of_items
 
   def total
     total = 0
     self.location_items.each { |li| total += li.total_value }
     total
+  end
+
+  def presence_of_items
+    self.errors.add_to_base('Precisa ter pelo menos um item') if self.location_items.blank?
   end
 
   def presence_of_client

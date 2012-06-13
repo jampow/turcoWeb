@@ -1,7 +1,11 @@
 module PurchaseOrdersHelper
 
-  def btn_reverse(id)
-    link_to "Estornar", "/purchase_orders/reverse?id=#{id}", :class => "button confirm", :icon => "arrowreturn-1-w"
+  def btn_purchase_reverse(id)
+    link_to "Estornar", "/purchase_orders/reverse/#{id}", :class => "button confirm", :icon => "arrowreturn-1-w"
+  end
+
+  def btn_purchase_close(id)
+    link_to "Receber pedido", "/purchase_orders/close/#{id}", :class => "button confirm", :icon => "script"
   end
 
   def new_purchase_item_toolbar f , btns = ['add', 'save', 'del']
@@ -50,17 +54,17 @@ module PurchaseOrdersHelper
                 });
                 $('#purchase_order_order_items_attributes_0_product_id').trigger('change');
               });
-            JS
-
-    if editing?
-      html += <<-JS
               $('#purchase_order_items tbody td input').each(function(){
-                var t   = $(this);
-                var val = t.val();
+                var t = $(this);
+                var inputId = t.attr('id').replace(/_([0-9])+_/, '_0_');
+                if ($('#'+inputId).hasClass('mask-decimal')){
+                  var val = format.number.toDecimal(t.val(), t.attr('decimal'));
+                } else {
+                  var val = t.val();
+                }
                 t.next().append(val);
               });
-              JS
-    end
+            JS
 
     flash[:create_purchase_table_item] = false
     html
@@ -85,6 +89,10 @@ module PurchaseOrdersHelper
                 $('input[id$=_name]', '#trash').val('');
                 var rowIdx = $('tr.ui-state-default').index('#purchase_order_items tbody tr');
                 oTable.fnDeleteRow( rowIdx );
+
+                //Limpa form
+                $('.form-toolbar ~ label input').val('');
+                $('tr.ui-state-default').removeClass('ui-state-default');
               });
             JS
     flash[:btn_purchase_del_item] = false
@@ -96,6 +104,7 @@ module PurchaseOrdersHelper
               $('a.save-item').click(function(){
                 var row            = [];
                 var values         = [];
+                var labels         = [];
                 var nextRow        = new Date().getTime();
                 var scope          = findParent($(this),'fieldset');
                 var inpts          = $('label input, label select', scope);
@@ -106,12 +115,20 @@ module PurchaseOrdersHelper
                   var name  = t.attr('name').replace('0', nextRow);
                   var id    = t.attr('id'  ).replace('0', nextRow);
                   var value = t.val();
+                  var label = value;
                   var field = id.replace(/.+([0-9])+_/, '');
+                  var decim = t.attr('decimal') || '';
+                  var klass = '';
 
                   if (validateFields.indexOf(field) != -1 && value == '') empty = true;
+                  if (decim !== '') {
+                    decim = 'decimal="'+t.attr('decimal')+'"';
+                    klass += ' mask-decimal';
+                  }
 
                   values.push(value);
-                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" /><span>'+value+'</span>');
+                  labels.push(label);
+                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" '+decim+' class="'+klass+'" /><span>'+value+'</span>');
                 });
 
                 if (empty == true) {
@@ -121,17 +138,12 @@ module PurchaseOrdersHelper
 
                 if ($('tr.ui-state-default').length == 0) {
                   oTable.fnAddData(row);
-                  //$('#purchase_order_items tbody tr').each(function(){
-                  //  for (i = 0; i < invCols.length; i++) {
-                  //    $('td:eq('+invCols[i]+')', $(this)).addClass('hide');
-                  //  }
-                  //});
                 } else {
                   $('tr.ui-state-default td').each(function(){
                     var t     = $(this);
                     var idx   = $('tr.ui-state-default td').index(t);
                     var to    = $('input', t).attr('id');
-                    var from  = to.replace(/_([0-9])+_/, '_0_');
+                    var label = labels[idx];
                     var value = values[idx];
                     $('#'+to).val(value);
                     $('span', t).text(value);

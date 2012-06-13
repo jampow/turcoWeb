@@ -1,0 +1,23 @@
+<script type="text/javascript">
+  $(function(){
+    function fill_value(){
+      var it = $(this)
+      var value_id = it.attr('id').replace(/percent/, 'value');
+      var total_value = $('#payable_value').val();
+      $('#' + value_id).val((it.val() * total_value) / 100 );
+    }
+    function fill_percent(){
+      var it = $(this)
+      var percent_id = it.attr('id').replace(/value/, 'percent');
+      var total_value = $('#payable_value').val();
+      $('#' + percent_id).val((it.val() / total_value) * 100 );
+    }
+    $('#payable_value').keyup(function(){
+      $('#payable_payable_cost_divisions_attributes_0_value').val($(this).val());
+      $('#payable_payable_cost_divisions_attributes_0_percent').val('100');
+    });
+    $(".payable_cost_division_value").keyup(fill_percent);
+    $(".payable_cost_division_percent").keyup(fill_value);
+  });
+</script>
+

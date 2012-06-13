@@ -1,0 +1,41 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bank_account_id: 1
+  client_id: 1
+  history: MyString
+  account_plan_id: 1
+  cost_center_id: 1
+  document_number: MyString
+  barcode: MyString
+  observations: MyText
+  expire_at: 2012-01-26 00:01:01
+  parcel: 1
+  competency: 2012-01-26 00:01:01
+  received_at: 2012-01-26 00:01:01
+  bill_number: MyString
+  value: 1.5
+  fine: 1.5
+  rate: 1.5
+  discount: 1.5
+  total: 1.5
+
+two:
+  bank_account_id: 1
+  client_id: 1
+  history: MyString
+  account_plan_id: 1
+  cost_center_id: 1
+  document_number: MyString
+  barcode: MyString
+  observations: MyText
+  expire_at: 2012-01-26 00:01:01
+  parcel: 1
+  competency: 2012-01-26 00:01:01
+  received_at: 2012-01-26 00:01:01
+  bill_number: MyString
+  value: 1.5
+  fine: 1.5
+  rate: 1.5
+  discount: 1.5
+  total: 1.5

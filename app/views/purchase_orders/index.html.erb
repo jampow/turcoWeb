@@ -5,7 +5,7 @@
 
 <%= table @purchase_orders,
           ["number"       , "Número"     ],
-          ["date"         , "Data"       ],
+          ["date"         , "Data"        , {:format => "date", :class => "center"}],
           ["provider.name", "Fornecedor" ],
-          ["billed"       , "Faturado"   ] %>
+          ["billed"       , "Faturado"    , {:format => "human_boolean", :class => "center"}] %>
 

@@ -26,6 +26,8 @@ class Role < ActiveRecord::Base
           :measure_units             => 'Unidades de medida'             ,
           :messages                  => 'Mensagens'                      ,
           :ncms                      => 'NCM\'s'                         ,
+          :payable_billings          => 'Pagamentos'                     ,
+          :payables                  => 'Contas a pagar'                 ,
           :payment_forms             => 'Formas de pagamento'            ,
           :permissions               => 'Permissões'                     ,
           :product_families          => 'Família de produtos'            ,

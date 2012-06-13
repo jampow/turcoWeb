@@ -168,7 +168,7 @@ table .right {
   border: 2px solid #CF0000;
   padding: 0px;
   padding-bottom: 12px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
   background-color: #f0f0f0;
 }
 

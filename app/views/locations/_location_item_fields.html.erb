@@ -17,8 +17,9 @@
     var x = $(prefix+'quantity'  ).val();
     var y = $(prefix+'unit_value').val();
 
-    x = format.decimal.toNumber(x);x //.replace(',', '.');
+    x = format.decimal.toNumber(x); //.replace(',', '.');
     y = format.decimal.toNumber(y);
+
     var z = format.number.toDecimal(x * y, '10,2');
 
     $(prefix+'total_value').val(z);
