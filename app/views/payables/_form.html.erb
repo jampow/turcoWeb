@@ -10,34 +10,34 @@
   <fieldset>
     <legend>Origem</legend>
     <%= f.hidden_field :client_id %>
-    <%= f.text_field :client_name                                       , :label => "Receber de"      , :size => 30, :class => 'autocomplete', :source => 'client', :pref => 'payable_' %>
-    <%= f.text_field :historic                                          , :label => "Histórico"       , :size => 30 %>
-    <%= f.text_field :issue_date                                        , :label => "Data de Emissão" , :size => 10, :class => 'datepicker' %>
+    <%= f.text_field :client_name                                    , :label => "Receber de"      , :size => 30, :class => 'autocomplete', :source => 'client', :pref => 'payable_' %>
+    <%= f.text_field :historic                                       , :label => "Histórico"       , :size => 30 %>
+    <%= f.text_field :issue_date                                     , :label => "Data de Emissão" , :size => 10, :class => 'datepicker' %>
     <%= f.select :document_kind_id  , Payable::DocumentKind.to_select, :label => 'Documento'       , :size => 10 %>
-    <%= f.text_field :invoice_number                                    , :label => "Número da NF"    , :size => 10 %>
-    <%= f.check_box  :settled                                           , :label => "Quitado"         , :size => 10 %>
+    <%= f.text_field :invoice_number                                 , :label => "Número da NF"    , :size => 10 %>
+    <%= f.check_box  :settled                                        , :label => "Quitado"         , :size => 10 %>
   </fieldset>
   <fieldset>
     <legend>Conta</legend>
-    <%= f.select :account_id       , BankAccount.to_select              , :label => 'Conta'            ,:size => 20 %>
+    <%= f.select :account_id       , BankAccount.to_select           , :label => 'Conta'            ,:size => 20 %>
     <%= f.select :payment_method_id, Payable::PaymentMethod.to_select, :label => 'Meio de Pagamento',:size => 20 %>
-    <%= f.text_field :due_date                                          , :label => "Vencimento"       ,:size => 20, :class => 'datepicker' %>
+    <%= f.text_field :due_date                                       , :label => "Vencimento"       ,:size => 20, :class => 'datepicker' %>
     <%= f.select :frequency_id     , Payable::Frequency.to_select    , :label => 'Frequencia'       ,:size => 20 %>
-    <%= f.text_field :value                                             , :label => "Valor"            ,:size => 20 %>
+    <%= f.text_field :value                                          , :label => "Valor"            ,:size => 20 %>
 
   </fieldset>
   <fieldset>
     <legend>Informações Adicionais</legend>
     <div id="aditional-informations">
-      <%= f.text_field :competence                                                         , :label => 'Competência'             , :class => 'datepicker' %>
-      <%= f.text_field :serie_number                                                       , :label => 'Num. Doc. Série'                                  %>
-      <%= f.text_field :carrier                                                            , :label => 'Portador'                                         %>
-      <%= f.text_field :barcode                                                            , :label => 'Código de Barras do Doc.'                         %>
+      <%= f.text_field :competence                                                      , :label => 'Competência'             , :class => 'datepicker' %>
+      <%= f.text_field :serie_number                                                    , :label => 'Num. Doc. Série'                                  %>
+      <%= f.text_field :carrier                                                         , :label => 'Portador'                                         %>
+      <%= f.text_field :barcode                                                         , :label => 'Código de Barras do Doc.'                         %>
       <%= f.select     :rate_type_id            , Payable::RateType.to_select           , :label => 'Lançar'                                           %>
-      <%= f.text_field :fine                                                               , :label => 'Multa'                                            %>
-      <%= f.text_field :rate                                                               , :label => 'Juros'                                            %>
+      <%= f.text_field :fine                                                            , :label => 'Multa'                                            %>
+      <%= f.text_field :rate                                                            , :label => 'Juros'                                            %>
       <%= f.select     :rate_calculation_type_id, Payable::RateCalculationType.to_select, :label => 'Calcular'                                         %>
-      <%= f.text_area  :observations                                                       , :label => 'Observações'             ,  :size => 100          %>
+      <%= f.text_area  :observations                                                    , :label => 'Observações'             ,  :size => 100          %>
       <div class="clear"></div>
     </div>
   </fieldset>

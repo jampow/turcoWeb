@@ -7,4 +7,8 @@ class BankAccount < ActiveRecord::Base
   def self.to_select
     self.all.map { |v| [ v[:bank_name], v[:id] ] }
   end
+
+  def to_s
+    "#{bank_name} - Ag.:#{agency_number} - CC.:#{account_number}"
+  end
 end

@@ -18,7 +18,7 @@
       <%= print_content "Quitado"        , human_boolean(@payable.settled)                                     , :width => 10 %>
 
       <h2>Conta</h2>
-      <%= print_content 'Conta'            , (@payable.bank_account || {})[:name]                                  , :width => 20 %>
+      <%= print_content 'Conta'            , h(@payable.bank_account)                                              , :width => 20 %>
       <%= print_content 'Meio de Pagamento', (Payable::PaymentMethod.find(@payable.payment_method_id) || {})[:name], :width => 20 %>
       <%= print_content "Vencimento"       , date(@payable.due_date)                                               , :width => 20 %>
       <%= print_content 'Frequencia'       , (Payable::Frequency.find(@payable.frequency_id) || {})[:name]         , :width => 20 %>
