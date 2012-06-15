@@ -12,6 +12,7 @@ class Location < ActiveRecord::Base
   validate :presence_of_client
   validate :presence_of_seller
   validates_presence_of :starts_at
+  validates_presence_of :ends_at
   validate :ends_after_start
   validate :presence_of_items
 
@@ -34,7 +35,7 @@ class Location < ActiveRecord::Base
   end
 
   def ends_after_start
-    if !self.starts_at.blank?
+    if !self.starts_at.blank? && !self.ends_at.blank?
       self.errors.add('ends_at', 'deve ser maior que a data de início.') if self.starts_at >= self.ends_at
     end
   end

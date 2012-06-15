@@ -16,7 +16,7 @@
   <%= f.text_field   :comission                      , :label => "Comissão"           , :size => 20  %>
   <%= f.select       :bank_account_id, (@banks || []), :label => "Conta bancária"     , :size => 20  %>
   <%= f.text_field   :starts_at                      , :label => "Início da locação"  , :size => 20 , :class => "datepicker", :required => true %>
-  <%= f.text_field   :ends_at                        , :label => "Término da locação" , :size => 20 , :class => "datepicker" %>
+  <%= f.text_field   :ends_at                        , :label => "Término da locação" , :size => 20 , :class => "datepicker", :required => true %>
   <%= f.text_area    :observation                    , :label => "Observações"        , :size => 100 %>
 
   <% field_set_tag 'Itens' do -%>
