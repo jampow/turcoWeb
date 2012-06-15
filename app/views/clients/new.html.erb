@@ -14,7 +14,7 @@
       <%= f.text_field :name                                                , :label => "Raz. Social"          , :size => 50 , :required => true %>
       <%= f.text_field :nickname                                            , :label => "Fantasia"             , :size => 30 %>
       <%= f.text_area  :observations                                        , :label => "Observações"          , :size => 50 %>
-      <%= f.text_field :doc                                                 , :label => "CNPJ / CPF"           , :class => "mask-cpf" %>
+      <%= f.text_field :doc                                                 , :label => "CNPJ / CPF"           , :required => true, :class => "mask-cpf" %>
       <%= f.text_field :ie                                                  , :label => "Inscriçao Estadual"   %>
       <%= f.text_field :im                                                  , :label => "Inscriçao Municipal"  %>
       <%= f.text_field :sci                                                 , :label => "SCI"                  %>
@@ -33,7 +33,7 @@
         <%= ma.text_field   :complement        , :label => "Complemento"                        %>
         <%= ma.text_field   :neighborhood      , :label => "Bairro"                             %>
         <%= ma.select       :estate_id, @estate, :label => "Estado"                             %>
-        <%= ma.hidden_field :city_id           , :label => "Id da Cidade"                          %>
+        <%= ma.hidden_field :city_id           , :label => "Id da Cidade"                       %>
         <%= ma.text_field   :city              , :label => "cidade"      , :class => "autocomplete", :source => "city", :pref => "client_main_address_attributes_" %>
         <%= ma.text_field   :country           , :label => "País"                               %>
       <% end %>

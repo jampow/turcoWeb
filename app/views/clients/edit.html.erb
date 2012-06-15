@@ -14,7 +14,7 @@
       <%= f.text_field :name                                                , :label => "Raz. Social"          , :size => 50 , :required => true %>
       <%= f.text_field :nickname                                            , :label => "Fantasia"             , :size => 30 %>
       <%= f.text_area  :observations                                        , :label => "Observações"          , :size => 50 %>
-      <%= f.text_field :doc                                                 , :label => "CNPJ / CPF"           , :class => f.object.doc_mask %>
+      <%= f.text_field :doc                                                 , :label => "CNPJ / CPF"           , :required => true, :class => f.object.doc_mask %>
       <%= f.text_field :ie                                                  , :label => "Inscriçao Estadual"   %>
       <%= f.text_field :im                                                  , :label => "Inscriçao Municipal"  %>
       <%= f.text_field :sci                                                 , :label => "SCI"                  %>
@@ -27,15 +27,15 @@
     <% field_set_tag "Endereço principal" do %>
       <%= address_toolbar %>
       <% f.fields_for :main_address do |ma| %>
-        <%= ma.text_field   :cep               , :label => "CEP"         , :class => 'mask-cep'    %>
-        <%= ma.text_field   :street            , :label => "Endereço"                              %>
-        <%= ma.text_field   :number            , :label => "Número"                                %>
-        <%= ma.text_field   :complement        , :label => "Complemento"                           %>
-        <%= ma.text_field   :neighborhood      , :label => "Bairro"                                %>
-        <%= ma.select       :estate_id, @estate, :label => "Estado"                                %>
-        <%= ma.hidden_field :city_id           , :label => "Id da Cidade"                          %>
+        <%= ma.text_field   :cep               , :label => "CEP"         , :class => 'mask-cep' %>
+        <%= ma.text_field   :street            , :label => "Endereço"                           %>
+        <%= ma.text_field   :number            , :label => "Número"                             %>
+        <%= ma.text_field   :complement        , :label => "Complemento"                        %>
+        <%= ma.text_field   :neighborhood      , :label => "Bairro"                             %>
+        <%= ma.select       :estate_id, @estate, :label => "Estado"                             %>
+        <%= ma.hidden_field :city_id           , :label => "Id da Cidade"                       %>
         <%= ma.text_field   :city              , :label => "cidade"      , :class => "autocomplete", :source => "city", :pref => "client_main_address_attributes_" %>
-        <%= ma.text_field   :country           , :label => "País"                                  %>
+        <%= ma.text_field   :country           , :label => "País"                               %>
       <% end %>
     <% end %>
 
