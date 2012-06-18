@@ -20,6 +20,8 @@ class Client < ActiveRecord::Base
   validates_presence_of :doc
   validates_presence_of :activity_id
 
+  validates_uniqueness_of :code
+
   attr_accessor  :doc
   attr_accessor  :doc_mask
   #usar_como_cnpj :cnpj
