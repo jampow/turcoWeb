@@ -18,7 +18,7 @@
       <%= print_content "Quitado"        , human_boolean(@receivable.settled)                                        , :width => 10 %>
 
       <h2>Recebimento</h2>
-      <%= print_content 'Conta'            , (@receivable.bank_account || {})[:name]                                     , :width => 20 %>
+      <%= print_content 'Conta'            , h(@receivable.bank_account)                                                 , :width => 20 %>
       <%= print_content 'Meio de Pagamento', (Receivable::PaymentMethod.find(@receivable.payment_method_id) || {})[:name], :width => 20 %>
       <%= print_content "Vencimento"       , date(@receivable.due_date)                                                  , :width => 20 %>
       <%= print_content 'Frequencia'       , (Receivable::Frequency.find(@receivable.frequency_id) || {})[:name]         , :width => 20 %>
