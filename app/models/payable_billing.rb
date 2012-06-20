@@ -12,10 +12,15 @@ class PayableBilling < ActiveRecord::Base
   # quita recebimento
   def settle_payable!
     if settle_payable == "1" || self.payable.reached_limit?
-      logger.info "entrou"
-      r = Payable.find(payable_id)
-      r.settled = true
-      r.save
+      p = Payable.find(payable_id)
+      p.settled = true
+      p.save
+
+      trans = BankAccountTransaction.create(:bank_account_id => self.bank_account_id,
+                                            :name            => "<a href=\"/payables/#{p.id}\">Fatura ##{p.id}</a>" ,
+                                            :historic        => "Pagamento da fatura ##{p.id}" ,
+                                            :debit           => self.total,
+                                            :date            => Date.today )
     end
   end
 end
