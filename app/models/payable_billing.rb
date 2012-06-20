@@ -16,11 +16,11 @@ class PayableBilling < ActiveRecord::Base
       p.settled = true
       p.save
 
-      trans = BankAccountTransaction.create(:bank_account_id => self.bank_account_id,
-                                            :name            => "<a href=\"/payables/#{p.id}\">Fatura ##{p.id}</a>" ,
-                                            :historic        => "Pagamento da fatura ##{p.id}" ,
-                                            :debit           => self.total,
-                                            :date            => Date.today )
+      BankAccountTransaction.create(:bank_account_id => self.bank_account_id,
+                                    :name            => "<a href=\"/payables/#{p.id}\">Fatura ##{p.id}</a>" ,
+                                    :historic        => "Pagamento da fatura ##{p.id}" ,
+                                    :debit           => self.total,
+                                    :date            => Date.today )
     end
   end
 end

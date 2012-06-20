@@ -15,6 +15,12 @@ class ReceivableBilling < ActiveRecord::Base
       r = Receivable.find(receivable_id)
       r.settled = true
       r.save
+
+      BankAccountTransaction.create(:bank_account_id => self.bank_account_id,
+                                    :name            => "<a href=\"/receivables/#{r.id}\">Cobrança ##{r.id}</a>" ,
+                                    :historic        => "Recebimento da cobrança ##{r.id}" ,
+                                    :credit          => self.total,
+                                    :date            => Date.today )
     end
   end
 end
