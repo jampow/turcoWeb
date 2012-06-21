@@ -4,8 +4,8 @@ class CashFlowController < ApplicationController
   end
 
   def show
-    filter = params[:flow]
-    @cash_flow = BankAccountTransaction.report filter[:bank_account_id], filter[:starts_at], filter[:ends_at]
+    @filter = params[:flow]
+    @cash_flow = BankAccountTransaction.report @filter[:bank_account_id], @filter[:starts_at], @filter[:ends_at]
     default_data
   end
 

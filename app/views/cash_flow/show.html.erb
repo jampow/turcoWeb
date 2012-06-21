@@ -1,12 +1,12 @@
 <% content_for :menu do -%>
   <h1>Fluxo de caixa</h1>
-  <%= mount_menu %w[save] %>
+  <%= link_to "Filtrar", "#", {:class => "button save", :icon => "search"} %>
 <% end -%>
 
 <% form_for :flow, :url => {:controller => "cash_flow", :action => "show"} do |f| -%>
-  <%= f.select     :bank_account_id, @bank_list, :label => "Banco"  %>
-  <%= f.text_field :starts_at                  , :label => "Início" , :class => "datepicker" %>
-  <%= f.text_field :ends_at                    , :label => "Término", :class => "datepicker" %>
+  <%= f.select     :bank_account_id, @bank_list, :label => "Banco"  , :value => @filter[:bank_account_id] %>
+  <%= f.text_field :starts_at                  , :label => "Início" , :value => @filter[:starts_at]      , :class => "datepicker" %>
+  <%= f.text_field :ends_at                    , :label => "Término", :value => @filter[:ends_at]        , :class => "datepicker" %>
 <% end -%>
 
 <div class="clear"></div>
