@@ -1,0 +1,18 @@
+<% content_for :menu do -%>
+  <h1>Fluxo de caixa</h1>
+  <%= mount_menu %w[save] %>
+<% end -%>
+
+<% form_for :flow, :url => {:controller => "cash_flow", :action => "show"} do |f| -%>
+  <%= f.select     :bank_account_id, @bank_list, :label => "Banco"  %>
+  <%= f.text_field :starts_at                  , :label => "Início" , :class => "datepicker" %>
+  <%= f.text_field :ends_at                    , :label => "Término", :class => "datepicker" %>
+<% end -%>
+
+<div class="clear"></div>
+
+<%= table @cash_flow, ['date'   , 'Data'        , {:format => "date"              , :class => "center" }],
+                      ['debit'  , 'Débito'      , {:format => "number_to_currency", :class => "right" }],
+                      ['credit' , 'Crédito'     , {:format => "number_to_currency", :class => "right" }],
+                      ['daily'  , 'Saldo do dia', {:format => "number_to_currency", :class => "right" }],
+                      ['balance', 'Acumulado'   , {:format => "number_to_currency", :class => "right" }]  %>

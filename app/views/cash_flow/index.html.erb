@@ -1,0 +1,10 @@
+<% content_for :menu do -%>
+  <h1>Fluxo de caixa</h1>
+  <%= mount_menu %w[save] %>
+<% end -%>
+
+<% form_for :flow, :url => {:controller => "cash_flow", :action => "show"} do |f| -%>
+  <%= f.select     :bank_account_id, @bank_list, :label => "Banco"  %>
+  <%= f.text_field :starts_at                  , :label => "Início" , :class => "datepicker" %>
+  <%= f.text_field :ends_at                    , :label => "Término", :class => "datepicker" %>
+<% end -%>
