@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120606200838) do
+ActiveRecord::Schema.define(:version => 20120624145752) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -668,7 +668,7 @@ ActiveRecord::Schema.define(:version => 20120606200838) do
     t.string   "cnpj"
     t.string   "document"
     t.boolean  "iss"
-    t.integer  "bank_id"
+    t.string   "bank_name"
     t.string   "agency"
     t.string   "account"
     t.string   "inss_base"

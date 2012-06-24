@@ -6,19 +6,18 @@
 <% form_for(@seller) do |f| %>
   <%= f.error_messages %>
 
-
-  <%= f.text_area  :observation, :label => 'Observações' %>
-  <%= f.text_field :name       , :label => 'Nome'        , :size => 50 %>
-  <%= f.text_field :bank_id    , :label => 'Banco'       %>
-  <%= f.text_field :contact    , :label => 'Contato'     , :size => 50 %>
-  <%= f.text_field :agency     , :label => 'Agência'     %>
+  <%= f.text_field :name       , :label => 'Nome'        %>
+  <%= f.text_field :cnpj       , :label => 'CNPJ'        %>
+  <%= f.text_field :contact    , :label => 'Contato'     %>
   <%= f.text_field :core       , :label => 'Core'        %>
   <%= f.text_field :person     , :label => 'Pessoa'      %>
+  <%= f.text_field :bank_name  , :label => 'Banco'       %>
+  <%= f.text_field :agency     , :label => 'Agência'     %>
   <%= f.text_field :account    , :label => 'Conta'       %>
-  <%= f.text_field :cnpj       , :label => 'CNPJ'        %>
   <%= f.text_field :document   , :label => 'Documento'   %>
   <%= f.check_box  :iss        , :label => 'ISS'         %>
   <%= f.text_field :inss_base  , :label => 'INSS Base'   %>
+  <%= f.text_area  :observation, :label => 'Observações' , :size => 100 %>
 
   <% field_set_tag "Endereço" do %>
     <%= address_toolbar ['map', 'cep'] %>
@@ -33,6 +32,6 @@
       <%= a.text_field :country              , :label => "País"                               %>
     <% end %>
   <% end %>
-    
+
 <% end %>
 
