@@ -4,17 +4,17 @@
 <% end -%>
 
 <%= print_content 'Nome'       , h(@seller.name)        %>
+<%= print_content 'CNPJ'       , h(@seller.cnpj)        %>
 <%= print_content 'Contato'    , h(@seller.contact)     %>
 <%= print_content 'Core'       , h(@seller.core)        %>
 <%= print_content 'Pessoa'     , h(@seller.person)      %>
-<%= print_content 'CNPJ/CPF'   , h(@seller.cnpj)        %>
-<%= print_content 'Documento'  , h(@seller.document)    %>
-<%= print_content 'ISS'        , h(@seller.iss)         %>
+<%= print_content 'Banco'      , h(@seller.bank.name) %>
 <%= print_content 'Agência'    , h(@seller.agency)      %>
 <%= print_content 'Conta'      , h(@seller.account)     %>
+<%= print_content 'Documento'  , h(@seller.document)    %>
+<%= print_content 'ISS'        , h(@seller.iss)         %>
 <%= print_content 'INSS Base'  , h(@seller.inss_base)   %>
 <%= print_content 'Observações', h(@seller.observation) %>
-<%# print_content 'Banco', h(@seller.bank.name) %>
 
 <%= address_container 'Endereço', @address if @address %>
 
