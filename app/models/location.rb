@@ -13,7 +13,7 @@ class Location < ActiveRecord::Base
   validate :presence_of_seller
   validates_presence_of :bank_account_id
   validates_presence_of :starts_at
-  validates_presence_of :ends_at
+  #validates_presence_of :ends_at
   validate :ends_after_start
   validate :presence_of_items
 
