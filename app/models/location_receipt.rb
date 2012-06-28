@@ -73,7 +73,7 @@ class LocationReceipt < ActiveRecord::Base
       rec_i.product     = i.product.name
       rec_i.quantity    = i.quantity
 
-      days_bill  = self.end - self.start
+      days_bill  = self.end - self.start + 1
 
       if days_bill < self.end.day
         rec_i.total_value = (BigDecimal.new(days_bill.to_s) * i.total_value) / BigDecimal.new(30.to_s)
@@ -96,7 +96,7 @@ class LocationReceipt < ActiveRecord::Base
 
   # Recebe um objeto Location
   def calc_value(location)
-    days_bill  = self.end - self.start
+    days_bill  = self.end - self.start + 1
 
     self.month_value = location.total
 
