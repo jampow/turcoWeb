@@ -53,7 +53,8 @@ class Payable < ActiveRecord::Base
   class DocumentKind <
     Struct.new(:id, :kind)
     VALUES = [
-      {:id => 1, :kind => 'Boleto'}
+      {:id => 1, :kind => 'Boleto'},
+      {:id => 2, :kind => 'Recibo'},
     ]
     def self.all
       VALUES.map { |v| self.new(v[:id], v[:kind]) }
@@ -72,7 +73,12 @@ class Payable < ActiveRecord::Base
   class PaymentMethod <
     Struct.new(:id, :name)
     VALUES = [
-      {:id => 1, :name => 'Dinheiro'}
+      {:id => 1, :name => 'Dinheiro'},
+      {:id => 2, :name => 'Cheque'},
+      {:id => 3, :name => 'Boleto'},
+      {:id => 4, :name => 'Depósito'},
+      {:id => 5, :name => 'Crédito'},
+      {:id => 6, :name => 'Débito'}
     ]
     def self.all
       VALUES.map { |v| self.new(v[:id], v[:name]) }
@@ -91,7 +97,7 @@ class Payable < ActiveRecord::Base
   class Frequency <
     Struct.new(:id, :name)
     VALUES = [
-      {:id => 1, :name => 'Diariamente'}
+      {:id => 1, :name => 'Mensalmente'}
     ]
     def self.all
       VALUES.map { |v| self.new(v[:id], v[:name]) }

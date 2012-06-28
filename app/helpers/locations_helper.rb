@@ -126,14 +126,15 @@
                   var value = t.val();
                   var label = value;
                   var field = id.replace(/.+([0-9])+_/, '');
+                  var klass = '';
 
                   if (validateFields.indexOf(field) != -1 && value == '') empty = true;
 
-                  //if (t.hasClass('mask-decimal')) value = format.decimal.toNumber(value, t.attr('decimal'));
+                  if (t.hasClass('mask-decimal')) klass = t.attr('class');
 
                   values.push(value);
                   labels.push(label);
-                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" /><span>'+label+'</span>');
+                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" class='+klass+' /><span>'+label+'</span>');
                 });
 
                 if (empty == true) {

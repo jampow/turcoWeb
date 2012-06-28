@@ -93,6 +93,7 @@ $(function(){
       url: url,
       data: fdata,
       type: 'POST',
+      cache: false,
       dataType: 'html',
       success: function(data){
         $('.ui-layout-center').empty().append(data);
@@ -161,6 +162,7 @@ $(function(){
         url: url,
         data: data,
         type: type,
+        cache: false,
         dataType: dataType,
         success: function(data){
           if (is_json) {
