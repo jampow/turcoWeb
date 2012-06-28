@@ -207,6 +207,7 @@
       carrier: "Transportadora"
       cfop: "Natureza da operação"
       client: "Cliente"
+      contract: "Cláusula contratual"
       cost center: "Centro de Custos"
       cst: "Subst. Tributária"
       cst cofins: "Subst. Tributária Cofins"
@@ -256,6 +257,8 @@
         ie: "IE"
         active: "Ativo"
         activity_id: "Ramo de atividade"
+      contract:
+        text: "Texto"
       cost_center:
         name: "Nome"
       cst:

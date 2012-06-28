@@ -1,0 +1,35 @@
+<% content_for :menu do -%>
+  <h1>Cláusulas contratuais</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<%= table @contracts, ["ordenator", "Item"],
+                      ["text"     , "Texto"] %>
+
+
+<!--
+<table>
+  <tr>
+    <th>Father</th>
+    <th>Rubric</th>
+    <th>Order</th>
+    <th>Text</th>
+  </tr>
+
+<% @contracts.each do |contract| %>
+  <tr>
+    <td><%#=h contract.father_id %></td>
+    <td><%#=h contract.rubric %></td>
+    <td><%#=h contract.order %></td>
+    <td><%#=h contract.text %></td>
+    <td><%#= link_to 'Show', contract %></td>
+    <td><%#= link_to 'Edit', edit_contract_path(contract) %></td>
+    <td><%#= link_to 'Destroy', contract, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New contract', new_contract_path %>
+-->

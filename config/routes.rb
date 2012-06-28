@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
+
   map.resources :account_plans
   map.resources :activities
   map.resources :attachments
@@ -9,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :cars
   map.resources :cfops
   map.resources :clients                  , :collection => { :people_photo => :get }
+  map.resources :contracts
   map.resources :cost_centers
   map.resources :cst_cofins
   map.resources :cst_icms

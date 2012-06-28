@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  father_id: 1
+  rubric: false
+  order: 1
+  text: MyText
+
+two:
+  father_id: 1
+  rubric: false
+  order: 1
+  text: MyText

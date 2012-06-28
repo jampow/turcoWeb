@@ -1,0 +1,9 @@
+<% content_for :menu do -%>
+  <h1>Cláusula</h1>
+  <%= mount_menu %w[default new]%>
+<% end -%>
+
+<%= print_content "Pai"    , h(@contract.father_id)         , :width => 70  %>
+<%= print_content "Ordem"  , h(@contract.order)             , :width => 20  %>
+<%= print_content "Rúbrica", human_boolean(@contract.rubric), :width => 10  %>
+<%= print_content "Texto"  , h(@contract.text)              , :width => 100 %>

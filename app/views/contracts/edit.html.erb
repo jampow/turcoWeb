@@ -1,0 +1,13 @@
+<% content_for :menu do -%>
+  <h1>Editando cláusula contratual</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@contract) do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.select     :father_id, @clauses, :label => "Pai"    , :size => 70 , :include_blank => true %>
+  <%= f.text_field :order              , :label => "Ordem"  , :size => 20  %>
+  <%= f.check_box  :rubric             , :label => "Rúbrica", :size => 10  %>
+  <%= f.text_area  :text               , :label => "Texto"  , :size => 100 %>
+<% end %>
