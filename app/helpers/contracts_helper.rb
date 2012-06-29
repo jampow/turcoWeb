@@ -8,6 +8,7 @@ module ContractsHelper
         text.sub! "<<#{$1}>>", eval(Contract::KEYWORDS[$1.to_sym] || "''")
       end
       s += "<li>#{text}#{print_contract item.childs, item.list_type_id}</li>"
+      s += "<p>___________________________</p>" if item.rubric
     end
     s += "</ol>"
   end
