@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627163117) do
+ActiveRecord::Schema.define(:version => 20120629143159) do
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20120627163117) do
     t.integer  "nfe_ambient"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
   create_table "estates", :force => true do |t|

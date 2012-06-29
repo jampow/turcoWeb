@@ -8,6 +8,7 @@
 <%= print_content "CNPJ"          , h(@enterprise.cnpj)    , :width => 25 %>
 <%= print_content "Insc. Estadual", h(@enterprise.ie)      , :width => 25 %>
 <%= print_content "Telefone"      , h(@enterprise.phone)   , :width => 25 %>
+<%= print_content "E-Mail"        , h(@enterprise.email)   , :width => 25 %>
 
 <%= address_container("Endereço", @enterprise.address) %>
 

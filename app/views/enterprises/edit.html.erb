@@ -11,6 +11,7 @@
   <%= f.text_field :cnpj    , :label => "CNPJ"          , :size => 25, :class => "mask-cnpj" %>
   <%= f.text_field :ie      , :label => "Insc. Estadual", :size => 25 %>
   <%= f.text_field :phone   , :label => "Telefone"      , :size => 25, :class => "mask-phone" %>
+  <%= f.text_field :email   , :label => "E-Mail"        , :size => 25 %>
 
   <% field_set_tag "Endereço" do %>
     <%= address_toolbar %>
@@ -30,5 +31,5 @@
   <h2>Configurações da NF-e</h2>
   <%= f.select :danfe_orientation, @danfes  , :label => "Orientação do Danfe" %>
   <%= f.select :nfe_ambient      , @ambients, :label => "Ambiente de envio"   %>
-  
+
 <% end %>
