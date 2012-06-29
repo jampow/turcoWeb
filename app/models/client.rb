@@ -104,11 +104,11 @@ class Client < ActiveRecord::Base
   end
 
   def phone index
-    ""
+    contacts.main[0].phones[index-1].number
   end
 
   def email
-    ""
+    contacts.main[0].email
   end
 
 end
