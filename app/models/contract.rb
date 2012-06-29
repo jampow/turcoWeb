@@ -44,4 +44,28 @@ class Contract < ActiveRecord::Base
   def childs
     Contract.childs self.id
   end
+
+
+  class ListTypes <
+    Struct.new(:id, :name, :human)
+    VALUES = [
+      {:id => 1, :name => 'number', :human => "Números"},
+      {:id => 2, :name => 'roman' , :human => "Números Romanos"},
+      {:id => 3, :name => 'alpha' , :human => "Letras"}
+    ]
+    def self.all
+      VALUES.map { |v| self.new(v[:id], v[:name], h[:human]) }
+    end
+
+    def self.to_select
+      VALUES.map { |v| [v[:human], v[:id]] }
+    end
+
+    def self.find(id)
+      h=VALUES.find { |v| v[:id] == id }
+      return nil if h.nil?
+      self.new(h[:id], h[:name], h[:human])
+    end
+  end
+
 end

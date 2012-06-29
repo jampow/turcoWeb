@@ -25,11 +25,11 @@ class ContractsController < ApplicationController
   # GET /contracts/new.xml
   def new
     @contract = Contract.new
+    default_data
 
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @contract }
-      default_data
     end
   end
 
@@ -89,6 +89,7 @@ class ContractsController < ApplicationController
 
 protected
   def default_data
-    @clauses = Contract.all.collect { |c| [c.text[0..70], c.id] }
+    @clauses   = Contract.all.collect { |c| [c.text[0..70], c.id] }
+    @listtypes = Contract::ListTypes.to_select
   end
 end
