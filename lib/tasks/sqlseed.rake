@@ -1,13 +1,13 @@
 namespace :db do
 
-  desc 'Seed database from db/seed.sql file instead of the traditional db/seed.rb'
+  desc 'Seed database from db/some_script.sql file, type rake db:sqlseed file=file_name.sql'
   task :sqlseed do
     config = Rails::Configuration.new.database_configuration[RAILS_ENV]
-
-    seed_sql = File.expand_path(File.dirname(__FILE__) + '/../../db/seed.sql')
+    file_name = ENV['file']
+    seed_sql = File.expand_path(File.dirname(__FILE__) + "/../../db/#{file_name}")
 
     if !File.exists?(seed_sql)
-      puts "Missing RAILS_ROOT/db/seed.sql"
+      puts "Missing RAILS_ROOT/db/#{file_name}"
     else
       case config['adapter']
       when 'mysql'
