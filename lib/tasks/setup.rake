@@ -3,7 +3,7 @@ namespace :database do
   desc 'reseta base de dados com base no schema.rb, roda seeds.rb e cria usuário para acesso'
   task :reset => ['db:reset', 'database:create_user'] do
   end
-  
+
   desc 'reseta base de dados rodando todas as migrações e cria usuário para acesso'
   task :recreate => ['db:drop', 'db:create', 'db:migrate', 'database:create_user'] do
   end
@@ -19,6 +19,7 @@ namespace :database do
     end
     user.has_role! :master
     user.has_role! :permissions_e
+    user.has_role! :users_e
     puts 'Novo usuário criado'
     puts 'Username: ' << user.login
     puts 'Email   : ' << user.email
