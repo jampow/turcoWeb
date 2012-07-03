@@ -23,6 +23,12 @@
   <%= f.select     :family_id     , @product_families, :label => "Família"          , :size => 10                                               %>
   <%= f.select     :type_id       , @product_kinds   , :label => "Tipo"             , :size => 10                                               %>
 
+  <% field_set_tag 'Dimensões' do %>
+    <%= f.text_field :width , :label => "Largura (metro)"     , :size => 10, :class => "mask-decimal", :decimal => "10,2" %>
+    <%= f.text_field :depth , :label => "Profundidade (metro)", :size => 10, :class => "mask-decimal", :decimal => "10,2" %>
+    <%= f.text_field :height, :label => "Altura (metro)"      , :size => 10, :class => "mask-decimal", :decimal => "10,2" %>
+  <% end %>
+
   <%# field_set_tag 'Impostos' do -%>
     <%#= f.select     :cst_ipi_id    , @cst_ipi       , :label => "CST IPI"          , :size => 20                                               %>
     <%#= f.select     :cst_pis_id    , @cst_pis       , :label => "CST PIS"          , :size => 20                                               %>

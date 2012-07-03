@@ -20,6 +20,13 @@
 <%= print_content "Família"          , (h(@product.family.name) if @product.family), :width => 10 %>
 <%= print_content "Tipo"             , h(Product::Type.find @product.type_id)      , :width => 10 %>
 
+<h2>Dimensões</h2>
+<%= print_content "Largura (metro)"     , h(@product.width) , :width => 20 %>
+<%= print_content "Profundidade (metro)", h(@product.depth) , :width => 20 %>
+<%= print_content "Altura (metro)"      , h(@product.height), :width => 20 %>
+<%= print_content "Metros<sup>2</sup>"  , h(@product.m2)    , :width => 20 %>
+<%= print_content "Metros<sup>3</sup>"  , h(@product.m3)    , :width => 20 %>
+
 <!-- <h2>Impostos</h2> -->
 <%#= print_content "CST IPI"          , (h(@product.cst_ipi.code)    if @product.cst_ipi)   , :width => 20 %>
 <%#= print_content "CST PIS"          , (h(@product.cst_pis.code)    if @product.cst_pis)   , :width => 20 %>

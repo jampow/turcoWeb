@@ -11,6 +11,15 @@ class Product < ActiveRecord::Base
   validates_uniqueness_of :code
   #validate :length_of_ncm
 
+  def m2
+    width * depth
+  end
+
+  def m3
+    m2 * height
+  end
+
+
   #named_scope :quantity, :select => "sum()" :conditions => { :field => condition }, :order => "field"
 
  # Select pro.id
