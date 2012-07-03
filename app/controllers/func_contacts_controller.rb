@@ -51,7 +51,7 @@ class FuncContactsController < ApplicationController
 
     respond_to do |format|
       if @func_contact.save
-        flash[:notice] = 'FuncContact was successfully created.'
+        flash[:notice] = 'Função de contato criada.'
         format.html { redirect_to(@func_contact) }
         format.xml  { render :xml => @func_contact, :status => :created, :location => @func_contact }
       else
@@ -68,7 +68,7 @@ class FuncContactsController < ApplicationController
 
     respond_to do |format|
       if @func_contact.update_attributes(params[:func_contact])
-        flash[:notice] = 'FuncContact was successfully updated.'
+        flash[:notice] = 'Função de contato atualizada.'
         format.html { redirect_to(@func_contact) }
         format.xml  { head :ok }
       else
