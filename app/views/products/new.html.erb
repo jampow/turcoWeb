@@ -23,14 +23,14 @@
   <%= f.select     :family_id     , @product_families, :label => "Família"          , :size => 10                                               %>
   <%= f.select     :type_id       , @product_kinds   , :label => "Tipo"             , :size => 10                                               %>
 
-  <% field_set_tag 'Impostos' do -%>
-    <%= f.select     :cst_ipi_id    , @cst_ipi       , :label => "CST IPI"          , :size => 20                                               %>
-    <%= f.select     :cst_pis_id    , @cst_pis       , :label => "CST PIS"          , :size => 20                                               %>
-    <%= f.text_field :pis                            , :label => "PIS"              , :size => 10, :class => "mask-decimal", :decimal => "10,4" %>
-    <%= f.select     :cst_cofins_id , @cst_cofins    , :label => "CST COFINS"       , :size => 20                                               %>
-    <%= f.text_field :cofins                         , :label => "COFINS"           , :size => 10, :class => "mask-decimal", :decimal => "10,4" %>
-    <%= f.select     :cst_icm_id    , @cst_icm       , :label => "CST ICM"          , :size => 20                                               %>
-  <% end -%>
+  <%# field_set_tag 'Impostos' do -%>
+    <%#= f.select     :cst_ipi_id    , @cst_ipi       , :label => "CST IPI"          , :size => 20                                               %>
+    <%#= f.select     :cst_pis_id    , @cst_pis       , :label => "CST PIS"          , :size => 20                                               %>
+    <%#= f.text_field :pis                            , :label => "PIS"              , :size => 10, :class => "mask-decimal", :decimal => "10,4" %>
+    <%#= f.select     :cst_cofins_id , @cst_cofins    , :label => "CST COFINS"       , :size => 20                                               %>
+    <%#= f.text_field :cofins                         , :label => "COFINS"           , :size => 10, :class => "mask-decimal", :decimal => "10,4" %>
+    <%#= f.select     :cst_icm_id    , @cst_icm       , :label => "CST ICM"          , :size => 20                                               %>
+  <%# end -%>
 
 <% end %>
 

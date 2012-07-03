@@ -20,13 +20,13 @@
 <%= print_content "Família"          , (h(@product.family.name) if @product.family), :width => 10 %>
 <%= print_content "Tipo"             , h(Product::Type.find @product.type_id)      , :width => 10 %>
 
-<h2>Impostos</h2>
-<%= print_content "CST IPI"          , (h(@product.cst_ipi.code)    if @product.cst_ipi)   , :width => 20 %>
-<%= print_content "CST PIS"          , (h(@product.cst_pis.code)    if @product.cst_pis)   , :width => 20 %>
-<%= print_content "PIS"              ,  h(@product.pis)                                    , :width => 10 %>
-<%= print_content "CST COFINS"       , (h(@product.cst_cofins.code) if @product.cst_cofins), :width => 20 %>
-<%= print_content "COFINS"           ,  h(@product.cofins)                                 , :width => 10 %>
-<%= print_content "CST ICM"          , (h(@product.cst_icm.code)    if @product.cst_icm)   , :width => 20 %>
+<!-- <h2>Impostos</h2> -->
+<%#= print_content "CST IPI"          , (h(@product.cst_ipi.code)    if @product.cst_ipi)   , :width => 20 %>
+<%#= print_content "CST PIS"          , (h(@product.cst_pis.code)    if @product.cst_pis)   , :width => 20 %>
+<%#= print_content "PIS"              ,  h(@product.pis)                                    , :width => 10 %>
+<%#= print_content "CST COFINS"       , (h(@product.cst_cofins.code) if @product.cst_cofins), :width => 20 %>
+<%#= print_content "COFINS"           ,  h(@product.cofins)                                 , :width => 10 %>
+<%#= print_content "CST ICM"          , (h(@product.cst_icm.code)    if @product.cst_icm)   , :width => 20 %>
 
 <div class="clear"></div>
 
