@@ -10,6 +10,8 @@ class Contract < ActiveRecord::Base
 
                :locacao_inicio        => {:command => "date @loc.starts_at"   , :description => "Data de início da locação"},
                :locacao_representante => {:command => "@loc.seller.name"      , :description => "Representante da locação"},
+               :locacao_m2_total      => {:command => "@loc.m2_total"         , :description => "Somatória em m<sup>2</sup> de todos os boxes da locação"},
+               :locacao_boxes         => {:command => "@loc.items_to_s"       , :description => "Código dos itens da locação separados por vírgulas"},
 
                :empresa_fantasia      => {:command => "@ent.nickname"         , :description => "Fantasia da locadora"},
                :empresa_nome          => {:command => "@ent.name"             , :description => "Razão Social da locadora"},

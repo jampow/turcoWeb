@@ -41,6 +41,23 @@ class Location < ActiveRecord::Base
     end
   end
 
+  def m2_total
+    sum = 0
+    location_items.each do |item|
+      sum += item.m2
+    end
+    sum.to_s
+  end
+
+  def items_to_s
+    s = ""
+    location_items.each do |i|
+      s += ", #{i.product.code}"
+    end
+
+    s[2...s.length].gsub(/(, )([^,]+?)$/, ' e \2')
+  end
+
   accepts_nested_attributes_for :location_items, :reject_if => proc { |a| a[:product_name].blank? }
 
   def item_grid

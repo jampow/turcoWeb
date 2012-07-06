@@ -19,4 +19,8 @@ class LocationItem < ActiveRecord::Base
      :conditions => ["loc.location_id = ?", location_id],
      :order => "loc.id"}}
 
+  def m2
+    product.m2
+  end
+
 end
