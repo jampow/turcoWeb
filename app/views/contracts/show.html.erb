@@ -3,8 +3,8 @@
   <%= mount_menu %>
 <% end -%>
 
-<%= print_content "Pai"          , h(@contract.father_id)                               , :width => 50  %>
+<%= print_content "Pai"          , h(@contract.classification)                           , :width => 50  %>
 <%= print_content "Tipo da lista", Contract::ListTypes.find(@contract.list_type_id).human, :width => 30  %>
-<%= print_content "Ordem"        , h(@contract.order)                                   , :width => 10  %>
-<%= print_content "Rúbrica"      , human_boolean(@contract.rubric)                      , :width => 10  %>
-<%= print_content "Texto"        , h(@contract.text)                                    , :width => 100 %>
+<%= print_content "Ordem"        , h(@contract.order)                                    , :width => 10  %>
+<%= print_content "Rúbrica"      , human_boolean(@contract.rubric)                       , :width => 10  %>
+<%= print_content "Texto"        , h(@contract.text)                                     , :width => 100 %>

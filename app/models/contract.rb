@@ -1,5 +1,6 @@
 class Contract < ActiveRecord::Base
   validates_presence_of :text
+  has_one :father, :class_name => "Contract", :primary_key => "father_id", :foreign_key => 'id'
 
   KEYWORDS = { :cliente_nome          => {:command => "@cli.name"             , :description => "Razão Social do Locatário"},
                :cliente_tel_1         => {:command => "@cli.phone(1)"         , :description => "Telefone principal do contato principal"},
@@ -48,6 +49,16 @@ class Contract < ActiveRecord::Base
     Contract.childs self.id
   end
 
+  def classification
+    klass = "%03d" % order
+    this = self
+    while !this.father.nil? do
+      this = this.father
+      klass = ("%03d" % this.order) + "." + klass
+    end
+    klass += ".000.000.000.000"
+    klass[0..14]
+  end
 
   class ListTypes <
     Struct.new(:id, :name, :human)
