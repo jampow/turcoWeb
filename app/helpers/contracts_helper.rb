@@ -13,4 +13,15 @@ module ContractsHelper
     s += "</ol>"
   end
 
+
+  def list_dynamic_data
+    s  = '<ul>'
+    (Contract::KEYWORDS.sort {|x,y| x[0].to_s <=> y[0].to_s}).each do |key|
+      s += '<li>'
+      s += "&lt;&lt;#{key[0]}&gt;&gt;"
+      s += '</li>'
+    end
+    s += '</ul>'
+  end
+
 end
