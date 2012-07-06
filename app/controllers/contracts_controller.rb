@@ -89,7 +89,7 @@ class ContractsController < ApplicationController
 
 protected
   def default_data
-    @clauses   = Contract.all.collect { |c| [c.text[0..70], c.id] }
+    @clauses   = Contract.grid.collect { |c| [c.ordenator + ' - ' + c.text[0..70], c.id] }
     @listtypes = Contract::ListTypes.to_select
   end
 end
