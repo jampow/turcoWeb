@@ -29,8 +29,7 @@ class ClientsController < ApplicationController
     @main_contact     = @client.contacts.main[0]
     @other_contacts   = @client.contacts.others
 
-    #TODO: substituir tabela de notas (invoices) por recibos (receipts)
-    @invoices         = @client.invoices
+    @located_items    = @client.located_items
     @receivables      = @client.receivables
     @attachments      = @client.attachments.from_client
 

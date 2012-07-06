@@ -5,6 +5,7 @@ class Client < ActiveRecord::Base
   has_many   :contacts                                  , :foreign_key => 'external_id'         , :dependent => :destroy
   has_many   :addresses       , :as => :addressable                                             , :dependent => :destroy
   has_many   :sales_orders
+  has_many   :locations
   belongs_to :main_address    , :class_name => 'Address', :foreign_key => 'main_address_id'     , :dependent => :destroy
   belongs_to :billing_address , :class_name => 'Address', :foreign_key => 'billing_address_id'  , :dependent => :destroy
   belongs_to :delivery_address, :class_name => 'Address', :foreign_key => 'delivery_address_id' , :dependent => :destroy
@@ -109,6 +110,10 @@ class Client < ActiveRecord::Base
 
   def email
     contacts.main[0].email
+  end
+
+  def located_items
+    LocationItem.from_client self.id
   end
 
 end
