@@ -391,6 +391,13 @@ ul.file-list li a:hover {
   margin-bottom: 5px;
 }
 
+table.zebra tr:nth-child(2n+1) { background-color: #eee; }
+
+.comment {
+  color: #777;
+  font-style: italic;
+}
+
 #bossMessage {
   padding: 3px;
   min-height: 150px;

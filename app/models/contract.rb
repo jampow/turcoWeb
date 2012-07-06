@@ -1,22 +1,22 @@
 class Contract < ActiveRecord::Base
   validates_presence_of :text
 
-  KEYWORDS = { :cliente_nome          => "@cli.name",
-               :cliente_tel_1         => "@cli.phone(1)",
-               :cliente_tel_2         => "@cli.phone(2)",
-               :cliente_doc           => "@cli.doc",
-               :cliente_endereco      => "@cli.main_address.to_s",
-               :cliente_email         => "@cli.email",
+  KEYWORDS = { :cliente_nome          => {:command => "@cli.name"             , :description => "Razão Social do Locatário"},
+               :cliente_tel_1         => {:command => "@cli.phone(1)"         , :description => "Telefone principal do contato principal"},
+               :cliente_tel_2         => {:command => "@cli.phone(2)"         , :description => "Telefone secundário do contato principal"},
+               :cliente_doc           => {:command => "@cli.doc"              , :description => "CNPJ ou CPF do Locatário"},
+               :cliente_endereco      => {:command => "@cli.main_address.to_s", :description => "Endereço principal do Locatário"},
+               :cliente_email         => {:command => "@cli.email"            , :description => "E-mail do contato principal"},
 
-               :locacao_inicio        => "date @loc.starts_at",
-               :locacao_representante => "@loc.seller.name",
+               :locacao_inicio        => {:command => "date @loc.starts_at"   , :description => "Data de início da locação"},
+               :locacao_representante => {:command => "@loc.seller.name"      , :description => "Representante da locação"},
 
-               :empresa_fantasia      => "@ent.nickname",
-               :empresa_nome          => "@ent.name",
-               :empresa_tel           => "@ent.phone",
-               :empresa_doc           => "@ent.cnpj",
-               :empresa_email         => "@ent.email",
-               :empresa_endereco      => "@ent.address.to_s"}
+               :empresa_fantasia      => {:command => "@ent.nickname"         , :description => "Fantasia da locadora"},
+               :empresa_nome          => {:command => "@ent.name"             , :description => "Razão Social da locadora"},
+               :empresa_tel           => {:command => "@ent.phone"            , :description => "Telefone da locadora"},
+               :empresa_doc           => {:command => "@ent.cnpj"             , :description => "CNPJ da locadora"},
+               :empresa_email         => {:command => "@ent.email"            , :description => "E-mail da locadora"},
+               :empresa_endereco      => {:command => "@ent.address.to_s"     , :description => "Endereço da locadora"}}
 
 # Select c1.id
 #      , RPad(
