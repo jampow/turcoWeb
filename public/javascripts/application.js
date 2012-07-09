@@ -236,8 +236,7 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
     $('.mask-phone'  ).mask("(99) 9999-9999? r.9999",{placeholder:" "});
     $('.mask-cnpj'   ).mask("99.999.999/9999-99"    ,{placeholder:" "});
     $('.mask-cpf'    ).mask("999.999.999-99?999"    ,{placeholder:" "});
-    $('.mask-code'   ).mask("99999"                 ,{placeholder:" "});
-    $('.mask-clicode').mask("***.***.***.***.***"   ,{placeholder:" "});
+    $('.mask-code'   ).mask("*****"                 ,{placeholder:" "});
     $('.mask-cep'    ).mask("99999-999"             ,{placeholder:" "});
     $('.mask-cfop'   ).mask("9999"                  ,{placeholder:" "});
 
