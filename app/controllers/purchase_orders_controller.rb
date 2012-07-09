@@ -48,7 +48,6 @@ class PurchaseOrdersController < ApplicationController
 
     @purchase_order.provider_name = @purchase_order.provider.name
 
-
     default_data
 
     if @purchase_order.closed

@@ -41,16 +41,9 @@ class Product < ActiveRecord::Base
  # And   pro.type_id = 1
  # Order By name
 
-  named_scope :to_autocomplete, lambda { |term| {
+  named_scope :to_autocomplete, lambda { |term, prod_type| {
     :select => "pro.id As product_id, concat(pro.code, ' - ', pro.name) As label, pro.name As value, pro.cofins, icm.value As icm, pro.ipi As aliq_ipi, pro.pis, pro.price As unit_value, pro.net_weight As net_weight, pro.gross_weight As gross_weight",
-    :conditions => ["(pro.name like ? Or pro.code like ?) And pro.type_id = 1", "%#{term}%", "%#{term}%"],
-    :order => "name",
-    :joins => "pro Left Join csts cof On cof.id = pro.cst_cofins_id Left Join csts icm On icm.id = pro.cst_icm_id Left Join csts ipi On ipi.id = pro.cst_ipi_id Left Join csts pis On pis.id = pro.cst_pis_id"}}
-
-# Igual ao de cima, mas filtra por produtos de locação
-  named_scope :to_autocomplete_location, lambda { |term| {
-    :select => "pro.id As product_id, concat(pro.code, ' - ', pro.name) As label, pro.name As value, pro.cofins, icm.value As icm, pro.ipi As aliq_ipi, pro.pis, pro.price As unit_value, pro.net_weight As net_weight, pro.gross_weight As gross_weight",
-    :conditions => ["(pro.name like ? Or pro.code like ?) And pro.type_id = 2", "%#{term}%", "%#{term}%"],
+    :conditions => ["(pro.name like ? Or pro.code like ?) And pro.type_id = ?", "%#{term}%", "%#{term}%", prod_type],
     :order => "name",
     :joins => "pro Left Join csts cof On cof.id = pro.cst_cofins_id Left Join csts icm On icm.id = pro.cst_icm_id Left Join csts ipi On ipi.id = pro.cst_ipi_id Left Join csts pis On pis.id = pro.cst_pis_id"}}
 
@@ -65,7 +58,8 @@ class Product < ActiveRecord::Base
     Struct.new(:id, :name)
     VALUES = [
       {:id => 1, :name => 'Venda'},
-      {:id => 2, :name => 'Locação'}
+      {:id => 2, :name => 'Locação'},
+      {:id => 3, :name => 'Compra'}
     ]
     def self.all
       VALUES.map { |v| self.new(v[:id], v[:name]) }

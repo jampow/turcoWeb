@@ -82,7 +82,7 @@ class AutocompleteController < ApplicationController
   end
 
   def product
-    @list = Product.to_autocomplete params[:term]
+    @list = Product.to_autocomplete params[:term], 1
 
     respond_to do |format|
       format.js { render :action => "autocomplete" }
@@ -90,7 +90,15 @@ class AutocompleteController < ApplicationController
   end
 
   def product_location
-    @list = Product.to_autocomplete_location params[:term]
+    @list = Product.to_autocomplete params[:term], 2
+
+    respond_to do |format|
+      format.js { render :action => "autocomplete" }
+    end
+  end
+
+  def product_purchase
+    @list = Product.to_autocomplete params[:term], 3
 
     respond_to do |format|
       format.js { render :action => "autocomplete" }
