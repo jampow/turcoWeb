@@ -1,7 +1,7 @@
 class Client < ActiveRecord::Base
   has_many   :attachments                               , :foreign_key => 'external_id'         , :dependent => :destroy
   has_many   :invoices
-  has_many   :receivables     , :through => :invoices
+  has_many   :receivables
   has_many   :contacts                                  , :foreign_key => 'external_id'         , :dependent => :destroy
   has_many   :addresses       , :as => :addressable                                             , :dependent => :destroy
   has_many   :sales_orders
