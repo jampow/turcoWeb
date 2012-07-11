@@ -1,3 +1,7 @@
 TODO LIST
 
 * Acabar com a tabela de recibos e só montar a impressão do recibo a partir do título a receber
+* Completar o Fluxo de caixa
+* Ocultar colunas de caracteres
+* Fazer opção para indisponibilizar o item da locação caso ele já esteja locado
+* Inibir duplicidade de lançamento na tabela de movimentações bancárias quando o registro for alterado
