@@ -1,5 +1,5 @@
 class Payable < ActiveRecord::Base
-  validates_presence_of :client_id
+  validates_presence_of :provider_id
   validates_presence_of :issue_date
   validates_presence_of :due_date
   validates_presence_of :value
@@ -12,7 +12,7 @@ class Payable < ActiveRecord::Base
   end
 
   belongs_to :invoice, :primary_key => "invoice_number", :foreign_key => "invoice_number"
-  belongs_to :client
+  belongs_to :provider
   belongs_to :bank_account, :foreign_key => "account_id"
 
   has_many :payable_cost_divisions
@@ -20,23 +20,23 @@ class Payable < ActiveRecord::Base
 
   accepts_nested_attributes_for :payable_cost_divisions, :allow_destroy => true, :reject_if => proc { |attributes| attributes['value'].blank? }
 
-  attr_accessor :client_name
+  attr_accessor :provider_name
 
   # def after_initialize
-  #   self.client_name = Client.find(self.client_id, :select => 'name').name if self.client_id
+  #   self.provider_name = Provider.find(self.provider_id, :select => 'name').name if self.provider_id
   # end
 
 # Select pay.id
-#      , cli.name as client
+#      , pro.name as provider
 #      , pay.invoice_number
 #      , pay.due_date
 #      , pay.value
 #      , pay.settled
-# From payables pay
-# Join clients     cli On cli.id = pay.client_id
+# From payables  pay
+# Join providers pro On pro.id = pay.provider_id
 
-  named_scope :grid, :select => "pay.id, cli.name as cli, pay.invoice_number, pay.due_date, pay.value, pay.settled",
-                     :joins  => "pay Join clients cli On cli.id = pay.client_id"
+  named_scope :grid, :select => "pay.id, pro.name as pro, pay.invoice_number, pay.due_date, pay.value, pay.settled",
+                     :joins  => "pay Join providers pro On pro.id = pay.provider_id"
 
   def reached_limit?
     total_from_billings >= value ? true : false

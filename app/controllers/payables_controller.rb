@@ -43,7 +43,7 @@ class PayablesController < ApplicationController
   # GET /payables/1/edit
   def edit
     @payable = Payable.find(params[:id])
-    @payable.client_name = Client.find(@payable.client_id, :select => 'name').name
+    @payable.provider_name = Provider.find(@payable.provider_id, :select => 'name').name
     @division   = PayableCostDivision.new
   end
 

@@ -4,7 +4,7 @@
 <% end -%>
 
 <%= table @payables, ['invoice_number', 'Número da NF', {:class  => "right"}],
-                     ['cli'           , 'Fornecedor'  ],
+                     ['pro'           , 'Fornecedor'  ],
                      ['due_date'      , 'Vencimento'  , {:format => 'date'              , :class => 'center'}],
                      ['value'         , 'Valor'       , {:format => 'number_to_currency', :class => 'right' }],
                      ['settled'       , 'Quitado?'    , {:format => 'human_boolean'     , :class => 'center'}] %>

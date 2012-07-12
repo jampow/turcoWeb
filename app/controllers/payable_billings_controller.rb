@@ -36,7 +36,7 @@ class PayableBillingsController < ApplicationController
     end
     @payable_billing = PayableBilling.new
     @payable_billing.payable_id = session[:pay_id]
-    @payable_billing.client_id     = Payable.find(session[:pay_id]).client_id
+    @payable_billing.provider_id     = Payable.find(session[:pay_id]).provider_id
 
     # respond_to do |format|
     #   format.html # new.html.erb

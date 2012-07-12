@@ -11,7 +11,7 @@
       <legend>Dados</legend>
       <%= f.hidden_field :payable_id                         , :label  => 'Receber de'         , :size => 20 %>
       <%= f.select       :bank_account_id, BankAccount.to_select, :label  => 'Conta'              , :size => 10 %>
-      <%= f.text_field   :client_id                             , {:label => 'Receber de'         , :size => 20 , :value => (@payable_billing.client.name rescue '')}.merge(@payable_billing.client ? {:disabled => 'disabled'} : {}) %>
+      <%= f.text_field   :provider_id                           , {:label => 'Fornecedor'         , :size => 20 , :value => (@payable_billing.provider.name rescue '')}.merge(@payable_billing.provider ? {:disabled => 'disabled'} : {}) %>
       <%= f.select       :account_plan_id, AccountPlan.to_select, :label  => 'Plano de Contas'    , :size => 10 , :include_blank => true %>
       <%= f.select       :cost_center_id , CostCenter.to_select , :label  => 'Centro de Custos'   , :size => 10 , :include_blank => true %>
       <%= f.text_field   :document_number                       , :label  => 'Num. Doc.'          , :size => 20 %>

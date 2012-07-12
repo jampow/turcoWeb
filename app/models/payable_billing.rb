@@ -4,8 +4,8 @@ class PayableBilling < ActiveRecord::Base
 
   after_save :settle_payable!
 
-  def client
-    payable.client if client_id
+  def provider
+    payable.provider if provider_id
   end
 
   private

@@ -10,7 +10,7 @@
   <div id="tabs">
     <div id="general">
       <h2>Origem</h2>
-      <%= print_content 'Receber de'     , h((@payable.client || {})[:name])                                   , :width => 30 %>
+      <%= print_content 'Pagar para'     , h((@payable.provider || {})[:name])                                 , :width => 30 %>
       <%= print_content "Histórico"      , h(@payable.historic)                                                , :width => 30 %>
       <%= print_content "Data de Emissão", date(@payable.issue_date)                                           , :width => 10 %>
       <%= print_content 'Documento'      , (Payable::DocumentKind.find(@payable.document_kind_id) || {})[:kind], :width => 10 %>

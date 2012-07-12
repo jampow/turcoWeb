@@ -9,8 +9,8 @@
 
   <fieldset>
     <legend>Origem</legend>
-    <%= f.hidden_field :client_id %>
-    <%= f.text_field :client_name                                    , :label => "Receber de"      , :size => 30, :class => 'autocomplete', :source => 'client', :pref => 'payable_' %>
+    <%= f.hidden_field :provider_id %>
+    <%= f.text_field :provider_name                                  , :label => "Pagar para"      , :size => 30, :class => 'autocomplete', :source => 'provider', :pref => 'payable_' %>
     <%= f.text_field :historic                                       , :label => "Histórico"       , :size => 30 %>
     <%= f.text_field :issue_date                                     , :label => "Data de Emissão" , :size => 10, :class => 'datepicker' %>
     <%= f.select :document_kind_id  , Payable::DocumentKind.to_select, :label => 'Documento'       , :size => 10 %>
@@ -23,7 +23,7 @@
     <%= f.select :payment_method_id, Payable::PaymentMethod.to_select, :label => 'Meio de Pagamento',:size => 20 %>
     <%= f.text_field :due_date                                       , :label => "Vencimento"       ,:size => 20, :class => 'datepicker' %>
     <%= f.select :frequency_id     , Payable::Frequency.to_select    , :label => 'Frequencia'       ,:size => 20 %>
-    <%= f.text_field :value                                          , :label => "Valor"            ,:size => 20 %>
+    <%= f.text_field :value                                          , :label => "Valor"            ,:size => 20, :class => "mask-decimal", :decimal => "14,2" %>
 
   </fieldset>
   <fieldset>
