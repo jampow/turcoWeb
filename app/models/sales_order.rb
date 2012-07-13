@@ -102,7 +102,8 @@ class SalesOrder < Order
           :payment_method_id        => 1,
           :frequency_id             => 1,
           :rate_type_id             => 1,
-          :rate_calculation_type_id => 1
+          :rate_calculation_type_id => 1,
+          :settled                  => 0
         })
       end
     end
