@@ -97,7 +97,8 @@ class Payable < ActiveRecord::Base
   class Frequency <
     Struct.new(:id, :name)
     VALUES = [
-      {:id => 1, :name => 'Mensalmente'}
+      {:id => 1, :name => 'Única'},
+      {:id => 2, :name => 'Mensal'}
     ]
     def self.all
       VALUES.map { |v| self.new(v[:id], v[:name]) }
