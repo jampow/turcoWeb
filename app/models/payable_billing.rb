@@ -3,6 +3,7 @@ class PayableBilling < ActiveRecord::Base
   attr_accessor :settle_payable
 
   after_save :settle_payable!
+  validates_presence_of :received_at, :value
 
   def provider
     payable.provider if provider_id
@@ -14,6 +15,7 @@ class PayableBilling < ActiveRecord::Base
     if settle_payable == "1" || self.payable.reached_limit?
       p = Payable.find(payable_id)
       p.settled = true
+      p.payment_date = received_at
       p.save
 
       BankAccountTransaction.create(:bank_account_id => self.bank_account_id,

@@ -9,7 +9,7 @@
   <div id="values">
     <fieldset>
       <legend>Dados</legend>
-      <%= f.hidden_field :payable_id                         , :label  => 'Receber de'         , :size => 20 %>
+      <%= f.hidden_field :payable_id                            , :label  => 'Receber de'         , :size => 20 %>
       <%= f.select       :bank_account_id, BankAccount.to_select, :label  => 'Conta'              , :size => 10 %>
       <%= f.text_field   :provider_id                           , {:label => 'Fornecedor'         , :size => 20 , :value => (@payable_billing.provider.name rescue '')}.merge(@payable_billing.provider ? {:disabled => 'disabled'} : {}) %>
       <%= f.select       :account_plan_id, AccountPlan.to_select, :label  => 'Plano de Contas'    , :size => 10 , :include_blank => true %>
@@ -24,11 +24,11 @@
       <legend>Valores</legend>
       <%= f.text_field :expire_at     , :label => 'Vencimento'       , :class => 'datepicker'  , :size => 20 %>
       <%= f.text_field :competency    , :label => 'Competencia'      , :class => 'datepicker'  , :size => 20 %>
-      <%= f.text_field :received_at   , :label => 'Data do Pagamento', :class => 'datepicker'  , :size => 20 %>
+      <%= f.text_field :received_at   , :label => 'Data do Pagamento', :class => 'datepicker'  , :size => 20, :required => true %>
       <%= f.text_field :bill_number   , :label => 'Número'                                     , :size => 20 %>
       <%= f.text_field :parcel        , :label => 'Parcela'                                    , :size => 10 %>
       <%= f.check_box  :settle_payable, :label => 'Quita o Ativo?'                             , :size => 10 %>
-      <%= f.text_field :value         , :label => 'Valor'            , :class => 'mask-decimal', :size => 20, :decimal => "10,2", :value => @payable_billing.value || @payable_billing.payable.value rescue '' %>
+      <%= f.text_field :value         , :label => 'Valor'            , :class => 'mask-decimal', :size => 20, :decimal => "10,2", :required => true, :value => @payable_billing.value || @payable_billing.payable.value rescue '' %>
       <%= f.text_field :fine          , :label => 'Valor Multa'      , :class => 'mask-decimal', :size => 20, :decimal => "10,2" %>
       <%= f.text_field :rate          , :label => 'Valor Juros'      , :class => 'mask-decimal', :size => 20, :decimal => "10,2" %>
       <%= f.text_field :discount      , :label => 'Desconto'         , :class => 'mask-decimal', :size => 20, :decimal => "10,2" %>
