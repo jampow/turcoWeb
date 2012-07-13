@@ -5,8 +5,8 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :order_items , :reject_if => proc { |a| a[:product_name].blank? }
 
-  before_save :mark_item_for_removal
-  before_save :moviment_stock
+  before_save   :mark_item_for_removal
+  before_create :moviment_stock
 
   attr_accessor :client_name
   attr_accessor :car_name
