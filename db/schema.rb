@@ -9,7 +9,68 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712214405) do
+ActiveRecord::Schema.define(:version => 20120719183456) do
+
+  create_table "VwCashFlow", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",   :precision => 65, :scale => 3
+    t.decimal "recd",  :precision => 54, :scale => 2
+    t.decimal "pay",   :precision => 65, :scale => 3
+    t.decimal "payd",  :precision => 54, :scale => 2
+    t.decimal "total", :precision => 65, :scale => 3
+  end
+
+  create_table "VwCashFlowPayables", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "recd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "pay",  :precision => 56, :scale => 3
+    t.decimal "payd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+  end
+
+  create_table "VwCashFlowPayablesPre", :id => false, :force => true do |t|
+    t.integer "id",                                      :default => 0, :null => false
+    t.date    "due_date"
+    t.decimal "payable",  :precision => 34, :scale => 3
+  end
+
+  create_table "VwCashFlowPayd", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "recd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "pay",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "payd", :precision => 32, :scale => 2
+  end
+
+  create_table "VwCashFlowReceivables", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",  :precision => 56, :scale => 3
+    t.decimal "recd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "pay",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "payd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+  end
+
+  create_table "VwCashFlowReceivablesPre", :id => false, :force => true do |t|
+    t.integer "id",                                        :default => 0, :null => false
+    t.date    "issue_date"
+    t.decimal "payable",    :precision => 34, :scale => 3
+  end
+
+  create_table "VwCashFlowReceived", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "recd", :precision => 32, :scale => 2
+    t.decimal "pay",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "payd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+  end
+
+  create_table "VwCashFlowUnion", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",  :precision => 56, :scale => 3
+    t.decimal "recd", :precision => 32, :scale => 2
+    t.decimal "pay",  :precision => 56, :scale => 3
+    t.decimal "payd", :precision => 32, :scale => 2
+  end
 
   create_table "account_plans", :force => true do |t|
     t.string   "name",       :limit => 50
