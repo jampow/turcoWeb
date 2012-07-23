@@ -11,7 +11,7 @@ class LocationReceipt < ActiveRecord::Base
   usar_como_dinheiro :liquid_value
 
   before_create :create_receivable
-  before_create :normalize_data
+  before_create :desnormalize_data
 
   accepts_nested_attributes_for :items
 
@@ -42,7 +42,7 @@ class LocationReceipt < ActiveRecord::Base
 
   protected
 
-  def normalize_data
+  def desnormalize_data
     loc = self.location
     cli = loc.client
     ent = Enterprise.first
