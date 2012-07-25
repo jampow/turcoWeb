@@ -47,6 +47,26 @@ class Product < ActiveRecord::Base
     :order => "name",
     :joins => "pro Left Join csts cof On cof.id = pro.cst_cofins_id Left Join csts icm On icm.id = pro.cst_icm_id Left Join csts ipi On ipi.id = pro.cst_ipi_id Left Join csts pis On pis.id = pro.cst_pis_id"}}
 
+# Select id
+#      , concat(code, ' - ', name) As label
+#      , name
+# From products
+# Where type_id = 2 -- locação
+# And (pro.name like '%term%' Or pro.code like '%term%')
+# And id Not In (
+#     Select Distinct pro.id
+#     From products pro
+#     Join location_items loi On loi.product_id = pro.id
+#     Join locations loc On loc.id = loi.location_id
+#     Where pro.type_id = 2 -- locação
+#     And (loc.ends_at Is Null Or loc.ends_at > Cast(Now() As Date))
+# );
+
+  named_scope :to_autocomplete_location, lambda { |term| {
+    :select => "id, concat(code, ' - ', name) As label, name",
+    :conditions => ["type_id = 2 And (name like ? Or code like ?) And id Not In (Select Distinct pro.id From products pro Join location_items loi On loi.product_id = pro.id Join locations loc On loc.id = loi.location_id Where pro.type_id = 2 And (loc.ends_at Is Null Or loc.ends_at > Cast(Now() As Date)))", "%#{term}%", "%#{term}%"]
+  }}
+
   named_scope :grid, :select => "pro.id, pro.code, pro.name, fam.name As family",
                      :joins => "pro Left Join product_families fam On fam.id = pro.family_id"
 

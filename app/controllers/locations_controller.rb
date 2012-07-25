@@ -116,7 +116,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        flash[:notice] = 'Recibo criado'
+        flash[:notice] = 'Cobrança criada'
         format.html { render :layout => 'simple_application' }
         format.xml  { render :xml => @location, :status => :created, :location => @location }
       else
@@ -132,6 +132,10 @@ class LocationsController < ApplicationController
     @cli = @loc.client
 
     render :layout => 'report'
+  end
+
+  def method_name
+
   end
 
   private
