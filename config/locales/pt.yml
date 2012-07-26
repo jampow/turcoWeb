@@ -217,10 +217,11 @@
       enterprise: "Empresa"
       invoice: "Nota Fiscal"
       location: "Locação"
+      payable: "Título a pagar"
       product: "Produto"
       provider: "Fornecedor"
       purchase order: "Pedido de compra"
-      receivable: "Conta a receber"
+      receivable: "Título a receber"
       sales order: "Pedido de venda"
       sells type: "Tipos de NF"
       st cofin: "Cofins"
@@ -307,6 +308,8 @@
         client_name: "Cliente"
         starts_at: "Início da locação"
         ends_at: "Término da locação"
+      payable:
+        due_date: "Vencimento"
       provider:
         code: "Código"
         name: "Nome"
