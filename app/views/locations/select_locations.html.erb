@@ -1,0 +1,19 @@
+<% content_for :menu do -%>
+  <h1>Gerar cobranças em massa</h1>
+  <%= mount_menu %w[save back] %>
+<% end -%>
+
+<% form_for :location, :url => "/locations/generate_bills", :method => "POST" do |f| %>
+
+  <%#= f.text_field :starts_at, :label => "Início" , :size => 20, :class => 'datepicker' %>
+  <%#= f.text_field :ends_at  , :label => "Término", :size => 20, :class => 'datepicker' %>
+  <%= f.text_field :due_date  , :label => "Vencimento", :size => 20, :class => 'datepicker' %>
+
+  <div class="clear"></div>
+
+  <ul>
+  <% @locations.each do |l| %>
+    <li><%= check_box_tag "location[locations][]", l.id %> <%= l.number %> - <%= l.client.name %></li>
+  <% end %>
+  </ul>
+<% end %>

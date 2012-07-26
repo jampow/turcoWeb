@@ -13,8 +13,8 @@ class Contract < ActiveRecord::Base
                :locacao_representante => {:command => "@loc.seller.name"          , :description => "Representante da locação"},
                :locacao_m2_total      => {:command => "@loc.m2_total"             , :description => "Somatória em m<sup>2</sup> de todos os boxes da locação"},
                :locacao_boxes         => {:command => "@loc.items_to_s"           , :description => "Código dos itens da locação separados por vírgulas"},
-               :locacao_total         => {:command => "@loc.total.real.to_s"      , :description => "Código dos itens da locação separados por vírgulas"},
-               :locacao_total_extenso => {:command => "@loc.total.real.to_extenso", :description => "Código dos itens da locação separados por vírgulas"},
+               :locacao_total         => {:command => "@loc.total.real.to_s"      , :description => "Total da locação. Ex: \"R$ 100,00\""},
+               :locacao_total_extenso => {:command => "@loc.total.real.to_extenso", :description => "Total de locação por extenso. Ex: \"Cem reais\""},
 
                :empresa_fantasia      => {:command => "@ent.nickname"             , :description => "Fantasia da locadora"},
                :empresa_nome          => {:command => "@ent.name"                 , :description => "Razão Social da locadora"},

@@ -22,7 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :func_contacts
   map.resources :hollydays
   map.resources :invoices
-  map.resources :locations
+  map.resources :locations                , :collection => { :select_locations => :get,  :generate_bills => :post }
   map.resources :location_receipts
   map.resources :measure_units
   map.resources :messages

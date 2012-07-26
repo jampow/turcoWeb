@@ -64,7 +64,24 @@ class Location < ActiveRecord::Base
     loc = LocationItem.grid self.id
   end
 
-# Select IfNull(       Max(number), 0)          As last
+  def create_receivable(due_date)
+    rec = Receivable.create({
+      :client_id                => self.client_id,
+      #:document_number          => self.number,
+      :due_date                 => Date.parse(due_date),
+      :issue_date               => Date.parse(due_date).beginning_of_month.to_time,
+      :value                    => self.total,
+      :document_kind_id         => 1,
+      :payment_method_id        => 1,
+      :frequency_id             => 1,
+      :rate_type_id             => 1,
+      :rate_calculation_type_id => 1,
+      :location_id              => self.id
+    })
+
+  end
+
+# Select        IfNull(Max(number), 0)          As last
 #      , Concat(IfNull(Max(number), 0)+1, "-A") As next
 # From locations
 
@@ -79,14 +96,6 @@ class Location < ActiveRecord::Base
     self.number ||= Location.number.next
   end
 
-  protected
-
-  def mark_item_for_removal
-    location_items.each do |child|
-      child.mark_for_destruction if child.product_name.blank?
-    end
-  end
-
 # Select loc.id
 #      , loc.number
 #      , cli.name As cli
@@ -97,5 +106,20 @@ class Location < ActiveRecord::Base
 
   named_scope :grid, :select => "loc.id, loc.number, cli.name As cli, loc.starts_at, loc.ends_at",
                      :joins => "loc Left Join clients cli On cli.id = loc.client_id"
+
+# Select *
+# From locations
+# Where ends_at Is Null
+# Or ends_at > Cast(Now() As Date)
+
+  named_scope :actives, :conditions => "ends_at Is Null Or ends_at > Cast(Now() As Date)"
+
+  protected
+
+  def mark_item_for_removal
+    location_items.each do |child|
+      child.mark_for_destruction if child.product_name.blank?
+    end
+  end
 
 end

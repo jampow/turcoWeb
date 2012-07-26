@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719183456) do
+ActiveRecord::Schema.define(:version => 20120726164705) do
 
   create_table "VwCashFlow", :id => false, :force => true do |t|
     t.date    "date"
@@ -705,6 +705,7 @@ ActiveRecord::Schema.define(:version => 20120719183456) do
     t.decimal  "fine",                                    :precision => 10, :scale => 4
     t.integer  "rate_calculation_type_id"
     t.boolean  "settled"
+    t.integer  "location_id"
   end
 
   create_table "roles", :force => true do |t|

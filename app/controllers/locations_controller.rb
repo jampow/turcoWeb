@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 
   access_control do
-    allow :locations_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :to_bill, :generate_bill, :contract]
+    allow :locations_e, :to => [:index, :show, :default_data, :new, :edit, :create, :update, :destroy, :to_bill, :generate_bill, :select_locations, :generate_bills, :contract]
     allow :locations_l, :to => [:index, :show, :default_data, :contract]
     allow :locations_s, :to => []
   end
@@ -126,16 +126,32 @@ class LocationsController < ApplicationController
     end
   end
 
+  def select_locations
+    @locations = Location.actives
+
+    respond_to do |format|
+      format.html # select_locations.html.erb
+      format.xml  { render :xml => @locations }
+    end
+  end
+
+  def generate_bills
+    locations = params[:location]
+    locations[:locations].each do |loc_id|
+      loc = Location.find loc_id
+      loc.create_receivable(locations[:due_date])
+    end
+
+    flash[:notice] = "Títulos a receber geradas"
+    redirect_to :locations
+  end
+
   def contract
     @loc = Location.find params[:id]
     @ent = Enterprise.first
     @cli = @loc.client
 
     render :layout => 'report'
-  end
-
-  def method_name
-
   end
 
   private
