@@ -47,7 +47,7 @@ class Product < ActiveRecord::Base
     :order => "name",
     :joins => "pro Left Join csts cof On cof.id = pro.cst_cofins_id Left Join csts icm On icm.id = pro.cst_icm_id Left Join csts ipi On ipi.id = pro.cst_ipi_id Left Join csts pis On pis.id = pro.cst_pis_id"}}
 
-# Select id
+# Select id As product_id
 #      , concat(code, ' - ', name) As label
 #      , name
 # From products
@@ -63,7 +63,7 @@ class Product < ActiveRecord::Base
 # );
 
   named_scope :to_autocomplete_location, lambda { |term| {
-    :select => "id, concat(code, ' - ', name) As label, name",
+    :select => "id As product_id, concat(code, ' - ', name) As label, name",
     :conditions => ["type_id = 2 And (name like ? Or code like ?) And id Not In (Select Distinct pro.id From products pro Join location_items loi On loi.product_id = pro.id Join locations loc On loc.id = loi.location_id Where pro.type_id = 2 And (loc.ends_at Is Null Or loc.ends_at > Cast(Now() As Date)))", "%#{term}%", "%#{term}%"]
   }}
 
