@@ -1,0 +1,17 @@
+<% content_for :menu do -%>
+  <h1>Duplicar títulos a pagar mensais</h1>
+  <%= mount_menu %w[save back] %>
+<% end -%>
+
+<% form_for :payable, :url => "/payables/generate_payables", :method => "POST" do |f| %>
+
+  <%#= f.text_field :due_date, :label => "Vencimento", :size => 20, :class => 'datepicker' %>
+
+  <!-- <div class="clear"></div> -->
+
+  <ul>
+  <% @payables.each do |p| %>
+    <li><%= check_box_tag "payable[payables][]", p.id %><%= p.provider.name %> (Validade: <%= p.due_date %> | <%= number_to_currency p.value %>)</li>
+  <% end %>
+  </ul>
+<% end %>

@@ -38,16 +38,7 @@ class Payable < ActiveRecord::Base
   named_scope :grid, :select => "pay.id, pro.name as pro, pay.invoice_number, pay.due_date, pay.value, pay.settled",
                      :joins  => "pay Join providers pro On pro.id = pay.provider_id"
 
-# # Select Date_Add(due_date, Interval 1 month) As date
-# #      , Sum(value) As pay
-# # From payables
-# # Where frequency_id = 2
-# # Group By due_date;
-
-#   named_scope :future, lambda { |qtd_month| {
-#                       :select => "Date_Add(due_date, Interval #{qtd_month} month) As date, Sum(value) As pay",
-#                       :conditions => "frequency_id = 2",
-#                       :group => "due_date" }}
+  named_scope :monthly, :conditions => "frequency_id = 2"
 
   def reached_limit?
     total_from_billings >= value ? true : false
@@ -59,6 +50,13 @@ class Payable < ActiveRecord::Base
       sum += bill.total
     end
     sum
+  end
+
+  def duplicate
+    p = Payable.new(attributes)
+    p.parcel = parcel ? parcel + 1 : 1
+    p.due_date = p.due_date + 1.month
+    p.save!
   end
 
   class DocumentKind <

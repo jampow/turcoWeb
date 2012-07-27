@@ -1,6 +1,7 @@
 <% content_for :menu do -%>
   <h1>Títulos a pagar</h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[default separator] %>
+  <%= link_to 'Duplicar títulos a pagar', '/payables/select_payables', :class => "button", :icon => "alert" %>
 <% end -%>
 
 <%= table @payables, ['invoice_number', 'Número da NF', {:class  => "right"}],

@@ -1,7 +1,7 @@
 class PayablesController < ApplicationController
 
   access_control do
-    allow :payables_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
+    allow :payables_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :select_payables, :generate_payables]
     allow :payables_l, :to => [:index, :show]
     allow :payables_s, :to => []
   end
@@ -91,5 +91,25 @@ class PayablesController < ApplicationController
       format.html { redirect_to(payables_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def select_payables
+    @payables = Payable.monthly
+
+    respond_to do |format|
+      format.html # select_locations.html.erb
+      format.xml  { render :xml => @locations }
+    end
+  end
+
+  def generate_payables
+    payables = params[:payable]
+    payables[:payables].each do |pay_id|
+      pay = Payable.find pay_id
+      pay.duplicate
+    end
+
+    flash[:notice] = "Títulos a pagar duplicados"
+    redirect_to :payables
   end
 end
