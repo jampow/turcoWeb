@@ -21,6 +21,7 @@ class PayablesController < ApplicationController
   # GET /payables/1.xml
   def show
     @payable = Payable.find(params[:id])
+    session[:pay_id] = params[:id]
 
     respond_to do |format|
       format.html # show.html.erb

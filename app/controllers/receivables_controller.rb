@@ -21,6 +21,7 @@ class ReceivablesController < ApplicationController
   # GET /receivables/1.xml
   def show
     @receivable = Receivable.find(params[:id])
+    session[:rec_id] = params[:id]
 
     respond_to do |format|
       format.html # show.html.erb
