@@ -1,8 +1,8 @@
 class ReceivablesController < ApplicationController
 
   access_control do
-    allow :receivables_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
-    allow :receivables_l, :to => [:index, :show]
+    allow :receivables_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :print]
+    allow :receivables_l, :to => [:index, :show, :print]
     allow :receivables_s, :to => []
   end
 
@@ -91,5 +91,15 @@ class ReceivablesController < ApplicationController
       format.html { redirect_to(receivables_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def print
+    # @receipt = LocationReceipt.find params[:id]
+    @receivable = Receivable.find params[:id]
+    @location = @receivable.location
+    @client = @location.client
+    @enterprise = Enterprise.first
+    @items = @location.location_items
+    render :layout => 'report'
   end
 end

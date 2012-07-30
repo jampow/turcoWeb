@@ -1,25 +1,25 @@
     <div id="top1" class="group w100">
       <div class="data w25"><img id="logo1" src="/images/logo_p.jpg" alt="logo"></div>
-      <h1 id="title1" class="data w75 center">Recibo de locação - Nº <%= @receipt.location_number %></h1>
+      <h1 id="title1" class="data w75 center">Recibo de locação - Nº <%= @location.number %></h1>
       <div class="data w75 right">1ª Via</div>
     </div>
 
     <h3>LOCADOR</h3>
     <div id="enterprise1" class="group w100 border">
-      <div class="data w100"><span class="label">Empresa</span><%= @receipt.enterp_name %></div>
-      <div class="data w40"><span  class="label">CNPJ</span><%= @receipt.enterp_doc %></div>
-      <div class="data w30"><span  class="label">IE</span><%= @receipt.enterp_ie %></div>
+      <div class="data w100"><span class="label">Empresa</span><%= @enterprise.name %></div>
+      <div class="data w40"><span  class="label">CNPJ</span><%= @enterprise.cnpj %></div>
+      <div class="data w30"><span  class="label">IE</span><%= @enterprise.ie %></div>
       <!-- <div class="data w30"><span  class="label">IM</span></div> -->
-      <div class="data w100"><span class="label">Endereço</span><%= @receipt.enterp_address %></div>
+      <div class="data w100"><span class="label">Endereço</span><%= @enterprise.address %></div>
     </div>
 
     <h3>LOCATÁRIO</h3>
     <div id="client1" class="group w100 border">
-      <div class="data w100"><span class="label">Empresa</span><%= @receipt.client_name %></div>
-      <div class="data w40" ><span class="label">CNPJ/CPF</span><%= @receipt.client_doc %></div>
-      <div class="data w30" ><span class="label">IE/RG</span><%= @receipt.client_ie %></div>
-      <div class="data w30" ><span class="label">IM</span><%= @receipt.client_im %></div>
-      <div class="data w100"><span class="label">Endereço</span><%= @receipt.client_address %></div>
+      <div class="data w100"><span class="label">Empresa</span><%= @client.name %></div>
+      <div class="data w40" ><span class="label">CNPJ/CPF</span><%= @client.doc %></div>
+      <div class="data w30" ><span class="label">IE/RG</span><%= @client.ie %></div>
+      <div class="data w30" ><span class="label">IM</span><%= @client.im %></div>
+      <div class="data w100"><span class="label">Endereço</span><%= @client.main_address %></div>
     </div>
 
     <h3>ITENS</h3>
@@ -34,10 +34,10 @@
           </tr>
         </thead>
         <tbody>
-          <% @receipt.items.each do |item| %>
+          <% @items.each do |item| %>
           <tr>
             <td><%= item.quantity %></td>
-            <td><%= item.product %></td>
+            <td><%= item.product.name %></td>
             <td class="right"><%= number_to_currency(item.unit_value) %></td>
             <td class="right"><%= number_to_currency(item.total_value) %></td>
           </tr>
@@ -54,47 +54,47 @@
     <div id="bank1" class="group w30 border">
       <div class="data w100 center"><span class="title">Dados Bancários</span></div>
       <div class="data w100">&nbsp;</div>
-      <div class="data w100"><span class="label">Banco</span><%= @receipt.bank_name %></div>
-      <div class="data w100"><span class="label">Agência</span><%= @receipt.bank_ag %></div>
-      <div class="data w100"><span class="label">C/C</span><%= @receipt.bank_cc %></div>
+      <div class="data w100"><span class="label">Banco</span><%= @receivable.bank_account.bank_name %></div>
+      <div class="data w100"><span class="label">Agência</span><%= @receivable.bank_account.agency_number %></div>
+      <div class="data w100"><span class="label">C/C</span><%= @receivable.bank_account.account_number %></div>
     </div>
 
     <div id="long_value1" class="group w35 border">
-      <div class="data w100 center"><span class="title">****** <%= @receipt.liquid_value.to_extenso %> ******</span></div>
+      <div class="data w100 center"><span class="title">****** <%= @receivable.value.real.to_extenso %> ******</span></div>
     </div>
 
     <div id="summary1" class="group w30 border">
-      <div class="data w100"><span class="label">Período</span><%= @receipt.period %></div>
+      <div class="data w100"><span class="label">Período</span><%= @receivable.due_date.to_formatted_s :period %></div>
       <!-- <div class="data w100"><span class="label">Contrato</span></div> -->
-      <div class="data w100"><span class="label">Vencimento</span></div>
+      <div class="data w100"><span class="label">Vencimento</span><%= date(@receivable.due_date) %></div>
       <div class="data w100">&nbsp;</div>
-      <div class="data w100 bigger"><span class="label">Total</span><%= @receipt.liquid_value.real_formatado %></div>
+      <div class="data w100 bigger"><span class="label">Total</span><%= @receivable.value.real %></div>
     </div>
 
 <hr />
 
     <div id="top2" class="group w100">
       <div class="data w25"><img id="logo2" src="/images/logo_p.jpg" alt="logo"></div>
-      <h1 id="title2" class="data w75 center">Recibo de locação - Nº <%= @receipt.location_number %></h1>
+      <h1 id="title2" class="data w75 center">Recibo de locação - Nº <%= @location.number %></h1>
       <div class="data w75 right">2ª Via</div>
     </div>
 
     <h3>LOCADOR</h3>
     <div id="enterprise2" class="group w100 border">
-      <div class="data w100"><span class="label">Empresa</span><%= @receipt.enterp_name %></div>
-      <div class="data w40"><span  class="label">CNPJ</span><%= @receipt.enterp_doc %></div>
-      <div class="data w30"><span  class="label">IE</span><%= @receipt.enterp_ie %></div>
+      <div class="data w100"><span class="label">Empresa</span><%= @enterprise.name %></div>
+      <div class="data w40"><span  class="label">CNPJ</span><%= @enterprise.cnpj %></div>
+      <div class="data w30"><span  class="label">IE</span><%= @enterprise.ie %></div>
       <!-- <div class="data w30"><span  class="label">IM</span></div> -->
-      <div class="data w100"><span class="label">Endereço</span><%= @receipt.enterp_address %></div>
+      <div class="data w100"><span class="label">Endereço</span><%= @enterprise.address %></div>
     </div>
 
     <h3>LOCATÁRIO</h3>
     <div id="client2" class="group w100 border">
-      <div class="data w100"><span class="label">Empresa</span><%= @receipt.client_name %></div>
-      <div class="data w40"><span  class="label">CNPJ/CPF</span><%= @receipt.client_doc %></div>
-      <div class="data w30"><span  class="label">IE/RG</span><%= @receipt.client_ie %></div>
-      <div class="data w30"><span  class="label">IM</span><%= @receipt.client_im %></div>
-      <div class="data w100"><span class="label">Endereço</span><%= @receipt.client_address %></div>
+      <div class="data w100"><span class="label">Empresa</span><%= @client.name %></div>
+      <div class="data w40"><span  class="label">CNPJ/CPF</span><%= @client.doc %></div>
+      <div class="data w30"><span  class="label">IE/RG</span><%= @client.ie %></div>
+      <div class="data w30"><span  class="label">IM</span><%= @client.im %></div>
+      <div class="data w100"><span class="label">Endereço</span><%= @client.main_address %></div>
     </div>
 
     <h3>ITENS</h3>
@@ -109,10 +109,10 @@
           </tr>
         </thead>
         <tbody>
-          <% @receipt.items.each do |item| %>
+          <% @items.each do |item| %>
           <tr>
             <td><%= item.quantity %></td>
-            <td><%= item.product %></td>
+            <td><%= item.product.name %></td>
             <td class="right"><%= number_to_currency(item.unit_value) %></td>
             <td class="right"><%= number_to_currency(item.total_value) %></td>
           </tr>
@@ -129,21 +129,21 @@
     <div id="bank2" class="group w30 border">
       <div class="data w100 center"><span class="title">Dados Bancários</span></div>
       <div class="data w100">&nbsp;</div>
-      <div class="data w100"><span class="label">Banco</span><%= @receipt.bank_name %></div>
-      <div class="data w100"><span class="label">Agência</span><%= @receipt.bank_ag %></div>
-      <div class="data w100"><span class="label">C/C</span><%= @receipt.bank_cc %></div>
+      <div class="data w100"><span class="label">Banco</span><%= @receivable.bank_account.bank_name %></div>
+      <div class="data w100"><span class="label">Agência</span><%= @receivable.bank_account.agency_number %></div>
+      <div class="data w100"><span class="label">C/C</span><%= @receivable.bank_account.account_number %></div>
     </div>
 
     <div id="long_value2" class="group w35 border">
-      <div class="data w100 center"><span class="title">****** <%= @receipt.liquid_value.to_extenso %> ******</span></div>
+      <div class="data w100 center"><span class="title">****** <%= @receivable.value.real.to_extenso %> ******</span></div>
     </div>
 
     <div id="summary2" class="group w30 border">
-      <div class="data w100"><span class="label">Período</span><%= @receipt.period %></div>
+      <div class="data w100"><span class="label">Período</span><%= @receivable.due_date.to_formatted_s :period %></div>
       <!-- <div class="data w100"><span class="label">Contrato</span></div> -->
-      <div class="data w100"><span class="label">Vencimento</span></div>
+      <div class="data w100"><span class="label">Vencimento</span><%= date(@receivable.due_date) %></div>
       <div class="data w100">&nbsp;</div>
-      <div class="data w100 bigger"><span class="label">Total</span><%= @receipt.liquid_value.real_formatado %></div>
+      <div class="data w100 bigger"><span class="label">Total</span><%= @receivable.value.real %></div>
     </div>
 
 <% content_for :script do -%>

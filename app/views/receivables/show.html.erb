@@ -3,7 +3,7 @@
   <%= mount_menu %w[default separator] %>
   <%# link_to "Lançar Recebimento", new_receivable_billing_path(@receivable), {:class => "button", :icon => "plus"} %>
   <%= link_to "Recebimentos"      , receivable_billings_path+"?id=#{@receivable.id}", {:class => "button", :icon => "arrowreturnthick-1-s"} %>
-
+  <%= btn_print_receipt @receivable.id if @receivable.location_id %>
 <% end -%>
 
 <div class="form-wrapper">

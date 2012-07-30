@@ -9,6 +9,10 @@ module ReceivablesHelper
     s += "</div>"
   end
 
+  def btn_print_receipt(id)
+    link_to "Imprimir recibo", "/receivables/print/#{id}", :class => "button", :icon => "print", :ajax => "false", :target => "_blank"
+  end
+
   def btn_receivable_division_new_item
     flash[:btn_receivable_division_new_item] = true
     html = "<a href=\"#\" class=\"button new-item\" caption=\"false\" icon=\"plus\" >Adicionar Item</a>"

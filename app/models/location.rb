@@ -1,6 +1,5 @@
 class Location < ActiveRecord::Base
   has_many :location_items, :dependent => :delete_all
-  has_many :receipts, :class_name => "LocationReceipt"
   has_many :receivables
   belongs_to :client
   belongs_to :seller

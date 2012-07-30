@@ -4,10 +4,6 @@
     link_to "Gerar cobrança", "/locations/to_bill/#{id}", :class => "button", :icon => "script", :id => "btn_to_bill"
   end
 
-  def btn_to_receipts(id)
-    link_to "Recibos", "/location_receipts?id=#{id}", :class => "button", :icon => "document-b"
-  end
-
   def btn_contract(id)
     link_to "Contrato", "/locations/contract/#{id}", :class => "button", :icon => "folder-collapsed", :target => "_blank", :ajax => "false"
   end

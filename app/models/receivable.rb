@@ -14,6 +14,7 @@ class Receivable < ActiveRecord::Base
   belongs_to :invoice, :primary_key => "invoice_number", :foreign_key => "invoice_number"
   belongs_to :client
   belongs_to :bank_account, :foreign_key => "account_id"
+  belongs_to :location
 
   has_many :receivable_cost_divisions
   has_many :billings, :class_name => 'ReceivableBilling'
