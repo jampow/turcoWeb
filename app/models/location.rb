@@ -76,7 +76,8 @@ class Location < ActiveRecord::Base
       :frequency_id             => 1,
       :rate_type_id             => 1,
       :rate_calculation_type_id => 1,
-      :location_id              => self.id
+      :location_id              => self.id,
+      :account_id               => BankAccount.first.id
     })
 
   end
