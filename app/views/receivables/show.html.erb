@@ -2,7 +2,7 @@
   <h1>Título a receber</h1>
   <%= mount_menu %w[default separator] %>
   <%# link_to "Lançar Recebimento", new_receivable_billing_path(@receivable), {:class => "button", :icon => "plus"} %>
-  <%= link_to "Recebimentos"      , receivable_billings_path+"?id=#{@receivable.id}", {:class => "button", :icon => "arrowreturnthick-1-s"} %>
+  <%= link_to "Baixados"      , receivable_billings_path+"?id=#{@receivable.id}", {:class => "button", :icon => "arrowreturnthick-1-s"} %>
   <%= btn_print_receipt @receivable.id if @receivable.location_id %>
 <% end -%>
 
@@ -40,7 +40,7 @@
 
       <div style="float:left;width:50%">
         <div style="padding:10px 5px 0 0;">
-          <h2>Recebimentos</h2>
+          <h2>Baixados</h2>
           <table id="receivable_bllings" cellpading="0" cellspacing="0" border="0" width="100%" class="list" >
             <thead>
               <tr>
