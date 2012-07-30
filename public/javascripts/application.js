@@ -22,6 +22,15 @@ var dTableConfig = {
   "bRetrieve": true
 };
 
+var datepickerConfig = {
+  'dateFormat': 'yy-mm-dd',
+  'dayNamesMin': ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+  'dayNamesShort': ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+  'dayNames': ['Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado'],
+  'monthNamesShort': ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+  'monthNames': ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+}
+
 /*
 
 ooooooooo                                                                        oooo
@@ -271,7 +280,8 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
       });
     });
 
-    $('.datepicker').datepicker({'dateFormat': 'yy-mm-dd'});
+    $('.datepicker').datepicker(datepickerConfig);
+
     $('.autocomplete').each(function(){
       var t    = $(this);
       var src  = t.attr('source');
@@ -342,7 +352,7 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o888ooo8888 o888o      o888o         88
     });
   });
 
-  $('#calendar').datepicker();
+  $('#calendar').datepicker(datepickerConfig);
 
   message();
   limit_div_content();
