@@ -2,7 +2,7 @@
   <h1>Título a pagar</h1>
   <%= mount_menu %w[default separator] %>
   <%# link_to "Lançar Recebimento", new_payable_billing_path(@payable), {:class => "button", :icon => "plus"} %>
-  <%= link_to "Pagamentos"        , payable_billings_path+"?id=#{@payable.id}", {:class => "button", :icon => "arrowreturnthick-1-n"} %>
+  <%= link_to "Baixados"        , payable_billings_path+"?id=#{@payable.id}", {:class => "button", :icon => "arrowreturnthick-1-n"} %>
 
 <% end -%>
 
@@ -40,7 +40,7 @@
 
       <div style="float:left;width:50%">
         <div style="padding:10px 5px 0 0;">
-          <h2>Pagamentos</h2>
+          <h2>Baixados</h2>
           <table id="payable_bllings" cellpading="0" cellspacing="0" border="0" width="100%" class="list" >
             <thead>
               <tr>
