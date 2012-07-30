@@ -61,18 +61,18 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>De</th>
-          <th>Até</th>
+          <th>Vencimento</th>
+          <th>Quitado</th>
           <th>Valor</th>
         </tr>
       </thead>
       <tbody>
-        <% @location.receipts.each do |rec| -%>
+        <% @location.receivables.each do |rec| -%>
         <tr>
           <td class="right"><%= rec.id %></td>
-          <td class="center"><%= date(rec.start) %></td>
-          <td class="center"><%= date(rec.end) %></td>
-          <td class="right"><%= number_to_currency(rec.liquid_value) %></td>
+          <td class="center"><%= date(rec.due_date) %></td>
+          <td class="center"><%= human_boolean(rec.settled) %></td>
+          <td class="right"><%= number_to_currency(rec.value) %></td>
         </tr>
         <% end -%>
       </tbody>
