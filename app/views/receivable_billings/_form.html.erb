@@ -1,5 +1,5 @@
 <% content_for :menu do -%>
-  <h1><%= @receivable_billing.new_record? ? 'Novo' : 'Editando' %> Recebimento</h1>
+  <h1><%= @receivable_billing.new_record? ? 'Nova' : 'Editando' %> baixa para o Título a receber # <%= session[:rec_id] %></h1>
   <%= mount_menu %>
 <% end %>
 
