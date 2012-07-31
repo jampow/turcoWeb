@@ -2,9 +2,8 @@
   <h1>Título a pagar</h1>
   <%= mount_menu %w[default separator] %>
   <%# link_to "Lançar Recebimento", new_payable_billing_path(@payable), {:class => "button", :icon => "plus"} %>
-  <%#= link_to "Baixados"        , payable_billings_path+"?id=#{@payable.id}", {:class => "button", :icon => "arrowreturnthick-1-n"} %>
-  <%= link_to "Baixados"        , new_payable_billing_path, {:class => "button", :icon => "arrowreturnthick-1-n"} %>
-
+  <%= link_to "Baixas"      , payable_billings_path+"?id=#{@payable.id}", {:class => "button"        , :icon => "arrowreturnthick-1-n"} %>
+  <%= link_to "Baixa rápida", "/payables/fast_settlement/#{@payable.id}", {:class => "button confirm", :icon => "arrowreturn-1-n"} unless @payable.settled %>
 <% end -%>
 
 <div class="form-wrapper">

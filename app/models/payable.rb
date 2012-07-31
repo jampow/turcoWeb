@@ -52,6 +52,18 @@ class Payable < ActiveRecord::Base
     sum
   end
 
+  def fast_settlement
+    PayableBilling.create(
+      :provider_id     => provider_id,
+      :bank_account_id => bank_id,
+      :expire_at       => due_date,
+      :received_at     => due_date,
+      :value           => value - total_from_billings,
+      :total           => value - total_from_billings,
+      :payable_id      => id
+    )
+  end
+
   def duplicate
     p = Payable.new(attributes)
     p.parcel = parcel ? parcel + 1 : 1

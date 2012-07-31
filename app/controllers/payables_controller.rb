@@ -1,7 +1,7 @@
 class PayablesController < ApplicationController
 
   access_control do
-    allow :payables_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :select_payables, :generate_payables]
+    allow :payables_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :select_payables, :generate_payables, :fast_settlement]
     allow :payables_l, :to => [:index, :show]
     allow :payables_s, :to => []
   end
@@ -112,5 +112,13 @@ class PayablesController < ApplicationController
 
     flash[:notice] = "Títulos a pagar duplicados"
     redirect_to :payables
+  end
+
+  def fast_settlement
+    @payable = Payable.find params[:id]
+    @payable.fast_settlement
+    flash[:notice] = 'Título quitado'
+
+    redirect_to(@payable)
   end
 end
