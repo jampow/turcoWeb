@@ -51,6 +51,18 @@ class Receivable < ActiveRecord::Base
     sum
   end
 
+  def fast_settlement
+    ReceivableBilling.create(
+      :client_id       => client_id,
+      :bank_account_id => bank_id,
+      :expire_at       => due_date,
+      :received_at     => due_date,
+      :value           => value - total_from_billings,
+      :total           => value - total_from_billings,
+      :receivable_id   => id
+    )
+  end
+
   class DocumentKind <
     Struct.new(:id, :kind)
     VALUES = [

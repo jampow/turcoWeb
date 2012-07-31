@@ -1,7 +1,7 @@
 class ReceivablesController < ApplicationController
 
   access_control do
-    allow :receivables_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :print]
+    allow :receivables_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :print, :fast_settlement]
     allow :receivables_l, :to => [:index, :show, :print]
     allow :receivables_s, :to => []
   end
@@ -102,5 +102,13 @@ class ReceivablesController < ApplicationController
     @enterprise = Enterprise.first
     @items = @location.location_items
     render :layout => 'report'
+  end
+
+  def fast_settlement
+    @receivable = Receivable.find params[:id]
+    @receivable.fast_settlement
+    flash[:notice] = 'Título quitado'
+
+    redirect_to(@receivable)
   end
 end
