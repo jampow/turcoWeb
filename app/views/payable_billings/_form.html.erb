@@ -1,5 +1,5 @@
 <% content_for :menu do -%>
-  <h1><%= @payable_billing.new_record? ? 'Novo' : 'Editando' %> Pagamento</h1>
+  <h1><%= @payable_billing.new_record? ? 'Nova' : 'Editando' %> baixa do Título a pagar # <%= session[:pay_id] %></h1>
   <%= mount_menu %>
 <% end %>
 
