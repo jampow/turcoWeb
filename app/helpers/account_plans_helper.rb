@@ -98,22 +98,28 @@ module AccountPlansHelper
               $('a.save-apportionment').click(function(){
                 var row            = [];
                 var values         = [];
+                var labels         = [];
                 var nextRow        = new Date().getTime();
                 var scope          = findParent($(this),'fieldset');
                 var inpts          = $('label input', scope);
                 var empty          = false;
-                var validateFields = ['rate'];
+                var validateFields = ['name', 'rate'];
                 inpts.each(function(){
                   var t = $(this);
                   var name  = t.attr('name').replace('0', nextRow);
                   var id    = t.attr('id'  ).replace('0', nextRow);
                   var value = t.val();
+                  var label = value;
                   var field = id.replace(/.+([0-9])+_/, '');
+                  var klass = '';
 
                   if (validateFields.indexOf(field) != -1 && value == '') empty = true;
 
+                  if (t.hasClass('mask-decimal')) klass = t.attr('class');
+
                   values.push(value);
-                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" /><span>'+value+'</span>');
+                  labels.push(label);
+                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" class='+klass+' /><span>'+label+'</span>');
                 });
 
                 if (empty == true) {
@@ -133,7 +139,7 @@ module AccountPlansHelper
                     var t     = $(this);
                     var idx   = $('tr.ui-state-default td').index(t);
                     var to    = $('input', t).attr('id');
-                    var from  = to.replace(/_([0-9])+_/, '_0_');
+                    var label = labels[idx];
                     var value = values[idx];
                     $('#'+to).val(value);
                     $('span', t).text(value);

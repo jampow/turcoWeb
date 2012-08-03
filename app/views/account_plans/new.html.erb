@@ -7,14 +7,14 @@
   <%= f.error_messages %>
 
   <%= f.text_field :name, :label => "Nome", :required => true %>
-  
+
   <% field_set_tag 'Rateio' do -%>
     <%= apportionments_toolbar f %>
     <% f.fields_for :apportionments do |app| %>
       <%= render :partial => "apportionments", :locals => { :app => app } %>
     <% end -%>
-    
-    
+
+
   <table id="apportionments" cellpading="0" cellspacing="0" border="0" width="100%">
     <thead>
       <tr>
@@ -30,6 +30,6 @@
   </table>
 
   <div id="trash" class="hide"></div>
-    
+
   <% end -%>
 <% end %>
