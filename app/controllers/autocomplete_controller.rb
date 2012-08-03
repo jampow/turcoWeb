@@ -4,8 +4,8 @@ class AutocompleteController < ApplicationController
 
   def account_plan
     @list = AccountPlan.find(:all,
-                             :select => "id As account_plan_id, name as label, name as account_plan_name",
-                             :conditions => ["name like ?", "%#{params[:term]}%"],
+                             :select => "id As account_plan_id, Concat(code, ' - ', name) as label, name as account_plan_name",
+                             :conditions => ["analytical is true And (name like ? Or code like ?)", "%#{params[:term]}%", "%#{params[:term]}%"],
                              :order => "name")
 
     respond_to do |format|
