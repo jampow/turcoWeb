@@ -51,7 +51,7 @@ class CostCentersController < ApplicationController
 
     respond_to do |format|
       if @cost_center.save
-        flash[:notice] = 'CostCenter was successfully created.'
+        flash[:notice] = 'Centro de custo criado'
         format.html { redirect_to(@cost_center) }
         format.xml  { render :xml => @cost_center, :status => :created, :location => @cost_center }
       else
@@ -68,7 +68,7 @@ class CostCentersController < ApplicationController
 
     respond_to do |format|
       if @cost_center.update_attributes(params[:cost_center])
-        flash[:notice] = 'CostCenter was successfully updated.'
+        flash[:notice] = 'Centro de custo atualizado'
         format.html { redirect_to(@cost_center) }
         format.xml  { head :ok }
       else
