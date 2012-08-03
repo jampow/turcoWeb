@@ -231,7 +231,9 @@
 
     attributes:
       account_plan:
+        code: "Código"
         name: "Nome"
+        level: "Nível"
       activity:
         name: "Nome"
       address:

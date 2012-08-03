@@ -248,6 +248,7 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
     $('.mask-code'   ).mask("*****"                 ,{placeholder:" "});
     $('.mask-cep'    ).mask("99999-999"             ,{placeholder:" "});
     $('.mask-cfop'   ).mask("9999"                  ,{placeholder:" "});
+    $('.mask-acplcod').mask("99.99.99.99"           ,{placeholder:" "}); // account plan code
 
     $('.mask-decimal').each(function(){
       var t = $(this);

@@ -3,7 +3,10 @@
   <%= mount_menu %>
 <% end -%>
 
+<%= print_content "Código", h(@account_plan.code) %>
 <%= print_content "Nome", h(@account_plan.name) %>
+<%= print_content "Nível", h(@account_plan.level) %>
+<%= print_content "Analítico ou sintético", anal_or_sint(@account_plan.analytical) %>
 
 <div class="clear"></div>
 

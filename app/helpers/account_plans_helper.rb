@@ -1,5 +1,9 @@
 module AccountPlansHelper
 
+  def anal_or_sint(analytical)
+    analytical ? "Analítico" : "Sintético"
+  end
+
   def apportionments_toolbar f , btns = ['add', 'save', 'del']
     flash[:create_apportionments_table] = true
     s  = "<div class=\"form-toolbar\">"
