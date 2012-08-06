@@ -2,19 +2,30 @@
   $(function(){
     function fill_value(){
       var it = $(this)
-      var value_id = it.attr('id').replace(/percent/, 'value');
-      var total_value = $('#payable_value').val();
-      $('#' + value_id).val((it.val() * total_value) / 100 );
+      setTimeout(function(){
+        var value_id = it.attr('id').replace(/percent/, 'value');
+        var total_value = format.decimal.toNumber($('#payable_value').val());
+        var part_value = format.decimal.toNumber(it.val());
+        var result = format.number.toDecimal(((part_value * total_value) / 100),"10,2");
+        $('#' + value_id).val(result);
+      }, 250);
     }
     function fill_percent(){
-      var it = $(this)
-      var percent_id = it.attr('id').replace(/value/, 'percent');
-      var total_value = $('#payable_value').val();
-      $('#' + percent_id).val((it.val() / total_value) * 100 );
+      var it = $(this);
+      setTimeout(function(){
+        var percent_id = it.attr('id').replace(/value/, 'percent');
+        var total_value = format.decimal.toNumber($('#payable_value').val());
+        var part_value = format.decimal.toNumber(it.val());
+        var result = format.number.toDecimal(((part_value / total_value) * 100),"10,2");
+        $('#' + percent_id).val(result);
+      }, 250);
     }
     $('#payable_value').keyup(function(){
-      $('#payable_payable_cost_divisions_attributes_0_value').val($(this).val());
-      $('#payable_payable_cost_divisions_attributes_0_percent').val('100');
+      var it = $(this);
+      setTimeout(function(){
+        $('#payable_payable_cost_divisions_attributes_0_value').val(it.val());
+        $('#payable_payable_cost_divisions_attributes_0_percent').val('100');
+      }, 250);
     });
     $(".payable_cost_division_value").keyup(fill_percent);
     $(".payable_cost_division_percent").keyup(fill_value);

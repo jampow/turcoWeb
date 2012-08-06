@@ -23,7 +23,7 @@
     <%= f.select :payment_method_id, Payable::PaymentMethod.to_select, :label => 'Meio de Pagamento',:size => 20 %>
     <%= f.text_field :due_date                                       , :label => "Vencimento"       ,:size => 20, :class => 'datepicker' %>
     <%= f.select :frequency_id     , Payable::Frequency.to_select    , :label => 'Frequencia'       ,:size => 20 %>
-    <%= f.text_field :value                                          , :label => "Valor"            ,:size => 20, :class => "mask-decimal", :decimal => "14,2" %>
+    <%= f.text_field :value                                          , :label => "Valor"            ,:size => 20, :class => "mask-decimal", :decimal => "10,2" %>
 
   </fieldset>
   <fieldset>
@@ -48,11 +48,11 @@
       <% f.fields_for :payable_cost_divisions, @division do |pcd| %>
         <label class="hide"><%= pcd.hidden_field :id %></label>
         <label class="hide"><%= pcd.hidden_field :account_plan_id %></label>
-        <label class="hide"><%= pcd.hidden_field :cost_center_id %></label>
         <%= pcd.text_field :account_plan_name, :label => 'Plano de Conta' , :size => 20, :class => 'autocomplete', :source => 'account_plan', :pref => "payable_payable_cost_divisions_attributes_0_" %>
+        <label class="hide"><%= pcd.hidden_field :cost_center_id %></label>
         <%= pcd.text_field :cost_center_name , :label => 'Centro de Custo', :size => 20, :class => 'autocomplete', :source => 'cost_center' , :pref => "payable_payable_cost_divisions_attributes_0_" %>
         <%= pcd.text_field :observations     , :label => 'Observação'     , :size => 20 %>
-        <%= pcd.text_field :value            , :label => 'Valor'          , :size => 20, :class => 'payable_cost_division_value'   %>
+        <%= pcd.text_field :value            , :label => 'Valor'          , :size => 20, :class => 'payable_cost_division_value mask-decimal', :decimal => "10,2" %>
         <%= pcd.text_field :percent          , :label => '% do Total'     , :size => 20, :class => 'payable_cost_division_percent' %>
         <div class="clear"></div>
       <% end -%>

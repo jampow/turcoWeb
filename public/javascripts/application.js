@@ -540,11 +540,13 @@ function findParent(ref, parentSelector) {
 
 var format = {
   decimal: {
+    // 10.000,00 => 10,000.00
     toNumber: function(val) {
       return val.replace(/\./g, '').replace(',', '.')*1;
     }
   },
   number: {
+    // 10,000.00 => 10.000,00
     toDecimal: function(val, dec) {
       if (dec === undefined) {
         val = val+'';
