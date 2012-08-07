@@ -6,10 +6,11 @@
 <% form_for(@account_plan) do |f| %>
   <%= f.error_messages %>
 
-  <%= f.text_field :code      , :label => "Código"    , :required => true, :class => "mask-acplcod" %>
-  <%= f.text_field :name      , :label => "Nome"      , :required => true %>
-  <%= f.text_field :level     , :label => "Nível"     , :required => true %>
-  <%= f.check_box  :analytical, :label => "Analítica?", :required => true %>
+  <%= f.text_field :code                                              , :label => "Código"    , :required => true , :size => 20, :class => "mask-acplcod" %>
+  <%= f.text_field :name                                              , :label => "Nome"      , :required => true , :size => 30 %>
+  <%= f.text_field :level                                             , :label => "Nível"     , :required => true , :size => 20 %>
+  <%= f.select     :orientation_id, AccountPlan::Orientation.to_select, :label => "Usado em"  , :required => false, :size => 20 %>
+  <%= f.check_box  :analytical                                        , :label => "Analítica?", :required => true , :size => 10 %>
 
   <% field_set_tag 'Rateio' do -%>
     <%= apportionments_toolbar f %>
