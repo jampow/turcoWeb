@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803144411) do
+ActiveRecord::Schema.define(:version => 20120807133458) do
 
   create_table "VwCashFlow", :id => false, :force => true do |t|
     t.date    "date"
