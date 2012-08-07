@@ -47,17 +47,17 @@ module ReceivablesHelper
                   $('#'+newId).val( th.val() );
                 });
               });
-            JS
-
-    if editing?
-      html += <<-JS
               $('#receivable_division_order_items tbody td input').each(function(){
-                var t   = $(this);
-                var val = t.val();
+                var t = $(this);
+                var inputId = t.attr('id').replace(/_([0-9])+_/, '_0_');
+                if ($('#'+inputId).hasClass('mask-decimal')){
+                  var val = format.number.toDecimal(t.val(), t.attr('decimal'));
+                } else {
+                  var val = t.val();
+                }
                 t.next().append(val);
               });
-              JS
-    end
+            JS
 
     flash[:create_receivable_division_table_item] = false
     html
@@ -79,9 +79,13 @@ module ReceivablesHelper
     html =  <<-JS
               $('a.del-item').click(function(){
                 $('tr.ui-state-default input').appendTo('#trash');
-                $('input[id$=_value]', '#trash').val('');
+                $('input[id$=_value], input[id$=_cost_center_id], input[id$=_account_plan_id]', '#trash').val('');
                 var rowIdx = $('tr.ui-state-default').index('#receivable_division_order_items tbody tr');
                 oTable.fnDeleteRow( rowIdx );
+
+                //Limpa form
+                $('.form-toolbar ~ label input').val('');
+                $('tr.ui-state-default').removeClass('ui-state-default');
               });
             JS
     flash[:btn_receivable_division_del_item] = false
@@ -93,6 +97,7 @@ module ReceivablesHelper
               $('a.save-item').click(function(){
                 var row            = [];
                 var values         = [];
+                var labels         = [];
                 var nextRow        = new Date().getTime();
                 var scope          = findParent($(this),'fieldset');
                 var inpts          = $('label input', scope);
@@ -100,15 +105,20 @@ module ReceivablesHelper
                 var validateFields = ['value'];
                 inpts.each(function(){
                   var t = $(this);
-                  var name  = t.attr('name').replace('1', nextRow);
-                  var id    = t.attr('id'  ).replace('1', nextRow);
+                  var name  = t.attr('name').replace('0', nextRow);
+                  var id    = t.attr('id'  ).replace('0', nextRow);
                   var value = t.val();
+                  var label = value;
                   var field = id.replace(/.+([0-9])+_/, '');
+                  var klass = '';
 
                   if (validateFields.indexOf(field) != -1 && value == '') empty = true;
 
+                  if (t.hasClass('mask-decimal')) klass = t.attr('class');
+
                   values.push(value);
-                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" /><span>'+value+'</span>');
+                  labels.push(label);
+                  row.push('<input type="hidden" id="'+id+'" name="'+name+'" value="'+value+'" class="'+klass+'"" /><span>'+label+'</span>');
                 });
 
                 if (empty == true) {
@@ -128,7 +138,7 @@ module ReceivablesHelper
                     var t     = $(this);
                     var idx   = $('tr.ui-state-default td').index(t);
                     var to    = $('input', t).attr('id');
-                    var from  = to.replace(/_([0-9])+_/, '_0_');
+                    var label = labels[idx];
                     var value = values[idx];
                     $('#'+to).val(value);
                     $('span', t).text(value);

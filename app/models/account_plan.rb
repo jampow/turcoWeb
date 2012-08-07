@@ -14,10 +14,16 @@ class AccountPlan < ActiveRecord::Base
     self.all.map { |v| [ v[:name], v[:id] ] }
   end
 
+  def has_valid_apportionments?
+    ret = false
+    apportionments.each { |item| ret = true if !item.cost_center_name.blank? && !item.rate.blank? }
+    ret
+  end
+
   protected
 
   def synthetic_with_apportionments
-    errors.add_to_base("Conta sintética não pode ter rateamento. Apague os itens do rateamento ou marque a conta como analítica.") if analytical == false && apportionments.length > 0
+    errors.add_to_base("Conta sintética não pode ter rateamento. Apague os itens do rateamento ou marque a conta como analítica.") if analytical == false && has_valid_apportionments?
   end
 
   def mark_item_for_removal

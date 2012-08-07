@@ -20,6 +20,7 @@ class Receivable < ActiveRecord::Base
   has_many :billings, :class_name => 'ReceivableBilling'
 
   accepts_nested_attributes_for :receivable_cost_divisions, :allow_destroy => true, :reject_if => proc { |attributes| attributes['value'].blank? }
+  before_save :mark_item_for_removal
 
   attr_accessor :client_name
 
@@ -160,6 +161,14 @@ class Receivable < ActiveRecord::Base
       h=VALUES.find { |v| v[:id] == id }
       return nil if h.nil?
       self.new(h[:id], h[:name])
+    end
+  end
+
+protected
+
+  def mark_item_for_removal
+    receivable_cost_divisions.each do |child|
+      child.mark_for_destruction if (child.account_plan_id.blank? && child.cost_center_id.blank?) || child.value.blank?
     end
   end
 

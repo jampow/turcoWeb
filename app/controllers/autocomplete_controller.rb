@@ -2,10 +2,21 @@ class AutocompleteController < ApplicationController
   #must return [ { "id": "", "label": "", "value": "" }
   #            , { "id": "", "label": "", "value": "" }]
 
-  def account_plan
+  def account_plan_pay
     @list = AccountPlan.find(:all,
                              :select => "id As account_plan_id, Concat(code, ' - ', name) as label, name as account_plan_name",
-                             :conditions => ["analytical is true And (name like ? Or code like ?)", "%#{params[:term]}%", "%#{params[:term]}%"],
+                             :conditions => ["orientation_id = 2 And analytical is true And (name like ? Or code like ?)", "%#{params[:term]}%", "%#{params[:term]}%"],
+                             :order => "name")
+
+    respond_to do |format|
+      format.js { render :action => "autocomplete" }
+    end
+  end
+
+  def account_plan_rec
+    @list = AccountPlan.find(:all,
+                             :select => "id As account_plan_id, Concat(code, ' - ', name) as label, name as account_plan_name",
+                             :conditions => ["orientation_id = 1 And analytical is true And (name like ? Or code like ?)", "%#{params[:term]}%", "%#{params[:term]}%"],
                              :order => "name")
 
     respond_to do |format|

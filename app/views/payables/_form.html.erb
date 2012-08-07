@@ -48,7 +48,7 @@
       <% f.fields_for :payable_cost_divisions, @division do |pcd| %>
         <label class="hide"><%= pcd.hidden_field :id %></label>
         <label class="hide"><%= pcd.hidden_field :account_plan_id %></label>
-        <%= pcd.text_field :account_plan_name, :label => 'Plano de Conta' , :size => 20, :class => 'autocomplete', :source => 'account_plan', :pref => "payable_payable_cost_divisions_attributes_0_" %>
+        <%= pcd.text_field :account_plan_name, :label => 'Plano de Conta' , :size => 20, :class => 'autocomplete', :source => 'account_plan_pay', :pref => "payable_payable_cost_divisions_attributes_0_" %>
         <label class="hide"><%= pcd.hidden_field :cost_center_id %></label>
         <%= pcd.text_field :cost_center_name , :label => 'Centro de Custo', :size => 20, :class => 'autocomplete', :source => 'cost_center' , :pref => "payable_payable_cost_divisions_attributes_0_" %>
         <%= pcd.text_field :observations     , :label => 'Observação'     , :size => 20 %>
