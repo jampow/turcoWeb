@@ -1,0 +1,5 @@
+<% content_for :menu do -%>
+  <h1>Relatórios financeiros</h1>
+  <%= link_to "Fluxo de caixa" , "financial_report/cash_flow_filter"   , :class => "button" %>
+  <%= link_to "Plano de contas", "financial_report/account_plan_filter", :class => "button" %>
+<% end -%>

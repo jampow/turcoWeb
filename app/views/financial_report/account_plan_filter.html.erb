@@ -1,0 +1,9 @@
+<% content_for :menu do -%>
+  <h1>Plano de contas</h1>
+  <%= link_to "Filtrar", "#", {:class => "button save", :icon => "search"} %>
+<% end -%>
+
+<% form_for :plan, :url => {:controller => "financial_report", :action => "account_plan_show"} do |f| -%>
+  <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker" %>
+  <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker" %>
+<% end -%>

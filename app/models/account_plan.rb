@@ -52,4 +52,42 @@ class AccountPlan < ActiveRecord::Base
       self.new(h[:id], h[:name])
     end
   end
+
+  # Select acp.code
+  #      , Concat(Repeat('&nbsp;&nbsp;&nbsp;', acp.level - 1), acp.name) As name
+  #      , acp.level
+  #      , If(acp.analytical
+  #         , fn_accountPlan_sumAnalyticPayables(acp.code, '2012-07-01', '2012-08-01')
+  #         , fn_accountPlan_sumSyntheticPayables(acp.code, acp.level, '2012-07-01', '2012-09-01')) As value
+  # From account_plans acp
+  # Where acp.orientation_id = 2
+  # Group By code, name, level
+
+  named_scope :report_payables, lambda { |start_date, end_date| {
+                                :select => "acp.code, Concat(Repeat('&nbsp;&nbsp;&nbsp;', acp.level - 1), acp.name) As name, acp.level, If(acp.analytical, fn_accountPlan_sumAnalyticPayables(acp.code, '#{start_date}' , '#{end_date}'), fn_accountPlan_sumSyntheticPayables(acp.code, acp.level, '#{start_date}' , '#{end_date}')) As value",
+                                :joins  => "acp",
+                                :conditions => "acp.orientation_id = 2",
+                                :group => "code, name, level",
+                                :order => "code"
+                              } }
+
+  # Select acp.code
+  #      , Concat(Repeat('&nbsp;&nbsp;&nbsp;', acp.level - 1), acp.name) As name
+  #      , acp.level
+  #      , If(acp.analytical
+  #         , fn_accountPlan_sumAnalyticReceivables(acp.code, '2012-07-01', '2012-09-01')
+  #         , fn_accountPlan_sumSyntheticReceivables(acp.code, acp.level, '2012-07-01', '2012-09-01')) As value
+  # From account_plans acp
+  # Where acp.orientation_id = 1
+  # Group By code, name, level
+  # Order By code;
+
+  named_scope :report_receivables, lambda { |start_date, end_date| {
+                                :select => "acp.code, Concat(Repeat('&nbsp;&nbsp;&nbsp;', acp.level - 1), acp.name) As name, acp.level, If(acp.analytical, fn_accountPlan_sumAnalyticReceivables(acp.code, '#{start_date}', '#{end_date}'), fn_accountPlan_sumSyntheticReceivables(acp.code, acp.level, '#{start_date}', '#{end_date}')) As value",
+                                :joins  => "acp",
+                                :conditions => "acp.orientation_id = 1",
+                                :group => "code, name, level",
+                                :order => "code"
+                              } }
+
 end
