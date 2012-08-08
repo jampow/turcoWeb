@@ -203,6 +203,7 @@
       account plan: "Plano de contas"
       activity: "Ramo de atividade"
       address: "Endereço"
+      bank account transaction: "Transações Bancárias"
       car: "Carro"
       carrier: "Transportadora"
       cfop: "Natureza da operação"
@@ -238,6 +239,8 @@
         name: "Nome"
       address:
         city: "Cidade"
+      bank_account_transaction:
+        date: "Data"
       car:
         carrier_id: "Transportadora"
         license_plate: "Placa"

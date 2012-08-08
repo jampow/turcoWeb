@@ -5,9 +5,9 @@
 <% end -%>
 
 
-<%= table @bank_account_transactions, ["date"    , "Data"   , {:format => "l"                 , :class => "center"}],
-                                      ["historic", "Histórico"], 
-                                      ["credit"  , "Crédito", {:format => "number_to_currency", :class => "right" }], 
-                                      ["debit"   , "Débito" , {:format => "number_to_currency", :class => "right" }], 
+<%= table @bank_account_transactions, ["date"    , "Data"   , {:format => "date"              , :class => "center"}],
+                                      ["historic", "Histórico"],
+                                      ["credit"  , "Crédito", {:format => "number_to_currency", :class => "right" }],
+                                      ["debit"   , "Débito" , {:format => "number_to_currency", :class => "right" }],
                                       ["balance" , "Saldo"  , {:format => "number_to_currency", :class => "right" }] %>
 

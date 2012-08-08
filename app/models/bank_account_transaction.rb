@@ -1,4 +1,7 @@
 class BankAccountTransaction < ActiveRecord::Base
+  validates_presence_of :date
+  validate :presence_of_value
+
   belongs_to :bank_account
 
 #   Select ba.*
@@ -50,4 +53,10 @@ class BankAccountTransaction < ActiveRecord::Base
     :group      => "date",
     :order      => "ba.date"}
   }
+
+protected
+
+  def presence_of_value
+    errors.add_to_base("Adicione um valor de débito ou crédito") if debit.blank? && credit.blank?
+  end
 end
