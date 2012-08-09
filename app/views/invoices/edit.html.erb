@@ -29,11 +29,11 @@
     <table id="invoice_items" cellpading="0" cellspacing="0" border="0" width="100%">
       <thead>
         <tr>
-          <th>Id do item       </th>
-          <th>Código do produto</th>
+          <th class="hide">Id do item</th>
+          <th class="hide">Código do produto</th>
           <th>Produto          </th>
           <th>Quantidade       </th>
-          <th>Unidade de medida</th>
+          <th class="hide">Unidade de medida</th>
           <th>Número de peças  </th>
           <th>Valor unitário   </th>
           <th>Valor Total      </th>
@@ -47,11 +47,11 @@
       <tbody>
         <% f.fields_for :itens, @grid do |ti| %>
           <tr>
-            <td><%= ti.hidden_field :id                                                           %><span></span></td>
-            <td><%= ti.hidden_field :product_id                                                   %><span></span></td>
+            <td class="hide"><%= ti.hidden_field :id                                              %><span></span></td>
+            <td class="hide"><%= ti.hidden_field :product_id                                      %><span></span></td>
             <td><%= ti.hidden_field :product_name                                                 %><span></span></td>
             <td><%= ti.hidden_field :quantity                                                     %><span></span></td>
-            <td><%= ti.hidden_field :measure_unit_id                                              %><span></span></td>
+            <td class="hide"><%= ti.hidden_field :measure_unit_id                                 %><span></span></td>
             <td><%= ti.hidden_field :parts                                                        %><span></span></td>
             <td><%= ti.hidden_field :unit_value     , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>
             <td><%= ti.hidden_field :total_value    , :class => "mask-decimal", :decimal => "9,3" %><span></span></td>

@@ -172,9 +172,10 @@ module ApplicationHelper
   end
 
   def table_header(id, *fields)
-    s = id ? "<th>ID</th>" : ""
+    s = id ? "<th class=\"hide\">ID</th>" : ""
     fields[0].each do |field|
-      s += "<th>#{h field[1].to_s}</th>"
+      field[2] ||= {}
+      s += "<th class=\"#{"hide" if field[2][:hide]}\">#{h field[1].to_s}</th>"
     end
     s
   end
@@ -183,11 +184,11 @@ module ApplicationHelper
     s = ""
     obj.each do |o|
       s += "<tr>"
-      s += "<td class=\"right\">#{o.id}</td>" if o.id
+      s += "<td class=\"hide right\">#{o.id}</td>" if o.id
       fields[0].each do |field|
         field[2] ||= {}
         field[2][:format].nil? ? x = "o.#{field[0].to_s}" : x = "#{field[2][:format]}(o.#{field[0].to_s})"
-        s += "<td class=\"#{field[2][:class]}\">#{h eval(x)}</td>"
+        s += "<td class=\"#{field[2][:class]} #{"hide" if field[2][:hide]}\">#{h eval(x)}</td>"
       end
       s += "</tr>"
     end

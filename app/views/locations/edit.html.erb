@@ -28,19 +28,19 @@
     <table id="location_items" cellpading="0" cellspacing="0" border="0" width="100%">
       <thead>
         <tr>
-          <th>Id do item       </th>
-          <th>Id Produto       </th>
-          <th>Produto          </th>
-          <th>Quantidade       </th>
-          <th>Valor Unitário   </th>
-          <th>Valor Total      </th>
+          <th class="hide">Id do item</th>
+          <th class="hide">Id Produto</th>
+          <th>Produto                </th>
+          <th>Quantidade             </th>
+          <th>Valor Unitário         </th>
+          <th>Valor Total            </th>
         </tr>
       </thead>
       <tbody>
       <% f.fields_for :location_items, @grid do |soi| %>
         <tr>
-          <td><%= soi.hidden_field :id                                                                             %><span></span></td>
-          <td><%= soi.hidden_field :product_id                                                                     %><span></span></td>
+          <td class="hide"><%= soi.hidden_field :id                                                                %><span></span></td>
+          <td class="hide"><%= soi.hidden_field :product_id                                                        %><span></span></td>
           <td><%= soi.hidden_field :product_name, :value => (soi.object.prod_name rescue soi.object.product_name ) %><span></span></td>
           <td><%= soi.hidden_field :quantity                                                                       %><span></span></td>
           <td><%= soi.hidden_field :unit_value  , :class => "mask-decimal", :decimal => "10,2"                     %><span></span></td>

@@ -31,11 +31,11 @@
       <table id="purchase_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
         <thead>
           <tr>
-            <th>Id do item       </th>
-            <th>Id Produto       </th>
+            <th class="hide">Id do item</th>
+            <th class="hide">Id Produto</th>
             <th>Produto          </th>
             <th>Quantidade       </th>
-            <th>Unidade de Medida</th>
+            <th class="hide">Unidade de Medida</th>
             <th>Valor Unitário   </th>
             <th>Valor Total      </th>
             <th>Data de entrega  </th>
@@ -44,11 +44,11 @@
         <tbody>
         <% f.fields_for :order_items, @grid do |poi| %>
           <tr>
-            <td><%= poi.hidden_field :id              %><span></span></td>
-            <td><%= poi.hidden_field :product_id      %><span></span></td>
+            <td class="hide"><%= poi.hidden_field :id              %><span></span></td>
+            <td class="hide"><%= poi.hidden_field :product_id      %><span></span></td>
             <td><%= poi.hidden_field :product_name    %><span></span></td>
             <td><%= poi.hidden_field :quantity       , :class => "mask-decimal", :decimal => "10,4" %><span></span></td>
-            <td><%= poi.hidden_field :measure_unit_id %><span></span></td>
+            <td class="hide"><%= poi.hidden_field :measure_unit_id %><span></span></td>
             <td><%= poi.hidden_field :unit_value     , :class => "mask-decimal", :decimal => "10,2"%><span></span></td>
             <td><%= poi.hidden_field :total_value    , :class => "mask-decimal", :decimal => "10,2"%><span></span></td>
             <td><%= poi.hidden_field :delivery        %><span></span></td>

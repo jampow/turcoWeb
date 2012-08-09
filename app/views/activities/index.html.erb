@@ -3,21 +3,4 @@
   <%= mount_menu %>
 <% end %>
 
-<table id="list" cellpading="0" cellspacing="0" border="0" width="100%">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Nome</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @activities.each do |activity| %>
-    <tr>
-      <td><%=h activity.id %></td>
-      <td><%=h activity.name %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
+<%= table @activities, ["name", "Nome"] %>

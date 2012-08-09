@@ -59,10 +59,10 @@
       <table id="receivable_division_order_items" cellpading="0" cellspacing="0" border="0" width="100%">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Id do Plano</th>
+            <th class="hide">Id</th>
+            <th class="hide">Id do Plano</th>
             <th>Plano de Conta</th>
-            <th>Id do Centro</th>
+            <th class="hide">Id do Centro</th>
             <th>Centro de Custos</th>
             <th>Observação</th>
             <th>Valor</th>
@@ -72,10 +72,10 @@
         <tbody>
         <% f.fields_for :receivable_cost_divisions do |div| %>
           <tr>
-            <td><%= div.hidden_field :id %><span></span></td>
-            <td><%= div.hidden_field :account_plan_id %><span></span></td>
+            <td class="hide"><%= div.hidden_field :id %><span></span></td>
+            <td class="hide"><%= div.hidden_field :account_plan_id %><span></span></td>
             <td><%= div.hidden_field :account_plan_name %><span></span></td>
-            <td><%= div.hidden_field :cost_center_id %><span></span></td>
+            <td class="hide"><%= div.hidden_field :cost_center_id %><span></span></td>
             <td><%= div.hidden_field :cost_center_name %><span></span></td>
             <td><%= div.hidden_field :observations %><span></span></td>
             <td class="right"><%= div.hidden_field :value  , :class => 'mask-decimal', :decimal => "10,2" %><span></span></td>
