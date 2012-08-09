@@ -3,6 +3,8 @@ body {
   font-size: 12px;
 }
 
+body, input, select { text-transform: uppercase; }
+
 img { border: none; }
 
 .ui-layout-west{
