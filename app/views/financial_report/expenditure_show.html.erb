@@ -1,11 +1,11 @@
 <% content_for :menu do -%>
-  <h1>Demonstrativo</h1>
+  <h1>Despesas</h1>
   <%= link_to "Filtrar", "#", {:class => "button save", :icon => "search"} %>
   <%= btn_separator %>
   <%= menu %>
 <% end -%>
 
-<% form_for :plan, :url => {:controller => "financial_report", :action => "account_plan_show"} do |f| -%>
+<% form_for :expenditure, :url => {:controller => "financial_report", :action => "expenditure_show"} do |f| -%>
   <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker" %>
   <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker" %>
 <% end -%>
@@ -21,13 +21,6 @@
     </tr>
   </thead>
   <tbody>
-    <% @ap_rec.each do |rec| %>
-    <tr>
-      <td class="center"><%= rec.code %></td>
-      <td><%= rec.name %></td>
-      <td class="right"><%=number_to_currency rec.value %></td>
-    </tr>
-    <% end -%>
     <% @ap_pay.each do |pay| %>
     <tr>
       <td class="center"><%= pay.code %></td>

@@ -10,6 +10,22 @@ class FinancialReportController < ApplicationController
     @cash_flow = VwCashFlow.find(:all, :conditions => ["date >= ? And date <= ?", @filter[:starts_at], @filter[:ends_at]])
   end
 
+  def expenditure_filter
+  end
+
+  def expenditure_show
+    @filter = params[:expenditure]
+    @ap_pay = AccountPlan.report_payables    @filter[:starts_at], @filter[:ends_at]
+  end
+
+  def sales_filter
+  end
+
+  def sales_show
+    @filter = params[:sales]
+    @ap_rec = AccountPlan.report_receivables @filter[:starts_at], @filter[:ends_at]
+  end
+
   def account_plan_filter
   end
 

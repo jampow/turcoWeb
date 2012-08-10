@@ -1,11 +1,11 @@
 <% content_for :menu do -%>
-  <h1>Plano de contas</h1>
+  <h1>Receitas</h1>
   <%= link_to "Filtrar", "#", {:class => "button save", :icon => "search"} %>
   <%= btn_separator %>
   <%= menu %>
 <% end -%>
 
-<% form_for :plan, :url => {:controller => "financial_report", :action => "account_plan_show"} do |f| -%>
+<% form_for :sales, :url => {:controller => "financial_report", :action => "sales_show"} do |f| -%>
   <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker" %>
   <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker" %>
 <% end -%>

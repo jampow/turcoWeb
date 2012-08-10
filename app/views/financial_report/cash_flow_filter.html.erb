@@ -1,6 +1,8 @@
 <% content_for :menu do -%>
   <h1>Fluxo de caixa</h1>
   <%= link_to "Filtrar", "#", {:class => "button save", :icon => "search"} %>
+  <%= btn_separator %>
+  <%= menu %>
 <% end -%>
 
 <% form_for :flow, :url => {:controller => "financial_report", :action => "cash_flow_show"} do |f| -%>
