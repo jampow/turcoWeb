@@ -31,6 +31,8 @@ var datepickerConfig = {
   'monthNames': ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 }
 
+$.mask.definitions['~']='[ 0123456789]';
+
 /*
 
 ooooooooo                                                                        oooo
@@ -242,7 +244,7 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
     $('.buttonset').buttonset();
 
     //masking some inputs
-    $('.mask-phone'  ).mask("(99) 9999-9999? r.9999",{placeholder:" "});
+    $('.mask-phone'  ).mask("(99)~9999-9999? r.9999",{placeholder:" "});
     $('.mask-cnpj'   ).mask("99.999.999/9999-99"    ,{placeholder:" "});
     $('.mask-cpf'    ).mask("999.999.999-99?999"    ,{placeholder:" "});
     $('.mask-code'   ).mask("*****"                 ,{placeholder:" "});
