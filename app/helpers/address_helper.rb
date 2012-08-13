@@ -104,12 +104,10 @@ module AddressHelper
                 context = t.parent().parent();
                 stt = context.find( 'input[name$=street\\]]'                   ).attr('value');
                 nbr = context.find( 'input[name$=number\\]]'                   ).attr('value');
-                nbh = context.find( 'input[name$=neighborhood\\]]'             ).attr('value');
                 cty = context.find( 'input[name$=city\\]]'                     ).attr('value');
                 cep = context.find( 'input[name$=cep\\]]'                      ).attr('value');
-                ett = context.find('select[name$=estate_id\\]] option:selected').text();
 
-                address = escape(stt + ', ' + nbr + ' - ' + nbh + ', ' + cty + ' - ' + ett + ', ' + cep);
+                address = escape(stt + ', ' + nbr + ', ' + cty + ', ' + cep);
                 t.attr('href', 'http://maps.google.com.br?q=' + address);
               });
             JS
@@ -131,11 +129,11 @@ module AddressHelper
                 cep = values[0];
                 stt = values[1];
                 nbr = values[2];
-                nbh = values[4];
+                // nbh = values[4];
                 cty = values[5];
-                ett = values[6];
+                // ett = values[6];
 
-                address = escape(stt + ', ' + nbr + ' - ' + nbh + ', ' + cty + ' - ' + ett + ', ' + cep);
+                address = escape(stt + ', ' + nbr + ', ' + cty + ', ' + cep);
                 $(this).attr('href', 'http://maps.google.com.br?q=' + address);
               });
             JS
