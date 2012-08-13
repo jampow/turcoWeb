@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808200335) do
+ActiveRecord::Schema.define(:version => 20120813195052) do
 
   create_table "VwCashFlow", :id => false, :force => true do |t|
     t.date    "date"
@@ -349,16 +349,6 @@ ActiveRecord::Schema.define(:version => 20120808200335) do
     t.integer  "measure_unit_id"
     t.decimal  "unit_value",      :precision => 10, :scale => 2
     t.decimal  "total_value",     :precision => 10, :scale => 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "location_receipt_items", :force => true do |t|
-    t.integer  "location_receipt_id"
-    t.string   "product"
-    t.decimal  "quantity",            :precision => 10, :scale => 2
-    t.decimal  "unit_value",          :precision => 10, :scale => 2
-    t.decimal  "total_value",         :precision => 10, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
