@@ -65,6 +65,12 @@ class Location < ActiveRecord::Base
   end
 
   def create_receivable(due_date)
+    if due_date.nil?
+      tod = Date.today
+      tod = tod.next_month if tod.day >= 5
+      due_date = "#{tod.year}-#{tod.month}-5"
+    end
+
     rec = Receivable.create({
       :client_id                => self.client_id,
       #:document_number          => self.number,

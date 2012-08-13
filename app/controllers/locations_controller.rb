@@ -106,25 +106,27 @@ class LocationsController < ApplicationController
   end
 
   def to_bill
-    @location = LocationReceipt.new
-    @location.calculateFields params[:id]
-    render :layout => 'simple_application'
+    @location = Location.find params[:id]
+    @location.create_receivable(nil)
+    flash[:notice] = 'Cobrança criada'
+    redirect_to :action => "show"
+    # render :layout => 'simple_application'
   end
 
-  def generate_bill
-    @location = LocationReceipt.new params[:location_receipt]
+  # def generate_bill
+  #   @location = LocationReceipt.new params[:location_receipt]
 
-    respond_to do |format|
-      if @location.save
-        flash[:notice] = 'Cobrança criada'
-        format.html { render :layout => 'simple_application' }
-        format.xml  { render :xml => @location, :status => :created, :location => @location }
-      else
-        format.html { render :layout => 'simple_application', :action => "to_bill" }
-        format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @location.save
+  #       flash[:notice] = 'Cobrança criada'
+  #       format.html { render :layout => 'simple_application' }
+  #       format.xml  { render :xml => @location, :status => :created, :location => @location }
+  #     else
+  #       format.html { render :layout => 'simple_application', :action => "to_bill" }
+  #       format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   def select_locations
     @locations = Location.actives
@@ -142,7 +144,7 @@ class LocationsController < ApplicationController
       loc.create_receivable(locations[:due_date])
     end
 
-    flash[:notice] = "Títulos a receber geradas"
+    flash[:notice] = "Títulos a receber gerados"
     redirect_to :locations
   end
 
