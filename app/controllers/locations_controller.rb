@@ -61,6 +61,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       if @location.save
         flash[:notice] = 'Locação criada.'
+        Talk.broadcast current_user.id, "<a href=\"/locations/#{@location.id}\" ajax=\"true\">iniciou nova locação #{@location.number} para o cliente #{@location.client_name}</a>."
         format.html { redirect_to(@location) }
         format.xml  { render :xml => @location, :status => :created, :location => @location }
       else
@@ -81,6 +82,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       if @location.update_attributes(params[:location])
         flash[:notice] = 'Locação atualizada.'
+        Talk.broadcast current_user.id, "<a href=\"/locations/#{@location.id}\" ajax=\"true\">alterou a locação #{@location.number} para o cliente #{@location.client_name}</a>."
         format.html { redirect_to(@location) }
         format.xml  { head :ok }
       else
