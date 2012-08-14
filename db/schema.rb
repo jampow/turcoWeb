@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120813195052) do
+ActiveRecord::Schema.define(:version => 20120814140108) do
 
   create_table "VwCashFlow", :id => false, :force => true do |t|
     t.date    "date"
@@ -769,6 +769,15 @@ ActiveRecord::Schema.define(:version => 20120813195052) do
     t.integer  "total_before_measure_unit_id"
     t.decimal  "total",                        :precision => 15, :scale => 6
     t.integer  "total_measure_unit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "talks", :force => true do |t|
+    t.integer  "from_id"
+    t.integer  "to_id"
+    t.text     "text"
+    t.boolean  "read"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

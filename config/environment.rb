@@ -43,6 +43,12 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = "pt-BR"
 end
 
+require 'pusher'
+Pusher.logger = Rails.logger
+Pusher.app_id = 25781
+Pusher.key    = '4f4622efb83e99f6f47a'
+Pusher.secret = '2236b277327a3eabde01'
+
 require 'smtp_tls'
 
 ActionMailer::Base.default_content_type = "text/html"
