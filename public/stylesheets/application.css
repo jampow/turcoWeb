@@ -402,9 +402,19 @@ table.zebra tr:nth-child(2n+1) { background-color: #eee; }
 
 #bossMessage {
   padding: 3px;
-  min-height: 150px;
+  height: 150px;
   overflow: auto;
 }
+
+#bossMessage p {
+  background-color: #eef;
+  border: solid 1px #ddd;
+  margin: 3px;
+  padding: 3px 2px;
+}
+
+#bossMessage p:hover { background-color: #ff8; }
+#bossMessage a { text-decoration: none; }
 
 /*#chat {
   position: absolute;
