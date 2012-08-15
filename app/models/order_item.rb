@@ -4,6 +4,10 @@ class OrderItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :product
 
+  validates_numericality_of :unit_value, :quantity, :greater_than => 0
+
+  before_save :calculate_total
+
   def after_initialize
     self.product_name = Product.find(self.product_id).name if self.product_id
     self.measure_unit = MeasureUnit.find(self.measure_unit_id).measure_unit if self.measure_unit_id
@@ -23,5 +27,11 @@ class OrderItem < ActiveRecord::Base
      :conditions => ["oi.order_id = ?", order_id],
      :order => "id"}
   }
+
+  protected
+
+  def calculate_total
+    self.total_value = unit_value * quantity
+  end
 end
 
