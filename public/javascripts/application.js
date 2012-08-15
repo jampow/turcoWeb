@@ -589,3 +589,12 @@ function alert(msg, title){
     }
   });
 }
+
+//Usada na adição de novos itens em grids de subitens para esconder colunas marcadas para serem escondidas (class="hide")
+function getHiddenIndex(arr) {
+  var ret = [];
+  arr.each(function(){
+    ret.push($(this).index());
+  });
+  return ret;
+}

@@ -110,6 +110,7 @@ module PurchaseOrdersHelper
                 var inpts          = $('label input, label select', scope);
                 var empty          = false;
                 var validateFields = ['name', 'quantity', 'unit_value'];
+                var hiddenColumns  = getHiddenIndex($('#purchase_order_items thead th:hidden'));
                 inpts.each(function(){
                   var t = $(this);
                   var name  = t.attr('name').replace('0', nextRow);
@@ -138,6 +139,9 @@ module PurchaseOrdersHelper
 
                 if ($('tr.ui-state-default').length == 0) {
                   oTable.fnAddData(row);
+                  $.each(hiddenColumns, function(idx, val){
+                    $('#purchase_order_items tbody tr:last td:eq('+val+')').addClass('hide');
+                  });
                 } else {
                   $('tr.ui-state-default td').each(function(){
                     var t     = $(this);
