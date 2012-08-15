@@ -21,7 +21,7 @@ class PurchaseOrder < Order
 
   def create_payable
     if self.closed
-      parcels = self.payment_form.parcels
+      parcels = self.payment_form.parcels_to_ary
       val = self.value / parcels.count
       parcels.each do |parc|
         rec = Payable.create({
