@@ -22,6 +22,28 @@ var dTableConfig = {
   "bRetrieve": true
 };
 
+jQuery.fn.dataTableExt.aTypes.unshift(
+  function ( sData )
+  {
+    var sValidChars = "0123456789-,";
+    var regex = /[0-3][0-9]\/[01][0-9]\/[12][091][0-9][0-9]/;
+
+    return regex.test(sData) ? 'date' : null;
+  }
+);
+
+jQuery.fn.dataTableExt.oSort['date-asc']  = function(a,b) {
+  var x = a.substr(-4) + a.substr(3,2) + a.substr(0,2);
+  var y = b.substr(-4) + b.substr(3,2) + b.substr(0,2);
+  return ((x < y) ? -1 : ((x > y) ?  1 : 0));
+};
+
+jQuery.fn.dataTableExt.oSort['date-desc'] = function(a,b) {
+  var x = a.substr(-4) + a.substr(3,2) + a.substr(0,2);
+  var y = b.substr(-4) + b.substr(3,2) + b.substr(0,2);
+  return ((x < y) ?  1 : ((x > y) ? -1 : 0));
+};
+
 var datepickerConfig = {
   'dateFormat': 'yy-mm-dd',
   'dayNamesMin': ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
