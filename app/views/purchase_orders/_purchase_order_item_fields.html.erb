@@ -10,18 +10,24 @@
 <div class="clear"></div>
 <script type="text/javascript">
   var prefix = '#purchase_order_order_items_attributes_0_';
-  var calcFields =      prefix+'quantity';
-  calcFields    += ', '+prefix+'unit_value';
-  $(calcFields).bind('change', function(){
+  var calcFields  =      prefix+'quantity';
+      calcFields += ', '+prefix+'unit_value';
+
+  $(calcFields).bind('change keyup', function(){
+    setTimeout(calcTotal, 250);
+  });
+
+  var calcTotal = function() {
     var x = $(prefix+'quantity'  ).val();
     var y = $(prefix+'unit_value').val();
 
-    x = x.replace(',', '.');
+    x = format.decimal.toNumber(x);
     y = format.decimal.toNumber(y);
-    var z = format.number.toDecimal(x * y);
+    var z = format.number.toDecimal(x * y, "10,2");
 
     $(prefix+'total_value').val(z);
-  });
+  }
+
 
   var loadMeasureUnits = function() {
     var prod_id = $(prefix+"product_id").val();

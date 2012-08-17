@@ -9,9 +9,13 @@
 <script type="text/javascript">
   var prefix = '#location_location_items_attributes_0_';
   var flds   =      prefix+'quantity';
-  flds      += ', '+prefix+'unit_value';
+      flds  += ', '+prefix+'unit_value';
+      flds  += ', '+prefix+'product_id';
 
-  $(prefix+"product_id, "+flds).bind('blur', function(){calcTotal();});
+  $(prefix+", "+flds).bind('blur', function(){calcTotal();});
+  $(flds).bind('change keyup', function(){
+    setTimeout(calcTotal, 250);
+  });
 
   var calcTotal = function(){
     var x = $(prefix+'quantity'  ).val();
