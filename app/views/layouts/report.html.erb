@@ -57,7 +57,6 @@
             bigger = w;
         });
 
-        console.log(bigger);
         els.css({'width': bigger+'px', 'display': 'inline-block'});
       }
 
@@ -81,7 +80,6 @@
         } else {
           var remove = ((totWidth + totMargin) - maxWidth) / els.length;
           els.each(function(){
-            // console.log('(('+totWidth+' + '+totMargin+') - '+maxWidth+') / '+els.length);
             $(this).css('width', function(i, v){
               return parseInt(v) - remove;
             });
