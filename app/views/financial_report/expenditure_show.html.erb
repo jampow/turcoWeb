@@ -6,8 +6,8 @@
 <% end -%>
 
 <% form_for :expenditure, :url => {:controller => "financial_report", :action => "expenditure_show"} do |f| -%>
-  <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker" %>
-  <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker" %>
+  <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker", :value => "value",  %>
+  <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker", :value => "value",  %>
 <% end -%>
 
 <div class="clear"></div>
@@ -21,12 +21,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @ap_pay.each do |pay| %>
+<%  @ap_pay.each do |pay|
+      if pay.level == 1 %>
     <tr>
       <td class="center"><%= pay.code %></td>
       <td><%= pay.name %></td>
       <td class="right"><%=number_to_currency pay.value %></td>
     </tr>
-    <% end -%>
+<%    end
+    end -%>
   </tbody>
 </table>

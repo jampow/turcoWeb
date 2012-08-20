@@ -21,12 +21,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @ap_rec.each do |rec| %>
+<%  @ap_rec.each do |rec|
+      if rec.level == 1 %>
     <tr>
       <td class="center"><%= rec.code %></td>
       <td><%= rec.name %></td>
       <td class="right"><%=number_to_currency rec.value %></td>
     </tr>
-    <% end -%>
+<%    end
+    end -%>
   </tbody>
 </table>
