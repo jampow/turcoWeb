@@ -8,6 +8,10 @@ class BankAccount < ActiveRecord::Base
     self.all.map { |v| [ v[:bank_name], v[:id] ] }
   end
 
+  def total
+    BankAccountTransaction.transactions(self.id).last.balance
+  end
+
   def to_s
     "#{bank_name} - Ag.:#{agency_number} - CC.:#{account_number}"
   end

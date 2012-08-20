@@ -3,6 +3,10 @@ class FinancialReportController < ApplicationController
   end
 
   def cash_flow_filter
+    @filter = { :balance => 0.00 }
+    BankAccount.all.each do |ba|
+      @filter[:balance] += ba.total.to_f
+    end
   end
 
   def cash_flow_show

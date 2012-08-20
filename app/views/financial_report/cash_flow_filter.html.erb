@@ -6,6 +6,7 @@
 <% end -%>
 
 <% form_for :flow, :url => {:controller => "financial_report", :action => "cash_flow_show"} do |f| -%>
-  <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker" %>
-  <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker" %>
+  <%= f.text_field :starts_at        , :label => "Início" , :class => "datepicker" %>
+  <%= f.text_field :ends_at          , :label => "Término", :class => "datepicker" %>
+  <%= f.text_field :balance          , :label => "Saldo"  , :class => "mask-decimal", :decimal => "10,2", :value => @filter[:balance] %>
 <% end -%>

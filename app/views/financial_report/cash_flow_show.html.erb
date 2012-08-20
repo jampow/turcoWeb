@@ -6,9 +6,11 @@
 <% end -%>
 
 <% form_for :flow, :url => {:controller => "financial_report", :action => "cash_flow_show"} do |f| -%>
-  <%= f.text_field :starts_at, :label => "Início" , :value => @filter[:starts_at], :class => "datepicker" %>
-  <%= f.text_field :ends_at  , :label => "Término", :value => @filter[:ends_at]  , :class => "datepicker" %>
+  <%= f.text_field :starts_at        , :label => "Início" , :value => @filter[:starts_at], :class => "datepicker" %>
+  <%= f.text_field :ends_at          , :label => "Término", :value => @filter[:ends_at]  , :class => "datepicker" %>
+  <%= f.text_field :balance          , :label => "Saldo"  , :value => @filter[:balance]  , :class => "mask-decimal", :decimal => "10,2" %>
 <% end -%>
+
 
 <div class="clear"></div>
 
@@ -34,7 +36,7 @@
       <td class="right" ><%= number_to_currency(cf.rec)     %></td>
       <!-- <td class="right" ><%#= number_to_currency(cf.recd)    %></td> -->
       <td class="right" ><%= number_to_currency(cf.total)   %></td>
-      <td class="right" ><%= number_to_currency(acumulated) %></td>
+      <td class="right" ><%= number_to_currency(@filter[:balance].to_f + acumulated) %></td>
     </tr>
     <% acumulated += cf.total %>
   <% end %>
