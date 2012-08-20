@@ -315,7 +315,10 @@
         starts_at: "Início da locação"
         ends_at: "Término da locação"
       payable:
+        provider_name: "Pagar para"
         due_date: "Vencimento"
+        issue_date: "Data de emissão"
+        value: "Valor"
       payment_form:
         name: "Nome"
         parcels: "N.º de parcelas"

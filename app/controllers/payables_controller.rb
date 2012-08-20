@@ -32,8 +32,8 @@ class PayablesController < ApplicationController
   # GET /payables/new
   # GET /payables/new.xml
   def new
-    @payable = Payable.new
-    @division   = PayableCostDivision.new
+    @payable  = Payable.new
+    @division = PayableCostDivision.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -59,6 +59,7 @@ class PayablesController < ApplicationController
         format.html { redirect_to(@payable) }
         format.xml  { render :xml => @payable, :status => :created, :location => @payable }
       else
+        @division   = PayableCostDivision.new
         format.html { render :action => "new" }
         format.xml  { render :xml => @payable.errors, :status => :unprocessable_entity }
       end
@@ -76,6 +77,7 @@ class PayablesController < ApplicationController
         format.html { redirect_to(@payable) }
         format.xml  { head :ok }
       else
+        @division   = PayableCostDivision.new
         format.html { render :action => "edit" }
         format.xml  { render :xml => @payable.errors, :status => :unprocessable_entity }
       end

@@ -1,5 +1,5 @@
 class Payable < ActiveRecord::Base
-  validates_presence_of :provider_id
+  validate :presence_of_provider
   validates_presence_of :issue_date
   validates_presence_of :due_date
   validates_presence_of :value
@@ -18,8 +18,8 @@ class Payable < ActiveRecord::Base
   has_many :payable_cost_divisions
   has_many :billings, :class_name => 'PayableBilling'
 
-  accepts_nested_attributes_for :payable_cost_divisions, :allow_destroy => true, :reject_if => proc { |attributes| attributes['value'].blank? }
   before_save :mark_item_for_removal
+  accepts_nested_attributes_for :payable_cost_divisions, :allow_destroy => true, :reject_if => proc { |attributes| attributes['value'].blank? }
 
   attr_accessor :provider_name
 
@@ -185,6 +185,10 @@ protected
     payable_cost_divisions.each do |child|
       child.mark_for_destruction if (child.account_plan_id.blank? && child.cost_center_id.blank?) || child.value.blank?
     end
+  end
+
+  def presence_of_provider
+    errors.add("provider_name", "Não pode ficar em branco") if provider_id.blank?
   end
 
 end
