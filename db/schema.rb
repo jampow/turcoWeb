@@ -9,14 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120814140108) do
+ActiveRecord::Schema.define(:version => 20120820132309) do
 
   create_table "VwCashFlow", :id => false, :force => true do |t|
     t.date    "date"
     t.decimal "rec",   :precision => 65, :scale => 3
-    t.decimal "recd",  :precision => 54, :scale => 2
     t.decimal "pay",   :precision => 65, :scale => 3
-    t.decimal "payd",  :precision => 54, :scale => 2
     t.decimal "total", :precision => 65, :scale => 3
   end
 
