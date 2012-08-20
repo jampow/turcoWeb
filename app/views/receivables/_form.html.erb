@@ -23,7 +23,7 @@
     <%= f.select :payment_method_id, Receivable::PaymentMethod.to_select, :label => 'Meio de Pagamento',:size => 20 %>
     <%= f.text_field :due_date                                          , :label => "Vencimento"       ,:size => 20, :class => 'datepicker' %>
     <%= f.select :frequency_id     , Receivable::Frequency.to_select    , :label => 'Frequencia'       ,:size => 20 %>
-    <%= f.text_field :value                                             , :label => "Valor"            ,:size => 20 %>
+    <%= f.text_field :value                                             , :label => "Valor"            ,:size => 20, :class => "mask-decimal", :decimal => "10,2" %>
 
   </fieldset>
   <fieldset>
@@ -51,8 +51,8 @@
         <label class="hide"><%= rcd.hidden_field :cost_center_id %></label>
         <%= rcd.text_field :cost_center_name , :label => 'Centro de Custo', :size => 20, :class => 'autocomplete', :source => 'cost_center' , :pref => "receivable_receivable_cost_divisions_attributes_0_" %>
         <%= rcd.text_field :observations     , :label => 'Observação'     , :size => 20 %>
-        <%= rcd.text_field :value            , :label => 'Valor'          , :size => 20, :class => 'receivable_cost_division_value'  , :decimal => "10,2" %>
-        <%= rcd.text_field :percent          , :label => '% do Total'     , :size => 20, :class => 'receivable_cost_division_percent', :decimal => "10,2" %>
+        <%= rcd.text_field :value            , :label => 'Valor'          , :size => 20, :class => 'mask-decimal receivable_cost_division_value'  , :decimal => "10,2" %>
+        <%= rcd.text_field :percent          , :label => '% do Total'     , :size => 20, :class => 'mask-decimal receivable_cost_division_percent', :decimal => "10,2" %>
         <div class="clear"></div>
       <% end -%>
 
