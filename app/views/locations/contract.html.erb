@@ -12,8 +12,8 @@ vias de igual forma e teor, na presença das duas testemunhas abaixo assinadas.<
   <div class="data w100"><span class="label">CNPJ</span><%= @ent.cnpj %></div>
 </div>
 
-<div id="tenant" class="group w100">
-  <div class="data w100"><span class="label">LOCATÁRIA</span><%= @cli.name %></div>
+<div id="tenant" class="signature">
+  <div><span class="label">LOCATÁRIA</span><%= @cli.name %></div>
 </div>
 
 <div id="witness" class="group w100">
@@ -42,13 +42,13 @@ vias de igual forma e teor, na presença das duas testemunhas abaixo assinadas.<
   setBiggestWidth('#enterprise .label');
   setBiggestWidth('#client .label');
   setBiggestWidth('#rental .label');
-  setBiggestWidth('#tenant .label');
+  //setBiggestWidth('#tenant .label');
   setBiggestWidth('#witness .label');
 
   // ajustHorizontal('#enterprise .group');
   // ajustHorizontal('#client .group');
   ajustHorizontal('#rental');
-  ajustHorizontal('#tenant');
+  //ajustHorizontal('#tenant');
   ajustHorizontal('#witness');
 
 <% end -%>
