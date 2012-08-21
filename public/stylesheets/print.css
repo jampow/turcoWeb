@@ -75,27 +75,29 @@ h1 {
 .center {text-align: center;}
 .right  {text-align: right; }
 
-table thead th, table tfoot th {
+table.receipt-items thead th, table.receipt-items tfoot th {
   border-top:    2px solid #000;
   border-bottom: 2px solid #000;
 }
 
-table tfoot th {
+table.receipt-items tfoot th {
   border-bottom: none;
 }
 
-table thead th, table tbody td {
+table.receipt-items thead th, table.receipt-items tbody td {
   border-left: 1px dotted #000;
 }
 
-table thead th:nth-last-child(1),
-table tbody td:nth-last-child(1) {
+table.receipt-items thead th:nth-last-child(1),
+table.receipt-items tbody td:nth-last-child(1) {
   border-right: 1px dotted #000;
 }
 
-table th, table td {
+table.receipt-items th, table.receipt-items td {
   padding: 3px;
 }
+
+table.upper td { text-transform: uppercase; }
 
 hr {
   border: none;
