@@ -1,13 +1,13 @@
 <% content_for :menu do -%>
-  <h1>Demonstrativo</h1>
+  <h1>Plano de contas</h1>
   <%= link_to "Filtrar", "#", {:class => "button save", :icon => "search"} %>
   <%= btn_separator %>
   <%= menu %>
 <% end -%>
 
 <% form_for :plan, :url => {:controller => "financial_report", :action => "account_plan_show"} do |f| -%>
-  <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker" %>
-  <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker" %>
+  <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker", :value => @filter[:starts_at] %>
+  <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker", :value => @filter[:ends_at] %>
 <% end -%>
 
 <div class="clear"></div>
@@ -18,6 +18,7 @@
       <th>Código</th>
       <th>Nome</th>
       <th>Valor</th>
+      <th>Porcentagem</th>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +27,7 @@
       <td class="center"><%= rec.code %></td>
       <td><%= rec.name %></td>
       <td class="right"><%=number_to_currency rec.value %></td>
+      <td class="right"><%= "%.2f" % ((rec.value.to_f * 100) / @rec_total) %></td>
     </tr>
     <% end -%>
     <% @ap_pay.each do |pay| %>
@@ -33,6 +35,7 @@
       <td class="center"><%= pay.code %></td>
       <td><%= pay.name %></td>
       <td class="right"><%=number_to_currency pay.value %></td>
+      <td class="right"><%= "%.2f" % ((pay.value.to_f * 100) / @rec_total) %></td>
     </tr>
     <% end -%>
   </tbody>

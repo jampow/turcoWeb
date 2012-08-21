@@ -40,6 +40,10 @@ class Receivable < ActiveRecord::Base
   named_scope :grid, :select => "rec.id, cli.name as cli, rec.invoice_number, rec.due_date, rec.value, rec.settled",
                      :joins  => "rec Join clients cli On cli.id = rec.client_id"
 
+  named_scope :total_behind_due_date, lambda { |starts_at, ends_at| {
+                                      :select => "Sum(value) As total",
+                                      :conditions => ["due_date >= ? And due_date <= ?", starts_at, ends_at] } }
+
   def reached_limit?
     total_from_billings >= value ? true : false
   end

@@ -37,6 +37,7 @@ class FinancialReportController < ApplicationController
     @filter = params[:plan]
     @ap_rec = AccountPlan.report_receivables @filter[:starts_at], @filter[:ends_at]
     @ap_pay = AccountPlan.report_payables    @filter[:starts_at], @filter[:ends_at]
+    @rec_total = Receivable.total_behind_due_date(@filter[:starts_at], @filter[:ends_at])[0].total.to_f
   end
 
 end
