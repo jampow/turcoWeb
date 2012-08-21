@@ -112,6 +112,7 @@ ol.alpha { list-style-type: lower-alpha; }
 li {
   text-align: justify;
   margin: 7px 0 7px 0;
+  clear:both;
 }
 
 .signature {
