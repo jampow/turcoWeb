@@ -40,6 +40,7 @@ h1 {
 
 .data {
   float: left;
+  text-transform: uppercase;
 }
 
 .bigger { font-size: 1.5em;}
