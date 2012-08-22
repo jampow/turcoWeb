@@ -87,14 +87,6 @@
 
   <div id="alert"> </div>
 
-  <script type="text/javascript">
-    var pusher = new Pusher('4f4622efb83e99f6f47a');
-    var broadcast = pusher.subscribe('broadcast');
-    broadcast.bind('new-message', function(data) {
-      $('<p>'+data.text+'</p>').prependTo('#bossMessage').hide().slideDown();
-    });
-  </script>
-
 </body>
 </html>
 
