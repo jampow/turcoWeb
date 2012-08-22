@@ -1,13 +1,15 @@
 <% content_for :menu do -%>
   <h1>Duplicar títulos a pagar mensais</h1>
+  <%= link_to "Filtrar", "#", {:class => "button", :icon => "search", :id => "filter", :ajax => "false"} %>
   <%= mount_menu %w[save back] %>
 <% end -%>
 
-<% form_for :payable, :url => "/payables/generate_payables", :method => "POST" do |f| %>
+<% form_for :payable, :url => "/payables/generate_payables", :method => "POST", :id => "payables" do |f| %>
 
-  <%#= f.text_field :due_date, :label => "Vencimento", :size => 20, :class => 'datepicker' %>
+  <%= f.text_field :starts_at, :label => "Emissões de", :size => 20, :class => 'datepicker', :value => @filter[:starts_at] %>
+  <%= f.text_field :ends_at  , :label => "até"        , :size => 20, :class => 'datepicker', :value => @filter[:ends_at]   %>
 
-  <!-- <div class="clear"></div> -->
+  <div class="clear"></div>
 
   <ul>
   <% @payables.each do |p| %>
@@ -15,3 +17,26 @@
   <% end %>
   </ul>
 <% end %>
+
+<script type="text/javascript">
+
+  $("#filter").click(function(){
+
+    var form   = $('form');
+    var url    = '/payables/select_payables';
+    var fdata  = form.serializeArray();
+
+    $.ajax({
+      url: url,
+      data: fdata,
+      type: 'GET',
+      cache: false,
+      dataType: 'html',
+      success: function(data){
+        $('.ui-layout-center').html(data);
+      }
+    });
+
+  });
+
+</script>

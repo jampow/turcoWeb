@@ -97,7 +97,9 @@ class PayablesController < ApplicationController
   end
 
   def select_payables
-    @payables = Payable.monthly
+    @filter = params[:payable]
+    @filter ||= {:starts_at => "", :ends_at => ""}
+    @payables = Payable.monthly @filter[:starts_at], @filter[:ends_at]
 
     respond_to do |format|
       format.html # select_locations.html.erb
