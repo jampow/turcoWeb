@@ -340,7 +340,7 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
 
     message();
     make_buttons();
-    limit_div_content(); //must be the last call in this block
+    recalculate_heights(); //must be the last call in this block
   }); // fecha ajaxSuccess
 
 //  var notifyError = true;
@@ -387,7 +387,7 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o888ooo8888 o888o      o888o         88
   $('#calendar').datepicker(datepickerConfig);
 
   message();
-  limit_div_content();
+  recalculate_heights();
 
   //logout_on_timeout
   set_timeout();
@@ -411,7 +411,7 @@ ooooooooooo                                    o8   o88
 o888o        888o88 8o o888o o888o  88ooo888   888o o888o  88ooo88  o888o o888o 88oooooo88
 */
 
-$(window).bind('resize', limit_div_content);
+$(window).bind('resize', recalculate_heights);
 
 function message() {
   msg = $('.notice').text();
@@ -430,11 +430,28 @@ function message() {
   }
 }
 
+function recalculate_heights(){
+  fit_message();
+  limit_div_content();
+}
+
 function limit_div_content() {
   center = $('.ui-layout-center').outerHeight();
   mnu    = $('#menu_wrapper').outerHeight();
 
   $('#content_wrapper').outerHeight(center - mnu);
+}
+
+function fit_message() {
+  var east   = $('.ui-layout-east').innerHeight();
+  var target = $("#bossMessage");
+  var correction = -10;
+  var other  = 0;
+  $('.ui-layout-east>div:visible').each(function(){
+    other += $(this).outerHeight();
+  });
+
+  target.outerHeight(east - (other - target.outerHeight()) + correction);
 }
 
 function make_buttons() {

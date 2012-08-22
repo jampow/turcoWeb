@@ -404,7 +404,7 @@ table.zebra tr:nth-child(2n+1) { background-color: #eee; }
 
 #bossMessage {
   padding: 3px;
-  height: 150px;
+  min-height: 150px;
   overflow: auto;
 }
 
