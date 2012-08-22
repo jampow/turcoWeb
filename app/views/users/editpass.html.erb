@@ -1,0 +1,13 @@
+<% content_for :menu do -%>
+  <h1>Alterar senha</h1>
+  <%= mount_menu %>
+<% end -%>
+
+<% form_for(@user, :url => "/users/updatepass/0") do |f| %>
+  <div class="form-wrapper">
+    <%= f.error_messages %>
+    <%= f.password_field :password             , :label => 'Senha'            %>
+    <%= f.password_field :password_confirmation, :label => 'Confirme a senha' %>
+  </div>
+<% end %>
+

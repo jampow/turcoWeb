@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   #before_filter :require_user, :only => [:show, :edit, :update]
 
   access_control do
-    allow :users_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy]
-    allow :users_l, :to => [:index, :show]
-    allow :users_s, :to => []
+    allow :users_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :editpass, :updatepass]
+    allow :users_l, :to => [:index, :show, :editpass, :updatepass]
+    allow :users_s, :to => [:editpass, :updatepass]
   end
 
   # GET /users
@@ -89,6 +89,25 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(users_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  def editpass
+    @user = User.find(current_user.id)
+  end
+
+  def updatepass
+    @user = User.find(current_user.id)
+
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        flash[:notice] = 'Senha atualizada.'
+        format.html { redirect_to(@user) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
     end
   end
 end

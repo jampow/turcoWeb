@@ -46,8 +46,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :st_ipis
   map.resources :st_pis
   map.resources :terms
-  map.resources :users
-  map.resource  :user_session, :collection => {:timeout => :get}
+  map.resources :users                    , :collection => {:updatepass => :post}
+  map.resource  :user_session             , :collection => {:timeout => :get}
 
 	map.login  "login" , :controller => "user_sessions", :action => "new"
 	map.logout "logout", :controller => "user_sessions", :action => "destroy"
