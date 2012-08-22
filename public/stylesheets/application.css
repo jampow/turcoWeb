@@ -8,12 +8,12 @@ body, input, select { text-transform: uppercase; }
 img { border: none; }
 
 .ui-layout-west{
-  padding:0px !important;
+  padding:0 !important;
   overflow:hidden !important;
 }
 
 .ui-layout-north{
-  padding: 0px !important;
+  padding: 0 !important;
   overflow:hidden !important;
 }
 
@@ -47,12 +47,12 @@ img { border: none; }
 }
 
 #menu div{
-  padding:0px 5px;
+  padding:0 5px;
 }
 
 #menu ul {
-  margin:0px;
-  padding: 0px;
+  margin:0;
+  padding: 0;
 }
 
 #menu li {
@@ -201,15 +201,16 @@ table .right {
 
 div.jGrowl div.smoke {
 	background: url(../images/smoke.png) no-repeat;
-	-moz-border-radius: 	0px;
-	-webkit-border-radius:	0px;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
 	width: 280px;
 	height: 55px;
 	overflow: hidden;
 }
 
 div.jGrowl div.ui-state-highlight {
-  border: 0px !important;
+  border: 0 !important;
   color: #fff !important;
 }
 
@@ -374,6 +375,7 @@ div.separator {
 }
 
 ul.file-list {
+  columns: 4;
   -moz-columns: 4;
   -webkit-columns: 4;
 }
@@ -448,7 +450,7 @@ table.zebra tr:nth-child(2n+1) { background-color: #eee; }
 }
 
 #browsers ul {
-  style-list: none;
+  list-style: none;
   padding: 0 10px;
 }
 /*#browsers li { padding: 2px 0; }
@@ -462,5 +464,5 @@ table.zebra tr:nth-child(2n+1) { background-color: #eee; }
   padding: 15px 5px 15px 40px;
 }
 #browsers a { text-decoration: none; }
-#browsers #chr { background: url(/images/logo_chrome.png) no-repeat 0 50%; }
-#browsers #moz { background: url(/images/logo_firefox.jpg) no-repeat 0 50%; }
+#chr { background: url(/images/logo_chrome.png) no-repeat 0 50%; }
+#moz { background: url(/images/logo_firefox.jpg) no-repeat 0 50%; }
