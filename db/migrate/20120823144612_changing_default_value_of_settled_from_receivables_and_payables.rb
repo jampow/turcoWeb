@@ -1,7 +1,7 @@
 class ChangingDefaultValueOfSettledFromReceivablesAndPayables < ActiveRecord::Migration
   def self.up
-    change_column_default :receivables, :settled, :boolean, false
-    change_column_default :payables   , :settled, :boolean, false
+    change_column :receivables, :settled, :boolean, :default => false
+    change_column :payables   , :settled, :boolean, :default => false
   end
 
   def self.down
