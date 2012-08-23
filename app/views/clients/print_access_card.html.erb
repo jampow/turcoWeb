@@ -58,7 +58,7 @@
     <div id="sup">
       <%= image_tag @contact.photo.url(:thumb), :id => "pict" %>
       <%= image_tag "/images/logo_card.jpg"   , :id => "logo" %>
-      <p id="name"><%= @contact.name %></p>
+      <p id="name"><%= "#{@contact.client.id} - #{@contact.name}" %></p>
       <p id="corp"><%= @contact.client.name %></p>
     </div>
 
