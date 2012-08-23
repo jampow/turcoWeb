@@ -6,6 +6,6 @@
 <% end -%>
 
 <% form_for :plan, :url => {:controller => "financial_report", :action => "account_plan_show"} do |f| -%>
-  <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker" %>
-  <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker" %>
+  <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker", :value => @filter[:starts_at] %>
+  <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker", :value => @filter[:ends_at] %>
 <% end -%>

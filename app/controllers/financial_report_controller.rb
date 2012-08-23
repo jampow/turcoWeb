@@ -3,7 +3,7 @@ class FinancialReportController < ApplicationController
   end
 
   def cash_flow_filter
-    @filter = { :balance => 0.00 }
+    @filter = { :balance => 0.00, :starts_at => Date.today.beginning_of_month, :ends_at => Date.today.end_of_month }
     BankAccount.all.each do |ba|
       @filter[:balance] += ba.total.to_f
     end
@@ -15,6 +15,7 @@ class FinancialReportController < ApplicationController
   end
 
   def expenditure_filter
+    @filter = { :starts_at => Date.today.beginning_of_month, :ends_at => Date.today.end_of_month }
   end
 
   def expenditure_show
@@ -23,6 +24,7 @@ class FinancialReportController < ApplicationController
   end
 
   def sales_filter
+    @filter = { :starts_at => Date.today.beginning_of_month, :ends_at => Date.today.end_of_month }
   end
 
   def sales_show
@@ -31,6 +33,7 @@ class FinancialReportController < ApplicationController
   end
 
   def account_plan_filter
+    @filter = { :starts_at => Date.today.beginning_of_month, :ends_at => Date.today.end_of_month }
   end
 
   def account_plan_show
