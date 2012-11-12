@@ -11,9 +11,61 @@
   <% end %>
 <% end -%>
 
-<%= table @payables, ['invoice_number', 'Número da NF', {:class  => "right"}],
+<%# table @payables, ['invoice_number', 'Número da NF', {:class  => "right"}],
                      ['pro'           , 'Fornecedor'  ],
                      ['due_date'      , 'Vencimento'  , {:format => 'date'              , :class => 'center'}],
                      ['value'         , 'Valor'       , {:format => 'number_to_currency', :class => 'right' }],
                      ['settled'       , 'Quitado?'    , {:format => 'human_boolean'     , :class => 'center'}] %>
 
+    <table class="personal_list" idx="4" cellpading="0" cellspacing="0" border="0" width="100%">
+      <thead>
+        <tr>
+          <th class="hide">ID</th>
+          <th>Número da NF</th>
+          <th>Fornecedor</th>
+          <th>Vencimento</th>
+          <th>Valor</th>
+          <th>Quitado?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @payables.each do |payable| -%>
+        <tr>
+          <td class="right hide"><%= payable.id %></td>
+          <td class="right"><%= payable.invoice_number %></td>
+          <td class="center"><%= payable.pro %></td>
+          <td class="center"><%= l(payable.due_date) %></td>
+          <td class="right"><%= number_to_currency(payable.value) %></td>
+          <td class="center"><%= human_boolean(payable.settled) %></td>
+        </tr>
+        <% end -%>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3" style="text-align: right">Total: </th>
+          <th class="sum right"></th>
+          <th></th>
+        </tr>
+      </tfoot>
+    </table>
+
+<% content_for :script do -%>
+//<script type="text/javascript">
+
+    var conf = {"fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
+      var iTotal = 0;
+      var idxSum = $(this).attr('idx');
+      //Soma das NF's visíveis
+      for ( var i=iStart ; i<iEnd ; i++ )
+      {
+        iVal = aaData[aiDisplay[i]][idxSum].replace('R$ ', '').replace(/\./gi, '').replace(',', '.')*1;
+        iTotal += iVal;
+      }
+      $('.sum', this).text('R$ '+ toCurrency(iTotal.toFixed(2)));
+    }};
+
+    var newConf = $.extend({}, dTableConfig, conf);
+
+    $('table.personal_list').dataTable(newConf);
+
+<% end -%>
