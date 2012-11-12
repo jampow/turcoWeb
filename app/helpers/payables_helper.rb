@@ -148,5 +148,14 @@ module PayablesHelper
     html
   end
 
+  def btn_filter
+    html = "<a href=\"#\" class=\"button filter\" ajax=\"false\" caption=\"false\" icon=\"circle-zoomin\" >Filtro</a>"
+  end
+
+  def payable_filters
+    # s  = "<form class=\"filter closed\">"
+    # s += text_field
+    # s += "</form>"
+  end
 
 end

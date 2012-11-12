@@ -36,9 +36,6 @@ class Payable < ActiveRecord::Base
 # From payables  pay
 # Join providers pro On pro.id = pay.provider_id
 
-  named_scope :grid, :select => "pay.id, pro.name as pro, pay.invoice_number, pay.due_date, pay.value, pay.settled",
-                     :joins  => "pay Join providers pro On pro.id = pay.provider_id"
-
   named_scope :monthly, lambda { |starts_at, ends_at|
                         cond = ["frequency_id = 2"]
                         if !starts_at.blank?
@@ -50,6 +47,23 @@ class Payable < ActiveRecord::Base
                           cond << ends_at
                         end
                         { :conditions => cond } }
+
+  named_scope :grid, lambda { |starts_at, ends_at|
+                        cond = [""]
+                        if !starts_at.blank?
+                          cond[0] += " And pay.due_date >= ?"
+                          cond << starts_at
+                        end
+                        if !ends_at.blank?
+                          cond[0] += " And pay.due_date <= ?"
+                          cond << ends_at
+                        end
+                        if cond[0].length > 0
+                          cond[0] = cond[0][5..cond[0].length]
+                        end
+                        { :select => "pay.id, pro.name as pro, pay.invoice_number, pay.due_date, pay.value, pay.settled",
+                          :joins  => "pay Join providers pro On pro.id = pay.provider_id",
+                          :conditions => cond } }
 
   def reached_limit?
     total_from_billings >= value ? true : false

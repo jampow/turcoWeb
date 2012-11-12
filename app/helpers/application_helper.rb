@@ -77,6 +77,11 @@ module ApplicationHelper
         s += btn_edit(controller, id)
         s += btn_show(controller, id)
         s += btn_delete(controller, id)
+      when "filter_index"
+        s += btn_new(controller)
+        s += btn_edit(controller, id)
+        s += btn_show(controller, id)
+        s += btn_delete(controller, id)
       when "editme"
         s += btn_save
         s += btn_show(controller, id)

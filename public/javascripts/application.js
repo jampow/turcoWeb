@@ -313,6 +313,10 @@ o88o  o888o 888  88ooo88 8o o88o   o88o  o88oooo888   888o88 8o  88ooo888    88o
       });
     });
 
+    $('.button.filter').click(function(){
+      $('form.filter').toggleClass('closed');
+    });
+
     $('.datepicker').datepicker(datepickerConfig);
 
     $('.autocomplete').each(function(){

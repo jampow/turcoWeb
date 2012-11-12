@@ -272,6 +272,7 @@ table#permissions>tbody tr:nth-child(2n+1) {
 #menu_wrapper {
   padding: 10px;
   border-bottom: 1px solid #dde;
+  overflow: auto;
   /*box-shadow: 0 0 4px 0 #888;
   z-index:999;*/
 }
@@ -447,6 +448,11 @@ table.zebra tr:nth-child(2n+1) { background-color: #eee; }
 .dataTables_wrapper {
   font-family: Verdana, Helvetica, Arial;
   font-size: 12px;
+}
+
+.closed {
+  height:0;
+  display: none;
 }
 
 #browsers ul {
