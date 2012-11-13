@@ -33,7 +33,7 @@
         <tr>
           <td class="right hide"><%= payable.id %></td>
           <td class="right"><%= payable.invoice_number %></td>
-          <td class="center"><%= payable.pro %></td>
+          <td class=""><%= payable.pro %></td>
           <td class="center"><%= l(payable.due_date) %></td>
           <td class="right"><%= number_to_currency(payable.value) %></td>
           <td class="center"><%= human_boolean(payable.settled) %></td>
