@@ -1,11 +1,69 @@
 <% content_for :menu do -%>
   <h1>Títulos a Receber</h1>
-  <%= mount_menu %>
+  <%= mount_menu %w[default separator] %>
+  <%= btn_filter %>
+  <% form_for :receivables, :url => {:controller => "receivables", :action => "filter_index"}, :html => {:class => 'filter closed'} do |f| %>
+    <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker", :value => @filter[:starts_at] %>
+    <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker", :value => @filter[:ends_at] %>
+    <%= link_to "Filtrar", "#", {:class => "button save", :icon => "search"} %>
+  <% end %>
 <% end -%>
 
-<%= table @receivables, ['invoice_number', 'Número da NF', {:class  => "right"}],
+<%# table @receivables, ['invoice_number', 'Número da NF', {:class  => "right"}],
                         ['cli'           , 'Cliente'     ],
                         ['due_date'      , 'Vencimento'  , {:format => 'date'              , :class => 'center'}],
                         ['value'         , 'Valor'       , {:format => 'number_to_currency', :class => 'right' }],
                         ['settled'       , 'Quitado?'    , {:format => 'human_boolean'     , :class => 'center'}] %>
 
+    <table class="personal_list" idx="4" cellpading="0" cellspacing="0" border="0" width="100%">
+      <thead>
+        <tr>
+          <th class="hide">ID</th>
+          <th>Número da NF</th>
+          <th>Cliente</th>
+          <th>Vencimento</th>
+          <th>Valor</th>
+          <th>Quitado?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @receivables.each do |receivable| -%>
+        <tr>
+          <td class="right hide"><%= receivable.id %></td>
+          <td class="right"><%= receivable.invoice_number %></td>
+          <td class=""><%= receivable.cli %></td>
+          <td class="center"><%= l(receivable.due_date) %></td>
+          <td class="right"><%= number_to_currency(receivable.value) %></td>
+          <td class="center"><%= human_boolean(receivable.settled) %></td>
+        </tr>
+        <% end -%>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3" style="text-align: right">Total: </th>
+          <th class="sum right"></th>
+          <th></th>
+        </tr>
+      </tfoot>
+    </table>
+
+<% content_for :script do -%>
+//<script type="text/javascript">
+
+    var conf = {"fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
+      var iTotal = 0;
+      var idxSum = $(this).attr('idx');
+      //Soma das NF's visíveis
+      for ( var i=iStart ; i<iEnd ; i++ )
+      {
+        iVal = aaData[aiDisplay[i]][idxSum].replace('R$ ', '').replace(/\./gi, '').replace(',', '.')*1;
+        iTotal += iVal;
+      }
+      $('.sum', this).text('R$ '+ toCurrency(iTotal.toFixed(2)));
+    }};
+
+    var newConf = $.extend({}, dTableConfig, conf);
+
+    $('table.personal_list').dataTable(newConf);
+
+<% end -%>

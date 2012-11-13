@@ -1,15 +1,42 @@
 class ReceivablesController < ApplicationController
 
   access_control do
-    allow :receivables_e, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :print, :fast_settlement]
-    allow :receivables_l, :to => [:index, :show, :print]
+    allow :receivables_e, :to => [:filter_index, :index, :show, :new, :edit, :create, :update, :destroy, :print, :fast_settlement]
+    allow :receivables_l, :to => [:filter_index, :index, :show, :print]
     allow :receivables_s, :to => []
+  end
+
+  def filter_index
+    @filter = {:starts_at => "", :ends_at => ""}
+
+    if params[:receivables][:starts_at].blank? && params[:receivables][:ends_at].blank?
+      @filter['starts_at'] = Date.today.beginning_of_month
+      @filter['ends_at']   = Date.today.end_of_month
+    else
+      @filter['starts_at'] = params[:receivables][:starts_at]
+      @filter['ends_at']   = params[:receivables][:ends_at]
+    end
+
+    @receivables = Receivable.grid @filter['starts_at'], @filter['ends_at']
+
+    render :index
   end
 
   # GET /receivables
   # GET /receivables.xml
   def index
-    @receivables = Receivable.grid
+    @filter = {:starts_at => "", :ends_at => ""}
+
+    params[:receivables] ||= {}
+    if params[:receivables][:starts_at].blank? && params[:receivables][:ends_at].blank?
+      @filter['starts_at'] = Date.today.beginning_of_month
+      @filter['ends_at']   = Date.today.end_of_month
+    else
+      @filter['starts_at'] = params[:receivables][:starts_at]
+      @filter['ends_at']   = params[:receivables][:ends_at]
+    end
+
+    @receivables = Receivable.grid @filter['starts_at'], @filter['ends_at']
 
     respond_to do |format|
       format.html # index.html.erb

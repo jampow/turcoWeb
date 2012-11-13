@@ -28,6 +28,10 @@ module ReceivablesHelper
     html = "<a href=\"#\" class=\"button save-item\" caption=\"false\" icon=\"check\" >Salvar Item</a>"
   end
 
+  def btn_filter
+    html = "<a href=\"#\" class=\"button filter\" ajax=\"false\" caption=\"false\" icon=\"circle-zoomin\" >Filtro</a>"
+  end
+
   def js_receivable_division_create_table_item
     # editing? ? html = "$('#receivable_division_order_items tbody tr:last').remove();" : html = ''
     html = <<-JS
