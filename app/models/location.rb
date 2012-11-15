@@ -93,7 +93,7 @@ class Location < ActiveRecord::Base
 # From locations
 
   def self.number
-    self.find(:first, :select => "IfNull(Max(number), 0) As last, Concat(IfNull(Max(number), 0)+1, '-A') As next")
+    self.find(:first, :select => "IfNull(Max(Convert(number, signed)), 0) As last, Concat(IfNull(Max(Convert(number, signed)), 0)+1, '-A') As next")
   end
 
   before_save :get_next_number
