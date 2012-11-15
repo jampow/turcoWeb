@@ -70,6 +70,15 @@ class Product < ActiveRecord::Base
   named_scope :grid, :select => "pro.id, pro.code, pro.name, fam.name As family",
                      :joins => "pro Left Join product_families fam On fam.id = pro.family_id"
 
+# Select Count(id) As qtd
+#      , Sum(width * depth) As met2
+#      , Sum(width * depth * height) As met3
+# From products
+# Where type_id = 2;
+
+  named_scope :report_totals, :select => "Count(id) As qtd, Sum(width*depth) As met2, Sum(width*depth*height) As met3",
+                              :conditions => "type_id = 2"
+
   def quantity
     Stock.last :conditions => ["product_id = ?", self.id]
   end

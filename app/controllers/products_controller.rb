@@ -9,6 +9,9 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
   def index
+    @rep_tot = Product.report_totals[0]
+    @rep_loc = Location.report_located[0]
+
     @products = Product.grid
 
     respond_to do |format|

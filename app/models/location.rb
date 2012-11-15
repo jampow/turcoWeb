@@ -121,6 +121,19 @@ class Location < ActiveRecord::Base
 
   named_scope :actives, :conditions => "ends_at Is Null Or ends_at > Cast(Now() As Date)"
 
+# Select Count(pro.id) As qtd
+#      , Sum(pro.width * pro.depth) As met2
+#      , Sum(pro.width * pro.depth * pro.height) As met3
+# From locations lo
+# Join location_items li On li.location_id = lo.id
+# Join products pro On pro.id = li.product_id
+# Where lo.ends_at Is Null
+# Or lo.ends_at > Cast(Now() As Date);
+
+  named_scope :report_located, :select => "Count(pro.id) As qtd, Sum(pro.width*pro.depth) As met2, Sum(pro.width*pro.depth*pro.height) As met3",
+                               :joins  => "lo Join location_items li On li.location_id = lo.id Join products pro On pro.id = li.product_id",
+                               :conditions => "lo.ends_at Is Null Or lo.ends_at > Cast(Now() As Date)"
+
   protected
 
   def mark_item_for_removal

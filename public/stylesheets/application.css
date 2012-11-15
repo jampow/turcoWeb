@@ -125,6 +125,10 @@ table .right {
   text-align:right;
 }
 
+table .left {
+  text-align:left;
+}
+
 .dataTables_wrapper .odd  { background-color: #fff; }
 .dataTables_wrapper .even { background-color: rgb(240, 240, 240); }
 
@@ -472,3 +476,16 @@ table.zebra tr:nth-child(2n+1) { background-color: #eee; }
 #browsers a { text-decoration: none; }
 #chr { background: url(/images/logo_chrome.png) no-repeat 0 50%; }
 #moz { background: url(/images/logo_firefox.jpg) no-repeat 0 50%; }
+
+table.report {margin: 10px auto;}
+
+table.report th, table.report td{
+  padding: 5px 10px;
+  border-right: solid 1px #999;
+  border-bottom: solid 1px #999;
+}
+
+table.report thead th:nth-child(n+2) {border-top:solid 1px #999;}
+table.report tbody tr th {border-left:solid 1px #999;}
+
+table.report tbody tr:nth-child(2n+1) {background-color: #ccc;}
