@@ -17,7 +17,7 @@
                      ['value'         , 'Valor'       , {:format => 'number_to_currency', :class => 'right' }],
                      ['settled'       , 'Quitado?'    , {:format => 'human_boolean'     , :class => 'center'}] %>
 
-    <table class="personal_list" idx="4" cellpading="0" cellspacing="0" border="0" width="100%">
+    <table class="list" idx="4" cellpading="0" cellspacing="0" border="0" width="100%">
       <thead>
         <tr>
           <th class="hide">ID</th>
@@ -66,6 +66,6 @@
 
     var newConf = $.extend({}, dTableConfig, conf);
 
-    $('table.personal_list').dataTable(newConf);
+    $('table.list').dataTable(newConf);
 
 <% end -%>
