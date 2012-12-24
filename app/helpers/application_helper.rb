@@ -239,6 +239,8 @@ module ApplicationHelper
         l(date)
       elsif date.class == ActiveSupport::TimeWithZone
         l(date, :format => :date)
+      elsif date.class == String && date.match(/[12][0-9]{3}-[01][0-9]-[0-3][0-9]/)
+        date(Date.parse(date))
       else
         date
       end

@@ -1,5 +1,5 @@
 <% content_for :menu do -%>
-  <h1>Títulos a pagar</h1>
+  <h1>Títulos a pagar<%= filter_display date(@filter['starts_at']), date(@filter['ends_at']) %></h1>
   <%= mount_menu %w[default separator] %>
   <%= btn_filter %>
   <%= link_to 'Duplicar títulos a pagar', '/payables/select_payables', :class => "button", :icon => "alert" %>
