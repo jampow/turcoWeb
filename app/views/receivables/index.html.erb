@@ -1,5 +1,5 @@
 <% content_for :menu do -%>
-  <h1>Títulos a Receber</h1>
+  <h1>Títulos a Receber<%= filter_display date(@filter['starts_at']), date(@filter['ends_at']) %></h1>
   <%= mount_menu %w[default separator] %>
   <%= btn_filter %>
   <% form_for :receivables, :url => {:controller => "receivables", :action => "filter_index"}, :html => {:class => 'filter closed'} do |f| %>

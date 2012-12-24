@@ -157,23 +157,4 @@ module PayablesHelper
     # s += text_field
     # s += "</form>"
   end
-
-  def filter_display(starts, ends)
-    logger.info("----------------")
-    logger.info(starts)
-    logger.info(ends)
-    logger.info("----------------")
-    logger.info(starts.class)
-    logger.info(ends.class)
-
-    s = " - "
-    if ends.empty?
-      s += "a partir de #{starts}"
-    else
-      if !starts.empty?
-        s += "de #{starts} "
-      end
-      s += "até #{ends}"
-    end
-  end
 end
