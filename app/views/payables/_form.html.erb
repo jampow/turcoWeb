@@ -14,8 +14,8 @@
     <%= f.text_field :historic                                       , :label => "Histórico"       , :size => 30 %>
     <%= f.text_field :issue_date                                     , :label => "Data de Emissão" , :size => 10, :class => 'datepicker', :required => true %>
     <%= f.select :document_kind_id  , Payable::DocumentKind.to_select, :label => 'Documento'       , :size => 10 %>
-    <%= f.text_field :invoice_number                                 , :label => "Número da NF"    , :size => 10 %>
-    <%= f.check_box  :settled                                        , :label => "Quitado"         , :size => 10 %>
+    <%= f.text_field :invoice_number                                 , :label => "Número da NF"    , :size => 20 %>
+    <%# f.check_box  :settled                                        , :label => "Quitado"         , :size => 10 %>
   </fieldset>
   <fieldset>
     <legend>Conta</legend>
