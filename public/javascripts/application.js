@@ -67,7 +67,8 @@ o888ooo88     88ooo88     88ooo888 888  o888o         88oooo888 88ooo88 8o  88oo
 
 $(function(){
 
-  if (window.navigator.onLine) {
+  //if (window.navigator.onLine) {
+  if (window.Pusher) {
     var pusher = new Pusher('4f4622efb83e99f6f47a');
     var broadcast = pusher.subscribe('broadcast');
     broadcast.bind('new-message', function(data) {
