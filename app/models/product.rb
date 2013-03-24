@@ -67,7 +67,19 @@ class Product < ActiveRecord::Base
     :conditions => ["(type_id = 1) Or (type_id = 2 And (name like ? Or code like ?) And id Not In (Select Distinct pro.id From products pro Join location_items loi On loi.product_id = pro.id Join locations loc On loc.id = loi.location_id Where pro.type_id = 2 And (loc.ends_at Is Null Or loc.ends_at > Cast(Now() As Date))))", "%#{term}%", "%#{term}%"]
   }}
 
-  named_scope :grid, :select => "pro.id, pro.code, pro.name, fam.name As family",
+# Select pro.id, pro.code, pro.name, fam.name As family,
+# if (pro.id in
+# (Select Distinct prod.id
+# From products prod
+# Join location_items loi On loi.product_id = prod.id
+# Join locations loc On loc.id = loi.location_id
+# Where prod.type_id = 2 -- locação
+# And (loc.ends_at Is Null Or loc.ends_at > Cast(Now() As Date)))
+# ,"não","sim") As disponivel
+# From products pro
+# Left Join product_families fam On fam.id = pro.family_id;
+
+  named_scope :grid, :select => "pro.id, pro.code, pro.name, fam.name As family, if (pro.id in (Select Distinct prod.id From products prod Join location_items loi On loi.product_id = prod.id Join locations loc On loc.id = loi.location_id Where prod.type_id = 2 And (loc.ends_at Is Null Or loc.ends_at > Cast(Now() As Date))) ,'não','sim') As disponivel",
                      :joins => "pro Left Join product_families fam On fam.id = pro.family_id"
 
 # Select Count(id) As qtd
