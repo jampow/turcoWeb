@@ -4,7 +4,7 @@
 <% end -%>
 
 <%=print_content "Conta"              , h(@payable_billing.bank_account_id), :width => 10 %>
-<%=print_content "Fornecedor"         , h(@payable_billing.provider)       , :width => 20 %>
+<%=print_content "Fornecedor"         , h(@payable_billing.provider.name)  , :width => 20 %>
 <%#print_content "Histórico"          , h(@payable_billing.history)        , :width => 25 %>
 <%=print_content "Plano de contas"    , h(@payable_billing.account_plan_id), :width => 10 %>
 <%=print_content "Centro de custo"    , h(@payable_billing.cost_center_id) , :width => 10 %>
