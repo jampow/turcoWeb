@@ -2,6 +2,7 @@ class FinancialReportController < ApplicationController
   def index
   end
 
+  # Fluxo de caixa
   def cash_flow_filter
     @filter = { :balance => 0.00, :starts_at => Date.today.beginning_of_month, :ends_at => Date.today.end_of_month }
     BankAccount.all.each do |ba|
@@ -14,6 +15,7 @@ class FinancialReportController < ApplicationController
     @cash_flow = VwCashFlow.find(:all, :conditions => ["date >= ? And date <= ? And (rec > 0 Or pay > 0)", @filter[:starts_at], @filter[:ends_at]])
   end
 
+  # Despesas
   def expenditure_filter
     @filter = { :starts_at => Date.today.beginning_of_month, :ends_at => Date.today.end_of_month }
   end
@@ -23,6 +25,7 @@ class FinancialReportController < ApplicationController
     @ap_pay = AccountPlan.report_payables    @filter[:starts_at], @filter[:ends_at]
   end
 
+  # Receitas
   def sales_filter
     @filter = { :starts_at => Date.today.beginning_of_month, :ends_at => Date.today.end_of_month }
   end
@@ -32,6 +35,7 @@ class FinancialReportController < ApplicationController
     @ap_rec = AccountPlan.report_receivables @filter[:starts_at], @filter[:ends_at]
   end
 
+  # Balancete
   def account_plan_filter
     @filter = { :starts_at => Date.today.beginning_of_month, :ends_at => Date.today.end_of_month }
   end
