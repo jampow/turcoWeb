@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822212145) do
+ActiveRecord::Schema.define(:version => 20130421143715) do
 
   create_table "VwCashFlow", :id => false, :force => true do |t|
     t.date    "date"
@@ -49,9 +49,9 @@ ActiveRecord::Schema.define(:version => 20120822212145) do
   end
 
   create_table "VwCashFlowReceivablesPre", :id => false, :force => true do |t|
-    t.integer "id",                                      :default => 0, :null => false
+    t.integer "id",                                        :default => 0, :null => false
     t.date    "due_date"
-    t.decimal "payable",  :precision => 34, :scale => 3
+    t.decimal "receivable", :precision => 34, :scale => 3
   end
 
   create_table "VwCashFlowReceived", :id => false, :force => true do |t|
@@ -492,7 +492,7 @@ ActiveRecord::Schema.define(:version => 20120822212145) do
     t.decimal  "rate",                                    :precision => 10, :scale => 4
     t.decimal  "fine",                                    :precision => 10, :scale => 4
     t.integer  "rate_calculation_type_id"
-    t.boolean  "settled"
+    t.boolean  "settled",                                                                :default => false
   end
 
   create_table "payment_forms", :force => true do |t|
@@ -637,7 +637,7 @@ ActiveRecord::Schema.define(:version => 20120822212145) do
     t.integer  "invoice_number"
     t.integer  "parcel"
     t.date     "due_date"
-    t.decimal  "value",                                   :precision => 9,  :scale => 3
+    t.decimal  "value",                                   :precision => 9,  :scale => 3, :default => 0.0
     t.integer  "bank_id"
     t.string   "email"
     t.integer  "deposit_id"
@@ -663,7 +663,7 @@ ActiveRecord::Schema.define(:version => 20120822212145) do
     t.decimal  "rate",                                    :precision => 10, :scale => 4
     t.decimal  "fine",                                    :precision => 10, :scale => 4
     t.integer  "rate_calculation_type_id"
-    t.boolean  "settled"
+    t.boolean  "settled",                                                                :default => false
     t.integer  "location_id"
   end
 
