@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421143715) do
+ActiveRecord::Schema.define(:version => 20130421145946) do
 
   create_table "VwCashFlow", :id => false, :force => true do |t|
     t.date    "date"
@@ -466,7 +466,7 @@ ActiveRecord::Schema.define(:version => 20130421143715) do
     t.integer  "invoice_number"
     t.integer  "parcel"
     t.date     "due_date"
-    t.decimal  "value",                                   :precision => 9,  :scale => 3
+    t.decimal  "value",                                   :precision => 9,  :scale => 3, :default => 0.0
     t.integer  "bank_id"
     t.string   "email"
     t.integer  "deposit_id"
