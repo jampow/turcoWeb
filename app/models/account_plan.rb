@@ -53,6 +53,8 @@ class AccountPlan < ActiveRecord::Base
     end
   end
 
+  named_scope :grid, :select => "id, code, name, analytical, if(orientation_id = 1, 'a receber', 'a pagar') As orientation"
+
   # Select acp.code
   #      , Concat(Repeat('&nbsp;&nbsp;&nbsp;', acp.level - 1), acp.name) As name
   #      , acp.level

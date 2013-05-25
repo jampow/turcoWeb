@@ -3,7 +3,8 @@
   <%= mount_menu %>
 <% end -%>
 
-<%= table @account_plans, ['code'      , 'Código'     , {:class => "center"}],
-                          ['name'      , 'Nome'       ],
-                          ['analytical', 'An. ou Sin.', {:format => "anal_or_sint", :class => "center"}] %>
+<%= table @account_plans, ['code'       , 'Código'     , {:class => "center"}],
+                          ['name'       , 'Nome'       ],
+                          ['orientation', 'Conta'      ],
+                          ['analytical' , 'An. ou Sin.', {:format => "anal_or_sint", :class => "center"}] %>
 
