@@ -40,20 +40,25 @@ class Receivable < ActiveRecord::Base
   # named_scope :grid, :select => "rec.id, cli.name as cli, rec.invoice_number, rec.due_date, rec.value, rec.settled",
   #                    :joins  => "rec Join clients cli On cli.id = rec.client_id"
 
-  named_scope :grid, lambda { |starts_at, ends_at|
+  named_scope :grid, lambda { |starts_at, ends_at, field_filter|
                         cond = [""]
+                        if field_filter == "1"
+                          field = "rec.due_date"
+                        else
+                          field = "rec.issue_date"
+                        end
                         if !starts_at.blank?
-                          cond[0] += " And rec.due_date >= ?"
+                          cond[0] += " And "+field+" >= ?"
                           cond << starts_at
                         end
                         if !ends_at.blank?
-                          cond[0] += " And rec.due_date <= ?"
+                          cond[0] += " And "+field+" <= ?"
                           cond << ends_at
                         end
                         if cond[0].length > 0
                           cond[0] = cond[0][5..cond[0].length]
                         end
-                        { :select => "rec.id, cli.name as cli, rec.invoice_number, rec.due_date, rec.value, rec.settled",
+                        { :select => "rec.id, cli.name as cli, rec.invoice_number, rec.issue_date, rec.due_date, rec.value, rec.settled",
                           :joins  => "rec Join clients cli On cli.id = rec.client_id",
                           :conditions => cond } }
 

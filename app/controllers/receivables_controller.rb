@@ -7,17 +7,17 @@ class ReceivablesController < ApplicationController
   end
 
   def filter_index
-    @filter = {:starts_at => "", :ends_at => ""}
+    @filter = {:starts_at => "", :ends_at => "", :field_filter => params[:receivables][:field_filter]}
 
     if params[:receivables][:starts_at].blank? && params[:receivables][:ends_at].blank?
-      @filter['starts_at'] = Date.today.beginning_of_month
-      @filter['ends_at']   = Date.today.end_of_month
+      @filter[:starts_at] = Date.today.beginning_of_month
+      @filter[:ends_at]   = Date.today.end_of_month
     else
-      @filter['starts_at'] = params[:receivables][:starts_at]
-      @filter['ends_at']   = params[:receivables][:ends_at]
+      @filter[:starts_at] = params[:receivables][:starts_at]
+      @filter[:ends_at]   = params[:receivables][:ends_at]
     end
 
-    @receivables = Receivable.grid @filter['starts_at'], @filter['ends_at']
+    @receivables = Receivable.grid @filter[:starts_at], @filter[:ends_at], @filter[:field_filter]
 
     render :index
   end
@@ -25,18 +25,18 @@ class ReceivablesController < ApplicationController
   # GET /receivables
   # GET /receivables.xml
   def index
-    @filter = {:starts_at => "", :ends_at => ""}
+    @filter = {:starts_at => "", :ends_at => "", :field_filter => "1"}
 
     params[:receivables] ||= {}
     if params[:receivables][:starts_at].blank? && params[:receivables][:ends_at].blank?
-      @filter['starts_at'] = Date.today.beginning_of_month
-      @filter['ends_at']   = Date.today.end_of_month
+      @filter[:starts_at] = Date.today.beginning_of_month
+      @filter[:ends_at]   = Date.today.end_of_month
     else
-      @filter['starts_at'] = params[:receivables][:starts_at]
-      @filter['ends_at']   = params[:receivables][:ends_at]
+      @filter[:starts_at] = params[:receivables][:starts_at]
+      @filter[:ends_at]   = params[:receivables][:ends_at]
     end
 
-    @receivables = Receivable.grid @filter['starts_at'], @filter['ends_at']
+    @receivables = Receivable.grid @filter[:starts_at], @filter[:ends_at], @filter[:field_filter]
 
     respond_to do |format|
       format.html # index.html.erb
