@@ -43,7 +43,7 @@
   </fieldset>
 
   <div id="division_parts">
-    <% field_set_tag 'Divisão/Rateio do Valor' do -%>
+    <% field_set_tag 'Plano de contas - Divisão/Rateio do Valor' do -%>
       <%= new_payable_division_item_toolbar f %>
       <% f.fields_for :payable_cost_divisions, @division do |pcd| %>
         <label class="hide"><%= pcd.hidden_field :id %></label>

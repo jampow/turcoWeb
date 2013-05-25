@@ -42,7 +42,7 @@
     </div>
   </fieldset>
   <div id="division_parts">
-    <% field_set_tag 'Divisão/Rateio do Valor' do -%>
+    <% field_set_tag 'Plano de contas - Divisão/Rateio do Valor' do -%>
       <%= new_receivable_division_item_toolbar f %>
       <% f.fields_for :receivable_cost_divisions, @division do |rcd| %>
         <label class="hide"><%= rcd.hidden_field :id %></label>
