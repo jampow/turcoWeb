@@ -30,6 +30,7 @@ class Payable < ActiveRecord::Base
 # Select pay.id
 #      , pro.name as provider
 #      , pay.invoice_number
+#      , pay.issue_date
 #      , pay.due_date
 #      , pay.value
 #      , pay.settled
@@ -48,20 +49,25 @@ class Payable < ActiveRecord::Base
                         end
                         { :conditions => cond } }
 
-  named_scope :grid, lambda { |starts_at, ends_at|
+  named_scope :grid, lambda { |starts_at, ends_at, field_filter|
                         cond = [""]
+                        if field_filter == "1" #Vencimento
+                          field = "pay.due_date"
+                        else
+                          field = "pay.issue_date"
+                        end
                         if !starts_at.blank?
-                          cond[0] += " And pay.due_date >= ?"
+                          cond[0] += " And "+field+" >= ?"
                           cond << starts_at
                         end
                         if !ends_at.blank?
-                          cond[0] += " And pay.due_date <= ?"
+                          cond[0] += " And "+field+" <= ?"
                           cond << ends_at
                         end
                         if cond[0].length > 0
                           cond[0] = cond[0][5..cond[0].length]
                         end
-                        { :select => "pay.id, pro.name as pro, pay.invoice_number, pay.due_date, pay.value, pay.settled",
+                        { :select => "pay.id, pro.name as pro, pay.invoice_number, pay.issue_date, pay.due_date, pay.value, pay.settled",
                           :joins  => "pay Join providers pro On pro.id = pay.provider_id",
                           :conditions => cond } }
 

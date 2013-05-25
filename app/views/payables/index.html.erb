@@ -1,10 +1,26 @@
 <% content_for :menu do -%>
-  <h1>Títulos a pagar<%= filter_display date(@filter['starts_at']), date(@filter['ends_at']) %></h1>
+  <h1>Títulos a pagar<%= filter_display date(@filter[:starts_at]), date(@filter[:ends_at]), @filter[:field_filter] %></h1>
   <%= mount_menu %w[default separator] %>
   <%= btn_filter %>
   <%= link_to 'Duplicar títulos a pagar', '/payables/select_payables', :class => "button", :icon => "alert" %>
   <%= payable_filters %>
   <% form_for :payables, :url => {:controller => "payables", :action => "filter_index"}, :html => {:class => 'filter closed'} do |f| %>
+    <%# f.select_field :field_filter,[["Vencimento",1],["Emissão",2]], :label => "Filtrar por" %>
+
+    <label for="payables_field_filter" class="inputselect w20">
+      <span class="wrapper">
+        <span class="title">Filtrar por</span>
+        <select name="payables[field_filter]" id="payables_field_filter">
+          <option value="1">Vencimento</option>
+          <% if @filter[:field_filter] == "2" %>
+          <option value="2" selected="selected">Emissão</option>
+          <% else %>
+          <option value="2">Emissão</option>
+          <% end %>
+        </select>
+      </span>
+    </label>
+
     <%= f.text_field :starts_at, :label => "Início" , :class => "datepicker", :value => @filter[:starts_at] %>
     <%= f.text_field :ends_at  , :label => "Término", :class => "datepicker", :value => @filter[:ends_at] %>
     <%= link_to "Filtrar", "#", {:class => "button save", :icon => "search"} %>
@@ -17,12 +33,13 @@
                      ['value'         , 'Valor'       , {:format => 'number_to_currency', :class => 'right' }],
                      ['settled'       , 'Quitado?'    , {:format => 'human_boolean'     , :class => 'center'}] %>
 
-    <table class="list" idx="4" cellpading="0" cellspacing="0" border="0" width="100%">
+    <table class="list" idx="5" cellpading="0" cellspacing="0" border="0" width="100%">
       <thead>
         <tr>
           <th class="hide">ID</th>
           <th>Número da NF</th>
           <th>Fornecedor</th>
+          <th>Emissão</th>
           <th>Vencimento</th>
           <th>Valor</th>
           <th>Quitado?</th>
@@ -34,7 +51,8 @@
           <td class="right hide"><%= payable.id %></td>
           <td class="right"><%= payable.invoice_number %></td>
           <td class=""><%= payable.pro %></td>
-          <td class="center"><%= l(payable.due_date) %></td>
+          <td class="center"><%= date(payable.issue_date) %></td>
+          <td class="center"><%= date(payable.due_date) %></td>
           <td class="right"><%= number_to_currency(payable.value) %></td>
           <td class="center"><%= human_boolean(payable.settled) %></td>
         </tr>
@@ -42,7 +60,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <th colspan="3" style="text-align: right">Total: </th>
+          <th colspan="4" style="text-align: right">Total: </th>
           <th class="sum right"></th>
           <th></th>
         </tr>

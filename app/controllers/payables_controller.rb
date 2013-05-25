@@ -7,17 +7,17 @@ class PayablesController < ApplicationController
   end
 
   def filter_index
-    @filter = {:starts_at => "", :ends_at => ""}
+    @filter = {:starts_at => "", :ends_at => "", :field_filter => params[:payables][:field_filter]}
 
     if params[:payables][:starts_at].blank? && params[:payables][:ends_at].blank?
-      @filter['starts_at'] = Date.today.beginning_of_month
-      @filter['ends_at']   = Date.today.end_of_month
+      @filter[:starts_at] = Date.today.beginning_of_month
+      @filter[:ends_at]   = Date.today.end_of_month
     else
-      @filter['starts_at'] = params[:payables][:starts_at]
-      @filter['ends_at']   = params[:payables][:ends_at]
+      @filter[:starts_at] = params[:payables][:starts_at]
+      @filter[:ends_at]   = params[:payables][:ends_at]
     end
 
-    @payables = Payable.grid @filter['starts_at'], @filter['ends_at']
+    @payables = Payable.grid @filter[:starts_at], @filter[:ends_at], @filter[:field_filter]
 
     render :index
   end
@@ -25,18 +25,18 @@ class PayablesController < ApplicationController
   # GET /payables
   # GET /payables.xml
   def index
-    @filter ||= {:starts_at => "", :ends_at => ""}
+    @filter ||= {:starts_at => "", :ends_at => "", :field_filter => "1"}
 
     params[:payables] ||= {}
     if params[:payables][:starts_at].blank? && params[:payables][:ends_at].blank?
-      @filter['starts_at'] = Date.today.beginning_of_month
-      @filter['ends_at']   = Date.today.end_of_month
+      @filter[:starts_at] = Date.today.beginning_of_month
+      @filter[:ends_at]   = Date.today.end_of_month
     else
-      @filter['starts_at'] = params[:payables][:starts_at]
-      @filter['ends_at']   = params[:payables][:ends_at]
+      @filter[:starts_at] = params[:payables][:starts_at]
+      @filter[:ends_at]   = params[:payables][:ends_at]
     end
 
-    @payables = Payable.grid @filter['starts_at'], @filter['ends_at']
+    @payables = Payable.grid @filter[:starts_at], @filter[:ends_at], @filter[:field_filter]
 
     respond_to do |format|
       format.html # index.html.erb

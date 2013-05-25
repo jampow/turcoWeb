@@ -249,8 +249,13 @@ module ApplicationHelper
     end
   end
 
-  def filter_display(starts, ends)
-    s = " - "
+  def filter_display(starts, ends, field)
+    s = " - com "
+    if field == "1"
+      s += "vencimento "
+    else
+      s += "emissão "
+    end
     if ends.empty?
       s += "a partir de #{starts}"
     else
