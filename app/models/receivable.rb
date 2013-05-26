@@ -212,10 +212,11 @@ protected
       cocenter_default = acplan_default.cost_centers
 
       cocenter_default.each do |division|
+        apport = Apportionment.find_by_account_plan_id_and_cost_center_id(acplan_default.id, division.id)
         rec_cost_div_def = ReceivableCostDivision.new(
          :account_plan_id => acplan_default.id,
-         :cost_center_id => division.apportionments[0].id,
-         :value => self.value * ( division.apportionments[0].rate / 100 ) )
+         :cost_center_id => apport.id,
+         :value => self.value * ( apport.rate / 100 ) )
 
         self.receivable_cost_divisions << rec_cost_div_def
       end
