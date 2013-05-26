@@ -19,6 +19,7 @@ class Payable < ActiveRecord::Base
   has_many :billings, :class_name => 'PayableBilling'
 
   before_save :mark_item_for_removal
+  before_save :set_default_account_plan
   accepts_nested_attributes_for :payable_cost_divisions, :allow_destroy => true, :reject_if => proc { |attributes| attributes['value'].blank? }
 
   attr_accessor :provider_name
@@ -219,6 +220,28 @@ protected
 
   def presence_of_provider
     errors.add("provider_name", "Não pode ficar em branco") if provider_id.blank?
+  end
+
+  def set_default_account_plan
+    counter = 0
+
+    payable_cost_divisions.each do |child|
+      counter = counter + 1 if (!child.account_plan_id.blank? && !child.cost_center_id.blank?) && !child.value.blank?
+    end
+
+    if counter == 0
+      acplan_default = AccountPlan.find_by_orientation_id_and_default(2, true)
+      cocenter_default = acplan_default.cost_centers
+
+      cocenter_default.each do |division|
+        pay_cost_div_def = PayableCostDivision.new(
+         :account_plan_id => acplan_default.id,
+         :cost_center_id => division.apportionments[0].id,
+         :value => self.value * ( division.apportionments[0].rate / 100 ) )
+
+        self.payable_cost_divisions << pay_cost_div_def
+      end
+    end
   end
 
 end

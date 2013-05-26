@@ -21,6 +21,7 @@ class Receivable < ActiveRecord::Base
 
   accepts_nested_attributes_for :receivable_cost_divisions, :allow_destroy => true, :reject_if => proc { |attributes| attributes['value'].blank? }
   before_save :mark_item_for_removal
+  before_save :set_default_account_plan
 
   attr_accessor :client_name
 
@@ -196,6 +197,28 @@ protected
   def mark_item_for_removal
     receivable_cost_divisions.each do |child|
       child.mark_for_destruction if (child.account_plan_id.blank? && child.cost_center_id.blank?) || child.value.blank?
+    end
+  end
+
+  def set_default_account_plan
+    counter = 0
+
+    receivable_cost_divisions.each do |child|
+      counter = counter + 1 if (!child.account_plan_id.blank? && !child.cost_center_id.blank?) && !child.value.blank?
+    end
+
+    if counter == 0
+      acplan_default = AccountPlan.find_by_orientation_id_and_default(1, true)
+      cocenter_default = acplan_default.cost_centers
+
+      cocenter_default.each do |division|
+        rec_cost_div_def = ReceivableCostDivision.new(
+         :account_plan_id => acplan_default.id,
+         :cost_center_id => division.apportionments[0].id,
+         :value => self.value * ( division.apportionments[0].rate / 100 ) )
+
+        self.receivable_cost_divisions << rec_cost_div_def
+      end
     end
   end
 
