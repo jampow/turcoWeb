@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130525201602) do
+ActiveRecord::Schema.define(:version => 20130525235148) do
 
   create_table "VwCashFlow", :id => false, :force => true do |t|
     t.date    "date"
@@ -71,13 +71,14 @@ ActiveRecord::Schema.define(:version => 20130525201602) do
   end
 
   create_table "account_plans", :force => true do |t|
-    t.string   "name",           :limit => 50,                   :null => false
+    t.string   "name",           :limit => 50,                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "code",           :limit => 11,                   :null => false
-    t.integer  "level",                        :default => 1,    :null => false
-    t.boolean  "analytical",                   :default => true, :null => false
+    t.string   "code",           :limit => 11,                    :null => false
+    t.integer  "level",                        :default => 1,     :null => false
+    t.boolean  "analytical",                   :default => true,  :null => false
     t.integer  "orientation_id",               :default => 1
+    t.boolean  "default",                      :default => false
   end
 
   create_table "activities", :force => true do |t|

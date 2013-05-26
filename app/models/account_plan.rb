@@ -7,6 +7,7 @@ class AccountPlan < ActiveRecord::Base
   has_many :apportionments
   has_many :cost_centers, :through => :apportionments
   before_save :mark_item_for_removal
+  before_save :validates_uniqueness_of_default
 
   accepts_nested_attributes_for :apportionments, :reject_if => proc { |a| a[:cost_center_name].blank? || a[:rate].blank?}
 
@@ -32,6 +33,16 @@ class AccountPlan < ActiveRecord::Base
     end
   end
 
+  def validates_uniqueness_of_default
+    if self.default
+      todisable = AccountPlan.find_by_orientation_id_and_default(self.orientation_id, true)
+      if !todisable.nil?
+        todisable.default = false
+        todisable.save!
+      end
+    end
+  end
+
   class Orientation <
     Struct.new(:id, :name)
     VALUES = [
@@ -53,7 +64,7 @@ class AccountPlan < ActiveRecord::Base
     end
   end
 
-  named_scope :grid, :select => "id, code, name, analytical, if(orientation_id = 1, 'a receber', 'a pagar') As orientation"
+  named_scope :grid, :select => "id, code, name, `default`, analytical, if(orientation_id = 1, 'a receber', 'a pagar') As orientation"
 
   # Select acp.code
   #      , Concat(Repeat('&nbsp;&nbsp;&nbsp;', acp.level - 1), acp.name) As name

@@ -3,11 +3,12 @@
   <%= mount_menu %>
 <% end -%>
 
-<%= print_content "Código"                , h(@account_plan.code)                                           , {:width => 20} %>
+<%= print_content "Código"                , h(@account_plan.code)                                           , {:width => 10} %>
 <%= print_content "Nome"                  , h(@account_plan.name)                                           , {:width => 30} %>
 <%= print_content "Nível"                 , h(@account_plan.level)                                          , {:width => 20} %>
 <%= print_content "Usado em"              , AccountPlan::Orientation.find(@account_plan.orientation_id).name, {:width => 20} %>
 <%= print_content "Analítico ou sintético", anal_or_sint(@account_plan.analytical)                          , {:width => 10} %>
+<%= print_content "Padrão"                , human_boolean(@account_plan.default)                            , {:width => 10} %>
 
 <div class="clear"></div>
 

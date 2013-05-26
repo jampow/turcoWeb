@@ -6,5 +6,6 @@
 <%= table @account_plans, ['code'       , 'Código'     , {:class => "center"}],
                           ['name'       , 'Nome'       ],
                           ['orientation', 'Conta'      ],
+                          ['default'    , 'Padrao'     , {:format => "human_boolean"}],
                           ['analytical' , 'An. ou Sin.', {:format => "anal_or_sint", :class => "center"}] %>
 
