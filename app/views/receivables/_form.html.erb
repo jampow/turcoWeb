@@ -79,7 +79,7 @@
             <td><%= div.hidden_field :cost_center_name %><span></span></td>
             <td><%= div.hidden_field :observations %><span></span></td>
             <td class="right"><%= div.hidden_field :value  , :class => 'mask-decimal', :decimal => "10,2" %><span></span></td>
-            <td class="right"><%= div.hidden_field :percent, :class => 'mask-decimal', :decimal => "10,2", :value => (div.object.value * 100 / @payable.value) %><span></span></td>
+            <td class="right"><%= div.hidden_field :percent, :class => 'mask-decimal', :decimal => "10,2", :value => (div.object.value * 100 / @receivable.value) %><span></span></td>
           </tr>
         <% end %>
         </tbody>
