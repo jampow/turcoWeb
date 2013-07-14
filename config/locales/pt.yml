@@ -48,7 +48,7 @@
     currency:
       format:
         format: '%u %n'
-        unit: 'R$'
+        unit: ''
         separator: ','
         delimiter: '.'
         precision: 2
