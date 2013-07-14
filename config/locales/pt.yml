@@ -312,6 +312,7 @@
       location:
         client_id: "Cliente"
         client_name: "Cliente"
+        seller_name: "Representante"
         starts_at: "Início da locação"
         ends_at: "Término da locação"
       payable:
