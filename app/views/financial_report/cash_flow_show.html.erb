@@ -29,6 +29,7 @@
   <tbody>
   <% acumulated = 0 %>
   <% @cash_flow.each do |cf| %>
+    <% acumulated += cf.total %>
     <tr>
       <td class="center"><%= date(cf.date) %></td>
       <td class="right" ><%= number_to_currency(cf.pay)     %></td>
@@ -38,7 +39,6 @@
       <td class="right" ><%= number_to_currency(cf.total)   %></td>
       <td class="right" ><%= number_to_currency(@filter[:balance].to_f + acumulated) %></td>
     </tr>
-    <% acumulated += cf.total %>
   <% end %>
   </tbody>
 </table>
