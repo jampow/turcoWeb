@@ -11,3 +11,15 @@
                                       ["debit"   , "Débito" , {:format => "number_to_currency", :class => "right" }],
                                       ["balance" , "Saldo"  , {:format => "number_to_currency", :class => "right" }] %>
 
+<% content_for :script do -%>
+//<script type="text/javascript">
+
+    var conf = {
+    	"aaSorting": [[ 0, "desc" ]]
+    };
+
+    var newConf = $.extend({}, dTableConfig, conf);
+
+    $('table.list').dataTable(newConf);
+
+<% end -%>
