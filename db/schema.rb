@@ -11,65 +11,6 @@
 
 ActiveRecord::Schema.define(:version => 20130525235148) do
 
-  create_table "VwCashFlow", :id => false, :force => true do |t|
-    t.date    "date"
-    t.decimal "rec",   :precision => 65, :scale => 3
-    t.decimal "pay",   :precision => 65, :scale => 3
-    t.decimal "total", :precision => 65, :scale => 3
-  end
-
-  create_table "VwCashFlowPayables", :id => false, :force => true do |t|
-    t.date    "date"
-    t.decimal "rec",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
-    t.decimal "recd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
-    t.decimal "pay",  :precision => 56, :scale => 3
-    t.decimal "payd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
-  end
-
-  create_table "VwCashFlowPayablesPre", :id => false, :force => true do |t|
-    t.integer "id",                                      :default => 0, :null => false
-    t.date    "due_date"
-    t.decimal "payable",  :precision => 34, :scale => 3
-  end
-
-  create_table "VwCashFlowPayd", :id => false, :force => true do |t|
-    t.date    "date"
-    t.decimal "rec",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
-    t.decimal "recd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
-    t.decimal "pay",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
-    t.decimal "payd", :precision => 32, :scale => 2
-  end
-
-  create_table "VwCashFlowReceivables", :id => false, :force => true do |t|
-    t.date    "date"
-    t.decimal "rec",  :precision => 56, :scale => 3
-    t.decimal "recd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
-    t.decimal "pay",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
-    t.decimal "payd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
-  end
-
-  create_table "VwCashFlowReceivablesPre", :id => false, :force => true do |t|
-    t.integer "id",                                        :default => 0, :null => false
-    t.date    "due_date"
-    t.decimal "receivable", :precision => 34, :scale => 3
-  end
-
-  create_table "VwCashFlowReceived", :id => false, :force => true do |t|
-    t.date    "date"
-    t.decimal "rec",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
-    t.decimal "recd", :precision => 32, :scale => 2
-    t.decimal "pay",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
-    t.decimal "payd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
-  end
-
-  create_table "VwCashFlowUnion", :id => false, :force => true do |t|
-    t.date    "date"
-    t.decimal "rec",  :precision => 56, :scale => 3
-    t.decimal "recd", :precision => 32, :scale => 2
-    t.decimal "pay",  :precision => 56, :scale => 3
-    t.decimal "payd", :precision => 32, :scale => 2
-  end
-
   create_table "account_plans", :force => true do |t|
     t.string   "name",           :limit => 50,                    :null => false
     t.datetime "created_at"
@@ -358,7 +299,7 @@ ActiveRecord::Schema.define(:version => 20130525235148) do
     t.string   "contact"
     t.integer  "client_id"
     t.integer  "seller_id"
-    t.integer  "comission"
+    t.integer  "comission",            :limit => 10, :precision => 10, :scale => 0
     t.integer  "payment_condition_id"
     t.date     "starts_at"
     t.date     "ends_at"
@@ -394,11 +335,11 @@ ActiveRecord::Schema.define(:version => 20130525235148) do
     t.integer  "order_id"
     t.integer  "product_id"
     t.decimal  "quantity",          :precision => 10, :scale => 4
+    t.decimal  "unit_value",        :precision => 10, :scale => 2
     t.decimal  "total_value",       :precision => 10, :scale => 2
     t.date     "delivery"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "unit_value",        :precision => 10, :scale => 2
     t.integer  "measure_unit_id"
     t.decimal  "net_weight",        :precision => 10, :scale => 4
     t.decimal  "gross_weight",      :precision => 10, :scale => 4
@@ -524,10 +465,10 @@ ActiveRecord::Schema.define(:version => 20130525235148) do
     t.integer  "function_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_content_type"
-    t.string   "photo_file_name"
-    t.datetime "photo_updated_at"
     t.integer  "photo_file_size"
+    t.string   "photo_content_type"
+    t.datetime "photo_updated_at"
+    t.string   "photo_file_name"
   end
 
   create_table "phones", :force => true do |t|
@@ -804,6 +745,65 @@ ActiveRecord::Schema.define(:version => 20130525235148) do
     t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "vwcashflow", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",   :precision => 65, :scale => 3
+    t.decimal "pay",   :precision => 65, :scale => 3
+    t.decimal "total", :precision => 65, :scale => 3
+  end
+
+  create_table "vwcashflowpayables", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "recd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "pay",  :precision => 56, :scale => 3
+    t.decimal "payd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+  end
+
+  create_table "vwcashflowpayablespre", :id => false, :force => true do |t|
+    t.integer "id",                                      :default => 0, :null => false
+    t.date    "due_date"
+    t.decimal "payable",  :precision => 34, :scale => 3
+  end
+
+  create_table "vwcashflowpayd", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "recd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "pay",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "payd", :precision => 32, :scale => 2
+  end
+
+  create_table "vwcashflowreceivables", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",  :precision => 56, :scale => 3
+    t.decimal "recd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "pay",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "payd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+  end
+
+  create_table "vwcashflowreceivablespre", :id => false, :force => true do |t|
+    t.integer "id",                                        :default => 0, :null => false
+    t.date    "due_date"
+    t.decimal "receivable", :precision => 34, :scale => 3
+  end
+
+  create_table "vwcashflowreceived", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "recd", :precision => 32, :scale => 2
+    t.decimal "pay",  :precision => 3,  :scale => 2, :default => 0.0, :null => false
+    t.decimal "payd", :precision => 3,  :scale => 2, :default => 0.0, :null => false
+  end
+
+  create_table "vwcashflowunion", :id => false, :force => true do |t|
+    t.date    "date"
+    t.decimal "rec",  :precision => 56, :scale => 3
+    t.decimal "recd", :precision => 32, :scale => 2
+    t.decimal "pay",  :precision => 56, :scale => 3
+    t.decimal "payd", :precision => 32, :scale => 2
   end
 
 end
