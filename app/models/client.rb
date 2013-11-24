@@ -37,6 +37,19 @@ class Client < ActiveRecord::Base
     end
   end
 
+  before_destroy :validate_dependencies
+
+  def validate_dependencies
+    de = true
+
+    de = false if invoices.count > 0
+    de = false if receivables.count > 0
+    de = false if sales_orders.count > 0
+    de = false if locations.count > 0
+
+    return false if !de;
+  end
+
   def doc=(value)
     if value.length > 14
       self.cnpj = value
